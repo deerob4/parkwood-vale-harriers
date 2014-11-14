@@ -5,5 +5,4 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
-    # return 'hello, world.'
     return render_template('layout.html')
