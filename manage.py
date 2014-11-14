@@ -6,8 +6,8 @@ from app.models import db
 app = create_app()
 
 manager = Manager(app)
-manager.add_command('server', Server())
-manager.add_command('server-nitro', Server(host='0.0.0.0', port=8080))
+manager.add_command('server', Server(use_debugger=True))
+manager.add_command('server-nitro', Server(host='0.0.0.0', port=8080, use_debugger=True))
 manager.add_command('clean', Clean())
 manager.add_command('show-urls', ShowUrls())
 
