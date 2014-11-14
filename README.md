@@ -1,4 +1,4 @@
-Park Vale Harriers Running Club
+Parkwood Vale Harriers Running Club
 ===============================
 This is an application for the Park Vale Harriers running club,
 allowing them to choose a team of runners for their charity event. Features include:
@@ -8,6 +8,6 @@ allowing them to choose a team of runners for their charity event. Features incl
 - [ ] The ability to view fitness improvement over time
 - [ ] The ability to compare results with other runners
 - [ ] Individual accounts for each runner
-- [ ] The abililty to work out the best final team
+- [ ] The ability to work out the best final team
 
 This is a project for my AS Computing coursework.
