@@ -55,3 +55,4 @@ target/
 .ideas/
 .idea/
 venv/
+.codio
