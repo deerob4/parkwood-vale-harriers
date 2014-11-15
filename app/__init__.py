@@ -6,6 +6,7 @@ from app import assets
 
 from webassets.loaders import PythonLoader
 
+
 def create_app():
     """
     Application factory that creates the application instance.

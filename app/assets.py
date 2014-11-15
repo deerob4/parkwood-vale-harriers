@@ -4,7 +4,7 @@ common_css = Bundle(
     'css/bootstrap.min.css',
     'css/main.css',
     filters='cssmin',
-    output='css/public/common.min.css'
+    output='public/common.min.css'
 )
 
 common_js = Bundle(
@@ -12,5 +12,5 @@ common_js = Bundle(
     'js/bootstrap.min.js',
     'js/main.js',
     filters='jsmin',
-    output='js/public/common.min.js'
+    output='public/common.min.js'
 )
