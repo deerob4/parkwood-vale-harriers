@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Uses the assets defined under 'common_css' in assets.py -->
     {% assets 'common_css' %}
         <link rel="stylesheet" href="{{ ASSET_URL }}"/>
     {% endassets %}
@@ -58,6 +59,7 @@
         </div>
     </footer>
 </body>
+<!-- Uses the assets defined under 'common_js' in assets.py -->
 {% assets 'common_js' %}
     <script src="{{ ASSET_URL }}"></script>
 {% endassets %}
