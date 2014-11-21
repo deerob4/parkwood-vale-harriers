@@ -31,6 +31,9 @@ def create_app():
     # Configures application blueprints
     from app.controllers.main import main
     app.register_blueprint(main)
+    
+    from app.controllers.auth import auth
+    app.register_blueprint(auth)
 
     return app
 
