@@ -15,3 +15,9 @@
     text-align: center;
     padding-top: 20px;
 }
+
+/* Typography styles
+--------------------*/
+label {
+    font-family: 'News Cycle', sans-serif;
+}

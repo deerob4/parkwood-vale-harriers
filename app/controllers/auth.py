@@ -1,9 +1,9 @@
-from Flask import Blueprint, render_template
+from flask import Blueprint, render_template
 from app.forms import MemberForm
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/register')
+@auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = MemberForm()
-    return render_template('auth/register.html')
+    return render_template('auth/register.html', form=form)
