@@ -4,8 +4,29 @@
 
 {% block content %}
     <div class="jumbotron">
-        <h1>Make an account</h1>
-        <p>Special special text goes here</p>
+        <h1>Create an account</h1>
+
+        <p>Fill in all the fields below, and then press Submit; please make sure you answer accurately. If you want the
+            chance to run in the charity event, leave the box ticked.</p>
+
+        {% with messages=get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <form method="POST">
             <div class="form-group">
                 {{ form.name.label }}
@@ -43,12 +64,20 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                {{ form.charity_event.label }}
-                {{ form.charity_event(class='input_membership_charity') }}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {{ form.submit(class='btn btn-primary col-sm-3') }}
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.submit(class='form-control btn-primary') }}
+            <div class="row charity_row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form.charity_event.label }}
+                        {{ form.charity_event(class='input_membership_charity', checked='true') }}
+                    </div>
+                </div>
             </div>
         </form>
     </div>

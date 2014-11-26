@@ -18,6 +18,12 @@
 
 /* Typography styles
 --------------------*/
-label {
+label, p, .btn {
     font-family: 'News Cycle', sans-serif;
+}
+.btn {
+    font-weight: 700;
+}
+.charity_row {
+    margin-top: 10px;
 }
