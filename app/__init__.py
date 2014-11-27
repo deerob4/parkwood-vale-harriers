@@ -8,10 +8,6 @@ from webassets.loaders import PythonLoader
 
 
 def create_app():
-    """
-    Application factory that creates the application instance.
-    """
-
     app = Flask(__name__)
 
     # Sets configuration variables used application-wise

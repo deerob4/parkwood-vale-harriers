@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField
-from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError
 
 
 class MemberForm(Form):
@@ -19,3 +19,4 @@ class MemberForm(Form):
                                     ('11-15', '11 - 15 miles'), ('16-20', '16 - 20 miles'),
                                     ('g20', 'More than 20 miles')])
     submit = SubmitField('Submit')
+   

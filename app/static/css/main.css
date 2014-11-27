@@ -23,6 +23,9 @@ label, p, .btn {
 .btn {
     font-weight: 700;
 }
+
+/* Layout fixes
+---------------*/
 .charity_row {
     margin-top: 10px;
 }
