@@ -7,13 +7,12 @@
 /* Footer styles
 ----------------*/
 .footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 60px;
-    border: 1px solid #eee;
+    border-top: 1px solid #eee;
     text-align: center;
     padding-top: 20px;
+    margin-top: 20px;
 }
 
 /* Typography styles
