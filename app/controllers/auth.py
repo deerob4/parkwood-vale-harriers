@@ -10,4 +10,5 @@ def register():
         print('woohoo')
     for error in form.errors.items():
         flash(error[1][0], 'warning')
+#     flash(form.dob.data)
     return render_template('auth/register.html', form=form)
