@@ -8,9 +8,7 @@ from datetime import *
 
 
 def calculate_age(born):
-#     born = datetime.date(born)
     today = date.today()
-    print('shoot me down, lord.')
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 
@@ -38,10 +36,8 @@ class MemberForm(Form):
             
     def validate_dob(self, field):
         age = calculate_age(field.data)
-        if age < 18:
-            raise ValidationError('You must 18 or over to join.')
-        if age > 75:
-            raise ValidationError('You must be younger than 75 to join.')
+        if not 18 <= age <= 75:
+            raise ValidationError('You must be between 18 - 75 years old to join.')
             
             
             
