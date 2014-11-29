@@ -1,10 +1,8 @@
-import datetime
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, RadioField
+from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError
-from wtforms_components import DateRange
 
-from datetime import *
+from datetime import date
 
 
 def calculate_age(born):
@@ -13,13 +11,15 @@ def calculate_age(born):
 
 
 class MemberForm(Form):
-    name = StringField("What is your name?", validators=[DataRequired('You must enter your name.'), Regexp('^[A-Za-z" "]*$', message='Your name must only contain letters.')])
+    name = StringField("What is your name?", validators=[DataRequired('You must enter your name.'),
+                                                         Regexp('^[A-Za-z" "]*$',
+                                                                message='Your name must only contain letters.')])
     dob = DateField("What is your date of birth?", validators=[DataRequired('You must enter your date of birth.')])
     email = StringField("What is your email?",
                         validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
     password = PasswordField("Enter a password:", validators=[DataRequired('You must enter a password.'),
                                                               Length(8, 20,
-                                                                     'Your password must be between 8-20 characters.')])
+                                                                     'Your password must be 8 - 20 characters.')])
     confirm = PasswordField("Confirm your password:", validators=[DataRequired('You must confirm your password.'),
                                                                   EqualTo('password', 'Your passwords must match.')])
     charity_event = BooleanField("I want the chance to run in the charity event")
@@ -28,16 +28,13 @@ class MemberForm(Form):
                                     ('11-15', '11 - 15 miles'), ('16-20', '16 - 20 miles'),
                                     ('g20', 'More than 20 miles')])
     submit = SubmitField('Submit')
-    
+
     def validate_distance(self, field):
         charity_event = self.charity_event
-        if field.data == 'l1' and charity_event.data == True:
+        if field.data == 'l1' and charity_event.data is True:
             raise ValidationError('You must be physically fit to run in the charity event.')
-            
+
     def validate_dob(self, field):
         age = calculate_age(field.data)
         if not 18 <= age <= 75:
-            raise ValidationError('You must be between 18 - 75 years old to join.')
-            
-            
-            
+            raise ValidationError('You must be 18 - 75 years old to join. %s years' % age)
