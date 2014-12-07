@@ -6,11 +6,20 @@ from datetime import date
 
 
 def calculate_age(born):
+    """Calculates the age of the user
+
+    This function takes a date object provided
+    by the user (in 'dob) and then operates it
+    in comparison with the current date, working
+    out the age of the user; this is returned as an int.
+    """
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 
 class MemberForm(Form):
+    """Contains the fields and validators for the new member form."""
+
     name = StringField("What is your name?", validators=[DataRequired('You must enter your name.'),
                                                          Regexp('^[A-Za-z" "]*$',
                                                                 message='Your name must only contain letters.')])
@@ -30,11 +39,13 @@ class MemberForm(Form):
     submit = SubmitField('Submit')
 
     def validate_distance(self, field):
+        """Ensures the user has not ticked the charity event and is a poor runner."""
         charity_event = self.charity_event
         if field.data == 'l1' and charity_event.data is True:
             raise ValidationError('You must be physically fit to run in the charity event.')
 
     def validate_dob(self, field):
+        """Ensures the user is between 18 - 75 years old."""
         age = calculate_age(field.data)
         if not 18 <= age <= 75:
             raise ValidationError('You must be 18 - 75 years old to join. %s years' % age)

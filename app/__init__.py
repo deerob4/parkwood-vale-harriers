@@ -8,11 +8,18 @@ from webassets.loaders import PythonLoader
 
 
 def create_app():
+    """Generates an instance of the app.
+
+    This function contains all the config values
+    for the different parts of the app; it returns
+    a variable 'app' that contains all these values
+    for use throughout the rest of the application.
+    """
     app = Flask(__name__)
 
     # Sets configuration variables used application-wise
     app.config['SECRET_KEY'] = 'vYqTMY88zsuXSG7R4xYdPxYk'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'  # May change to MySQL/PostgreSQL
 
     # Configures SQLAlchemy
     db.init_app(app)
