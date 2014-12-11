@@ -7,24 +7,20 @@ app = create_app()
 
 manager = Manager(app)
 manager.add_command('server', Server(use_debugger=True))
-manager.add_command('server-codio', Server(host='0.0.0.0', port=3000, use_debugger=True))
+manager.add_command('server-codio', Server(host='0.0.0.0', port=3001, use_debugger=True))
 manager.add_command('clean', Clean())
 manager.add_command('show-urls', ShowUrls())
 
 
 @manager.shell
 def make_shell_context():
-    """
-    Creates a Python shell with the below variables already imported.
-    """
+    """Creates a Python shell with the below variables already imported."""
     return dict(app=app, db=db)
 
 
 @manager.command
-def create_db():
-    """
-    Creates the database, using the models in app.models.py
-    """
+def createdb():
+    """Creates the database, using the models in app.models.py"""
     db.create_all()
 
 if __name__ == '__main__':

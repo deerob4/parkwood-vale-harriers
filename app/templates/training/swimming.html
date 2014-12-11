@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Add Swimming Session{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Add Swimming Session</h1>
+    <p>Been for a swim? Note it down here to add it to your log.</p>
+    <form method='POST' class='form-new-training'>
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.style.label }}
+            {{ form.style(class='form-control input-swim-style') }}
+        </div>
+        <div class="row">
+            <div class="form-group">
+
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

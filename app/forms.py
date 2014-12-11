@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError
 
 from datetime import date
@@ -49,3 +49,9 @@ class MemberForm(Form):
         age = calculate_age(field.data)
         if not 18 <= age <= 75:
             raise ValidationError('You must be 18 - 75 years old to join. %s years' % age)
+
+            
+class NewSwimForm(Form):
+    style = SelectField('Which style did you use?', choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'), ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'), ('freestyle-fast', 'Freestyle (fast)')])
+    start = IntegerField('What time did you start?')
+    finish = IntegerField('What time did you finish?')
