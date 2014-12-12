@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError
 
 from datetime import date
@@ -51,7 +51,10 @@ class MemberForm(Form):
             raise ValidationError('You must be 18 - 75 years old to join. %s years' % age)
 
             
-class NewSwimForm(Form):
+class AddSwimForm(Form):
     style = SelectField('Which style did you use?', choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'), ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'), ('freestyle-fast', 'Freestyle (fast)')])
-    start = IntegerField('What time did you start?')
-    finish = IntegerField('What time did you finish?')
+    start = StringField('What time did you start your swim?', validators=[DataRequired('You must enter your start time.')])
+    finish = StringField('What time did you finish your swim?', validators=[DataRequired('You must enter your finish time.')])
+    rating = SelectField('How would you rate your swim?', choices=[('brilliant', 'Brilliant'), ('pretty-good', 'Pretty good'), ('about-average', 'About average'),('okay', 'Okay'), ('poor', 'Poor')])
+    thoughts = TextAreaField('Do you have any extra thoughts about the swim?')
+    submit = SubmitField('Add Swim')

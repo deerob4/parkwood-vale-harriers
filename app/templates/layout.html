@@ -28,7 +28,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Running</a></li>
                             <li><a href="#">Cycling</a></li>
-                            <li><a href="#">Swimming</a></li>
+                            <li><a href="{{ url_for('main.add_swim') }}">Swimming</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -40,7 +40,6 @@
                         </ul>
                     </li>
                     <li><a href="">Compare Performance</a></li>
-                    <li><a href="">Team Selection</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -71,4 +70,5 @@
 {% assets 'common_js' %}
     <script src="{{ ASSET_URL }}"></script>
 {% endassets %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </html>
