@@ -70,5 +70,6 @@
 {% assets 'common_js' %}
     <script src="{{ ASSET_URL }}"></script>
 {% endassets %}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="{{ url_for('static', filename='js/picker.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/picker.time.js') }}"></script>
 </html>
