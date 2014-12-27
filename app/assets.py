@@ -12,8 +12,8 @@ common_css = Bundle(
 common_js = Bundle(
     'js/jquery.min.js',
     'js/bootstrap.min.js',
-#     'js/picker.js',
-#     'js/picker.time.js',
+    'js/picker.js',
+    # 'js/picker.time.js',
     'js/main.js',
     filters='jsmin',
     output='public/common.min.js'

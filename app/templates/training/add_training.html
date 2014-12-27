@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Add Training Session{{ super() }}{% endblock %}
+
+{% block content %}
+    <h1>Add a Training Session - {{ date.strftime('%A %e %B %G') }}</h1>
+    <h4>Done some exercise? Record it here to add it to your training log.</h4>
+    <div class="add-training">
+        <div class="activity-picker">
+            <ul>
+                <li>Running <span class="glyphicon glyphicon-ok"></span></li>
+                <li>Cycling <span class="glyphicon glyphicon-ok"></span></li>
+                <li>Swimming <span class="glyphicon glyphicon-ok"></span></li>
+            </ul>
+        </div>
+        <div class="data">
+            <div class="running"></div>
+            <div class="cycling"></div>
+            <div class="swimming"></div>
+        </div>
+    </div>
+{% endblock %}

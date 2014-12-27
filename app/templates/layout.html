@@ -24,21 +24,14 @@
             <div class="collapse navbar-collapse" id="main_nav">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Training Session<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Running</a></li>
-                            <li><a href="#">Cycling</a></li>
-                            <li><a href="{{ url_for('main.add_swim') }}">Swimming</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Performance<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Running</a></li>
-                            <li><a href="#">Cycling</a></li>
-                            <li><a href="#">Swimming</a></li>
+                            <li><a href="{{ url_for('main.running') }}">Running</a></li>
+                            <li><a href="{{ url_for('main.cycling') }}">Cycling</a></li>
+                            <li><a href="{{ url_for('main.swimming') }}">Swimming</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
                     <li><a href="">Compare Performance</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
