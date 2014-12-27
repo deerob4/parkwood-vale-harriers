@@ -47,24 +47,40 @@ label, p, .btn {
     list-style-type: none;
     padding: 0;
 }
-.activity-picker li {
-    width: 500px;
-    margin-bottom: 10px;
+.activity-block {
+    width: 44%;
+    margin-bottom: 20px;
     padding-top: 20px;
     height: 75px;
     cursor: default;
     padding-left: 30px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgba(231, 73, 68, 0.79);
+    box-shadow: 0 8px 0 0 rgb(142, 42, 42);
     color: #fff;
+    transition: all 0.5s ease-in-out;
 }
-.activity-picker li:hover:not(.animated) {
+.activity-block:hover:not(.animated) {
     background-color: rgba(231, 73, 68, 0.88);
     transition: background-color 0.5s ease-in-out;
 }
+.activity-block:active {
+    box-shadow: 0 4px 0 0 rgb(142, 42, 42);
+}
 .activity-picker .glyphicon {
     float: right;
-    padding-right: 16px;
+    padding-right: 30px;
     font-size: 17px;
+    display: none;
+}
+.activity-picker .glyphicon:hover {
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+.activity-picker input {
+    width: 93%;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
     display: none;
 }

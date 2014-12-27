@@ -4,6 +4,7 @@ common_css = Bundle(
     'css/bootstrap.min.css',
     'css/classic.css',
     'css/classic.time.css',
+    'css/animate.css',
     'css/main.css',
     filters='cssmin',
     output='public/common.min.css'
