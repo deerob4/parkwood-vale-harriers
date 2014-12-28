@@ -53,8 +53,8 @@ class MemberForm(Form):
             
 class AddSwimForm(Form):
     style = SelectField('Which style did you use?', choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'), ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'), ('freestyle-fast', 'Freestyle (fast)')])
-    start = StringField('What time did you start your swim?', validators=[DataRequired('You must enter your start time.')])
-    finish = StringField('What time did you finish your swim?', validators=[DataRequired('You must enter your finish time.')])
+    start = StringField('What time did you start?', validators=[DataRequired('You must enter your start time.')])
+    finish = StringField('What time did you finish?', validators=[DataRequired('You must enter your finish time.')])
     rating = SelectField('How would you rate your swim?', choices=[('brilliant', 'Brilliant'), ('pretty-good', 'Pretty good'), ('about-average', 'About average'),('okay', 'Okay'), ('poor', 'Poor')])
-    thoughts = TextAreaField('Do you have any extra thoughts about the swim?')
+    thoughts = TextAreaField('Do you have any extra thoughts?')
     submit = SubmitField('Add Swim')

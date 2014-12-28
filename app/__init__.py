@@ -2,7 +2,6 @@ from flask import Flask
 from flask_assets import Environment
 
 from app.models import db
-from app import assets
 
 from webassets.loaders import PythonLoader
 
@@ -23,13 +22,6 @@ def create_app():
 
     # Configures SQLAlchemy
     db.init_app(app)
-
-    # Configures Flask-Assets, registering the asset bundles
-    assets_env = Environment()
-    assets_env.init_app(app)
-    assets_loader = PythonLoader(assets)
-    for name, bundle in assets_loader.load_bundles().items():
-        assets_env.register(name, bundle)
 
     # Configures application blueprints
     from app.controllers.main import main

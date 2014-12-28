@@ -13,6 +13,7 @@
     text-align: center;
     padding-top: 20px;
     margin-top: 20px;
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 /* General typography styles
@@ -27,7 +28,8 @@ h4 {
     font-size: 20px;
 }
 label, p, .btn {
-    font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 100;
 }
 .btn {
     font-weight: 700;
@@ -37,10 +39,17 @@ label, p, .btn {
     cursor: auto !important;
 }
 
+/* General input box styles
+---------------------------*/
+input, select, textarea {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
 /* Training styles
 --------------------*/
 .activity-picker ul {
-    font-family: "News Cycle","Arial Narrow Bold",sans-serif;
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;
     font-weight: 800;
     margin-top: 25px;
@@ -50,26 +59,15 @@ label, p, .btn {
 .activity-block {
     width: 44%;
     margin-bottom: 20px;
-    padding-top: 20px;
+    padding: 20px 30px 0 30px;
     height: 75px;
     cursor: default;
-    padding-left: 30px;
     border-radius: 10px;
-    background-color: rgba(231, 73, 68, 0.79);
-    box-shadow: 0 8px 0 0 rgb(142, 42, 42);
-    color: #fff;
+    border: 1px solid #2d2d2d;
     transition: all 0.5s ease-in-out;
-}
-.activity-block:hover:not(.animated) {
-    background-color: rgba(231, 73, 68, 0.88);
-    transition: background-color 0.5s ease-in-out;
-}
-.activity-block:active {
-    box-shadow: 0 4px 0 0 rgb(142, 42, 42);
 }
 .activity-picker .glyphicon {
     float: right;
-    padding-right: 30px;
     font-size: 17px;
     display: none;
 }
@@ -77,10 +75,27 @@ label, p, .btn {
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.2s ease;
 }
-.activity-picker input {
-    width: 93%;
-    margin-top: 20px;
-    border: none;
+.activity-picker label {
+    font-size: 14px;
+    display: none;
+}
+.activity-picker input, .activity-picker select, .activity-picker textarea {
+    width: 100%;
+    /*margin-top: 20px;*/
+    border: 1px solid;
     border-radius: 5px;
     display: none;
+    animation-duration: 1s;
+}
+.activity-picker textarea {
+    height: 110px;
+}
+.activity-picker .form-group {
+    margin-bottom: 8px;
+}
+.activity-picker form {
+    margin-top: 15px;
+}
+.activity-picker .btn {
+    margin-top: 20px;
 }

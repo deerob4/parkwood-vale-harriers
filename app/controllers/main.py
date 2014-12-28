@@ -33,4 +33,5 @@ def swimming():
 
 @main.route('/training/add', methods=['GET', 'POST'])
 def add_training():
-    return render_template('training/add_training.html', date=datetime.now().date())
+    form = AddSwimForm()
+    return render_template('training/add_training.html', date=datetime.now().date(), form=form)

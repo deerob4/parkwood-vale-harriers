@@ -9,12 +9,44 @@
         <div class="activity-picker">
             <ul>
                 <li class="activity-block">
+                    <span>Swimming <span class="glyphicon glyphicon-ok"></span></span>
+                    <br/>
+
+                    <form method="POST">
+                        <div class="form-group">
+                            {{ form.style.label }}
+                            {{ form.style(class='form-control') }}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form.start.label }}
+                                    {{ form.start(class='form-control') }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form.finish.label }}
+                                    {{ form.finish(class='form-control') }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form.rating.label }}
+                            {{ form.rating(class='form-control') }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.thoughts.label }}
+                            {{ form.thoughts(class='form-control') }}
+                        </div>
+                        {{ form.submit(class='btn btn-primary') }}
+                    </form>
+                </li>
+                <li class="activity-block">
                     <span>Running <span class="glyphicon glyphicon-ok"></span></span>
                     <br/>
-                    <input type="text" class="form-control"/>
                 </li>
                 <li class="activity-block">Cycling <span class="glyphicon glyphicon-ok"></span></li>
-                <li class="activity-block">Swimming <span class="glyphicon glyphicon-ok"></span></li>
             </ul>
         </div>
         <div class="data">
