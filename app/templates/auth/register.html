@@ -27,7 +27,7 @@
             {% endif %}
         {% endwith %}
 
-        <form method="POST">
+        <form method="POST" class="register-form">
             {{ form.csrf_token }}
             <div class="form-group">
                 {{ form.name.label }}
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row charity_row">
+            <div class="row charity-row">
                 <div class="col-md-12">
                     <div class="form-group">
                         {{ form.charity_event.label }}

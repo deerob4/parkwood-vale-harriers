@@ -31,6 +31,9 @@ label, p, .btn {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 100;
 }
+label {
+    font-size: 14px;
+}
 .btn {
     font-weight: 700;
 }
@@ -42,8 +45,27 @@ label, p, .btn {
 /* General input box styles
 ---------------------------*/
 input, select, textarea {
+    width: 100%;
+    border: 1px solid !important;
+    border-radius: 5px;
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: #66afe9 !important;
+}
+
+/* Register form styles
+-----------------------*/
+.charity-row {
+    margin-top: 15px;
+}
+.register-form {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 20px 30px 0 30px;
 }
 
 /* Training styles
@@ -76,14 +98,9 @@ input, select, textarea {
     transition: all 0.2s ease;
 }
 .activity-picker label {
-    font-size: 14px;
     display: none;
 }
-.activity-picker input, .activity-picker select, .activity-picker textarea {
-    width: 100%;
-    /*margin-top: 20px;*/
-    border: 1px solid;
-    border-radius: 5px;
+.activity-input {
     display: none;
     animation-duration: 1s;
 }
