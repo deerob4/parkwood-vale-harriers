@@ -3,11 +3,13 @@ from flask.ext.script.commands import Clean, ShowUrls
 from app import create_app
 from app.models import db
 
+import os
+
 app = create_app()
 
 manager = Manager(app)
 manager.add_command('server', Server(use_debugger=True))
-manager.add_command('server-codio', Server(host='0.0.0.0', port=3001, use_debugger=True))
+manager.add_command('server-c9', Server(host=os.getenv('IP'), port=os.getenv('PORT'), use_debugger=True))
 manager.add_command('clean', Clean())
 manager.add_command('show-urls', ShowUrls())
 

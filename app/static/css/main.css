@@ -27,7 +27,7 @@ h4 {
     font-weight: 400;
     font-size: 20px;
 }
-label, p, .btn {
+label, p, .btn, ul {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 100;
 }
@@ -68,8 +68,16 @@ input:focus, select:focus, textarea:focus {
     padding: 20px 30px 0 30px;
 }
 
-/* Training styles
+/* Training add styles
 --------------------*/
+.activity-adder p, .activity-adder ul {
+    font-size: 20px;
+    font-weight: 700;
+}
+.activity-adder li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 .activity-picker ul {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;

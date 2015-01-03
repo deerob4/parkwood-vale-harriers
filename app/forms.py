@@ -52,6 +52,7 @@ class MemberForm(Form):
 
             
 class AddSwimForm(Form):
+    """Contains the fields and validators for the new swim session form"""
     style = SelectField('Which style did you use?', choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'), ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'), ('freestyle-fast', 'Freestyle (fast)')])
     start = StringField('What time did you start?', validators=[DataRequired('You must enter your start time.')])
     finish = StringField('What time did you finish?', validators=[DataRequired('You must enter your finish time.')])

@@ -9,26 +9,25 @@
         <h4>Fill in all the fields below, and then press Submit; please make sure you answer accurately. If you want the
             chance to run in the charity event, check the box.</h4>
 
-        {% with messages=get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-                <div class="row">
-                    <div class="col-md-12">
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }} alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Close</span>
-                                </button>
-                                <p>{{ message }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-        {% endwith %}
-
         <form method="POST" class="register-form">
             {{ form.csrf_token }}
+            {% with messages=get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <p>{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
             <div class="form-group">
                 {{ form.name.label }}
                 {{ form.name(class='form-control input_membership_name') }}
