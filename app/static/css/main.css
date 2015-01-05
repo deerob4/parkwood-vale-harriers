@@ -16,6 +16,13 @@
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+/*Miscellaneous hacks; must fix sometime
+-----------------------------------------*/
+.input_membership_charity {
+    position: absolute;
+    margin-left: -305px !important;
+}
+
 /* General typography styles
 ----------------------------*/
 h1 {
@@ -61,16 +68,12 @@ input:focus, select:focus, textarea:focus {
 -----------------------*/
 .charity-row {
     margin-top: 15px;
-}
-.register-form {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 20px 30px 0 30px;
+    height: 25px;
 }
 
 /* Training add styles
 --------------------*/
-.activity-adder p, .activity-adder ul {
+.activity-adder p {
     font-size: 20px;
     font-weight: 700;
 }
