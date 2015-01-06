@@ -20,7 +20,7 @@
 -----------------------------------------*/
 .input_membership_charity {
     position: absolute;
-    margin-left: -305px !important;
+    margin-left: -323px !important;
 }
 
 /* General typography styles
@@ -125,5 +125,5 @@ input:focus, select:focus, textarea:focus {
     margin-top: 15px;
 }
 .activity-picker .btn {
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
 }
