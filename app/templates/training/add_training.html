@@ -5,50 +5,21 @@
 {% block content %}
     <h1>Add a Training Session - {{ date.strftime('%A %e %B %G') }}</h1>
     <h4>Done some exercise? Record it here to add it to your training log.</h4>
+    <ul class="add-sport-buttons">
+        <li>
+            <div class="btn btn-default sport"><span class="swimming">Add Swimming</span></div>
+        </li>
+        <li>
+            <div class="btn btn-default sport"><span class="cycling">Add Cycling</span></div>
+        </li>
+        <li>
+            <div class="btn btn-default sport"><span class="running">Add Running</span></div>
+        </li>
+    </ul>
     <div class="activity-picker">
         <ul>
-            <li class="activity-block">
-                <span>Swimming <span class="glyphicon glyphicon-ok"></span></span>
-                <br/>
-
-                <form method="POST">
-                    <div class="form-group">
-                        {{ form.style.label }}
-                        {{ form.style(class='form-control activity-input') }}
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {{ form.start.label }}
-                                {{ form.start(class='form-control activity-input') }}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {{ form.finish.label }}
-                                {{ form.finish(class='form-control activity-input') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ form.rating.label }}
-                        {{ form.rating(class='form-control activity-input') }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.thoughts.label }}
-                        {{ form.thoughts(class='form-control activity-input') }}
-                    </div>
-                    {{ form.submit(class='btn btn-primary activity-input') }}
-                </form>
-            </li>
+            
         </ul>
     </div>
-    {#    <div class="activity-adder">#}
-    {#        <p>You haven't added any training sessions for today!</p>#}
-    {#        <ul class="add-training">#}
-    {#            <li class="running">Add Running</li>#}
-    {#            <li class="cycling">Add Cycling</li>#}
-    {#            <li class="swimming">Add Swimming</li>#}
-    {#        </ul>#}
-    {#    </div>#}
+    <h4><strong>You haven't added any activities today! Use the buttons above to add one.</strong></h4>
 {% endblock %}

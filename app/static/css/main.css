@@ -1,3 +1,31 @@
+/*Extra font families
+---------------------*/
+@font-face {
+font-family:Flaticon;
+src:url('../fonts/flaticon.eot#iefix') format(embedded-opentype), url('../fonts/flaticon.woff') format(woff), url('../fonts/flaticon.ttf') format(truetype), url('../fonts/flaticon.svg') format(svg);
+font-weight:400;
+font-style:normal;
+}
+
+[class^="flaticon-"]:before,[class*=" flaticon-"]:before,[class^="flaticon-"]:after,[class*=" flaticon-"]:after {
+font-family:Flaticon;
+font-size:20px;
+font-style:normal;
+margin-left:20px;
+}
+
+.flaticon-regular2:before {
+content:"\e000";
+}
+
+.flaticon-running30:before {
+content:"\e001";
+}
+
+.flaticon-swimming20:before {
+content:"\e002";
+}
+
 /* Navigation styles
 --------------------*/
 .navbar {
@@ -85,7 +113,7 @@ input:focus, select:focus, textarea:focus {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;
     font-weight: 800;
-    margin-top: 25px;
+    margin-top: 30px;
     list-style-type: none;
     padding: 0;
 }
@@ -126,4 +154,20 @@ input:focus, select:focus, textarea:focus {
 }
 .activity-picker .btn {
     margin: 20px 0 20px 0;
+}
+.add-sport-buttons {
+    list-style-type: none;
+    display: inline;
+    margin-bottom: 20px !important;
+}
+.add-sport-buttons li {
+    display: inline;
+}
+.add-sport-buttons div {
+    width: 189px;
+    float: left;
+    margin-right: 15px;
+}
+.flaticon-swimming20 {
+    font-size: 1px !important;
 }

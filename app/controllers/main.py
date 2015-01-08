@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template, flash, redirect, url_for
 from app.forms import AddSwimForm
 
 from datetime import datetime
@@ -8,7 +8,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
-    return render_template('layout.html')
+    return redirect(url_for('main.add_training'))
 
 
 @main.route('/training/')

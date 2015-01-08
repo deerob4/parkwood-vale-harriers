@@ -4,8 +4,9 @@ $(document).ready(function() {
         expandActivity($(this))
     });
     
-    $('.add-training li').click(function() {
-            addActivityBlock($(this).attr('class'));
+    $('.sport span').click(function() {
+            alert($(this).attr('class'));
+            addActivityBlock($(this).attr('class;
     });
 
     function addActivityBlock($activity) {
