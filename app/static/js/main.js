@@ -6,7 +6,7 @@ $(document).ready(function() {
     
     $('.sport span').click(function() {
             alert($(this).attr('class'));
-            addActivityBlock($(this).attr('class;
+            addActivityBlock($(this).attr('class'));
     });
 
     function addActivityBlock($activity) {
