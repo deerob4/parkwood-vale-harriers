@@ -16,11 +16,11 @@
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-/*Miscellaneous hacks; must fix sometime
+/*Miscellaneous hacks; will fix someday
 -----------------------------------------*/
 .input_membership_charity {
     position: absolute;
-    margin-left: -323px !important;
+    margin-left: -290px !important;
 }
 
 /* General typography styles

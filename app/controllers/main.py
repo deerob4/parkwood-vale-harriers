@@ -31,12 +31,6 @@ def swimming():
     return 'Swimming will be here!'
 
 
-@main.route('/swim')
-def podge():
-    form = AddSwimForm()
-    return
-
-
 @main.route('/training/add', methods=['GET', 'POST'])
 def add_training():
     form = AddSwimForm()

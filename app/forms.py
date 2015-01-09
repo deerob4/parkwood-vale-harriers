@@ -50,12 +50,26 @@ class MemberForm(Form):
         if not 18 <= age <= 75:
             raise ValidationError('You must be 18 - 75 years old to join. %s years' % age)
 
-            
+
+class LoginForm(Form):
+    """Contains the fields and validators for the login form."""
+    email = StringField('What is your email?',
+                        validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
+    password = PasswordField('What is your password?', validators=[DataRequired('You must enter your password.')])
+    remember = BooleanField('Remember me?')
+    login = SubmitField('Login')
+
+
 class AddSwimForm(Form):
-    """Contains the fields and validators for the new swim session form"""
-    style = SelectField('Which style did you use?', choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'), ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'), ('freestyle-fast', 'Freestyle (fast)')])
+    """Contains the fields and validators for the new swim session form."""
+    style = SelectField('Which style did you use?',
+                        choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'),
+                                 ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'),
+                                 ('freestyle-fast', 'Freestyle (fast)')])
     start = StringField('What time did you start?', validators=[DataRequired('You must enter your start time.')])
     finish = StringField('What time did you finish?', validators=[DataRequired('You must enter your finish time.')])
-    rating = SelectField('How would you rate your swim?', choices=[('brilliant', 'Brilliant'), ('pretty-good', 'Pretty good'), ('about-average', 'About average'),('okay', 'Okay'), ('poor', 'Poor')])
+    rating = SelectField('How would you rate your swim?',
+                         choices=[('brilliant', 'Brilliant'), ('pretty-good', 'Pretty good'),
+                                  ('about-average', 'About average'), ('okay', 'Okay'), ('poor', 'Poor')])
     thoughts = TextAreaField('Do you have any extra thoughts?')
     submit = SubmitField('Add Swim')

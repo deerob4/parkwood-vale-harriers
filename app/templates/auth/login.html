@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Login to your account</h1>
+
+        <h4>Use the form below to login to your account. If you've forgotten you're password, don't panic - our restore
+            functionality should be available by the turn of the century.</h4>
+
+        <form method="POST" class="register-form">
+            {{ form.csrf_token }}
+            {% with messages=get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <p>{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <div class="form-group">
+                {{ form.email.label }}
+                {{ form.email(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(class='form-control') }}
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {{ form.login(class='btn btn-primary col-sm-3') }}
+                    </div>
+                </div>
+            </div>
+            <div class="row charity-row">
+                <div class="col-md-7">
+                    <div class="form-group">
+                        {{ form.remember.label }}
+                        {{ form.remember(class='input_membership_charity') }}
+                        <br/>
+                        <label><a href="{{ url_for('auth.register') }}">Don't have an account?</a></label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

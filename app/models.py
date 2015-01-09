@@ -11,7 +11,8 @@ class User(db.Model):
     for the database, pertaining to the data collected
     in app.forms.MemberForm. The data type is also declared.
     All fields are of variable length; there are few columns
-    so little data will be stored per user.
+    so little data will be stored per user, negating the
+    speed benefit of fixed fields.
     """
     __tablename__ = 'Users'
     id = db.Column(db.Integer, primary_key=True)

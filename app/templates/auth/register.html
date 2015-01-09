@@ -3,7 +3,7 @@
 {% block title %}Register{{ super() }}{% endblock %}
 
 {% block content %}
-{#    <div class="jumbotron">#}
+    <div class="jumbotron">
         <h1>Create an account</h1>
 
         <h4>Fill in all the fields below, and then press Submit; please make sure you answer accurately. If you want the
@@ -76,6 +76,8 @@
                     <div class="form-group">
                         {{ form.charity_event.label }}
                         {{ form.charity_event(class='input_membership_charity') }}
+                        <br/>
+                        <label><a href="{{ url_for('auth.login') }}">Already have an account?</a></label>
                     </div>
                 </div>
             </div>

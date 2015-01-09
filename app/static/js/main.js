@@ -1,31 +1,16 @@
-$(document).ready(function() {
-    $('.activity-picker li').not('.animated').click(function() {
+$(document).ready(function () {
+    $('.activity-picker li').not('.animated').click(function () {
         expandActivity($(this))
     });
-    $('.sport span').click(function() {
+    $('.sport span').click(function () {
         alert($(this).attr('class'));
         addActivityBlock($(this).attr('class'));
     });
 
     function addActivityBlock($activity) {
         $('.activity-adder').addClass('animated fadeOutDown');
-        switch($activity) {
+        switch ($activity) {
             case 'swimming':
-                $.ajax({
-                    type: 'POST',
-                    url: '/swimming-block',
-                    data: JSON.stringify({
-                        "books": book_classes
-                    }),
-                    dataType: 'json',
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function() {
-                        console.log('swimming block received.')
-                    },
-                    error: function(result) {
-                        console.log(result)
-                    }
-                });
                 console.log('swimming!');
                 break;
             case 'running':
@@ -40,7 +25,6 @@ $(document).ready(function() {
     }
 
     function expandActivity($activity) {
-        //$activity.animate({ height: '520' }, { duration: 350, queue: false });
         $activity.transition({
             height: '503px'
         });
