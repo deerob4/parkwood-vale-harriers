@@ -1,7 +1,7 @@
 from flask.ext.script import Manager, Server
 from flask.ext.script.commands import Clean, ShowUrls
 from app import create_app
-from app.models import db
+from app.models import db, User
 
 import os
 
@@ -18,13 +18,14 @@ manager.add_command('show-urls', ShowUrls())
 @manager.shell
 def make_shell_context():
     """Creates a Python shell with the below variables already imported."""
-    return dict(app=app, db=db)
+    return dict(app=app, db=db, User=User)
 
 
 @manager.command
 def createdb():
     """Creates the database, using the models in app.models.py"""
     db.create_all()
+    return 'Database has been created.'
 
 if __name__ == '__main__':
     manager.run()

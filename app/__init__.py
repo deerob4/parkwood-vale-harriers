@@ -29,6 +29,9 @@ def create_app():
     
     from app.controllers.auth import auth
     app.register_blueprint(auth)
+    
+    from app.controllers.ajax import ajax
+    app.register_blueprint(ajax)
 
     return app
 

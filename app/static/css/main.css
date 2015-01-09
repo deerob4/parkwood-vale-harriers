@@ -90,7 +90,7 @@ input:focus, select:focus, textarea:focus {
     padding: 0;
 }
 .activity-block {
-    width: 38%;
+    width: 100%;
     margin-bottom: 20px;
     padding: 20px 30px 0 30px;
     height: 75px;
@@ -140,6 +140,6 @@ input:focus, select:focus, textarea:focus {
     float: left;
     margin-right: 15px;
 }
-.flaticon-swimming20 {
-    font-size: 1px !important;
+.no-activities {
+    margin-top: 50px;
 }
