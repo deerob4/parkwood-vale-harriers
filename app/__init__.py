@@ -1,9 +1,6 @@
 from flask import Flask
-from flask_assets import Environment
 
 from app.models import db
-
-from webassets.loaders import PythonLoader
 
 
 def create_app():
