@@ -30,6 +30,9 @@ def cycling():
 def swimming():
     return 'Swimming will be here!'
 
+@main.route('/secretzone/<name>')
+def secret(name):
+    return 'Welcome to the matrix, %s' % name.title()
 
 @main.route('/swim')
 def podge():
