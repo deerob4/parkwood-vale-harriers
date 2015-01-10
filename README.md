@@ -7,7 +7,7 @@ allowing them to choose a team of runners for their charity event. Features incl
 - [ ] The ability to add times from each workout and work out the number of calories burnt
 - [ ] The ability to track fitness improvement over time
 - [ ] The ability to compare results with other runners
-- [ ] Individual accounts for each runner
+- [X] Individual accounts for each runner
 - [ ] The ability to work out the best final team
 
 This is a project for my AS Computing coursework.
