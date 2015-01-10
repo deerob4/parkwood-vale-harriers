@@ -21,32 +21,38 @@
                 <a class="navbar-brand" href="#">Parkwood Vale Harriers</a>
             </div>
             <div class="collapse navbar-collapse" id="main_nav">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Performance<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url_for('main.running') }}">Running</a></li>
-                            <li><a href="{{ url_for('main.cycling') }}">Cycling</a></li>
-                            <li><a href="{{ url_for('main.swimming') }}">Swimming</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
-                    <li><a href="">Compare Performance</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dee Roberts<span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">View Profile</a></li>
-                            <li><a href="#">Change Password</a></li>
-                            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Sign Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                {% if current_user.is_authenticated() %}
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Performance<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url_for('main.running') }}">Running</a></li>
+                                <li><a href="{{ url_for('main.cycling') }}">Cycling</a></li>
+                                <li><a href="{{ url_for('main.swimming') }}">Swimming</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
+                        <li><a href="">Compare Performance</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ current_user.name }}<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">View Profile</a></li>
+                                <li><a href="#">Change Password</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('main.about') }}">About</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    </ul>
+                {% endif %}
             </div>
         </div>
     </nav>

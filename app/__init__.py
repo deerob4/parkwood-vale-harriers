@@ -1,6 +1,7 @@
 from flask import Flask
+from flask.ext.login import LoginManager
 
-from app.models import db
+from app.models import db, User
 
 
 def create_app():
@@ -15,10 +16,21 @@ def create_app():
 
     # Sets configuration variables used application-wise
     app.config['SECRET_KEY'] = 'vYqTMY88zsuXSG7R4xYdPxYk'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'  # May change to MySQL/PostgreSQL
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
 
     # Configures SQLAlchemy
     db.init_app(app)
+
+    # Configures the login manager
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'auth.login'  # Sets the login view.
+    login_manager.login_message_category = 'warning'
+
+    # Loads the current user by running a query on the id
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
 
     # Configures application blueprints
     from app.controllers.main import main

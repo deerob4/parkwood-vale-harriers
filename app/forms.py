@@ -2,6 +2,8 @@ from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError
 
+from app.models import User
+
 from datetime import date
 
 
@@ -48,7 +50,12 @@ class MemberForm(Form):
         """Ensures the user is between 18 - 75 years old."""
         age = calculate_age(field.data)
         if not 18 <= age <= 75:
-            raise ValidationError('You must be 18 - 75 years old to join. %s years' % age)
+            raise ValidationError('You must be 18 - 75 years old to join.')
+
+    def validate_email(self, field):
+        """Ensures the email address is unique"""
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('That email address has already been registered.')
 
 
 class LoginForm(Form):
@@ -56,7 +63,7 @@ class LoginForm(Form):
     email = StringField('What is your email?',
                         validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
     password = PasswordField('What is your password?', validators=[DataRequired('You must enter your password.')])
-    remember = BooleanField('Remember me?')
+    remember = BooleanField('Remember me')
     login = SubmitField('Login')
 
 
