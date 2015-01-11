@@ -64,6 +64,15 @@ input:focus, select:focus, textarea:focus {
     border-color: #66afe9 !important;
 }
 
+/* General button styles
+------------------------*/
+.btn-default {
+    border-color: #2d2d2d;
+}
+.btn-default:hover {
+    border-color: #2d2d2d;
+}
+
 /* Register form styles
 -----------------------*/
 .charity-row {
@@ -81,7 +90,7 @@ input:focus, select:focus, textarea:focus {
     text-decoration: underline;
     cursor: pointer;
 }
-.activity-picker ul {
+.activity-list {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;
     font-weight: 800;
@@ -90,6 +99,7 @@ input:focus, select:focus, textarea:focus {
     padding: 0;
 }
 .activity-block {
+    /*width: 37.3%;*/
     width: 100%;
     margin-bottom: 20px;
     padding: 20px 30px 0 30px;
@@ -98,33 +108,34 @@ input:focus, select:focus, textarea:focus {
     border-radius: 10px;
     border: 1px solid #2d2d2d;
     transition: all 0.5s ease-in-out;
+    /*display: none;*/
 }
-.activity-picker .glyphicon {
+.activity-list .glyphicon {
     float: right;
     font-size: 17px;
     display: none;
 }
-.activity-picker .glyphicon:hover {
+.activity-list .glyphicon:hover {
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.2s ease;
 }
-.activity-picker label {
+.activity-list label {
     display: none;
 }
 .activity-input {
     display: none;
     animation-duration: 1s;
 }
-.activity-picker textarea {
+.activity-list textarea {
     height: 110px;
 }
-.activity-picker .form-group {
+.activity-list .form-group {
     margin-bottom: 8px;
 }
-.activity-picker form {
+.activity-list form {
     margin-top: 15px;
 }
-.activity-picker .btn {
+.activity-list .btn {
     margin: 20px 0 20px 0;
 }
 .add-sport-buttons {

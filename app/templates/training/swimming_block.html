@@ -4,31 +4,43 @@
 
     <form method="POST">
         <div class="form-group">
-            {{ form.style.label }}
-            {{ form.style(class='form-control activity-input') }}
+            <label for="style">Which style did you use?</label>
+            <select name="style" id="style" class="form-control activity-input">
+                <option value="backstroke">Backstroke</option>
+                <option value="breaststroke">Breaststroke</option>
+                <option value="butterfly">Butterfly</option>
+                <option value="freestyle-slow">Freestyle (slow)</option>
+                <option value="freestyle-fast">Freestyle (fast)</option>
+            </select>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    {{ form.start.label }}
-                    {{ form.start(class='form-control activity-input') }}
+                    <label for="start">What time did you start?</label>
+                    <input class='form-control activity-input' id="start">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    {{ form.finish.label }}
-                    {{ form.finish(class='form-control activity-input') }}
+                    <label for="finish">What time did you finish?</label>
+                    <input class='form-control activity-input' id="finish">
                 </div>
             </div>
         </div>
         <div class="form-group">
-            {{ form.rating.label }}
-            {{ form.rating(class='form-control activity-input') }}
+            <label for="rating">How would you rate your swim?</label>
+            <select name="rating" id="rating" class="form-control activity-input">
+                <option value="brilliant">Brilliant</option>
+                <option value="pretty-good">Pretty good</option>
+                <option value="about-average">About average</option>
+                <option value="okay">Okay</option>
+                <option value="awful">Awful</option>
+            </select>
         </div>
         <div class="form-group">
-            {{ form.thoughts.label }}
-            {{ form.thoughts(class='form-control activity-input') }}
+            <label for="thoughts">Do you have any extra thoughts?</label>
+            <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
         </div>
-        {{ form.submit(class='btn btn-primary') }}
+        <input type="submit" class="btn btn-primary activity-input" value="Add swim" name="add-swim" id="add-swim"/>
     </form>
 </li>
