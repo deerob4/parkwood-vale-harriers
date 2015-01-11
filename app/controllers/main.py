@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for
 from flask.ext.login import current_user, login_required
 
 from app.forms import AddSwimForm
+from app.models import User
 
 from datetime import datetime
 
@@ -26,22 +27,10 @@ def training():
     return 'All training will be here!'
 
 
-@main.route('/training/running')
-@login_required
-def running():
-    return 'Running will be here!'
-
-
-@main.route('/training/cycling')
-@login_required
-def cycling():
-    return 'Cycling will be here!'
-
-
-@main.route('/training/swimming')
-@login_required
-def swimming():
-    return 'Swimming will be here!'
+@main.route('/runners/<runnerid>')
+def runners(runnerid):
+    user = User.query.filter_by(id=runnerid).first_or_404()
+    return 'The user is %s. They have an id of %s, and were born on %s.' % (user.name, user.id, user.dob)
 
 
 @main.route('/training/add', methods=['GET', 'POST'])

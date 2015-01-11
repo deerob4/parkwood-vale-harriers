@@ -1,10 +1,10 @@
 $(document).ready(function () {
+
     $('.activity-picker li').not('.animated').click(function () {
         expandActivity($(this))
     });
-    $('.sport span').click(function () {
-        alert($(this).attr('class'));
-        addActivityBlock($(this).attr('class'));
+    $('.sport').click(function () {
+        addActivityBlock($(this).attr('id'));
     });
 
     function addActivityBlock($activity) {
