@@ -9,9 +9,9 @@ def swimming_block():
 
 @ajax.route('/ajax/running-block', methods=['POST'])
 def running_block():
-    return '<p>Running is coming soon...</p>'
+    return '<script>alert("running is coming soon...")</script>'
 
 
 @ajax.route('/ajax/cycling-block', methods=['POST'])
 def cycling_block():
-    return '<p>Cycling is coming soon...</p>'
+    return '<script>alert("cycling is coming soon...")</script>'

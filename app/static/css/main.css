@@ -114,10 +114,12 @@ input:focus, select:focus, textarea:focus {
     float: right;
     font-size: 17px;
     display: none;
+    color: #000;
 }
 .activity-list .glyphicon:hover {
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.2s ease;
+    color: rgba(17, 17, 17, 0.71);
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 .activity-list label {
     display: none;
@@ -136,7 +138,7 @@ input:focus, select:focus, textarea:focus {
     margin-top: 15px;
 }
 .activity-list .btn {
-    margin: 20px 0 20px 0;
+    margin-top: 12px;
 }
 .add-sport-buttons {
     list-style-type: none;
@@ -153,4 +155,8 @@ input:focus, select:focus, textarea:focus {
 }
 .no-activities {
     margin-top: 50px;
+}
+.time {
+    background-color: #fff !important;
+    cursor: default !important;
 }

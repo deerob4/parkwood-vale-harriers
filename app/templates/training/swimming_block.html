@@ -1,8 +1,8 @@
 <li class="activity-block">
-    <span>Swimming <span class="glyphicon glyphicon-ok"></span></span>
+    <span>Swimming <span class="glyphicon glyphicon-remove"></span></span>
     <br/>
 
-    <form method="POST">
+    <form>
         <div class="form-group">
             <label for="style">Which style did you use?</label>
             <select name="style" id="style" class="form-control activity-input">
@@ -17,13 +17,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="start">What time did you start?</label>
-                    <input class='form-control activity-input' id="start">
+                    <input class='form-control activity-input time' id="start">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="finish">What time did you finish?</label>
-                    <input class='form-control activity-input' id="finish">
+                    <input class='form-control activity-input time' id="finish">
                 </div>
             </div>
         </div>
@@ -41,6 +41,6 @@
             <label for="thoughts">Do you have any extra thoughts?</label>
             <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
         </div>
-        <input type="submit" class="btn btn-primary activity-input" value="Add swim" name="add-swim" id="add-swim"/>
+        <input type="button" class="btn btn-primary activity-input col-md-3" value="Add swim" name="add-swim" id="add-swim"/>
     </form>
 </li>

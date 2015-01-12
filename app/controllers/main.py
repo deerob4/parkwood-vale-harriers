@@ -16,11 +16,6 @@ def home():
     return redirect(url_for('auth.login'))
 
 
-@main.route('/about')
-def about():
-    return render_template('about.html', current_user=current_user)
-
-
 @main.route('/training/')
 @login_required
 def training():
