@@ -51,7 +51,7 @@ label {
 
 /* General input box styles
 ---------------------------*/
-input, select, textarea {
+input:not([type="check"]), select, textarea {
     width: 100%;
     border: 1px solid !important;
     border-radius: 5px;
@@ -99,7 +99,6 @@ input:focus, select:focus, textarea:focus {
     padding: 0;
 }
 .activity-block {
-    /*width: 37.3%;*/
     width: 100%;
     margin-bottom: 20px;
     padding: 20px 30px 0 30px;
@@ -108,7 +107,10 @@ input:focus, select:focus, textarea:focus {
     border-radius: 10px;
     border: 1px solid #2d2d2d;
     transition: all 0.5s ease-in-out;
-    /*display: none;*/
+    animation-duration: 600ms;
+    -webkit-animation-duration: 600ms;
+    -moz-animation-duration: 600ms;
+    
 }
 .activity-list .glyphicon {
     float: right;
@@ -126,7 +128,7 @@ input:focus, select:focus, textarea:focus {
 }
 .activity-input {
     display: none;
-    animation-duration: 1s;
+    animation-duration: 500ms;
 }
 .activity-list textarea {
     height: 110px;

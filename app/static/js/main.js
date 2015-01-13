@@ -25,9 +25,10 @@ $(document).ready(function () {
         $activity.addClass('animated');
         //Initialises the time picker
         $('.time').pickatime();
+        $('.no-activities').addClass('animated fadeOutDown');
         $('.activity-block .glyphicon').click(function () {
             var $parent = $(this).closest('li');
-            closeActivity($parent)
+            removeActivity($parent)
         });
 
         $('#add-swim').click(function () {
@@ -52,7 +53,14 @@ $(document).ready(function () {
     function closeActivity($activity) {
         $activity.find('.glyphicon').fadeOut('slow').delay(0.5);
         $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeOut')
-        $activity.transition({height: '75px'}, 500);
+        $activity.transition({height: '0px'}, 500);
+    }
+    
+    function removeActivity($activity) {
+        $activity.addClass('animated zoomOut');
+        setTimeout(function() {
+            $activity.remove();
+        }, 250);
     }
 
 });
