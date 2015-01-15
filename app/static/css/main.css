@@ -19,8 +19,7 @@
 /*Miscellaneous hacks; will fix someday
 -----------------------------------------*/
 .input_membership_charity {
-    position: absolute;
-    margin-left: -295px !important;
+    margin-left: 5px;
 }
 
 /* General typography styles
@@ -51,7 +50,7 @@ label {
 
 /* General input box styles
 ---------------------------*/
-input:not([type="check"]), select, textarea {
+input:not(.input_membership_charity), select, textarea {
     width: 100%;
     border: 1px solid !important;
     border-radius: 5px;

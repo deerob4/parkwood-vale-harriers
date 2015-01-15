@@ -47,7 +47,7 @@ $(document).ready(function () {
     function expandActivity($activity) {
         $activity.transition({height: '503px'});
         $activity.find('.glyphicon').fadeIn('slow').delay(0.5);
-        $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeIn')
+        $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeIn')       
     }
 
     function closeActivity($activity) {
