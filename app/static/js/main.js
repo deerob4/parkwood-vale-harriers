@@ -60,7 +60,7 @@ $(document).ready(function () {
         $activity.find('label, input, select, textarea').addClass('animated zoomOut');
         setTimeout(function () {
             $activity.find('label, input, select, textarea').hide();
-            $activity.transition({width: '1170px', height: '75px'}, 500);
+            $activity.transition({width: '1125px', height: '75px'}, 500);
         }, 130);
     }
 
