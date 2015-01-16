@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     $('.sport').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
@@ -18,19 +18,19 @@ $(document).ready(function () {
     function updateActivities($activity) {
         //Adds the activity to the DOM and the page
         $('.activity-list').append($activity);
-        
+
         //Calls the expandActivity function, animating the activity
         expandActivity($activity);
-        
+
         //Sets the activity to animated, preventing the function being called on every click
         $activity.addClass('animated');
-        
+
         //Initialises the time picker
         $('.time').pickatime();
-        
+
         //Animates the no activities message
-        genericAnimation($('.no-activities'), 'fadeOutDown');
-        
+        genericAnimation($('.no-activities'), 'fadeOutDown', false);
+
         //Calls the removeActivity function
         $('.activity-block .glyphicon').click(function () {
             var $parent = $(this).closest('li');
@@ -49,25 +49,25 @@ $(document).ready(function () {
         $activity.find('.glyphicon').fadeIn('slow').delay(0.5);
         $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeIn');
     }
-    
+
     function validateActivity($activity) {
         var $start = $activity.find('#start');
         var $finish = $activity.find('#finish');
-        
+
         $start.removeClass('animated fadeIn');
         $finish.removeClass('animated fadeIn');
-        
+
         if ($start.val() == '') {
-            genericAnimation($start, 'shake')
+            genericAnimation($start, 'shake', true)
         }
         if ($finish.val() == '') {
-            genericAnimation($finish, 'shake')
+            genericAnimation($finish, 'shake', true)
         }
         if ($start.val() != '' && $finish.val() != '') {
             addActivity($activity)
         }
     }
-    
+
     function addActivity($activity) {
         alert('The star is flying-');
     }
@@ -77,19 +77,21 @@ $(document).ready(function () {
         $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeOut')
         $activity.transition({height: '0px'}, 500);
     }
-    
+
     function removeActivity($activity) {
-        genericAnimation($activity, 'zoomOut');
-        setTimeout(function() {
+        genericAnimation($activity, 'zoomOut', false);
+        setTimeout(function () {
             $activity.remove();
         }, 250);
     }
-    
-    function genericAnimation($element, animation) {
+
+    function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
-        setTimeout(function() {
-            $element.removeClass('animated ' + animation);
-        }, 1400);
+        if (timeout == true) {
+            setTimeout(function () {
+                $element.removeClass('animated ' + animation);
+            }, 1400);
+        }
     }
 
 });
