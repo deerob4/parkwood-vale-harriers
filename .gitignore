@@ -19,6 +19,8 @@ parts/
 sdist/
 var/
 .c9/
+.c9
+c9
 *.egg-info/
 .installed.cfg
 *.egg
