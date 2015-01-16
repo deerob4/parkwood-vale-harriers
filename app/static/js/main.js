@@ -31,19 +31,16 @@ $(document).ready(function () {
         //Animates the no activities message
         $('.no-activities').addClass('animated fadeOutDown');   
         
+        //Calls the removeActivity function
         $('.activity-block .glyphicon').click(function () {
             var $parent = $(this).closest('li');
             removeActivity($parent)
         });
 
-        $('#add-swim').click(function () {
+        //Calls the validateActivity function
+        $('.add-activity').click(function () {
             var $activityBlock = $(this).closest('li');
             validateActivity($activityBlock)
-        });
-
-        $('.activity-block').not('.animated').click(function () {
-            console.log('clicked');
-            expandActivity($(this));
         });
     }
 
@@ -61,16 +58,10 @@ $(document).ready(function () {
         $finish.removeClass('animated fadeIn');
         
         if ($start.val() == '') {
-            $start.addClass('animated shake');
-            setTimeout(function() {
-                $start.removeClass('animated shake')
-            }, 1400)
+            genericAnimation($start, 'shake')
         }
         if ($finish.val() == '') {
-            $start.addClass('animated shake')
-            setTimeout(function() {
-                $start.removeClass('animated shake')
-            }, 1400)
+            genericAnimation($finish, 'shake')
         }
         if ($start.val() != '' && $finish.val() != '') {
             addActivity($activity)
@@ -78,7 +69,7 @@ $(document).ready(function () {
     }
     
     function addActivity($activity) {
-        alert('The star');
+        alert('The star is flying-');
     }
 
     function closeActivity($activity) {
@@ -92,6 +83,13 @@ $(document).ready(function () {
         setTimeout(function() {
             $activity.remove();
         }, 250);
+    }
+    
+    function genericAnimation($element, animation) {
+        $element.addClass('animated ' + animation);
+        setTimeout(function() {
+            $element.removeClass('animated ' + animation);
+        }, 1400);
     }
 
 });

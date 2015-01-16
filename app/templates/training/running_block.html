@@ -4,47 +4,52 @@
 
     <form>
         <div class="form-group">
-            <label for="style">What was your average speed?</label>
-            <select name="style" id="style" class="form-control activity-input">
-                <option value="5mph">5 mph (12 minute mile)</option>
-                <option value="6mph">6 mph (10 minute mile)</option>
-                <option value="7mph">7 mph (8.5 minute mile)</option>
-                <option value="8mph">8 mph (7.5 minute mile)</option>
-                <option value="9mph">9 mph (6.5 minute mile)</option>
-                <option value="10mph">10 mph (6 minute mile)</option>
-            </select>
+            <label>What was your average speed?
+                <select name="style" id="style" class="form-control activity-input">
+                    <option value="5mph">5 mph (12 minute mile)</option>
+                    <option value="6mph">6 mph (10 minute mile)</option>
+                    <option value="7mph">7 mph (8.5 minute mile)</option>
+                    <option value="8mph">8 mph (7.5 minute mile)</option>
+                    <option value="9mph">9 mph (6.5 minute mile)</option>
+                    <option value="10mph">10 mph (6 minute mile)</option>
+                </select>
+            </label>    
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="start">What time did you start?</label>
-                    <input class='form-control activity-input time' id="start">
+                    <label>What time did you start?
+                        <input class='form-control activity-input time' id="start">
+                    </label>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="finish">What time did you finish?</label>
-                    <input class='form-control activity-input time' id="finish">
+                    <label>What time did you finish?
+                        <input class='form-control activity-input time' id="finish">
+                    </label>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="rating">How would you rate your run?</label>
-            <select name="rating" id="rating" class="form-control activity-input">
-                <option value="brilliant">Brilliant</option>
-                <option value="pretty-good">Pretty good</option>
-                <option value="about-average">About average</option>
-                <option value="okay">Okay</option>
-                <option value="awful">Awful</option>
-            </select>
+            <label>How would you rate your run?
+                <select name="rating" id="rating" class="form-control activity-input">
+                    <option value="brilliant">Brilliant</option>
+                    <option value="pretty-good">Pretty good</option>
+                    <option value="about-average">About average</option>
+                    <option value="okay">Okay</option>
+                    <option value="awful">Awful</option>
+                </select>
+            </label>
         </div>
         <div class="form-group">
-            <label for="thoughts">Do you have any extra thoughts?</label>
-            <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
+            <label>Do you have any extra thoughts?
+                <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
+            </label>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-12">
-                <input type="button" class="btn btn-primary activity-input" value="Add run" name="add-run" id="add-run"/>
+                <input type="button" class="btn btn-primary activity-input add-activity" value="Add run"/>
             </div>
         </div>
         

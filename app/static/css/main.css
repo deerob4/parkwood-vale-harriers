@@ -98,7 +98,7 @@ input:focus, select:focus, textarea:focus {
     padding: 0;
 }
 .activity-block {
-    width: 100%;
+    width: 38%;
     margin-bottom: 20px;
     padding: 20px 30px 0 30px;
     height: 75px;
