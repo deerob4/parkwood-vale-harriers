@@ -16,46 +16,33 @@ $(document).ready(function () {
     });
 
     function updateActivities($activity) {
-        //Adds the activity to the DOM and the page
-        $('.activity-list').append($activity);
-
-        //Calls the expandActivity function, animating the activity
-        expandActivity($activity);
-
-        //Sets the activity to animated, preventing the function being called on every click
-        $activity.addClass('animated');
-
-        //Initialises the time picker
-        $('.time').pickatime();
 
         //Animates the no activities message
         genericAnimation($('.no-activities'), 'fadeOutDown', false);
 
+        //Adds the activity to the DOM and the page
+        $('.activity-list').append($activity);
+
+        //Animates the newly added element
+        genericAnimation($activity, 'zoomIn', false);
+
+        //Initialises the time picker
+        $('.time').pickatime();
+
         //Calls the removeActivity function
         $('.activity-block .glyphicon').click(function () {
-            var $parent = $(this).closest('li');
-            removeActivity($parent)
+            removeActivity($(this).closest('li'))
         });
 
         //Calls the validateActivity function
         $('.add-activity').click(function () {
-            var $activityBlock = $(this).closest('li');
-            validateActivity($activityBlock)
+            validateActivity($(this).closest('li'))
         });
-    }
-
-    function expandActivity($activity) {
-        $activity.transition({height: '503px'});
-        $activity.find('.glyphicon').fadeIn('slow').delay(0.5);
-        $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeIn');
     }
 
     function validateActivity($activity) {
         var $start = $activity.find('#start');
         var $finish = $activity.find('#finish');
-
-        $start.removeClass('animated fadeIn');
-        $finish.removeClass('animated fadeIn');
 
         if ($start.val() == '') {
             genericAnimation($start, 'shake', true)
@@ -66,23 +53,22 @@ $(document).ready(function () {
         if ($start.val() != '' && $finish.val() != '') {
             addActivity($activity)
         }
+        addActivity($activity)
     }
 
     function addActivity($activity) {
-        alert('The star is flying-');
-    }
-
-    function closeActivity($activity) {
-        $activity.find('.glyphicon').fadeOut('slow').delay(0.5);
-        $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeOut')
-        $activity.transition({height: '0px'}, 500);
+        $activity.find('label, input, select, textarea').addClass('animated zoomOut');
+        setTimeout(function () {
+            $activity.find('label, input, select, textarea').hide();
+            $activity.transition({width: '1170px', height: '75px'}, 500);
+        }, 130);
     }
 
     function removeActivity($activity) {
         genericAnimation($activity, 'zoomOut', false);
         setTimeout(function () {
             $activity.remove();
-        }, 250);
+        }, 200);
     }
 
     function genericAnimation($element, animation, timeout) {

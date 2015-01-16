@@ -1,11 +1,6 @@
-/* Navigation styles
---------------------*/
-.navbar {
-    border-radius: 0;
-}
-
-/* Footer styles
---------------------*/
+/*------------------------------------------------------
+|                     Begin footer styles               |
+-------------------------------------------------------*/
 .footer {
     width: 100%;
     height: 60px;
@@ -15,15 +10,28 @@
     margin-top: 20px;
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+/*------------------------------------------------------
+|                     End footer styles                |
+-------------------------------------------------------*/
 
-/*Miscellaneous hacks; will fix someday
------------------------------------------*/
+
+
+
+/*------------------------------------------------------
+|                     Begin misc hacks                 |
+-------------------------------------------------------*/
 .input_membership_charity {
     margin-left: 5px;
 }
+/*------------------------------------------------------
+|                     End misc hacks                 |
+-------------------------------------------------------*/
 
-/* General typography styles
-----------------------------*/
+
+
+/*------------------------------------------------------
+|        Begin general typography styles               |
+-------------------------------------------------------*/
 h1 {
     color: #292929;
     font-size: 45px;
@@ -39,6 +47,7 @@ label, p, .btn, ul {
 }
 label {
     font-size: 14px;
+    width: 100%;
 }
 .btn {
     font-weight: 700;
@@ -47,9 +56,15 @@ label {
     background-color: #fff !important;
     cursor: auto !important;
 }
+/*------------------------------------------------------
+|        End general typography styles                 |
+-------------------------------------------------------*/
 
-/* General input box styles
----------------------------*/
+
+
+/*------------------------------------------------------
+|             Begin general input styles               |
+-------------------------------------------------------*/
 input:not(.input_membership_charity), select, textarea {
     width: 100%;
     border: 1px solid !important;
@@ -62,33 +77,43 @@ input:not(.input_membership_charity), select, textarea {
 input:focus, select:focus, textarea:focus {
     border-color: #66afe9 !important;
 }
+/*------------------------------------------------------
+|               End general input styles               |
+-------------------------------------------------------*/
 
-/* General button styles
-------------------------*/
+
+
+/*------------------------------------------------------
+|            Begin general button styles               |
+-------------------------------------------------------*/
 .btn-default {
     border-color: #2d2d2d;
 }
 .btn-default:hover {
     border-color: #2d2d2d;
 }
+/*------------------------------------------------------
+|            End general button styles               |
+-------------------------------------------------------*/
 
-/* Register form styles
------------------------*/
+
+
+/*------------------------------------------------------
+|             Begin register form styles               |
+-------------------------------------------------------*/
 .charity-row {
-/*     margin-top: 15px; */
     height: 25px;
 }
+/*------------------------------------------------------
+|            End register form styles                  |
+-------------------------------------------------------*/
 
-/* Training add styles
---------------------*/
-.activity-adder p {
-    font-size: 20px;
-    font-weight: 700;
-}
-.activity-adder li:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
+
+
+/*------------------------------------------------------
+|                Begin add training styles               |
+-------------------------------------------------------*/
+/*The ul container in which the activity li's are placed.*/
 .activity-list {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;
@@ -97,24 +122,10 @@ input:focus, select:focus, textarea:focus {
     list-style-type: none;
     padding: 0;
 }
-.activity-block {
-    width: 38%;
-    margin-bottom: 20px;
-    padding: 20px 30px 0 30px;
-    height: 75px;
-    cursor: default;
-    border-radius: 10px;
-    border: 1px solid #2d2d2d;
-    transition: all 0.5s ease-in-out;
-    animation-duration: 600ms;
-    -webkit-animation-duration: 600ms;
-    -moz-animation-duration: 600ms;
-    
-}
 .activity-list .glyphicon {
     float: right;
     font-size: 17px;
-    display: none;
+    top: 10px;
     color: #000;
 }
 .activity-list .glyphicon:hover {
@@ -122,25 +133,37 @@ input:focus, select:focus, textarea:focus {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-.activity-list label {
-    display: none;
-}
-.activity-input {
-    display: none;
-    animation-duration: 500ms;
-}
 .activity-list textarea {
     height: 110px;
 }
 .activity-list .form-group {
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 .activity-list form {
     margin-top: 15px;
 }
 .activity-list .btn {
-    margin-top: 12px;
+    margin-top: 9px;
 }
+
+/*The actual activity li.*/
+.activity-block {
+    width: 32%;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    display: inline-block;
+    padding: 20px 30px 0 30px;
+    height: 495px;
+    cursor: default;
+    border-radius: 10px;
+    border: 1px solid #2d2d2d;
+    transition: all 0.5s ease-in-out;
+    animation-duration: 225ms;
+    -webkit-animation-duration: 225ms;
+    -moz-animation-duration: 225ms;
+}
+
+/*The buttons for adding the activities.*/
 .add-sport-buttons {
     list-style-type: none;
     display: inline;
@@ -154,6 +177,8 @@ input:focus, select:focus, textarea:focus {
     float: left;
     margin-right: 15px;
 }
+
+/*Misc activity adder styles*/
 .no-activities {
     margin-top: 50px;
 }
@@ -161,3 +186,6 @@ input:focus, select:focus, textarea:focus {
     background-color: #fff !important;
     cursor: default !important;
 }
+/*------------------------------------------------------
+|                End add training styles               |
+-------------------------------------------------------*/
