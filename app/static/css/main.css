@@ -75,7 +75,7 @@ input:focus, select:focus, textarea:focus {
 /* Register form styles
 -----------------------*/
 .charity-row {
-    margin-top: 15px;
+/*     margin-top: 15px; */
     height: 25px;
 }
 

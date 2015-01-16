@@ -54,3 +54,4 @@ class User(UserMixin, db.Model):
     # Obligatory identification function.
     def __repr__(self):
         return '<User: %r>' % self.id
+    

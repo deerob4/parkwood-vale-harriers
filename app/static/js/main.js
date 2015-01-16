@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    
     $('.sport').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
@@ -7,11 +7,10 @@ $(document).ready(function () {
             type: 'POST',
             dataType: 'html',
             success: function (data) {
-                var activity = $(data);
-                updateActivities(activity)
+                updateActivities($(data));
             },
             error: function (data) {
-                console.log('Something has gone wrong: ' + data);
+                alert('Something has gone wrong: ' + data);
             }
         });
     });
@@ -19,23 +18,27 @@ $(document).ready(function () {
     function updateActivities($activity) {
         //Adds the activity to the DOM and the page
         $('.activity-list').append($activity);
+        
         //Calls the expandActivity function, animating the activity
         expandActivity($activity);
+        
         //Sets the activity to animated, preventing the function being called on every click
         $activity.addClass('animated');
+        
         //Initialises the time picker
         $('.time').pickatime();
-        $('.no-activities').addClass('animated fadeOutDown');
+        
+        //Animates the no activities message
+        $('.no-activities').addClass('animated fadeOutDown');   
+        
         $('.activity-block .glyphicon').click(function () {
             var $parent = $(this).closest('li');
             removeActivity($parent)
         });
 
         $('#add-swim').click(function () {
-            var $activity = $(this).closest('li');
-            var $start = $activity.closest('#start');
-            var $finish = $activity.closest('#finish');
-            $finish.fadeOut();
+            var $activityBlock = $(this).closest('li');
+            validateActivity($activityBlock)
         });
 
         $('.activity-block').not('.animated').click(function () {
@@ -47,7 +50,32 @@ $(document).ready(function () {
     function expandActivity($activity) {
         $activity.transition({height: '503px'});
         $activity.find('.glyphicon').fadeIn('slow').delay(0.5);
-        $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeIn')       
+        $activity.find('label, input, select, textarea').css('display', 'block').addClass('animated fadeIn');
+    }
+    
+    function validateActivity($activity) {
+        var $start = $activity.find('#start');
+        var $finish = $activity.find('#finish');
+        
+        $start.removeClass('animated fadeIn');
+        $finish.removeClass('animated fadeIn');
+        
+        if ($start.val() == '') {
+            $start.addClass('animated shake');
+            setTimeout(function() {
+                $start.removeClass('animated shake')
+            }, 1400)
+        }
+        if ($finish.val() == '') {
+            $start.addClass('animated shake')
+        }
+        if ($start.val() != '' && $finish.val() != '') {
+            addActivity($activity)
+        }
+    }
+    
+    function addActivity($activity) {
+        alert('The star');
     }
 
     function closeActivity($activity) {
