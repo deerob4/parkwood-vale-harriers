@@ -29,7 +29,7 @@ $(document).ready(function () {
         $('.time').pickatime();
         
         //Animates the no activities message
-        $('.no-activities').addClass('animated fadeOutDown');   
+        genericAnimation($('.no-activities'), 'fadeOutDown');
         
         //Calls the removeActivity function
         $('.activity-block .glyphicon').click(function () {
@@ -79,7 +79,7 @@ $(document).ready(function () {
     }
     
     function removeActivity($activity) {
-        $activity.addClass('animated zoomOut');
+        genericAnimation($activity, 'zoomOut');
         setTimeout(function() {
             $activity.remove();
         }, 250);
