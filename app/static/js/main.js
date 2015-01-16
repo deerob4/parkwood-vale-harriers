@@ -68,6 +68,9 @@ $(document).ready(function () {
         }
         if ($finish.val() == '') {
             $start.addClass('animated shake')
+            setTimeout(function() {
+                $start.removeClass('animated shake')
+            }, 1400)
         }
         if ($start.val() != '' && $finish.val() != '') {
             addActivity($activity)
