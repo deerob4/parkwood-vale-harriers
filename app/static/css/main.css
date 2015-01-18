@@ -10,11 +10,6 @@
     margin-top: 20px;
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-/*------------------------------------------------------
-|                     End footer styles                |
--------------------------------------------------------*/
-
-
 
 
 /*------------------------------------------------------
@@ -23,10 +18,6 @@
 .input_membership_charity {
     margin-left: 5px;
 }
-/*------------------------------------------------------
-|                     End misc hacks                 |
--------------------------------------------------------*/
-
 
 
 /*------------------------------------------------------
@@ -56,10 +47,6 @@ label {
     background-color: #fff !important;
     cursor: auto !important;
 }
-/*------------------------------------------------------
-|        End general typography styles                 |
--------------------------------------------------------*/
-
 
 
 /*------------------------------------------------------
@@ -77,10 +64,6 @@ input:not(.input_membership_charity), select, textarea {
 input:focus, select:focus, textarea:focus {
     border-color: #66afe9 !important;
 }
-/*------------------------------------------------------
-|               End general input styles               |
--------------------------------------------------------*/
-
 
 
 /*------------------------------------------------------
@@ -92,10 +75,6 @@ input:focus, select:focus, textarea:focus {
 .btn-default:hover {
     border-color: #2d2d2d;
 }
-/*------------------------------------------------------
-|            End general button styles               |
--------------------------------------------------------*/
-
 
 
 /*------------------------------------------------------
@@ -104,11 +83,6 @@ input:focus, select:focus, textarea:focus {
 .charity-row {
     height: 25px;
 }
-/*------------------------------------------------------
-|            End register form styles                  |
--------------------------------------------------------*/
-
-
 
 /*------------------------------------------------------
 |                Begin add training styles               |
@@ -186,6 +160,3 @@ input:focus, select:focus, textarea:focus {
     background-color: #fff !important;
     cursor: default !important;
 }
-/*------------------------------------------------------
-|                End add training styles               |
--------------------------------------------------------*/

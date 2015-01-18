@@ -15,6 +15,8 @@ $(document).ready(function () {
         });
     });
 
+    var podge = [[[]], [[]], [[]], [[]], [[]], [[]]];
+
     function updateActivities($activity) {
 
         //Animates the no activities message
@@ -44,6 +46,9 @@ $(document).ready(function () {
         var $start = $activity.find('#start');
         var $finish = $activity.find('#finish');
 
+        $start.removeClass('animated zoomIn');
+        $finish.removeClass('animated zoomIn');
+
         if ($start.val() == '') {
             genericAnimation($start, 'shake', true)
         }
@@ -53,7 +58,6 @@ $(document).ready(function () {
         if ($start.val() != '' && $finish.val() != '') {
             addActivity($activity)
         }
-        addActivity($activity)
     }
 
     function addActivity($activity) {
