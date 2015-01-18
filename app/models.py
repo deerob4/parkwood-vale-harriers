@@ -11,9 +11,8 @@ class User(UserMixin, db.Model):
     Each variable represents an individual field
     for the database, pertaining to the data collected
     in app.forms.MemberForm. The data type is also declared.
-    All fields are of variable length; there are few columns
-    so little data will be stored per user, negating the
-    speed benefit of fixed fields.
+    All fields are of variable length. There is a one-to-many
+
     """
     __tablename__ = 'Users'
     id = db.Column(db.Integer, primary_key=True)
@@ -23,6 +22,8 @@ class User(UserMixin, db.Model):
     dob = db.Column(db.Date)
     distance = db.Column(db.String)
     charity_event = db.Column(db.Boolean)
+
+    activities = db.RelationshipProperty('Activity', backref='user', lazy='dynamic')
 
     # Initialises the class to allow it to be referenced in helper functions.
     def __init__(self, name, email, dob, password, distance, charity_event):
@@ -64,13 +65,12 @@ class Activity(db.Model):
     in app.static.js.main. The data type is also declared.
     A foreign key is established between the user table,
     with users.id acting as the key; this creates a
-    one-to-many link between the two tables (one user can
-    have multiple activities, but each activity can only
-    have one user).
+    one-to-one link between the two tables (one user can
+    have multiple activities.
     """
-    __tablename__ = 'activities'
+    __tablename__ = 'Activities'
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(8))
+    sport = db.Column(db.String(8))
     effigy = db.Column(db.String)
     date = db.Column(db.Date)
     start = db.Column(db.Time)
@@ -79,11 +79,11 @@ class Activity(db.Model):
     opinion = db.Column(db.String)
     thoughts = db.Column(db.Text)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
 
-    # Initialises the class to allow it to be referenced in helper function.
-    def __init__(self, type, effigy, date, start, finish, calories, opinion, thoughts):
-        self.type = type
+    # Initialises the class to allow it to be referenced in helper functions.
+    def __init__(self, sport, effigy, date, start, finish, calories, opinion, thoughts, user_id):
+        self.sport = sport
         self.effigy = effigy
         self.date = date
         self.start = start
@@ -91,7 +91,8 @@ class Activity(db.Model):
         self.calories = calories
         self.opinion = opinion
         self.thoughts = thoughts
+        self.user_id = user_id
 
     # Obligatory identification function.
     def __repr__(self):
-        return '<Activity: %r (%r)>' % (self.id, self.type)
+        return '<Activity: %r (%r)>' % (self.id, self.sport)

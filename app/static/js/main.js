@@ -15,8 +15,6 @@ $(document).ready(function () {
         });
     });
 
-    var podge = [[[]], [[]], [[]], [[]], [[]], [[]]];
-
     function updateActivities($activity) {
 
         //Animates the no activities message
