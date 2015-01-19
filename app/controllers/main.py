@@ -22,9 +22,9 @@ def training():
     return 'All training will be here!'
 
 
-@main.route('/runners/<runnerid>')
-def runners(runnerid):
-    user = User.query.filter_by(id=runnerid).first_or_404()
+@main.route('/runners/<runnername>')
+def runners(runnername):
+    user = User.query.filter_by(username=runnername).first_or_404()
     return 'The user is %s. They have an id of %s, and were born on %s.' % (user.name, user.id, user.dob)
 
 

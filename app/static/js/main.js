@@ -64,6 +64,14 @@ $(document).ready(function () {
             $activity.find('label, input, select, textarea').hide();
             $activity.transition({width: '1125px', height: '75px'}, 500);
         }, 130);
+        var calories = 0
+        var sport = $activity.attr('id');
+        if (sport == 'running') {
+            switch ($activity.closest('#running_speed').val()) {
+                case '5mph':
+
+            }
+        }
     }
 
     function removeActivity($activity) {

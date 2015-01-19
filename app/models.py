@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     email = db.Column(db.String)
+    username = db.Column(db.String)
     password_hash = db.Column(db.String)
     dob = db.Column(db.Date)
     distance = db.Column(db.String)
@@ -26,8 +27,9 @@ class User(UserMixin, db.Model):
     activities = db.RelationshipProperty('Activity', backref='user', lazy='dynamic')
 
     # Initialises the class to allow it to be referenced in helper functions.
-    def __init__(self, name, email, dob, password, distance, charity_event):
+    def __init__(self, name, username, email, dob, password, distance, charity_event):
         self.name = name
+        self.username = username
         self.email = email
         self.password = password
         self.dob = dob

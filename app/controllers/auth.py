@@ -4,6 +4,8 @@ from flask.ext.login import current_user, login_user, logout_user
 from app.forms import MemberForm, LoginForm
 from app.models import db, User
 
+from random import randint
+
 auth = Blueprint('auth', __name__)
 
 
@@ -12,8 +14,10 @@ def register():
     if not current_user.is_authenticated():
         form = MemberForm()
         if form.validate_on_submit():
-            user = User(name=form.name.data, email=form.email.data, password=form.password.data, dob=form.dob.data,
-                        distance=form.distance.data, charity_event=form.charity_event.data)
+            # Generates a username for the user composed of their real name and a random number
+            username = form.name.data.lower().replace(' ', '') + str(randint(1, 10))
+            user = User(name=form.name.data, username=username, email=form.email.data, password=form.password.data,
+                        dob=form.dob.data, distance=form.distance.data, charity_event=form.charity_event.data)
             db.session.add(user)
             db.session.commit()
             print('%s has been registered.' % user.name)
