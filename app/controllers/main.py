@@ -23,10 +23,12 @@ def training():
 
 
 @main.route('/runners/<runnername>')
+@login_required
 def runners(runnername):
     user = User.query.filter_by(username=runnername).first_or_404()
-    if user:
+    if user.username == current_user.username:
         return render_template('profiles/own_profile.html', current_user=current_user)
+    return 'no permissions...', 402
 
 
 @main.route('/training/add', methods=['GET', 'POST'])

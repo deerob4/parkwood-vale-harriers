@@ -3,6 +3,12 @@
 {% block title %}Your Profile{{ super() }}{% endblock %}
 
 {% block content %}
-    <h1>Welcome, {{ current_user.name }}</h1>
+    <h1>Welcome, {{ current_user.name }}!</h1>
     <h4>Use this page to manage your profile. Or something like that.</h4>
+    {% if current_user.charity_event == True %}
+        <p>You are in the charity event!</p>
+    {% else %}
+        <p>You are not in the charity event!</p>
+    {% endif %}
+    <p>You were born on {{ current_user.dob.strftime('%A %e %B %G') }}</p>
 {% endblock %}
