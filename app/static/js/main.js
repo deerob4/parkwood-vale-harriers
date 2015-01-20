@@ -65,8 +65,9 @@ $(document).ready(function () {
             $activity.transition({width: '1125px', height: '75px'}, 500);
         }, 130);
         var sport = $activity.attr('id');
-        var caloriesBurned = calculateHours($activity) * $activity.find('.effigy').val();
-        alert(caloriesBurned)
+        var hours = calculateHours($activity);
+        var caloriesBurned = hours * $activity.find('.effigy').val();
+        $activity.find('.calories').text(' - ' + caloriesBurned + ' calories in ' + hours + ' hours');
     }
 
     function removeActivity($activity) {
