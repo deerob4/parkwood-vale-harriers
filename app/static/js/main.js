@@ -10,7 +10,7 @@ $(document).ready(function () {
                 updateActivities($(data));
             },
             error: function (data) {
-                alert('Something has gone wrong: ' + data);
+                console.log('Something has gone wrong: ' + data);
             }
         });
     });
@@ -65,13 +65,8 @@ $(document).ready(function () {
             $activity.transition({width: '1125px', height: '75px'}, 500);
         }, 130);
         var sport = $activity.attr('id');
-        if (sport == 'running') {
-            alert('running!')
-        } else if (sport == 'cycling') {
-            alert('cycling!')
-        } else {
-            alert('swimming!')
-        }
+        var caloriesBurned = calculateHours($activity) * $activity.find('.effigy').val();
+        alert(caloriesBurned)
     }
 
     function removeActivity($activity) {
