@@ -64,13 +64,13 @@ $(document).ready(function () {
             $activity.find('label, input, select, textarea').hide();
             $activity.transition({width: '1125px', height: '75px'}, 500);
         }, 130);
-        var calories = 0
         var sport = $activity.attr('id');
         if (sport == 'running') {
-            switch ($activity.closest('#running_speed').val()) {
-                case '5mph':
-
-            }
+            alert('running!')
+        } else if (sport == 'cycling') {
+            alert('cycling!')
+        } else {
+            alert('swimming!')
         }
     }
 
@@ -88,6 +88,12 @@ $(document).ready(function () {
                 $element.removeClass('animated ' + animation);
             }, 1400);
         }
+    }
+
+    function calculateHours($activity) {
+        var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
+        var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
+        return stop - start;
     }
 
 });
