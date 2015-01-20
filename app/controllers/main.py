@@ -25,7 +25,8 @@ def training():
 @main.route('/runners/<runnername>')
 def runners(runnername):
     user = User.query.filter_by(username=runnername).first_or_404()
-    return 'The user is %s. They have an id of %s, and were born on %s.' % (user.name, user.id, user.dob)
+    if user:
+        return render_template('profiles/own_profile.html', current_user=current_user)
 
 
 @main.route('/training/add', methods=['GET', 'POST'])

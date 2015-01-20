@@ -41,7 +41,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ current_user.name }}<span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">View Profile</a></li>
+                                <li><a href="{{ url_for('main.runners', runnername=current_user.username) }}">View Profile</a></li>
                                 <li><a href="#">Change Password</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
