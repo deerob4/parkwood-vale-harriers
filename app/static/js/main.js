@@ -62,7 +62,7 @@ $(document).ready(function () {
         $activity.find('label, input, select, textarea').addClass('animated zoomOut');
         setTimeout(function () {
             $activity.find('label, input, select, textarea').hide();
-            $activity.transition({width: '1125px', height: '75px'}, 500);
+            $activity.transition({width: '1125px', height: '75px'}, 500).addClass('added');
         }, 130);
         var sport = $activity.attr('id');
         var hours = calculateHours($activity);

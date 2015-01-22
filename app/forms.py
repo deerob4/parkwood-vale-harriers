@@ -23,8 +23,8 @@ class MemberForm(Form):
     """Contains the fields and validators for the new member form."""
 
     name = StringField("What is your name?", validators=[DataRequired('You must enter your name.'),
-                                                         Regexp('^[A-Za-z" "]*$',
-                                                                message='Your name must only contain letters.')])
+                                                         Regexp(r'^[A-Za-z\-" "]*$',
+                                                                message='Your name may only contain letters.')])
     dob = DateField("What is your date of birth?", validators=[DataRequired('You must enter your date of birth.')])
     email = StringField("What is your email?",
                         validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
