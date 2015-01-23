@@ -24,7 +24,10 @@ $(document).ready(function () {
         genericAnimation($('.no-activities'), 'fadeOutDown', false);
         $('.activity-list').append($activity);
         genericAnimation($activity, 'zoomIn', false);
-        $('.time').pickatime();
+        $('.time').pickatime({
+            interval: 60,
+            format: 'H:i A'
+        });
         $('.activity-block .glyphicon').click(function () {
             removeActivity($(this).closest('li'));
         });

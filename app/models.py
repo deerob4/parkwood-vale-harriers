@@ -75,8 +75,9 @@ class Activity(db.Model):
     sport = db.Column(db.String(8))
     effigy = db.Column(db.String)
     date = db.Column(db.Date)
-    start = db.Column(db.Time)
-    finish = db.Column(db.Time)
+    start = db.Column(db.String)
+    finish = db.Column(db.String)
+    hours = db.Column(db.Integer)
     calories = db.Column(db.Integer)
     opinion = db.Column(db.String)
     thoughts = db.Column(db.Text)
@@ -84,12 +85,13 @@ class Activity(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
 
     # Initialises the class to allow it to be referenced in helper functions.
-    def __init__(self, sport, effigy, date, start, finish, calories, opinion, thoughts, user_id):
+    def __init__(self, sport, effigy, date, start, finish, calories, opinion, thoughts, hours, user_id):
         self.sport = sport
         self.effigy = effigy
         self.date = date
         self.start = start
         self.finish = finish
+        self.hours = hours
         self.calories = calories
         self.opinion = opinion
         self.thoughts = thoughts

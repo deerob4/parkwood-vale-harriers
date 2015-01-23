@@ -2,6 +2,9 @@ from flask import Blueprint, render_template, json, request
 from flask.ext.login import current_user
 from app.models import Activity, db
 
+from datetime import datetime
+from time import strptime
+
 ajax = Blueprint('ajax', __name__)
 
 # Defines the routes for displaying the activity blocks
@@ -29,11 +32,15 @@ def send_activity():
     hours = request.json['hours']
     start = request.json['start']
     finish = request.json['finish']
-    rating = request.json['rating']
+    opinion = request.json['rating']
     thoughts = request.json['thoughts']
     
+    start = strptime(start, '%H:%M %p')
+    finish = strptime(finish, '%H:%M %p')
+    
     activity = Activity(sport=sport, effigy=effigy, calories=calories, hours=hours, start=start, 
-                       finish=finish, rating=rating, thoughts=thoughts, user_id=current_user.get_id())
+                       finish=finish, opinion=opinion, thoughts=thoughts, 
+                       user_id=current_user.get_id(), date=datetime.now().date())
     
     db.session.add(activity)
     db.session.commit()
