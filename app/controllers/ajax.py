@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, json, request
-from app.models import Activity
+from flask.ext.login import current_user
+from app.models import Activity, db
 
 ajax = Blueprint('ajax', __name__)
 
@@ -30,6 +31,12 @@ def send_activity():
     finish = request.json['finish']
     rating = request.json['rating']
     thoughts = request.json['thoughts']
-    print('Rating: %s' % rating)
+    
+    activity = Activity(sport=sport, effigy=effigy, calories=calories, hours=hours, start=start, 
+                       finish=finish, rating=rating, thoughts=thoughts, user_id=current_user.get_id())
+    
+    db.session.add(activity)
+    db.session.commit()
+    
     return 'All is good down here'
     
