@@ -140,6 +140,10 @@ input:focus, select:focus, textarea:focus {
     -webkit-animation-duration: 225ms;
     -moz-animation-duration: 225ms;
 }
+.activity-block.added {
+    width: 1125px;
+    height: 75px;
+}
 
 /*The buttons for adding the activities.*/
 .add-sport-buttons {

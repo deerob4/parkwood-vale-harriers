@@ -6,6 +6,24 @@ $(document).ready(function () {
         format: 'yyyy-mm-dd'
     });
 
+    $('.activity-block .glyphicon').click(function () {
+        var $activity = $(this).closest('li');
+        if ($activity.hasClass('added')) {
+            removeActivity($activity);
+            var toRemove = {"activityId": $activity.attr('id')};
+            $.ajax({
+                url: '/ajax/remove-activity',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(toRemove)
+            });
+        } else {
+            removeActivity($activity);
+        }
+
+    });
+
     $('.sport').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
@@ -67,7 +85,7 @@ $(document).ready(function () {
         var caloriesBurned = hours * $activity.find('#effigy').val();
 
         $activity.find('.calories').text(' - ' + caloriesBurned + ' calories');
-        
+
         var activityObject = {
             "sport": $activity.attr('id'),
             "effigy": $activity.find('#effigy option:selected').text(),
@@ -78,7 +96,7 @@ $(document).ready(function () {
             "rating": $activity.find('#rating').val(),
             "thoughts": $activity.find('#thoughts').val()
         };
-        
+
         $.ajax({
             url: '/ajax/send-activity',
             type: 'POST',

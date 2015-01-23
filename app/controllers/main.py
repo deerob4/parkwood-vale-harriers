@@ -2,11 +2,13 @@ from flask import Blueprint, render_template, flash, redirect, url_for
 from flask.ext.login import current_user, login_required
 
 from app.forms import AddSwimForm
-from app.models import User
+from app.models import User, Activity, db
 
 from datetime import datetime
 
 main = Blueprint('main', __name__)
+
+current_date = datetime.now().date()
 
 
 @main.route('/')
@@ -35,5 +37,6 @@ def runners(runnername):
 @login_required
 def add_training():
     form = AddSwimForm()
-    return render_template('training/add_training.html', date=datetime.now().date(),
-                           form=form, current_user=current_user)
+    activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
+    return render_template('training/add_training.html', date=current_date,
+                           form=form, current_user=current_user, activities=activities)
