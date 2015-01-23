@@ -69,10 +69,34 @@ $(document).ready(function () {
             $activity.find('label, input, select, textarea').hide();
             $activity.transition({width: '1125px', height: '75px'}, 500).addClass('added');
         }, 130);
+        
         var sport = $activity.attr('id');
+        var effigy = $activity.find('.effigy').val()
+        var startTime = $activity.find('#start').val();
+        var endTime = $activity.find('#end').val();
+        var rating = $activity.find('#rating').val();
+        var opinion = $activity.find('#opinion').val();
         var hours = calculateHours($activity);
-        var caloriesBurned = hours * $activity.find('.effigy').val();
-        $activity.find('.calories').text(' - ' + caloriesBurned + ' calories in ' + hours + ' hours');
+        var caloriesBurned = hours * effigy;
+        
+        $activity.find('.calories').text(' - ' + caloriesBurned + ' calories');
+        
+        var activityObject = {
+            "sport": sport,
+            "effigy": effigy,
+            "calories": caloriesBurned,
+            "times": {
+                "start": startTime,
+                "end": endTime,
+                "hours": hours
+            },
+            "ratings": rating,
+            "opinion": opinion
+        }
+        
+        var parsedActivityObject = JSON.parse(activityObject)
+        
+        alert(parsedActivityObject[0])
     }
 
     function removeActivity($activity) {
