@@ -5,7 +5,6 @@ $(document).ready(function () {
         startDate: '-75y',
         format: 'yyyy-mm-dd'
     });
-
     $('.activity-block .glyphicon').click(function () {
         var $activity = $(this).closest('li');
         if ($activity.hasClass('added')) {
@@ -23,7 +22,6 @@ $(document).ready(function () {
         }
 
     });
-
     $('.sport').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
@@ -38,7 +36,6 @@ $(document).ready(function () {
             }
         });
     });
-
     function updateActivities($activity) {
         genericAnimation($('.no-activities'), 'fadeOutDown', false);
         $('.activity-list').append($activity);
@@ -55,7 +52,6 @@ $(document).ready(function () {
             validateActivity($(this).closest('li'));
         });
     }
-
     function validateActivity($activity) {
         var $start = $activity.find('#start');
         var $finish = $activity.find('#finish');
@@ -96,7 +92,6 @@ $(document).ready(function () {
             "rating": $activity.find('#rating').val(),
             "thoughts": $activity.find('#thoughts').val()
         };
-
         $.ajax({
             url: '/ajax/send-activity',
             type: 'POST',
@@ -118,7 +113,6 @@ $(document).ready(function () {
             $activity.remove();
         }, 200);
     }
-
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
         if (timeout == true) {
@@ -127,7 +121,6 @@ $(document).ready(function () {
             }, 1400);
         }
     }
-
     function calculateHours($activity) {
         var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
         var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
