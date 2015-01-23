@@ -1,0 +1,30 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "Users" (
+	id INTEGER NOT NULL, 
+	name VARCHAR, 
+	email VARCHAR, 
+	username VARCHAR, 
+	password_hash VARCHAR, 
+	dob DATE, 
+	distance VARCHAR, 
+	charity_event BOOLEAN, 
+	PRIMARY KEY (id), 
+	CHECK (charity_event IN (0, 1))
+);
+INSERT INTO "Users" VALUES(1,'Dee Roberts','deerob4@gmail.com','deeroberts4','pbkdf2:sha1:1000$V5tVyVrT$ebebbee01cf09e546a1e8ccaf47d28c7ab30e04e','1994-03-06','11-15',1);
+INSERT INTO "Users" VALUES(2,'Harold Wilson','wilson@gmail.com','haroldwilson6','pbkdf2:sha1:1000$mEDo2nNa$388723258bda84248427ad78e1fb93970eef9403','1987-03-06','l1',0);
+INSERT INTO "Users" VALUES(3,'Kayleigh','kayleigh_2598@hotmail.co.uk','kayleigh9','pbkdf2:sha1:1000$zMRjh85i$f33cc805686faed5de231d91c69e52697f312c65','1956-12-25','l1',0);
+CREATE TABLE activities (
+    "id" INTEGER NOT NULL,
+    "sport" VARCHAR(8),
+    "effigy" VARCHAR,
+    "date" DATE,
+    "start" TIME,
+    "finish" TIME,
+    "calories" INTEGER,
+    "opinion" VARCHAR,
+    "thoughts" TEXT,
+    "user_id" INTEGER
+, "hours" INTEGER);
+COMMIT;

@@ -2,7 +2,8 @@ $(document).ready(function () {
 
     $('.datepicker').datepicker({
         endDate: '-18y',
-        startDate: '-75y'
+        startDate: '-75y',
+        format: 'yyyy-mm-dd'
     });
 
     $('.sport').click(function () {
@@ -26,7 +27,8 @@ $(document).ready(function () {
         genericAnimation($activity, 'zoomIn', false);
         $('.time').pickatime({
             interval: 60,
-            format: 'H:i A'
+            formatLabel: 'HH:i A',
+            formatSubmit: 'HH:i A'
         });
         $('.activity-block .glyphicon').click(function () {
             removeActivity($(this).closest('li'));
@@ -60,28 +62,22 @@ $(document).ready(function () {
             $activity.find('label, input, select, textarea').hide();
             $activity.transition({width: '1125px', height: '75px'}, 500).addClass('added');
         }, 130);
-        
-        var sport = $activity.attr('id');
-        var effigy = $activity.find('#effigy option:selected').text();
-        var startTime = $activity.find('#start').val();
-        var finishTime = $activity.find('#finish').val();
-        var rating = $activity.find('#rating').val();
-        var thoughts = $activity.find('#thoughts').val();
+
         var hours = calculateHours($activity);
         var caloriesBurned = hours * $activity.find('#effigy').val();
-        
+
         $activity.find('.calories').text(' - ' + caloriesBurned + ' calories');
         
         var activityObject = {
-            "sport": sport,
-            "effigy": effigy,
+            "sport": $activity.attr('id'),
+            "effigy": $activity.find('#effigy option:selected').text(),
             "calories": caloriesBurned,
-            "start": startTime,
-            "finish": finishTime,
+            "start": $activity.find('#start').val(),
+            "finish": $activity.find('#finish').val(),
             "hours": hours,
-            "rating": rating,
-            "thoughts": thoughts
-        }
+            "rating": $activity.find('#rating').val(),
+            "thoughts": $activity.find('#thoughts').val()
+        };
         
         $.ajax({
             url: '/ajax/send-activity',
@@ -90,7 +86,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify(activityObject),
             success: function (data) {
-                alert('it worked!');
+                alert(data);
             },
             error: function (data) {
                 console.log('very bad: ' + data);

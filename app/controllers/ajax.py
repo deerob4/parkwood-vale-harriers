@@ -34,16 +34,15 @@ def send_activity():
     finish = request.json['finish']
     opinion = request.json['rating']
     thoughts = request.json['thoughts']
-    
-    start = strptime(start, '%H:%M %p')
-    finish = strptime(finish, '%H:%M %p')
-    
-    activity = Activity(sport=sport, effigy=effigy, calories=calories, hours=hours, start=start, 
-                       finish=finish, opinion=opinion, thoughts=thoughts, 
-                       user_id=current_user.get_id(), date=datetime.now().date())
-    
+
+    # start = strptime(start, '%H:%M %p')
+    # finish = strptime(finish, '%H:%M %p')
+
+    activity = Activity(sport=sport, effigy=effigy, calories=calories, hours=hours, start=start,
+                        finish=finish, opinion=opinion, thoughts=thoughts,
+                        user_id=current_user.get_id(), date=datetime.now().date())
+
     db.session.add(activity)
     db.session.commit()
-    
+
     return 'All is good down here'
-    
