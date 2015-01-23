@@ -21,25 +21,13 @@ $(document).ready(function () {
     });
 
     function updateActivities($activity) {
-
-        //Animates the no activities message
         genericAnimation($('.no-activities'), 'fadeOutDown', false);
-
-        //Adds the activity to the DOM and the page
         $('.activity-list').append($activity);
-
-        //Animates the newly added element
         genericAnimation($activity, 'zoomIn', false);
-
-        //Initialises the time picker
         $('.time').pickatime();
-
-        //Calls the removeActivity function
         $('.activity-block .glyphicon').click(function () {
             removeActivity($(this).closest('li'));
         });
-
-        //Calls the validateActivity function
         $('.add-activity').click(function () {
             validateActivity($(this).closest('li'));
         });
@@ -71,13 +59,13 @@ $(document).ready(function () {
         }, 130);
         
         var sport = $activity.attr('id');
-        var effigy = $activity.find('.effigy').val()
+        var effigy = $activity.find('#effigy option:selected').text();
         var startTime = $activity.find('#start').val();
-        var endTime = $activity.find('#end').val();
+        var finishTime = $activity.find('#finish').val();
         var rating = $activity.find('#rating').val();
-        var opinion = $activity.find('#opinion').val();
+        var thoughts = $activity.find('#thoughts').val();
         var hours = calculateHours($activity);
-        var caloriesBurned = hours * effigy;
+        var caloriesBurned = hours * $activity.find('#effigy').val();
         
         $activity.find('.calories').text(' - ' + caloriesBurned + ' calories');
         
@@ -85,18 +73,26 @@ $(document).ready(function () {
             "sport": sport,
             "effigy": effigy,
             "calories": caloriesBurned,
-            "times": {
-                "start": startTime,
-                "end": endTime,
-                "hours": hours
-            },
-            "ratings": rating,
-            "opinion": opinion
+            "start": startTime,
+            "finish": finishTime,
+            "hours": hours,
+            "rating": rating,
+            "thoughts": thoughts
         }
         
-        var parsedActivityObject = JSON.parse(activityObject)
-        
-        alert(parsedActivityObject[0])
+        $.ajax({
+            url: '/ajax/send-activity',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(activityObject),
+            success: function (data) {
+                alert('it worked!');
+            },
+            error: function (data) {
+                console.log('very bad: ' + data);
+            }
+        });
     }
 
     function removeActivity($activity) {

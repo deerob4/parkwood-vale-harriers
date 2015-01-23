@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, json, request
+from app.models import Activity
+
 ajax = Blueprint('ajax', __name__)
 
 # Defines the routes for displaying the activity blocks
@@ -20,4 +22,14 @@ def cycling_block():
 # Defines the route for uploading activity block data
 @ajax.route('/ajax/send-activity', methods=['POST'])
 def send_activity():
-    return 'Ready et waiting!'
+    sport = request.json['sport']
+    effigy = request.json['effigy']
+    calories = request.json['calories']
+    hours = request.json['hours']
+    start = request.json['start']
+    finish = request.json['finish']
+    rating = request.json['rating']
+    thoughts = request.json['thoughts']
+    print('Rating: %s' % rating)
+    return 'All is good down here'
+    
