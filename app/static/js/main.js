@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    $('.datepicker').datepicker({
+        endDate: '-18y',
+        startDate: '-75y'
+    });
+
     $('.sport').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
@@ -31,12 +36,12 @@ $(document).ready(function () {
 
         //Calls the removeActivity function
         $('.activity-block .glyphicon').click(function () {
-            removeActivity($(this).closest('li'))
+            removeActivity($(this).closest('li'));
         });
 
         //Calls the validateActivity function
         $('.add-activity').click(function () {
-            validateActivity($(this).closest('li'))
+            validateActivity($(this).closest('li'));
         });
     }
 
@@ -48,13 +53,13 @@ $(document).ready(function () {
         $finish.removeClass('animated zoomIn');
 
         if ($start.val() == '') {
-            genericAnimation($start, 'shake', true)
+            genericAnimation($start, 'shake', true);
         }
         if ($finish.val() == '') {
-            genericAnimation($finish, 'shake', true)
+            genericAnimation($finish, 'shake', true);
         }
         if ($start.val() != '' && $finish.val() != '') {
-            addActivity($activity)
+            addActivity($activity);
         }
     }
 

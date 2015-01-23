@@ -32,12 +32,14 @@ h4 {
     font-weight: 400;
     font-size: 20px;
 }
-label, p, .btn, ul {
+label, p, .btn, ul, .datepicker {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 100;
 }
 label {
     font-size: 14px;
+}
+.activity-block label {
     width: 100%;
 }
 .btn {
@@ -64,7 +66,9 @@ input:not(.input_membership_charity), select, textarea {
 input:focus, select:focus, textarea:focus {
     border-color: #66afe9 !important;
 }
-
+.datepicker {
+    padding-left: 12px !important;
+}
 
 /*------------------------------------------------------
 |            Begin general button styles               |
