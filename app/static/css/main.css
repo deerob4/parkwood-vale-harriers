@@ -32,7 +32,7 @@ h4 {
     font-weight: 400;
     font-size: 20px;
 }
-label, p, .btn, ul, .datepicker {
+label, p, .btn, ul, .datepicker, .bootbox {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 100;
 }

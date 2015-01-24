@@ -52,6 +52,7 @@ $(document).ready(function () {
             validateActivity($(this).closest('li'));
         });
     }
+
     function validateActivity($activity) {
         var $start = $activity.find('#start');
         var $finish = $activity.find('#finish');
@@ -108,11 +109,16 @@ $(document).ready(function () {
     }
 
     function removeActivity($activity) {
-        genericAnimation($activity, 'zoomOut', false);
-        setTimeout(function () {
-            $activity.remove();
-        }, 200);
+        bootbox.confirm("Are you sure you want to delete this activity?", function (result) {
+            if (result) {
+                genericAnimation($activity, 'zoomOut', false);
+                setTimeout(function () {
+                    $activity.remove();
+                }, 200);
+            }
+        });
     }
+
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
         if (timeout == true) {
@@ -121,6 +127,7 @@ $(document).ready(function () {
             }, 1400);
         }
     }
+
     function calculateHours($activity) {
         var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
         var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
