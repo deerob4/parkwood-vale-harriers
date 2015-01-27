@@ -66,17 +66,23 @@ class LoginForm(Form):
     remember = BooleanField('Remember me')
     login = SubmitField('Login')
 
+    
+class ChangeDetails(Form):
+    name = StringField("What is your name?", validators=[DataRequired('You must enter your name.'),
+                                                         Regexp(r'^[A-Za-z\-" "]*$',
+                                                                message='Your name may only contain letters.')])
+    dob = DateField("What is your date of birth?", validators=[DataRequired('You must enter your date of birth.')])
+    email = StringField("What is your email?",
+                        validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
+    submit = SubmitField('Submit')
 
-class AddSwimForm(Form):
-    """Contains the fields and validators for the new swim session form."""
-    style = SelectField('Which style did you use?',
-                        choices=[('backstroke', 'Backstroke'), ('breaststroke', 'Breaststroke'),
-                                 ('butterfly', 'Butterfly'), ('freestyle-slow', 'Freestyle (slow)'),
-                                 ('freestyle-fast', 'Freestyle (fast)')])
-    start = StringField('What time did you start?', validators=[DataRequired('You must enter your start time.')])
-    finish = StringField('What time did you finish?', validators=[DataRequired('You must enter your finish time.')])
-    rating = SelectField('How would you rate your swim?',
-                         choices=[('brilliant', 'Brilliant'), ('pretty-good', 'Pretty good'),
-                                  ('about-average', 'About average'), ('okay', 'Okay'), ('poor', 'Poor')])
-    thoughts = TextAreaField('Do you have any extra thoughts?')
-    submit = SubmitField('Add Swim')
+    def validate_dob(self, field):
+        """Ensures the user is between 18 - 75 years old."""
+        age = calculate_age(field.data)
+        if not 18 <= age <= 75:
+            raise ValidationError('You must be 18 - 75 years old to join.')
+
+    def validate_email(self, field):
+        """Ensures the email address is unique"""
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('That email address has already been registered.')

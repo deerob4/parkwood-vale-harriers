@@ -3,12 +3,14 @@
 {% block title %}Your Profile{{ super() }}{% endblock %}
 
 {% block content %}
-    <h1>Welcome, {{ current_user.name }}!</h1>
-    <h4>Use this page to manage your profile. Or something like that.</h4>
-    {% if current_user.charity_event == True %}
-        <p>You are in the charity event!</p>
-    {% else %}
-        <p>You are not in the charity event!</p>
-    {% endif %}
-    <p>You were born on {{ current_user.dob.strftime('%A %e %B %G') }}</p>
+    <div class="jumbotron">
+        <h1>Manage your profile</h1>
+        <h4>Use this page to view or change your details, or even delete your account.</h4>
+
+        <div class="details">
+            <p class="name">Name: {{ current_user.name }}</p>
+            <p class="email">Email: {{ current_user.email }}</p>
+            <p class="dob">Date of birth: {{ current_user.dob.strftime('%A %e %B %G') }}</p>
+        </div>
+    </div>    
 {% endblock %}
