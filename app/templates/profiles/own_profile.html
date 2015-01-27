@@ -12,5 +12,7 @@
             <p class="email">Email: {{ current_user.email }}</p>
             <p class="dob">Date of birth: {{ current_user.dob.strftime('%A %e %B %G') }}</p>
         </div>
+        
+        <span><a href="{{ url_for('main.edit_profile') }}">Edit</a></span>
     </div>    
 {% endblock %}
