@@ -109,14 +109,10 @@ $(document).ready(function () {
     }
 
     function removeActivity($activity) {
-        bootbox.confirm("Are you sure you want to delete this activity?", function (result) {
-            if (result) {
-                genericAnimation($activity, 'zoomOut', false);
-                setTimeout(function () {
-                    $activity.remove();
-                }, 200);
-            }
-        });
+        genericAnimation($activity, 'zoomOut', false);
+        setTimeout(function () {
+            $activity.remove();
+        }, 200);
     }
 
     function genericAnimation($element, animation, timeout) {
