@@ -21,13 +21,15 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String)
     password_hash = db.Column(db.String)
     dob = db.Column(db.Date)
+    phone = db.Column(db.String)
+    weight = db.Column(db.Integer)
     distance = db.Column(db.String)
     charity_event = db.Column(db.Boolean)
 
     activities = db.RelationshipProperty('Activity', backref='user', lazy='dynamic')
 
     # Initialises the class to allow it to be referenced in helper functions.
-    def __init__(self, name, username, email, dob, password, distance, charity_event):
+    def __init__(self, name, username, email, dob, password, distance, charity_event, weight, phone):
         self.name = name
         self.username = username
         self.email = email
@@ -35,6 +37,8 @@ class User(UserMixin, db.Model):
         self.dob = dob
         self.distance = distance
         self.charity_event = charity_event
+        self.phone = phone
+        self.weight = weight
 
     # Ensures the password is accessible.
     @property

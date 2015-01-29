@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError, NumberRange
 
 from app.models import User
@@ -41,6 +41,8 @@ class MemberForm(Form):
     weight = IntegerField('How much do you weigh in kg?', validators=[DataRequired('You must enter your weight.'),
                                                                         NumberRange(10, 100,
                                                                                     'Your weight must be between 10kg - 100kg.')])
+    phone = StringField('What is your phone number?', validators=[DataRequired('You must enter your phone number.')])
+    address = TextAreaField('What is your full home address?', validators=[DataRequired('You must enter your address.')])
     submit = SubmitField('Submit')
 
     def validate_distance(self, field):
