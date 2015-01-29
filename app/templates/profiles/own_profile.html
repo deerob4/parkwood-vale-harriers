@@ -7,10 +7,30 @@
         <h1>Manage your profile</h1>
         <h4>Use this page to view or change your details, or even delete your account.</h4>
 
+        {% with messages=get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <p>{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
+        
         <div class="details">
             <p class="name">Name: {{ current_user.name }}</p>
             <p class="email">Email: {{ current_user.email }}</p>
+            <p class="phone">Phone: {{ current_user.phone }}</p>
             <p class="dob">Date of birth: {{ current_user.dob.strftime('%A %e %B %G') }}</p>
+            <p class="weight">Weight: {{ current_user.weight }}kg</p>
         </div>
         
         <span><a href="{{ url_for('main.edit_profile') }}">Edit</a></span>

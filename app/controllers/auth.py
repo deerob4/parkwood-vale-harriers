@@ -17,7 +17,7 @@ def register():
             # Generates a username for the user composed of their real name and a random number
             username = form.name.data.lower().replace(' ', '') + str(randint(1, 10))
             user = User(name=form.name.data, username=username, email=form.email.data, password=form.password.data,
-                        dob=form.dob.data, distance=form.distance.data, charity_event=form.charity_event.data)
+                        dob=form.dob.data, distance=form.distance.data, charity_event=form.charity_event.data, phone=form.phone.data, weight=form.weight.data)
             db.session.add(user)
             db.session.commit()
             print('%s has been registered.' % user.name)

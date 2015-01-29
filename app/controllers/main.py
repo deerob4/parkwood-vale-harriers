@@ -50,7 +50,8 @@ def edit_profile():
         user.dob = form.dob.data
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('main.home'))
+        flash('Your details have been updated!', 'success')
+        return redirect(url_for('main.my_profile'))
     for error in form.errors.items():
         flash(error[1][0], 'warning')
     return render_template('profiles/change_details.html', current_user=current_user, form=form)
