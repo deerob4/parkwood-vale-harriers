@@ -77,10 +77,14 @@ $(document).ready(function () {
             $activity.find('label, input, select, textarea').hide();
             $activity.transition({width: '1125px', height: '75px'}, 500).addClass('added');
         }, 130);
-
+        
         var hours = calculateHours($activity);
         var caloriesBurned = hours * $activity.find('#effigy').val();
 
+        var currentCalories = parseInt($('.well').text().replace(' calories in total', ''));
+        var newCalories = currentCalories + caloriesBurned;
+        $('.well').text(newCalories + ' calories in total');
+        
         $activity.find('.calories').text(' - ' + caloriesBurned + ' calories');
 
         var activityObject = {

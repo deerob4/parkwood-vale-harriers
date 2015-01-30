@@ -34,7 +34,7 @@ class MemberForm(Form):
     confirm = PasswordField("Confirm your password:", validators=[DataRequired('You must confirm your password.'),
                                                                   EqualTo('password', 'Your passwords must match.')])
     charity_event = BooleanField("I want the chance to run in the charity event")
-    distance = SelectField('What\'s the max distance you run?',
+    distance = SelectField('What is the maximum distance you have run in the past year?',
                            choices=[('l1', 'Less than 1 mile'), ('1-5', '1 - 5 miles'), ('6-10', '6 - 10 miles'),
                                     ('11-15', '11 - 15 miles'), ('16-20', '16 - 20 miles'),
                                     ('g20', 'More than 20 miles')])

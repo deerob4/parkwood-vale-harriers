@@ -61,5 +61,8 @@ def edit_profile():
 @login_required
 def add_training():
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
+    total_calories = 0
+    for activity in activities:
+        total_calories += activity.calories
     return render_template('training/add_training.html', date=current_date,
-                           current_user=current_user, activities=activities)
+                           current_user=current_user, activities=activities, total_calories=total_calories)
