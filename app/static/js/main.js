@@ -77,19 +77,22 @@ $(document).ready(function () {
             $activity.find('label, input, select, textarea').hide();
             $activity.transition({width: '1125px', height: '75px'}, 500).addClass('added');
         }, 130);
-        
+
+        var sport = $activity.attr('id');
+        var effigy = $activity.find('#effigy option:selected').text();
         var hours = calculateHours($activity);
         var caloriesBurned = hours * $activity.find('#effigy').val();
 
         var currentCalories = parseInt($('.well').text().replace(' calories in total', ''));
         var newCalories = currentCalories + caloriesBurned;
-        $('.well').text(newCalories + ' calories in total');
+        $('.well').text(newCalories + ' calories in total today!');
         
-        $activity.find('.calories').text(' - ' + caloriesBurned + ' calories');
+        $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
+        $activity.find('.calories').text(caloriesBurned + ' calories burned over ' + hours + ' hours');
 
         var activityObject = {
-            "sport": $activity.attr('id'),
-            "effigy": $activity.find('#effigy option:selected').text(),
+            "sport": sport.toLowerCase(),
+            "effigy": effigy,
             "calories": caloriesBurned,
             "start": $activity.find('#start').val(),
             "finish": $activity.find('#finish').val(),

@@ -173,10 +173,10 @@ input:focus, select:focus, textarea:focus {
     cursor: default !important;
 }
 .well {
-    height: 42px;
+    height: 40px;
     width: auto !important;
 }
 .well span {
     position: relative;
-    top: -9px;
+    top: -10px;
 }
