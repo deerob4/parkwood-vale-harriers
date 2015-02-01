@@ -25,7 +25,7 @@
                 <span>
                     <span class="sport">{{ activity.sport|title }} ({{ activity.effigy|lower }})</span>
                     <span class="calories"> - {{ activity.calories }} calories</span>
-                    <span class="hours">burned over {{ activity.hours }} hours</span>
+                    <span class="hours">burned over {{ activity.hours }} {% if activity.hours == 1 %}hour{% else %}hours{% endif %}</span>
                     <span class="glyphicon glyphicon-remove"></span>
                 </span>
             </li>

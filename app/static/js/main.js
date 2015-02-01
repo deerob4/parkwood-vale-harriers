@@ -88,7 +88,8 @@ $(document).ready(function () {
         $('.well').text(newCalories + ' calories in total today!');
         
         $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
-        $activity.find('.calories').text(caloriesBurned + ' calories burned over ' + hours + ' hours');
+        $activity.find('.calories').text(caloriesBurned + ' calories burned over');
+        $activity.find('.hours').text(hours + ' hours');
 
         var activityObject = {
             "sport": sport.toLowerCase(),
