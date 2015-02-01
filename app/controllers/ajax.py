@@ -35,20 +35,18 @@ def calculate_calorie_base():
     }
 
 
-# Defines the routes for displaying the activity blocks
-@ajax.route('/ajax/swimming-block', methods=['POST'])
-def swimming_block():
-    return render_template('training/swimming_block.html')
-
-
-@ajax.route('/ajax/running-block', methods=['POST'])
-def running_block():
-    return render_template('training/running_block.html')
-
-
-@ajax.route('/ajax/cycling-block', methods=['POST'])
-def cycling_block():
-    return render_template('training/cycling_block.html')
+# Defines the route for displaying the activity blocks
+@ajax.route('/ajax/sport-block', methods=['POST'])
+def sport_block():
+    sport = request.get_data().decode("utf-8")
+    if sport == 'running':
+        return render_template('training/running_block.html')
+    elif sport == 'cycling':
+        return render_template('training/cycling_block.html')
+    elif sport == 'swimming':
+        return render_template('training/swimming_block.html')
+    else:
+        return '%s was passed as a sport - no template is available for this.' % sport, 500
 
 
 # Defines the route for uploading activity block data
@@ -77,7 +75,7 @@ def send_activity():
 @ajax.route('/ajax/remove-activity', methods=['POST'])
 def remove_activity():
     activity_id = request.json['activityId']
-    activity = Activity.query.filter_by(id=activity_id).delete()
+    Activity.query.filter_by(id=activity_id).delete()
     db.session.commit()
     print('Activity deleted.')
-    return 'wee'
+    return 'Activity deleted.'

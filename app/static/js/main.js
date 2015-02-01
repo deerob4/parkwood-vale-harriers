@@ -5,6 +5,7 @@ $(document).ready(function () {
         startDate: '-75y',
         format: 'yyyy-mm-dd'
     });
+
     $('.activity-block .glyphicon').click(function () {
         var $activity = $(this).closest('li');
         if ($activity.hasClass('added')) {
@@ -15,27 +16,35 @@ $(document).ready(function () {
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
-                data: JSON.stringify(toRemove)
+                data: JSON.stringify(toRemove),
+                success: function (data) {
+                    console.log(data.responseText);
+                },
+                error: function (data) {
+                    console.log(data.responseText);
+                }
             });
         } else {
             removeActivity($activity);
         }
 
-    });
+    })
+
     $('.sport').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
-            url: '/ajax/' + activity + '-block',
+            url: '/ajax/sport-block',
             type: 'POST',
-            dataType: 'html',
+            data: activity,
             success: function (data) {
                 updateActivities($(data));
             },
             error: function (data) {
-                console.log('Something has gone wrong: ' + data);
+                console.log(data.responseText);
             }
         });
     });
+
     function updateActivities($activity) {
         genericAnimation($('.no-activities'), 'fadeOutDown', false);
         $('.activity-list').append($activity);
@@ -81,12 +90,24 @@ $(document).ready(function () {
         var sport = $activity.attr('id');
         var effigy = $activity.find('#effigy option:selected').text();
         var hours = calculateHours($activity);
+
+        $ajax({
+            url: '/ajax/calculate-calories',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({"sport": sport, "effigy": effigy, "hours": hours}),
+            error: function (data) {
+                console.log(data.responseText)
+            }
+        });
+
         var caloriesBurned = hours * $activity.find('#effigy').val();
 
         var currentCalories = parseInt($('.well').text().replace(' calories in total', ''));
         var newCalories = currentCalories + caloriesBurned;
         $('.well').text(newCalories + ' calories in total today!');
-        
+
         $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
         $activity.find('.calories').text(caloriesBurned + ' calories burned over');
         $activity.find('.hours').text(hours + ' hours');
@@ -107,11 +128,8 @@ $(document).ready(function () {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify(activityObject),
-            success: function (data) {
-                alert(data);
-            },
             error: function (data) {
-                console.log('very bad: ' + data);
+                console.log(data.responseText);
             }
         });
     }
@@ -123,6 +141,12 @@ $(document).ready(function () {
         }, 200);
     }
 
+    function calculateHours($activity) {
+        var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
+        var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
+        return stop - start;
+    }
+
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
         if (timeout == true) {
@@ -130,12 +154,6 @@ $(document).ready(function () {
                 $element.removeClass('animated ' + animation);
             }, 1400);
         }
-    }
-
-    function calculateHours($activity) {
-        var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
-        var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
-        return stop - start;
     }
 
 });
