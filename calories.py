@@ -22,6 +22,13 @@ calories_per_hour = {
         'vigorous': 590,  # 6.125
         'very-fast': 708,  # 8.85
         'racing': 944  # 11.8
+    },
+    'modifiers': {
+        'brilliant': 10,
+        'pretty-good': 5,
+        'average': 0,
+        'okay': 0,
+        'awful': 0
     }
 }
 

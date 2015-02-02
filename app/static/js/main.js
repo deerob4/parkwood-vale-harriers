@@ -81,6 +81,7 @@ $(document).ready(function () {
     }
 
     function addActivity($activity) {
+
         $activity.find('label, input, select, textarea').addClass('animated zoomOut');
         setTimeout(function () {
             $activity.find('label, input, select, textarea').hide();
@@ -88,25 +89,16 @@ $(document).ready(function () {
         }, 130);
 
         var sport = $activity.attr('id');
-        var effigy = $activity.find('#effigy option:selected').text();
+        var effigy = $activity.find('#effigy').val();
+        var rating = $activity.find('#rating').val();
         var hours = calculateHours($activity);
 
-        $ajax({
-            url: '/ajax/calculate-calories',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({"sport": sport, "effigy": effigy, "hours": hours}),
-            error: function (data) {
-                console.log(data.responseText)
-            }
-        });
+        var caloriesBurned = calculateCalories(sport, effigy, hours, rating);
 
-        var caloriesBurned = hours * $activity.find('#effigy').val();
-
-        var currentCalories = parseInt($('.well').text().replace(' calories in total', ''));
+        var $well = $('.well');
+        var currentCalories = parseInt($well.text().replace(' calories in total', ''));
         var newCalories = currentCalories + caloriesBurned;
-        $('.well').text(newCalories + ' calories in total today!');
+        $well.text(newCalories + ' calories in total today!');
 
         $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
         $activity.find('.calories').text(caloriesBurned + ' calories burned over');
@@ -127,10 +119,7 @@ $(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            data: JSON.stringify(activityObject),
-            error: function (data) {
-                console.log(data.responseText);
-            }
+            data: JSON.stringify(activityObject)
         });
     }
 
@@ -145,6 +134,22 @@ $(document).ready(function () {
         var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
         var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
         return stop - start;
+    }
+
+    function calculateCalories(sport, effigy, hours, rating) {
+        $.ajax({
+            url: '/ajax/calculate-calories',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({"sport": sport, "effigy": effigy, "hours": hours, "rating": rating}),
+            success: function (data) {
+                return parseInt(data);
+            },
+            error: function () {
+                console.log('Error calculating calories.')
+            }
+        });
     }
 
     function genericAnimation($element, animation, timeout) {

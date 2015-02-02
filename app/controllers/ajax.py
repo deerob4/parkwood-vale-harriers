@@ -3,37 +3,9 @@ from flask.ext.login import current_user
 from app.models import Activity, db
 
 from datetime import datetime
+from math import ceil
 
 ajax = Blueprint('ajax', __name__)
-
-
-def calculate_calorie_base():
-    calories_per_hour = {
-        'swimming': {
-            'backstroke': 413,  # 5.1625
-            'breaststroke': 590,  # 7.375
-            'butterfly': 649,  # 8.1125
-            'freestyle-slow': 413,  # 5.1625
-            'freestyle-fast': 590  # 7.375
-        },
-        'running': {
-            '5mph': 472,  # 5.9
-            '6mph': 590,  # 7.375
-            '7mph': 679,  # 8.4875
-            '8mph': 797,  # 9.9625
-            '9mph': 885,  # 11.0625
-            '10mph': 944  # 11.8
-        },
-        'cycling': {
-            'leisure': 236,  # 2.95
-            'gentle': 354,  # 4.425
-            'moderate': 472,  # 5.9
-            'vigorous': 590,  # 6.125
-            'very-fast': 708,  # 8.85
-            'racing': 944  # 11.8
-        }
-    }
-
 
 # Defines the route for displaying the activity blocks
 @ajax.route('/ajax/sport-block', methods=['POST'])
@@ -46,7 +18,7 @@ def sport_block():
     elif sport == 'swimming':
         return render_template('training/swimming_block.html')
     else:
-        return '%s was passed as a sport - no template is available for this.' % sport, 500
+        return '%s was passed as a sport - no template is available for this.' % sport, 400
 
 
 # Defines the route for uploading activity block data
@@ -68,8 +40,7 @@ def send_activity():
     db.session.add(activity)
     db.session.commit()
     print('Successfully saved Activity %s (%s) to the database.' % (activity.id, activity.sport))
-
-    return 'All is good down here'
+    return 'success', 200
 
 
 @ajax.route('/ajax/remove-activity', methods=['POST'])
@@ -78,4 +49,39 @@ def remove_activity():
     Activity.query.filter_by(id=activity_id).delete()
     db.session.commit()
     print('Activity deleted.')
-    return 'Activity deleted.'
+    return 'Activity deleted.', 200
+
+
+@ajax.route('/ajax/calculate-calories', methods=['POST'])
+def calculate_calories():
+    """Calculates the number of calories burned in a session
+
+    The base values for each type of training were arrived at
+    by dividing each value provided by the board by 80. From here,
+    total calories for other weights can be worked out. The
+    algorithm works by taking the correct base value, and multiplying
+    it by the weight of the user. This value is then multiplied by
+    the number of hours spent on the activity. Finally, this value
+    is modified based on how well the activity went - Each of the
+    five options is assigned a value from -10 to +10; this is then
+    added to the total value to arrive at the final number of calories.
+    """
+    base_calories = {
+        'swimming': {'backstroke': 5.1625, 'breaststroke': 7.375, 'butterfly': 8.1125, 'freestyle-slow': 5.1625,
+                     'freestyle-fast': 7.375},
+        'running': {'5mph': 5.9, '6mph': 7.375, '7mph': 8.4875, '8mph': 9.9625, '9mph': 11.0625, '10mph': 11.8},
+        'cycling': {'leisure': 2.95, 'gentle': 4.425, 'moderate': 5.9, 'vigorous': 6.125, 'very-fast': 8.85,
+                    'racing': 11.8},
+        'modifiers': {'brilliant': 10, 'pretty-good': 5, 'average': 0, 'okay': -5, 'awful': -10}
+    }
+    sport = request.json['sport'].lower()
+    effigy = request.json['effigy']
+    hours = request.json['hours']
+    rating = request.json['rating']
+
+    base_value = base_calories[sport][effigy]
+    calories = (base_value * current_user.weight) * hours
+    modifier = base_calories['modifiers'][rating]
+    calories += modifier
+
+    return str(ceil(calories))
