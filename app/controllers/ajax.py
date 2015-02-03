@@ -7,6 +7,7 @@ from math import ceil
 
 ajax = Blueprint('ajax', __name__)
 
+
 # Defines the route for displaying the activity blocks
 @ajax.route('/ajax/sport-block', methods=['POST'])
 def sport_block():
