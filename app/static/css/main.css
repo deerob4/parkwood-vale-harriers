@@ -1,3 +1,38 @@
+@font-face {
+    font-family: 'ralewayitalic';
+    src: url('../fonts/raleway-regular-italic-webfont.eot');
+    src: url('../fonts/raleway-regular-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-regular-italic-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-regular-italic-webfont.woff') format('woff'),
+         url('../fonts/raleway-regular-italic-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-regular-italic-webfont.svg#ralewayitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ralewaymedium';
+    src: url('../fonts/raleway-medium-webfont.eot');
+    src: url('../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-medium-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-medium-webfont.woff') format('woff'),
+         url('../fonts/raleway-medium-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'ralewaysemibold';
+    src: url('../fonts/raleway-semibold-webfont.eot');
+    src: url('../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/raleway-semibold-webfont.woff') format('woff'),
+         url('../fonts/raleway-semibold-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 /*------------------------------------------------------
 |                     Begin footer styles               |
 -------------------------------------------------------*/
@@ -25,15 +60,15 @@
 -------------------------------------------------------*/
 h1 {
     color: #292929;
-    font-size: 45px;
 }
 h4 {
     color: #2d2d2d;
     font-weight: 400;
     font-size: 20px;
+    font-family: ralewaymedium, sans-serif;
 }
-label, p, .btn, ul, .datepicker, .bootbox {
-    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+label, p, .btn, ul.add-sport-buttons, .datepicker {
+    font-family: ralewaysemibold, sans-serif,"Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 100;
 }
 label {
@@ -54,7 +89,17 @@ label {
     font-size: 20px;
     font-weight: 800;
 }
-
+.panel-heading {
+    font-weight: 600;
+    font-family: ralewaysemibold, sans-serif;
+}
+.panel {
+    font-family: ralewaymedium, sans-serif;
+}
+.right {
+    float: right;
+    font-family: ralewayitalic, sans-serif;
+}
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
@@ -83,7 +128,6 @@ input:focus, select:focus, textarea:focus {
 .btn-default:hover {
     border-color: #2d2d2d;
 }
-
 
 /*------------------------------------------------------
 |             Begin register form styles               |
@@ -167,6 +211,7 @@ input:focus, select:focus, textarea:focus {
 /*Misc activity adder styles*/
 .no-activities {
     margin-top: 50px;
+    font-family: ralewaymedium, sans-serif;
 }
 .time {
     background-color: #fff !important;

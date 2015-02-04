@@ -93,7 +93,7 @@ $(document).ready(function () {
         var rating = $activity.find('#rating').val();
         var hours = calculateHours($activity);
 
-        var caloriesBurned = calculateCalories(sport, effigy, hours, rating);
+        //var caloriesBurned = calculateCalories(sport, effigy, hours, rating);
 
         var $well = $('.well');
         var currentCalories = parseInt($well.text().replace(' calories in total', ''));
@@ -144,7 +144,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({"sport": sport, "effigy": effigy, "hours": hours, "rating": rating}),
             success: function (data) {
-                return parseInt(data);
+                var calories = data;
             },
             error: function () {
                 console.log('Error calculating calories.')

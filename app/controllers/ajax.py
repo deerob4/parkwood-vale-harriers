@@ -63,8 +63,8 @@ def calculate_calories():
     algorithm works by taking the correct base value, and multiplying
     it by the weight of the user. This value is then multiplied by
     the number of hours spent on the activity. Finally, this value
-    is modified based on how well the activity went - Each of the
-    five options is assigned a value from -10 to +10; this is then
+    is modified based on how well the activity went - each of the
+    five options is assigned a value from -10 to 10; this is then
     added to the total value to arrive at the final number of calories.
     """
     base_calories = {
