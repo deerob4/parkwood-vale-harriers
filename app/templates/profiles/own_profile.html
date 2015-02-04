@@ -57,7 +57,7 @@
                     <li class="charity-event list-group-item">Charity event: {% if current_user.charity_event %}
                         Yes{% else %}No{% endif %}</li>
 
-                    <li class="joined list-group-item">Your ranking: 0</li>
+                    <li class="joined list-group-item">Your ranking: 0 out of {{ total_users }}</li>
                     <li class="activities-added list-group-item">Activities added: {{ activity_number }}</li>
                 </ul>
             </div>

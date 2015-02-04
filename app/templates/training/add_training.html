@@ -5,25 +5,12 @@
 {% block content %}
     <h1>Add a Training Session - {{ date.strftime('%A %e %B %G') }}</h1>
     <h4>Done some exercise? Record it here to add it to your training log.</h4>
-    {#    <ul class="add-sport-buttons">#}
-    {#        <li>#}
-    {#            <div class="btn btn-success sport" id="running">Add Running</div>#}
-    {#        </li>#}
-    {#        <li>#}
-    {#            <div class="btn btn-success sport" id="cycling">Add Cycling</div>#}
-    {#        </li>#}
-    {#        <li>#}
-    {#            <div class="btn btn-success sport" id="swimming">Add Swimming</div>#}
-    {#        </li>#}
-    {#        <li>#}
-    {#            <div class="well"><span>{{ total_calories }} calories in total today!</span></div>#}
-    {#        </li>#}
-    {#    </ul>#}
     <div class="btn-group add-sport-buttons">
         <button class="btn btn-sm btn-default sport" id="running">Add Running</button>
         <button class="btn btn-sm btn-default sport" id="cycling">Add Cycling</button>
         <button class="btn btn-sm btn-default sport" id="swimming">Add Swimming</button>
     </div>
+    <span class="btn btn-sm btn-primary total-calories">{{ total_calories }} calories in total today!</span>
     <br/>
     <ul class="activity-list">
         {% for activity in activities %}

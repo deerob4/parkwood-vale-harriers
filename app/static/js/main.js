@@ -112,10 +112,10 @@ $(document).ready(function () {
         //var caloriesBurned = calculateCalories(sport, effigy, hours, rating);
         var caloriesBurned = 500;
 
-        var $well = $('.well');
-        var currentCalories = parseInt($well.text().replace(' calories in total', ''));
+        var $totalCalories = $('.total-calories');
+        var currentCalories = parseInt($totalCalories.text().replace(' calories in total', ''));
         var newCalories = currentCalories + caloriesBurned;
-        $well.text(newCalories + ' calories in total today!');
+        $totalCalories.text(newCalories + ' calories in total today!');
 
         $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
         $activity.find('.calories').text(caloriesBurned + ' calories burned over');

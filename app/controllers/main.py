@@ -29,8 +29,10 @@ def training():
 def profiles(username):
     user = User.query.filter_by(username=username).first_or_404()
     if current_user.username == user.username:
-        activity_number = len(Activity.query.filter_by(id=current_user.get_id()).all())
-        return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number)
+        activity_number = len(Activity.query.filter_by(user_id=current_user.get_id()).all())
+        total_users = len(User.query.all())
+        return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number,
+                               total_users=total_users)
     abort(403)
 
 
