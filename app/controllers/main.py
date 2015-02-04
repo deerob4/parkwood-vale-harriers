@@ -36,6 +36,13 @@ def profiles(username):
         new_phone = ChangePhone()
         new_weight = ChangeWeight()
         new_dob = ChangeDob()
+        if new_name.validate_on_submit():
+            user = User.query.filter_by(id=current_user.get_id())
+            user.name = new_name.name.data
+            db.session.add(user)
+            db.session.commit()
+            flash('Your name was updated!', 'success')
+            return redirect(url_for('main.profiles'))
         return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number,
                                total_users=total_users, new_name=new_name, new_email=new_email, new_phone=new_phone,
                                new_weight=new_weight, new_dob=new_dob)

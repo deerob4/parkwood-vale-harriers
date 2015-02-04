@@ -45,20 +45,17 @@ $(document).ready(function () {
         });
     });
 
-    $('.delete-account').click(function () {
-        var really = confirm('Are you REALLY sure you want to delete your account?');
-        if (really == true) {
-            $.ajax({
-                url: '/ajax/delete-account',
-                type: 'POST',
-                success: function() {
-                    window.location.replace("/login");
-                },
-                error: function() {
-                    window.location.replace("/login");
-                }
-            });
-        }
+    $('.final-delete').click(function () {
+        $.ajax({
+            url: '/ajax/delete-account',
+            type: 'POST',
+            success: function () {
+                window.location.replace("/login");
+            },
+            error: function () {
+                window.location.replace("/login");
+            }
+        });
     });
 
     function updateActivities($activity) {

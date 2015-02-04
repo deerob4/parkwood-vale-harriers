@@ -92,7 +92,7 @@ label {
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
-input:not(.input_membership_charity), select, textarea {
+input:not(.input_membership_charity, .btn-modal), select, textarea {
     width: 100%;
     border: 1px solid !important;
     border-radius: 5px;
