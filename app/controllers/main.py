@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, abort
 from flask.ext.login import current_user, login_required
 
-from app.forms import ChangeDetails
+from app.forms import ChangeName, ChangeEmail, ChangePhone, ChangeDob, ChangeWeight
 from app.models import User, Activity, db
 
 from datetime import datetime
@@ -31,8 +31,14 @@ def profiles(username):
     if current_user.username == user.username:
         activity_number = len(Activity.query.filter_by(user_id=current_user.get_id()).all())
         total_users = len(User.query.all())
+        new_name = ChangeName()
+        new_email = ChangeEmail()
+        new_phone = ChangePhone()
+        new_weight = ChangeWeight()
+        new_dob = ChangeDob()
         return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number,
-                               total_users=total_users)
+                               total_users=total_users, new_name=new_name, new_email=new_email, new_phone=new_phone,
+                               new_weight=new_weight, new_dob=new_dob)
     abort(403)
 
 

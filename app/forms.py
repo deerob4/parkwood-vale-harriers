@@ -39,8 +39,8 @@ class MemberForm(Form):
                                     ('11-15', '11 - 15 miles'), ('16-20', '16 - 20 miles'),
                                     ('g20', 'More than 20 miles')])
     weight = IntegerField('How much do you weigh in kg?', validators=[DataRequired('You must enter your weight.'),
-                                                                        NumberRange(10, 100,
-                                                                                    'Your weight must be between 10kg - 100kg.')])
+                                                                      NumberRange(10, 100,
+                                                                                  'Your weight must be between 10kg - 100kg.')])
     phone = StringField('What is your phone number?', validators=[DataRequired('You must enter your phone number.')])
     submit = SubmitField('Submit')
 
@@ -71,22 +71,31 @@ class LoginForm(Form):
     login = SubmitField('Login')
 
 
-class ChangeDetails(Form):
-    name = StringField("What is your name?",
-                       validators=[Regexp(r'^[A-Za-z\-" "]*$', message='Your name may only contain letters.')])
-    dob = DateField("What is your date of birth?")
-    email = StringField("What is your email?")
-    phone = StringField('What is your phone number?')
-    submit = SubmitField('Submit')
+class ChangeName(Form):
+    name = StringField('Enter a new name:', validators=[DataRequired('You must enter your name.'),
+                                                        Regexp(r'^[A-Za-z\-" "]*$',
+                                                               message='Your name may only contain letters.')])
+    submit = SubmitField('Change name')
 
-    def validate_dob(self, field):
-        """Ensures the user is between 18 - 75 years old."""
-        if field.data:
-            age = calculate_age(field.data)
-            if not 18 <= age <= 75:
-                raise ValidationError('You must be 18 - 75 years old to join.')
 
-    def validate_email(self, field):
-        """Ensures the email address is unique"""
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('That email address has already been registered.')
+class ChangeEmail(Form):
+    email = StringField("Enter a new email:",
+                        validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
+    submit = SubmitField('Change name')
+
+
+class ChangePhone(Form):
+    phone = StringField('Enter a new phone number:', validators=[DataRequired('You must enter your phone number.')])
+    submit = SubmitField('Change phone number')
+
+
+class ChangeDob(Form):
+    dob = DateField("Enter a new date of birth:", validators=[DataRequired('You must enter your date of birth.')])
+    submit = SubmitField('Change date of birth')
+
+
+class ChangeWeight(Form):
+    weight = IntegerField('Enter a new weight in kg:', validators=[DataRequired('You must enter your weight.'),
+                                                                   NumberRange(10, 100,
+                                                                               'Your weight must be between 10kg - 100kg.')])
+    submit = SubmitField('Change weight')
