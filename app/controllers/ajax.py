@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, json, request
-from flask.ext.login import current_user
-from app.models import Activity, db
+from flask import Blueprint, render_template, json, request, redirect, url_for, flash
+from flask.ext.login import current_user, logout_user
+from app.models import User, Activity, db
 
 from datetime import datetime
 from math import ceil
@@ -86,3 +86,14 @@ def calculate_calories():
     calories += modifier
 
     return str(ceil(calories))
+
+
+@ajax.route('/ajax/delete-account', methods=['POST'])
+def delete_account():
+    user_id = current_user.get_id()
+    logout_user()
+    User.query.filter_by(id=user_id).delete()
+    db.session.commit()
+    print('User #%s was deleted.' % user_id)
+    flash('Your account was successfully deleted!', 'success')
+    return 'deleted'

@@ -3,9 +3,9 @@
 {% block title %}Your Profile{{ super() }}{% endblock %}
 
 {% block content %}
-    <h1>Manage Your Account</h1>
+    <h1>Manage Your Profile</h1>
     <h4>View or change your details, or even delete your account.</h4>
-
+    <hr/>
     {% with messages=get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <div class="row">
@@ -25,15 +25,19 @@
     {% endwith %}
 
     <div class="row">
-        <div class="col-md-11">
-            <div class="panel panel-default">
-                <div class="panel-heading">Your Personal Details</div>
-                <ul class="user-details list-group">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Your Personal Details</div>
+                </div>
+                <ul class="user-details list-group panel-list">
                     <li class="name list-group-item">Name: {{ current_user.name }} <span class="right"><a
                             href="#">Edit</a></span></li>
-                    <li class="email list-group-item">Email: {{ current_user.email }} <span class="right"><a href="#">Edit</a></span>
+                    <li class="email list-group-item">Email: {{ current_user.email }} <span class="right"><a
+                            href="#">Edit</a></span>
                     </li>
-                    <li class="phone list-group-item">Phone: {{ current_user.phone }} <span class="right"><a href="#">Edit</a></span>
+                    <li class="phone list-group-item">Phone: {{ current_user.phone }} <span class="right"><a
+                            href="#">Edit</a></span>
                     </li>
                     <li class="dob list-group-item">Date of birth: {{ current_user.dob.strftime('%A %e %B %G') }} <span
                             class="right"><a href="#">Edit</a></span></li>
@@ -42,7 +46,36 @@
                 </ul>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Your Account Details</div>
+                </div>
+                <ul class="account-details list-group panel-list">
+                    <li class="username list-group-item">Username: {{ current_user.username }}</li>
+                    <li class="joined list-group-item">Joined on: {{ current_user.joined }}</li>
+                    <li class="charity-event list-group-item">Charity event: {% if current_user.charity_event %}
+                        Yes{% else %}No{% endif %}</li>
+
+                    <li class="joined list-group-item">Your ranking: 0</li>
+                    <li class="activities-added list-group-item">Activities added: {{ activity_number }}</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <span><a href="{{ url_for('main.edit_profile') }}">Edit</a></span>
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <div class="panel-title">Delete Your Account</div>
+        </div>
+        <div class="panel-body">
+            If you want, you can delete your account. This is permanent: your account will be deleted
+            immediately, and your all your data will be lost - including your training log. You won't be able to back up
+            your data, and will lose your chance to be picked for the charity event. You will still be a member of
+            Parkwood Vale Harriers, but you will kill a fairy. If you're sure you want to delete your account, press the large red button below.
+            <br/>
+
+            <div class="btn btn-danger btn-sm delete-account">Delete my account</div>
+        </div>
+    </div>
 {% endblock %}

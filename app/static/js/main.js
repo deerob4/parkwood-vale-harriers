@@ -28,7 +28,7 @@ $(document).ready(function () {
             removeActivity($activity);
         }
 
-    })
+    });
 
     $('.sport').click(function () {
         var activity = $(this).attr('id');
@@ -43,6 +43,22 @@ $(document).ready(function () {
                 console.log(data.responseText);
             }
         });
+    });
+
+    $('.delete-account').click(function () {
+        var really = confirm('Are you REALLY sure you want to delete your account?');
+        if (really == true) {
+            $.ajax({
+                url: '/ajax/delete-account',
+                type: 'POST',
+                success: function() {
+                    window.location.replace("/login");
+                },
+                error: function() {
+                    window.location.replace("/login");
+                }
+            });
+        }
     });
 
     function updateActivities($activity) {
@@ -94,6 +110,7 @@ $(document).ready(function () {
         var hours = calculateHours($activity);
 
         //var caloriesBurned = calculateCalories(sport, effigy, hours, rating);
+        var caloriesBurned = 500;
 
         var $well = $('.well');
         var currentCalories = parseInt($well.text().replace(' calories in total', ''));
