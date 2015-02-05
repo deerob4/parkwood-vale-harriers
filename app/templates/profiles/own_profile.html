@@ -97,17 +97,17 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Change your name</h4>
                 </div>
-                <div class="modal-body">
-                    <form method="POST">
+                <form method="POST">
+                    <div class="modal-body">
                         {{ new_name.csrf_token }}
-                        {{ new_name.name.label }}
-                        {{ new_name.name(class='form-control', placeholder=current_user.name) }}
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    {{ new_name.submit(class="btn btn-primary btn-modal") }}
-                </div>
+                        {{ new_name.field.label }}
+                        {{ new_name.field(class='form-control', placeholder=current_user.name) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        {{ new_name.submit(class="btn btn-primary btn-modal") }}
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -120,8 +120,8 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        {{ new_email.email.label }}
-                        {{ new_email.email(class='form-control', placeholder=current_user.email) }}
+                        {{ new_email.field.label }}
+                        {{ new_email.field(class='form-control', placeholder=current_user.email) }}
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -136,17 +136,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Change your phone</h4>
+                    <h4 class="modal-title">Change your phone number</h4>
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        {{ new_phone.phone.label }}
-                        {{ new_phone.phone(class='form-control', placeholder=current_user.phone) }}
+                        {{ new_phone.field.label }}
+                        {{ new_phone.field(class='form-control', placeholder=current_user.phone) }}
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Change phone</button>
+                    <button type="button" class="btn btn-primary">Change phone number</button>
                 </div>
             </div>
         </div>
@@ -160,8 +160,8 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        {{ new_dob.dob.label }}
-                        {{ new_dob.dob(class='form-control datepicker', placeholder=current_user.dob) }}
+                        {{ new_dob.field.label }}
+                        {{ new_dob.field(class='form-control datepicker', placeholder=current_user.dob) }}
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -180,8 +180,8 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        {{ new_weight.weight.label }}
-                        {{ new_weight.weight(class='form-control', placeholder=current_user.weight) }}
+                        {{ new_weight.field.label }}
+                        {{ new_weight.field(class='form-control', placeholder=current_user.weight) }}
                     </form>
                 </div>
                 <div class="modal-footer">

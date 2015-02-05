@@ -54,7 +54,6 @@
     margin-left: 5px;
 }
 
-
 /*------------------------------------------------------
 |        Begin general typography styles               |
 -------------------------------------------------------*/
@@ -73,6 +72,7 @@ label, p, .btn, ul.add-sport-buttons, .datepicker {
 }
 label {
     font-size: 14px;
+    width: 100%;
 }
 .activity-block label {
     width: 100%;
@@ -92,14 +92,12 @@ label {
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
-input:not(.input_membership_charity, .btn-modal), select, textarea {
+input:not(.input_membership_charity):not(.btn-modal), select, textarea {
     width: 100%;
-    border: 1px solid !important;
-    border-radius: 5px;
+    border-radius: 4px;
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
-    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 600;
+    font-family: "ralewaymedium","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 input:focus, select:focus, textarea:focus {
     border-color: #66afe9 !important;
@@ -142,9 +140,9 @@ input:focus, select:focus, textarea:focus {
 }
 .activity-list .glyphicon {
     float: right;
-    font-size: 17px;
-    top: 10px;
-    color: #000;
+    font-size: 14px;
+    top: 7px;
+    color: #fff;
 }
 .activity-list .glyphicon:hover {
     color: rgba(17, 17, 17, 0.71);
@@ -157,32 +155,31 @@ input:focus, select:focus, textarea:focus {
 .activity-list .form-group {
     margin-bottom: 5px;
 }
-.activity-list form {
-    margin-top: 15px;
-}
 .activity-list .btn {
     margin-top: 9px;
 }
 
 /*The actual activity li.*/
-.activity-block {
-    width: 32%;
-    margin-bottom: 12px;
-    margin-right: 15px;
-    display: inline-block;
-    padding: 20px 30px 0 30px;
-    height: 495px;
-    cursor: default;
-    border-radius: 10px;
-    border: 1px solid #2d2d2d;
-    transition: all 0.5s ease-in-out;
-    animation-duration: 225ms;
-    -webkit-animation-duration: 225ms;
-    -moz-animation-duration: 225ms;
+#cycling .panel-body {
+    border: 1px solid #f0ad4e;
 }
-.activity-block.added {
-    width: 1125px;
-    height: 75px;
+#running .panel-body {
+    border: 1px solid #3fad46;
+}
+#swimming .panel-body {
+    border: 1px solid #5bc0de;
+}
+.cycling-input {
+    border: 1px solid #f0ad4e;
+}
+.running-input {
+    border: 1px solid #3fad46;
+}
+.swimming-input {
+    border: 1px solid #5bc0de;
+}
+.activity-block .panel-body {
+    padding: 24px;
 }
 
 /*The buttons for adding the activities.*/
@@ -202,20 +199,12 @@ input:focus, select:focus, textarea:focus {
 
 /*Misc activity adder styles*/
 .no-activities {
-    margin-top: 50px;
+    margin-top: 25px;
     font-family: ralewaymedium, sans-serif;
 }
 .time {
     background-color: #fff !important;
     cursor: default !important;
-}
-.well {
-    height: 40px;
-    width: auto !important;
-}
-.well span {
-    position: relative;
-    top: -10px;
 }
 
 /*------------------------------------------------------

@@ -1,60 +1,73 @@
-<li class="activity-block" id="Cycling">
-    <span class="sport">Cycling</span>
-    <span class="calories"></span>
-    <span class="hours"></span>
-    <span class="glyphicon glyphicon-remove"></span>
-    <br/>
+<li>
+    <div class="col-md-4">
+        <div class="panel panel-warning activity-block" id="cycling">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span class="sport">Cycling</span>
+                    <span class="calories"></span>
+                    <span class="hours"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>How fast were you cycling?
+                                    <select name="effigy" id="effigy" class="form-control activity-input cycling-input">
+                                        <option value="leisure">Leisurely</option>
+                                        <option value="gentle">Gently</option>
+                                        <option value="moderate">Moderately</option>
+                                        <option value="vigorous">Vigorously</option>
+                                        <option value="very-fast">Very Fast</option>
+                                        <option value="racing">Racing</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>What start time?
+                                    <input class='form-control activity-input time cycling-input' id="start">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>What finish time?
+                                    <input class='form-control activity-input time cycling-input' id="finish">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>How would you rate your cycle?
+                            <select name="rating" id="rating" class="form-control activity-input cycling-input">
+                                <option value="brilliant">Brilliant</option>
+                                <option value="pretty-good">Pretty good</option>
+                                <option value="about-average">About average</option>
+                                <option value="okay">Okay</option>
+                                <option value="awful">Awful</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have any extra thoughts?
+                            <textarea name="thoughts" id="thoughts" class="activity-input form-control cycling-input"></textarea>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <input type="button" class="btn btn-warning activity-input add-activity"
+                                   value="Add cycle"/>
+                        </div>
+                    </div>
 
-    <form>
-        <div class="form-group">
-            <label>How fast were you cycling?
-                <select name="effigy" id="effigy" class="form-control activity-input">
-                    <option value="leisure">Leisurely</option>
-                    <option value="gentle">Gently</option>
-                    <option value="moderate">Moderately</option>
-                    <option value="vigorous">Vigorously</option>
-                    <option value="very-fast">Very Fast</option>
-                    <option value="racing">Racing</option>
-                </select>
-            </label>    
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>What start time?
-                        <input class='form-control activity-input time' id="start">
-                    </label>    
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>What finish time?
-                        <input class='form-control activity-input time' id="finish">
-                    </label>
-                </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label>How would you rate your cycle?
-                <select name="rating" id="rating" class="form-control activity-input">
-                    <option value="brilliant">Brilliant</option>
-                    <option value="pretty-good">Pretty good</option>
-                    <option value="about-average">About average</option>
-                    <option value="okay">Okay</option>
-                    <option value="awful">Awful</option>
-                </select>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Do you have any extra thoughts?
-                <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
-            </label>    
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <input type="button" class="btn btn-primary activity-input add-activity" value="Add cycle"/>
-            </div>
-        </div>
-        
-    </form>
+    </div>
 </li>

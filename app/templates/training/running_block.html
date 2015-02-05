@@ -1,60 +1,69 @@
-<li class="activity-block" id="Running">
-    <span class="sport">Running</span>
-    <span class="calories"></span>
-    <span class="hours"></span>
-    <span class="glyphicon glyphicon-remove"></span>
-    <br/>
-
-    <form>
-        <div class="form-group">
-            <label>What was your average speed?
-                <select name="effigy" id="effigy" class="form-control activity-input">
-                    <option value="5mph">5 mph</option>
-                    <option value="6mph">6 mph</option>
-                    <option value="7mph">7 mph</option>
-                    <option value="8mph">8 mph</option>
-                    <option value="9mph">9 mph</option>
-                    <option value="10mph">10 mph</option>
-                </select>
-            </label>    
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>What start time?
-                        <input class='form-control activity-input time' id="start">
-                    </label>
+<li>
+    <div class="col-md-4">
+        <div class="panel panel-success activity-block" id="running">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span class="sport">Running</span>
+                    <span class="calories"></span>
+                    <span class="hours"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>What finish time?
-                        <input class='form-control activity-input time' id="finish">
-                    </label>
-                </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label>What was your average speed?
+                            <select name="effigy" id="effigy" class="form-control activity-input running-input">
+                                <option value="5mph">5 mph</option>
+                                <option value="6mph">6 mph</option>
+                                <option value="7mph">7 mph</option>
+                                <option value="8mph">8 mph</option>
+                                <option value="9mph">9 mph</option>
+                                <option value="10mph">10 mph</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>What start time?
+                                    <input class='form-control activity-input time running-input' id="start">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>What finish time?
+                                    <input class='form-control activity-input time running-input' id="finish">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>How would you rate your run?
+                            <select name="rating" id="rating" class="form-control activity-input running-input">
+                                <option value="brilliant">Brilliant</option>
+                                <option value="pretty-good">Pretty good</option>
+                                <option value="about-average">About average</option>
+                                <option value="okay">Okay</option>
+                                <option value="awful">Awful</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have any extra thoughts?
+                            <textarea name="thoughts" id="thoughts"
+                                      class="activity-input form-control running-input"></textarea>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <input type="button" class="btn btn-success activity-input add-activity running-input"
+                                   value="Add run"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label>How would you rate your run?
-                <select name="rating" id="rating" class="form-control activity-input">
-                    <option value="brilliant">Brilliant</option>
-                    <option value="pretty-good">Pretty good</option>
-                    <option value="about-average">About average</option>
-                    <option value="okay">Okay</option>
-                    <option value="awful">Awful</option>
-                </select>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Do you have any extra thoughts?
-                <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
-            </label>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <input type="button" class="btn btn-primary activity-input add-activity" value="Add run"/>
-            </div>
-        </div>
-        
-    </form>
+    </div>
 </li>

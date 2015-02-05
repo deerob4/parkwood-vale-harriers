@@ -72,30 +72,30 @@ class LoginForm(Form):
 
 
 class ChangeName(Form):
-    name = StringField('Enter a new name:', validators=[DataRequired('You must enter your name.'),
+    field = StringField('Enter a new name:', validators=[DataRequired('You must enter your name.'),
                                                         Regexp(r'^[A-Za-z\-" "]*$',
                                                                message='Your name may only contain letters.')])
     submit = SubmitField('Change name')
 
 
 class ChangeEmail(Form):
-    email = StringField("Enter a new email:",
+    field = StringField("Enter a new email:",
                         validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
     submit = SubmitField('Change name')
 
 
 class ChangePhone(Form):
-    phone = StringField('Enter a new phone number:', validators=[DataRequired('You must enter your phone number.')])
+    field = StringField('Enter a new phone number:', validators=[DataRequired('You must enter your phone number.')])
     submit = SubmitField('Change phone number')
 
 
 class ChangeDob(Form):
-    dob = DateField("Enter a new date of birth:", validators=[DataRequired('You must enter your date of birth.')])
+    field = DateField("Enter a new date of birth:", validators=[DataRequired('You must enter your date of birth.')])
     submit = SubmitField('Change date of birth')
 
 
 class ChangeWeight(Form):
-    weight = IntegerField('Enter a new weight in kg:', validators=[DataRequired('You must enter your weight.'),
+    field = IntegerField('Enter a new weight in kg:', validators=[DataRequired('You must enter your weight.'),
                                                                    NumberRange(10, 100,
                                                                                'Your weight must be between 10kg - 100kg.')])
     submit = SubmitField('Change weight')

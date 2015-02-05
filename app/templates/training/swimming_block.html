@@ -1,59 +1,67 @@
-<li class="activity-block" id="Swimming">
-    <span class="sport">Swimming</span>
-    <span class="calories"></span>
-    <span class="hours"></span>
-    <span class="glyphicon glyphicon-remove"></span>
-    <br/>
-
-    <form>
-        <div class="form-group">
-            <label>Which style did you use?
-                <select name="effigy" id="effigy" class="form-control activity-input">
-                    <option value="backstroke">Backstroke</option>
-                    <option value="breaststroke">Breaststroke</option>
-                    <option value="butterfly">Butterfly</option>
-                    <option value="freestyle-slow">Freestyle (slow)</option>
-                    <option value="freestyle-fast">Freestyle (fast)</option>
-                </select>
-            </label>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>What start time?
-                        <input class='form-control activity-input time' id="start">
-                    </label>
+<li>
+    <div class="col-md-4">
+        <div class="panel panel-info activity-block" id="swimming">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span class="sport">Swimming</span>
+                    <span class="calories"></span>
+                    <span class="hours"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>What finish time?
-                        <input class='form-control activity-input time' id="finish">
-                    </label>
-                </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label>Which style did you use?
+                            <select name="effigy" id="effigy" class="form-control activity-input swimming-input">
+                                <option value="backstroke">Backstroke</option>
+                                <option value="breaststroke">Breaststroke</option>
+                                <option value="butterfly">Butterfly</option>
+                                <option value="freestyle-slow">Freestyle (slow)</option>
+                                <option value="freestyle-fast">Freestyle (fast)</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>What start time?
+                                    <input class='form-control activity-input time swimming-input' id="start">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>What finish time?
+                                    <input class='form-control activity-input time swimming-input' id="finish">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>How would you rate your swim?
+                            <select name="rating" id="rating" class="form-control activity-input swimming-input">
+                                <option value="brilliant">Brilliant</option>
+                                <option value="pretty-good">Pretty good</option>
+                                <option value="about-average">About average</option>
+                                <option value="okay">Okay</option>
+                                <option value="awful">Awful</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have any extra thoughts?
+                            <textarea name="thoughts" id="thoughts"
+                                      class="activity-input form-control swimming-input"></textarea>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <input type="button" class="btn btn-info activity-input add-activity" value="Add swim"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label>How would you rate your swim?
-                <select name="rating" id="rating" class="form-control activity-input">
-                    <option value="brilliant">Brilliant</option>
-                    <option value="pretty-good">Pretty good</option>
-                    <option value="about-average">About average</option>
-                    <option value="okay">Okay</option>
-                    <option value="awful">Awful</option>
-                </select>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Do you have any extra thoughts?
-                <textarea name="thoughts" id="thoughts" class="activity-input form-control" ></textarea>
-            </label>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <input type="button" class="btn btn-primary activity-input add-activity" value="Add swim"/>
-            </div>
-        </div>
-        
-    </form>
+    </div>
 </li>

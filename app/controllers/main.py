@@ -24,28 +24,41 @@ def training():
     return 'All training will be here!'
 
 
-@main.route('/profiles/<username>')
+@main.route('/profiles/<username>', methods=['GET', 'POST'])
 @login_required
 def profiles(username):
-    user = User.query.filter_by(username=username).first_or_404()
-    if current_user.username == user.username:
+    possible_user = User.query.filter_by(username=username).first_or_404()
+    if current_user.username == possible_user.username:
         activity_number = len(Activity.query.filter_by(user_id=current_user.get_id()).all())
         total_users = len(User.query.all())
-        new_name = ChangeName()
-        new_email = ChangeEmail()
-        new_phone = ChangePhone()
-        new_weight = ChangeWeight()
-        new_dob = ChangeDob()
-        if new_name.validate_on_submit():
+        name = ChangeName()
+        email = ChangeEmail()
+        phone = ChangePhone()
+        weight = ChangeWeight()
+        dob = ChangeDob()
+
+        def modify_user(element):
             user = User.query.filter_by(id=current_user.get_id())
-            user.name = new_name.name.data
+            user.element = element.field.data
             db.session.add(user)
             db.session.commit()
-            flash('Your name was updated!', 'success')
+            flash('Your %s was was updated!', 'success' % element)
             return redirect(url_for('main.profiles'))
+
+        if name.validate_on_submit():
+            modify_user(name)
+        if email.validate_on_submit():
+            modify_user(email)
+        if phone.validate_on_submit():
+            modify_user(phone)
+        if weight.validate_on_submit():
+            modify_user(weight)
+        if dob.validate_on_submit():
+            modify_user(dob)
+
         return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number,
-                               total_users=total_users, new_name=new_name, new_email=new_email, new_phone=new_phone,
-                               new_weight=new_weight, new_dob=new_dob)
+                               total_users=total_users, new_name=name, new_email=email, new_phone=phone,
+                               new_weight=weight, new_dob=dob)
     abort(403)
 
 
