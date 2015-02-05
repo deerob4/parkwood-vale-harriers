@@ -46,20 +46,25 @@ $(document).ready(function () {
     });
 
     $('.final-delete').click(function () {
-        $.ajax({
-            url: '/ajax/delete-account',
-            type: 'POST',
-            success: function () {
-                window.location.replace("/login");
-            },
-            error: function () {
-                window.location.replace("/login");
-            }
-        });
+        var $finalDeleteInput = $('.delete-input');
+        if ($finalDeleteInput.val() == 'I will lose everything') {
+            $.ajax({
+                url: '/ajax/delete-account',
+                type: 'POST',
+                success: function () {
+                    window.location.replace("/login");
+                },
+                error: function () {
+                    window.location.replace("/login");
+                }
+            });
+        } else {
+            genericAnimation($finalDeleteInput, 'shake', true)
+        }
     });
 
     function updateActivities($activity) {
-        genericAnimation($('.no-activities'), 'fadeOutDown', false);
+        genericAnimation($('.no-activities'), 'fadeOutDown', 300);
         $('.activity-list').append($activity);
         genericAnimation($activity, 'zoomIn', false);
         $('.time').pickatime({

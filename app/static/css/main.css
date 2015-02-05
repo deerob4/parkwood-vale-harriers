@@ -77,9 +77,6 @@ label {
 .activity-block label {
     width: 100%;
 }
-.btn {
-    font-weight: 700;
-}
 .timepicker {
     background-color: #fff !important;
     cursor: auto !important;
@@ -92,15 +89,12 @@ label {
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
-input:not(.input_membership_charity):not(.btn-modal), select, textarea {
+input:not(.input_membership_charity):not(.add-activity), select, textarea {
     width: 100%;
     border-radius: 4px;
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
-    font-family: "ralewaymedium","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-input:focus, select:focus, textarea:focus {
-    border-color: #66afe9 !important;
+    font-family: ralewaymedium, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .datepicker {
     padding-left: 12px !important;
@@ -109,14 +103,11 @@ input:focus, select:focus, textarea:focus {
 /*------------------------------------------------------
 |            Begin general button styles               |
 -------------------------------------------------------*/
-.btn-default {
-    border-color: #2d2d2d;
-}
-.btn-default:hover {
-    border-color: #2d2d2d;
-}
 .total-calories {
     margin-left: 10px;
+}
+.btn {
+    font-family: ralewaysemibold, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /*------------------------------------------------------
@@ -131,9 +122,6 @@ input:focus, select:focus, textarea:focus {
 -------------------------------------------------------*/
 /*The ul container in which the activity li's are placed.*/
 .activity-list {
-    font-family: "ralewaysemibold","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 22px;
-    font-weight: 800;
     margin-top: 30px;
     list-style-type: none;
     padding: 0;
@@ -153,29 +141,23 @@ input:focus, select:focus, textarea:focus {
     height: 110px;
 }
 .activity-list .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 .activity-list .btn {
     margin-top: 9px;
 }
 
 /*The actual activity li.*/
-#cycling .panel-body {
+.add-activity {
+    width: 100%;
+}
+#cycling .panel-body, .cycling-input {
     border: 1px solid #f0ad4e;
 }
-#running .panel-body {
+#running .panel-body, .running-input {
     border: 1px solid #3fad46;
 }
-#swimming .panel-body {
-    border: 1px solid #5bc0de;
-}
-.cycling-input {
-    border: 1px solid #f0ad4e;
-}
-.running-input {
-    border: 1px solid #3fad46;
-}
-.swimming-input {
+#swimming .panel-body, .swimming-input {
     border: 1px solid #5bc0de;
 }
 .activity-block .panel-body {
@@ -184,17 +166,7 @@ input:focus, select:focus, textarea:focus {
 
 /*The buttons for adding the activities.*/
 .add-sport-buttons {
-    list-style-type: none;
     display: inline;
-    margin-bottom: 20px !important;
-}
-.add-sport-buttons li {
-    display: inline;
-}
-.add-sport-buttons div {
-    width: 189px;
-    float: left;
-    margin-right: 15px;
 }
 
 /*Misc activity adder styles*/
