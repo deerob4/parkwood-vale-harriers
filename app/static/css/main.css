@@ -2,50 +2,49 @@
     font-family: 'ralewayitalic';
     src: url('../fonts/raleway-regular-italic-webfont.eot');
     src: url('../fonts/raleway-regular-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-regular-italic-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-regular-italic-webfont.woff') format('woff'),
-         url('../fonts/raleway-regular-italic-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-regular-italic-webfont.svg#ralewayitalic') format('svg');
+    url('../fonts/raleway-regular-italic-webfont.woff2') format('woff2'),
+    url('../fonts/raleway-regular-italic-webfont.woff') format('woff'),
+    url('../fonts/raleway-regular-italic-webfont.ttf') format('truetype'),
+    url('../fonts/raleway-regular-italic-webfont.svg#ralewayitalic') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'ralewaymedium';
     src: url('../fonts/raleway-medium-webfont.eot');
     src: url('../fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-medium-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-medium-webfont.woff') format('woff'),
-         url('../fonts/raleway-medium-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    url('../fonts/raleway-medium-webfont.woff2') format('woff2'),
+    url('../fonts/raleway-medium-webfont.woff') format('woff'),
+    url('../fonts/raleway-medium-webfont.ttf') format('truetype'),
+    url('../fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
+
 @font-face {
     font-family: 'ralewaysemibold';
     src: url('../fonts/raleway-semibold-webfont.eot');
     src: url('../fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway-semibold-webfont.woff2') format('woff2'),
-         url('../fonts/raleway-semibold-webfont.woff') format('woff'),
-         url('../fonts/raleway-semibold-webfont.ttf') format('truetype'),
-         url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    url('../fonts/raleway-semibold-webfont.woff2') format('woff2'),
+    url('../fonts/raleway-semibold-webfont.woff') format('woff'),
+    url('../fonts/raleway-semibold-webfont.ttf') format('truetype'),
+    url('../fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
+
 /*------------------------------------------------------
 |                     Begin footer styles               |
 -------------------------------------------------------*/
 .footer {
     width: 100%;
-    height: 60px;
     border-top: 1px solid #eee;
     text-align: center;
-    padding-top: 20px;
-    margin-top: 20px;
     font-family: ralewaymedium, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
-
 
 /*------------------------------------------------------
 |                     Begin misc hacks                 |
@@ -61,35 +60,43 @@ h1 {
     color: #292929;
     font-family: ralewaymedium, sans-serif;
 }
+
 h4 {
     color: #2d2d2d;
     font-weight: 400;
     font-size: 20px;
     font-family: ralewaymedium, sans-serif;
 }
+
 label, p, .btn, ul.add-sport-buttons, .datepicker {
-    font-family: ralewaysemibold, sans-serif,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: ralewaysemibold, sans-serif, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 100;
 }
+
 label {
     font-size: 14px;
     width: 100%;
 }
+
 .activity-block label {
     width: 100%;
 }
+
 .timepicker {
     background-color: #fff !important;
     cursor: auto !important;
 }
+
 .details p {
     margin-bottom: 3px;
     font-size: 20px;
     font-weight: 800;
 }
+
 .jumbotron .alert p {
     font-size: 20px;
 }
+
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
@@ -100,6 +107,7 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     -webkit-box-shadow: none !important;
     font-family: ralewaymedium, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 .datepicker {
     padding-left: 12px !important;
 }
@@ -110,6 +118,7 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .total-calories {
     margin-left: 10px;
 }
+
 .btn {
     font-family: ralewaysemibold, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -130,23 +139,28 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     list-style-type: none;
     padding: 0;
 }
+
 .activity-list .glyphicon {
     float: right;
     font-size: 14px;
     top: 7px;
     color: #fff;
 }
+
 .activity-list .glyphicon:hover {
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
     cursor: pointer;
 }
+
 .activity-list textarea {
     height: 110px;
 }
+
 .activity-list .form-group {
     margin-bottom: 7px;
 }
+
 .activity-list .btn {
     margin-top: 9px;
 }
@@ -155,40 +169,49 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .add-activity {
     width: 100%;
 }
+
 #cycling .panel-body, .cycling-input {
     border: 1px solid #f0ad4e;
 }
+
 #running .panel-body, .running-input {
     border: 1px solid #3fad46;
 }
+
 #swimming .panel-body, .swimming-input {
-    border: 1px solid #4582ec;
+    border: 1px solid #5bc0de;
 }
+
 .activity-block-cycling {
     background-color: #f0ad4e;
 }
+
 .activity-block-running {
     background-color: #3fad46;
 }
+
 .activity-block-swimming {
-    background-color: #4582ec;
+    background-color: #5bc0de;
 }
+
 .saved-activity {
     height: 60px;
     border-radius: 4px;
     margin-bottom: 15px;
+    margin-left: 15px;
     font-family: ralewaymedium, sans-serif;
     color: #fff;
     font-size: 18px;
     padding-top: 17px;
 }
+
 .activity-block .panel-body {
     padding: 24px;
 }
 
-/*The buttons for adding the activities.*/
-.add-sport-buttons {
-    display: inline;
+.panel-body:hover {
+    /*background-color: #3fad46;*/
+    transition: all 2s ease-in-out
 }
 
 /*Misc activity adder styles*/
@@ -203,13 +226,16 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .delete-account {
     margin-top: 8px;
 }
+
 .panel-heading {
     font-weight: 600;
     font-family: ralewaysemibold, sans-serif;
 }
+
 .panel {
     font-family: ralewaymedium, sans-serif;
 }
+
 .panel-list {
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -217,6 +243,7 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 }
+
 .right {
     float: right;
     font-family: ralewayitalic, sans-serif;

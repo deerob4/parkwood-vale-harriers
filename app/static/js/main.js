@@ -100,13 +100,23 @@ $(document).ready(function () {
 
     function addActivity($activity) {
 
-        $activity.find('label, input, select, textarea, .panel-body').addClass('animated bouceOutUp');
-        setTimeout(function () {
-            $activity.find('label, input, select, textarea, .panel-body').hide();
-            $activity.find('.panel-heading').animate({width: '1125px', borderRadius: '4px'}, 500).addClass('added');
-        }, 1000);
-
         var sport = $activity.attr('id');
+
+        $activity.find('label, input, select, textarea').addClass('animated zoomOut');
+        setTimeout(function () {
+            var bgColour;
+            if (sport == 'running') {
+                bgColour = '#3fad46'
+            } else if (sport == 'cycling') {
+                bgColour = '#f0ad4e'
+            } else {
+                bgColour = '#5bc0de'
+            }
+            $activity.find('.panel-body').transit({height: '300px', backgroundColor: bgColour}, 350).addClass('added');
+            $activity.find('.panel-heading').transit({padding: '30px 35px 0 145px'}, 350);
+            $activity.find('label, input, select, textarea, .form-group').hide();
+        }, 200);
+
         var effigy = $activity.find('#effigy').val();
         var rating = $activity.find('#rating').val();
         var hours = calculateHours($activity);
@@ -119,9 +129,9 @@ $(document).ready(function () {
         var newCalories = currentCalories + caloriesBurned;
         $totalCalories.text(newCalories + ' calories in total today!');
 
-        $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
-        $activity.find('.calories').text(caloriesBurned + ' calories burned over');
-        $activity.find('.hours').text(hours + ' hours');
+        //$activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
+        //$activity.find('.calories').text(caloriesBurned + ' calories burned over');
+        //$activity.find('.hours').text(hours + ' hours');
 
         var activityObject = {
             "sport": sport.toLowerCase(),
