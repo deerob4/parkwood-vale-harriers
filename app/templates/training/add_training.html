@@ -8,25 +8,25 @@
     <div class="btn-group add-sport-buttons">
         <button class="btn btn-success sport" id="running">Add Running</button>
         <button class="btn btn-warning sport" id="cycling">Add Cycling</button>
-        <button class="btn btn-info sport" id="swimming">Add Swimming</button>
+        <button class="btn btn-primary sport" id="swimming">Add Swimming</button>
     </div>
-    <span class="btn btn-primary total-calories">{{ total_calories }} calories in total today!</span>
+    <span class="btn btn-info total-calories">{{ total_calories }} calories in total today!</span>
     <br/>
+
     <div class="row">
         <ul class="activity-list">
             {% for activity in activities %}
-                <li class="activity-block added animated" id="{{ activity.id }}">
-                    <span>
-                        <span class="sport">{{ activity.sport|title }} ({{ activity.effigy|lower }})</span>
-                        <span class="calories"> - {{ activity.calories }} calories</span>
+                <li class="saved-activity activity-block-{{ activity.sport|lower }} added col-md-12" id="{{ activity.id }}">
+                    <span class="sport">{{ activity.sport|title }} ({{ activity.effigy|lower }})</span>
+                    <span class="calories"> - {{ activity.calories }} calories</span>
                         <span class="hours">burned over {{ activity.hours }} {% if activity.hours == 1 %}hour{% else %}
                             hours{% endif %}</span>
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </span>
+                    <span class="glyphicon glyphicon-remove"></span>
                 </li>
             {% endfor %}
         </ul>
     </div>
+
     {% if activities|length < 1 %}
         <h4 class="no-activities">You haven't added any activities today! Use the buttons above to add one.</h4>
     {% endif %}

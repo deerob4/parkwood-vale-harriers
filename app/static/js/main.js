@@ -6,7 +6,7 @@ $(document).ready(function () {
         format: 'yyyy-mm-dd'
     });
 
-    $('.activity-block .glyphicon').click(function () {
+    $('.activity-block .glyphicon, .saved-activity .glyphicon').click(function () {
         var $activity = $(this).closest('li');
         if ($activity.hasClass('added')) {
             removeActivity($activity);
@@ -76,7 +76,7 @@ $(document).ready(function () {
             removeActivity($(this).closest('li'));
         });
         $('.add-activity').click(function () {
-            validateActivity($(this).closest('li'));
+            validateActivity($(this).closest('.panel'));
         });
     }
 
@@ -100,11 +100,11 @@ $(document).ready(function () {
 
     function addActivity($activity) {
 
-        $activity.find('label, input, select, textarea').addClass('animated zoomOut');
+        $activity.find('label, input, select, textarea, .panel-body').addClass('animated bouceOutUp');
         setTimeout(function () {
-            $activity.find('label, input, select, textarea').hide();
-            $activity.transition({width: '1125px', height: '75px'}, 500).addClass('added');
-        }, 130);
+            $activity.find('label, input, select, textarea, .panel-body').hide();
+            $activity.find('.panel-heading').animate({width: '1125px', borderRadius: '4px'}, 500).addClass('added');
+        }, 1000);
 
         var sport = $activity.attr('id');
         var effigy = $activity.find('#effigy').val();

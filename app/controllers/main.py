@@ -66,8 +66,12 @@ def profiles(username):
 @login_required
 def add_training():
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
+    running = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date, sport='running').all()
+    cycling = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date, sport='cycling').all()
+    swimming = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date, sport='swimming').all()
     total_calories = 0
     for activity in activities:
         total_calories += activity.calories
     return render_template('training/add_training.html', date=current_date,
-                           current_user=current_user, activities=activities, total_calories=total_calories)
+                           current_user=current_user, activities=activities, total_calories=total_calories,
+                           running=running, cycling=cycling, swimming=swimming)

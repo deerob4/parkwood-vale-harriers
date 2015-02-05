@@ -59,6 +59,7 @@
 -------------------------------------------------------*/
 h1 {
     color: #292929;
+    font-family: ralewaymedium, sans-serif;
 }
 h4 {
     color: #2d2d2d;
@@ -86,10 +87,13 @@ label {
     font-size: 20px;
     font-weight: 800;
 }
+.jumbotron .alert p {
+    font-size: 20px;
+}
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
-input:not(.input_membership_charity):not(.add-activity), select, textarea {
+input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select, textarea {
     width: 100%;
     border-radius: 4px;
     box-shadow: none !important;
@@ -133,7 +137,7 @@ input:not(.input_membership_charity):not(.add-activity), select, textarea {
     color: #fff;
 }
 .activity-list .glyphicon:hover {
-    color: rgba(17, 17, 17, 0.71);
+    color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -158,7 +162,25 @@ input:not(.input_membership_charity):not(.add-activity), select, textarea {
     border: 1px solid #3fad46;
 }
 #swimming .panel-body, .swimming-input {
-    border: 1px solid #5bc0de;
+    border: 1px solid #4582ec;
+}
+.activity-block-cycling {
+    background-color: #f0ad4e;
+}
+.activity-block-running {
+    background-color: #3fad46;
+}
+.activity-block-swimming {
+    background-color: #4582ec;
+}
+.saved-activity {
+    height: 60px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-family: ralewaymedium, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 17px;
 }
 .activity-block .panel-body {
     padding: 24px;
@@ -170,10 +192,6 @@ input:not(.input_membership_charity):not(.add-activity), select, textarea {
 }
 
 /*Misc activity adder styles*/
-.no-activities {
-    margin-top: 25px;
-    font-family: ralewaymedium, sans-serif;
-}
 .time {
     background-color: #fff !important;
     cursor: default !important;

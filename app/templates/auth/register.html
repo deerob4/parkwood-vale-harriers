@@ -30,23 +30,23 @@
             {% endwith %}
             <div class="form-group">
                 {{ form.name.label }}
-                {{ form.name(class='form-control input_membership_name') }}
+                {{ form.name(class='form-control input_membership_name', placeholder='Johnny Appleseed') }}
             </div>
             <div class="form-group">
                 {{ form.email.label }}
-                {{ form.email(class='form-control input_membership_email', type='email') }}
+                {{ form.email(class='form-control input_membership_email', type='email', placeholder='johnny@appleseed.com') }}
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ form.password.label }}
-                        {{ form.password(class='form-control input_membership_password') }}
+                        {{ form.password(class='form-control input_membership_password', placeholder='Keep it simple. Keep it safe.') }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ form.confirm.label }}
-                        {{ form.confirm(class='form-control input_membership_confirm') }}
+                        {{ form.confirm(class='form-control input_membership_confirm', placeholder='You know the drill.') }}
                     </div>
                 </div>
             </div>
@@ -68,13 +68,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ form.weight.label }}
-                        {{ form.weight(class='form-control', type='number', min=0, max=100) }}
+                        {{ form.weight(class='form-control', type='number', placeholder='80', min=0, max=100) }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ form.phone.label }}
-                        {{ form.phone(class='form-control', type='tel') }}
+                        {{ form.phone(class='form-control', type='tel', placeholder='01432 673246') }}
                     </div>
                 </div>
             </div>
