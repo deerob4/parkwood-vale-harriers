@@ -175,7 +175,7 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 }
 
 #running .panel-body, .running-input {
-    border: 1px solid #3fad46;
+    border: 1px solid #52aa5e;
 }
 
 #swimming .panel-body, .swimming-input {
@@ -187,7 +187,7 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 }
 
 .activity-block-running {
-    background-color: #3fad46;
+    background-color: #52aa5e;
 }
 
 .activity-block-swimming {
@@ -212,6 +212,21 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .panel-body:hover {
     /*background-color: #3fad46;*/
     transition: all 2s ease-in-out
+}
+
+.panel-running > .panel-heading {
+    background-color: #52aa5e;
+    color: #fff
+}
+
+.btn-running {
+    background-color: #52aa5e;
+    color: #fff;
+}
+
+.btn-running:hover {
+    background-color: #10aa3b;
+    color: #fff;
 }
 
 /*Misc activity adder styles*/

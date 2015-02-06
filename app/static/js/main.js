@@ -112,7 +112,7 @@ $(document).ready(function () {
             } else {
                 bgColour = '#5bc0de'
             }
-            $activity.find('.panel-body').transit({height: '300px', backgroundColor: bgColour}, 350).addClass('added');
+            $activity.find('.panel-body').transit({height: '448px',backgroundColor: bgColour}, 350).addClass('added');
             $activity.find('.panel-heading').transit({padding: '30px 35px 0 145px'}, 350);
             $activity.find('label, input, select, textarea, .form-group').hide();
         }, 200);
