@@ -106,7 +106,7 @@ $(document).ready(function () {
         setTimeout(function () {
             var bgColour;
             if (sport == 'running') {
-                bgColour = '#3fad46'
+                bgColour = '#52aa5e'
             } else if (sport == 'cycling') {
                 bgColour = '#f0ad4e'
             } else {
@@ -156,7 +156,7 @@ $(document).ready(function () {
         genericAnimation($activity, 'zoomOut', false);
         setTimeout(function () {
             $activity.remove();
-        }, 200);
+        }, 310);
     }
 
     function calculateHours($activity) {
