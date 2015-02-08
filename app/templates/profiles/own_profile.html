@@ -97,15 +97,16 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Change your name</h4>
                 </div>
-                <form method="POST">
+                <form method="POST" id="changeNameForm">
                     <div class="modal-body">
-                        {{ new_name.csrf_token }}
-                        {{ new_name.field.label }}
-                        {{ new_name.field(class='form-control', placeholder=current_user.name) }}
+                        <label>
+                            Enter a new name:
+                            <input type="text" name="name" placeholder="{{ current_user.name }}" class="form-control" />
+                        </label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        {{ new_name.submit(class="btn btn-primary btn-modal") }}
+                        <button type="submit" class="btn btn-primary btn-modal">Change name</button>
                     </div>
                 </form>
             </div>
@@ -118,16 +119,18 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Change your email</h4>
                 </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        {{ new_email.field.label }}
-                        {{ new_email.field(class='form-control', placeholder=current_user.email) }}
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Change email</button>
-                </div>
+                <form method="POST" id="changeEmailForm">
+                    <div class="modal-body">
+                        <label>
+                            Enter a new email:
+                            <input type="text" name="email" placeholder="{{ current_user.email }}" class="form-control"/>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-modal">Change email</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -138,16 +141,18 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Change your phone number</h4>
                 </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        {{ new_phone.field.label }}
-                        {{ new_phone.field(class='form-control', placeholder=current_user.phone) }}
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Change phone number</button>
-                </div>
+                <form method="POST" id="changePhoneForm">
+                    <div class="modal-body">
+                        <label>
+                            Enter a new phone number:
+                            <input type="text" name="phone" placeholder="{{ current_user.phone }}" class="form-control"/>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Change phone number</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -158,16 +163,18 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Change your date of birth</h4>
                 </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        {{ new_dob.field.label }}
-                        {{ new_dob.field(class='form-control datepicker', placeholder=current_user.dob) }}
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Change date of birth</button>
-                </div>
+                <form method="POST" id="changeDobForm">
+                    <div class="modal-body">
+                        <label>
+                            Enter a new date of birth:
+                            <input type="text" name="dob" placeholder="{{ current_user.dob }}" class="form-control datepicker"/>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Change date of birth</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -176,18 +183,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Change your weight</h4>
+                    <h4 class="modal-title">Change your weight:</h4>
                 </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        {{ new_weight.field.label }}
-                        {{ new_weight.field(class='form-control', placeholder=current_user.weight) }}
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Change weight</button>
-                </div>
+                <form method="POST" id="changeWeightForm">
+                    <div class="modal-body">
+                        <label>
+                            Enter a new weight:
+                            <input type="number" name="weight" min="10" max="100" placeholder="{{ current_user.weight }}"
+                                   class="form-control"/>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Change weight</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

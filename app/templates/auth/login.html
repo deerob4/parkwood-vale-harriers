@@ -45,7 +45,7 @@
             <div class="row charity-row">
                 <div class="col-md-7">
                     <div class="form-group">
-                        {{ form.remember.label }}
+                        {{ form.remember.label(class='remember-label') }}
                         {{ form.remember(class='input_membership_charity') }}
                         <br/>
                         <label><a href="{{ url_for('auth.register') }}">Don't have an account?</a></label>

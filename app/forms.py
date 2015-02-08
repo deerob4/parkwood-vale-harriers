@@ -1,6 +1,7 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, IntegerField
-from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError, NumberRange, StopValidation
+from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError, NumberRange, \
+    StopValidation
 
 from app.models import User
 
@@ -41,7 +42,10 @@ class MemberForm(Form):
     weight = IntegerField('How much do you weigh in kg?', validators=[DataRequired('You must enter your weight.'),
                                                                       NumberRange(10, 100,
                                                                                   'Your weight must be between 10kg - 100kg.')])
-    phone = StringField('What is your phone number?', validators=[DataRequired('You must enter your phone number.')])
+    phone = StringField('What is your phone number?', validators=[DataRequired('You must enter your phone number.'),
+                                                                  Regexp(
+                                                                      r'^\s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$',
+                                                                      message='You must enter a valid UK phone number.')])
     submit = SubmitField('Submit')
 
     def validate_distance(self, field):
@@ -69,33 +73,3 @@ class LoginForm(Form):
     password = PasswordField('What is your password?', validators=[DataRequired('You must enter your password.')])
     remember = BooleanField('Remember me')
     login = SubmitField('Login')
-
-
-class ChangeName(Form):
-    field = StringField('Enter a new name:', validators=[DataRequired('You must enter your name.'),
-                                                        Regexp(r'^[A-Za-z\-" "]*$',
-                                                               message='Your name may only contain letters.')])
-    submit = SubmitField('Change name')
-
-
-class ChangeEmail(Form):
-    field = StringField("Enter a new email:",
-                        validators=[DataRequired('You must enter your email.'), Email('You must enter a valid email.')])
-    submit = SubmitField('Change name')
-
-
-class ChangePhone(Form):
-    field = StringField('Enter a new phone number:', validators=[DataRequired('You must enter your phone number.')])
-    submit = SubmitField('Change phone number')
-
-
-class ChangeDob(Form):
-    field = DateField("Enter a new date of birth:", validators=[DataRequired('You must enter your date of birth.')])
-    submit = SubmitField('Change date of birth')
-
-
-class ChangeWeight(Form):
-    field = IntegerField('Enter a new weight in kg:', validators=[DataRequired('You must enter your weight.'),
-                                                                   NumberRange(10, 100,
-                                                                               'Your weight must be between 10kg - 100kg.')])
-    submit = SubmitField('Change weight')

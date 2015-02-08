@@ -96,5 +96,5 @@ def delete_account():
     Activity.query.filter_by(user_id=user_id).delete()
     db.session.commit()
     print('User #%s and their activities were deleted.' % user_id)
-    flash('Your account was successfully deleted!', 'success')
+    flash('Your account was successfully deleted - sorry to see you go!', 'success')
     return 'deleted'

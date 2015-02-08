@@ -52,6 +52,12 @@
 .input_membership_charity {
     margin-left: 5px;
 }
+.remember-label {
+    width: 17%;
+}
+.charity-label {
+    width: 50%;
+}
 
 /*------------------------------------------------------
 |        Begin general typography styles               |
