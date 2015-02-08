@@ -86,15 +86,3 @@ def calculate_calories():
     calories += modifier
 
     return str(ceil(calories))
-
-
-@ajax.route('/ajax/delete-account', methods=['POST'])
-def delete_account():
-    user_id = current_user.get_id()
-    logout_user()
-    User.query.filter_by(id=user_id).delete()
-    Activity.query.filter_by(user_id=user_id).delete()
-    db.session.commit()
-    print('User #%s and their activities were deleted.' % user_id)
-    flash('Your account was successfully deleted - sorry to see you go!', 'success')
-    return 'deleted'

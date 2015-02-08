@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, abort, request
-from flask.ext.login import current_user, login_required
+from flask.ext.login import current_user, login_required, logout_user
 
 from app.models import User, Activity, db
 
@@ -29,8 +29,10 @@ def training():
 @main.route('/profiles/<username>', methods=['GET', 'POST'])
 @login_required
 def profiles(username):
+    # If the user has attempted to change their profile
     if request.method == 'POST':
         def update_user(user, element, redirect_user):
+            """Adds the updated user to the db and reloads the page."""
             db.session.add(user)
             db.session.commit()
             flash('Your %s has been successfully changed!' % element, 'success')
@@ -38,12 +40,13 @@ def profiles(username):
                 return redirect(url_for('main.profiles', username=user.username))
 
         def validation_error(message):
+            """Displays an appropriate error message and reloads the page."""
             flash(message, 'warning')
             return redirect(url_for('main.profiles', username=current_user.username))
 
         user = User.query.filter_by(id=current_user.get_id()).first()
-        
-        # If the user tried to change their name
+
+        # If the user tries to change their name
         if request.form.get('name'):
             only_letters = re.compile(r'^[A-Za-z\-" "]*$')
             if only_letters.match(request.form.get('name')):
@@ -54,7 +57,7 @@ def profiles(username):
             else:
                 validation_error('Your name may only contain letters.')
 
-        # If the user tried to change their email
+        # If the user tries to change their email
         elif request.form.get('email'):
             valid_email = re.compile(r'^.+@[^.].*\.[a-z]{2,10}$')
             if valid_email.match(request.form.get('email')):
@@ -63,7 +66,7 @@ def profiles(username):
             else:
                 validation_error('You must enter a valid email.')
 
-        # If the user tried to change their phone number
+        # If the user tries to change their phone number
         elif request.form.get('phone'):
             valid_phone = re.compile(
                 r'^\s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$')
@@ -73,12 +76,12 @@ def profiles(username):
             else:
                 validation_error('You must enter a valid UK phone number.')
 
-        # If the user tried to change their dob
+        # If the user tries to change their dob
         elif request.form.get('dob'):
             user.dob = request.form.get('dob')
             update_user(user, 'date of birth', True)
 
-        # If the user tried to change their weight
+        # If the user tries to change their weight
         elif request.form.get('weight'):
             check_integer = re.compile(r'^-?[0-9]+$')
             if not check_integer.match(request.form.get('weight')):
@@ -88,6 +91,18 @@ def profiles(username):
             else:
                 user.weight = request.form.get('weight')
                 update_user(user, 'weight', True)
+
+        elif request.form.get('delete'):
+            if request.form.get('delete') != 'I will lose everything':
+                validation_error('You must type in the message exactly!')
+            else:
+                user_id = current_user.get_id()
+                logout_user()
+                User.query.filter_by(id=user_id).delete()
+                Activity.query.filter_by(user_id=user_id).delete()
+                db.session.commit()
+                flash('Your account was successfully deleted - sorry to see you go!', 'success')
+                return 'deleted'
 
     possible_user = User.query.filter_by(username=username).first_or_404()
     if current_user.username == possible_user.username:
