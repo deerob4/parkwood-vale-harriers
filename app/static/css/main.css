@@ -129,6 +129,20 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     font-family: ralewaysemibold, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.btn-running {
+    background-color: #52aa5e;
+    color: #fff;
+}
+
+.btn-running:hover {
+    background-color: #10aa3b;
+    color: #fff;
+}
+
+.btn-running:focus {
+    color: #fff;
+}
+
 /*------------------------------------------------------
 |             Begin register form styles               |
 -------------------------------------------------------*/
@@ -223,16 +237,6 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .panel-running > .panel-heading {
     background-color: #52aa5e;
     color: #fff
-}
-
-.btn-running {
-    background-color: #52aa5e;
-    color: #fff;
-}
-
-.btn-running:hover {
-    background-color: #10aa3b;
-    color: #fff;
 }
 
 /*Misc activity adder styles*/

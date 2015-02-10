@@ -52,7 +52,7 @@ def profiles(username):
             if only_letters.match(request.form.get('name')):
                 user.name = request.form.get('name').title()
                 user.username = request.form.get('name').lower().replace(' ', '').replace('-', '') + str(randint(1, 10))
-                update_user(user, 'name and username', False)
+                update_user(user, 'name', False)
                 return redirect(url_for('main.profiles', username=user.username))
             else:
                 validation_error('Your name may only contain letters.')
@@ -102,7 +102,7 @@ def profiles(username):
                 Activity.query.filter_by(user_id=user_id).delete()
                 db.session.commit()
                 flash('Your account was successfully deleted - sorry to see you go!', 'success')
-                return 'deleted'
+                return redirect(url_for('auth.login'))
 
     possible_user = User.query.filter_by(username=username).first_or_404()
     if current_user.username == possible_user.username:
