@@ -29,11 +29,11 @@
             {% endwith %}
             <div class="form-group">
                 {{ form.email.label }}
-                {{ form.email(class='form-control', type='email') }}
+                {{ form.email(class='form-control', type='email', placeholder='johnny@appleseed.com') }}
             </div>
             <div class="form-group">
                 {{ form.password.label }}
-                {{ form.password(class='form-control') }}
+                {{ form.password(class='form-control', placeholder='Something secret!') }}
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-4">

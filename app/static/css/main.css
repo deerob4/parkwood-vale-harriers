@@ -186,6 +186,10 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 }
 
 /*The actual activity li.*/
+.activity {
+    -webkit-animation-duration: 0.375s;
+}
+
 .add-activity {
     width: 100%;
 }

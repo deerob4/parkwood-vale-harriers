@@ -31,7 +31,7 @@ def training():
 def profiles(username):
     # If the user has attempted to change their profile
     if request.method == 'POST':
-        def update_user(user, element, redirect_user):
+        def update_user(user, element, redirect_user=True):
             """Adds the updated user to the db and reloads the page."""
             db.session.add(user)
             db.session.commit()
@@ -62,7 +62,7 @@ def profiles(username):
             valid_email = re.compile(r'^.+@[^.].*\.[a-z]{2,10}$')
             if valid_email.match(request.form.get('email')):
                 user.email = request.form.get('email')
-                update_user(user, 'email', True)
+                update_user(user, 'email')
             else:
                 validation_error('You must enter a valid email.')
 
@@ -72,14 +72,14 @@ def profiles(username):
                 r'^\s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$')
             if valid_phone.match(request.form.get('phone')):
                 user.phone = request.form.get('phone')
-                update_user(user, 'phone number', True)
+                update_user(user, 'phone number')
             else:
                 validation_error('You must enter a valid UK phone number.')
 
         # If the user tries to change their dob
         elif request.form.get('dob'):
             user.dob = request.form.get('dob')
-            update_user(user, 'date of birth', True)
+            update_user(user, 'date of birth')
 
         # If the user tries to change their weight
         elif request.form.get('weight'):
@@ -90,7 +90,7 @@ def profiles(username):
                 validation_error('Your weight must be between 10kg - 100kg.')
             else:
                 user.weight = request.form.get('weight')
-                update_user(user, 'weight', True)
+                update_user(user, 'weight')
 
         elif request.form.get('delete'):
             if request.form.get('delete') != 'I will lose everything':

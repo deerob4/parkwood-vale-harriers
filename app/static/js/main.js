@@ -138,7 +138,7 @@ $(document).ready(function () {
         genericAnimation($activity, 'zoomOut', false);
         setTimeout(function () {
             $activity.remove();
-        }, 310);
+        }, 175);
     }
 
     function calculateHours($activity) {
