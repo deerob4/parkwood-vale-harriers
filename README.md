@@ -5,7 +5,7 @@ allowing them to choose a team of runners for their charity event. This is a pro
 
 Application Features
 ---------------------
-- [ ] The ability to add runners into the application and CRUD their personal data
+- [X] The ability to add runners into the application and CRUD their personal data
 - [X] The ability to add times from each workout and work out the number of calories burnt
 - [ ] The ability to track fitness improvement over time
 - [ ] The ability to compare results with other runners
