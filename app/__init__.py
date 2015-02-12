@@ -21,6 +21,7 @@ def create_app():
     # Sets configuration variables used application-wise
     app.config['SECRET_KEY'] = 'vYqTMY88zsuXSG7R4xYdPxYk'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
+    app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
     # Configures SQLAlchemy
     db.init_app(app)
