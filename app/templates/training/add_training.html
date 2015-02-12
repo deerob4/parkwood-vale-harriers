@@ -5,25 +5,28 @@
 {% block content %}
     <h1>Add a Training Session - {{ date.strftime('%A %e %B %G') }}</h1>
     <h4>Done some exercise? Record it here to add it to your training log.</h4>
-{#    <div class="btn-group add-sport-buttons">#}
-        <button class="btn btn-running sport" id="running">Add Running</button>
-        <button class="btn btn-warning sport" id="cycling">Add Cycling</button>
-        <button class="btn btn-info sport" id="swimming">Add Swimming</button>
-{#    </div>#}
+    {#    <div class="btn-group add-sport-buttons">#}
+    <button class="btn btn-running sport" id="running">Add Running</button>
+    <button class="btn btn-warning sport" id="cycling">Add Cycling</button>
+    <button class="btn btn-info sport" id="swimming">Add Swimming</button>
+    {#    </div>#}
     <button class="btn btn-primary total-calories">{{ total_calories }} calories in total today!</button>
     <br/>
 
     <div class="row">
         <ul class="activity-list">
-            {% for activity in activities %}
-                <li class="saved-activity activity-block-{{ activity.sport|lower }} added col-md-12" id="{{ activity.id }}">
-                    <span class="sport">{{ activity.sport|title }} ({{ activity.effigy|lower }})</span>
-                    <span class="calories"> - {{ activity.calories }} calories</span>
+            <li class="row">
+                {% for activity in activities %}
+                    <li class="saved-activity activity-block-{{ activity.sport|lower }} added col-md-12"
+                        id="{{ activity.id }}">
+                        <span class="sport">{{ activity.sport|title }} ({{ activity.effigy|lower }})</span>
+                        <span class="calories"> - {{ activity.calories }} calories</span>
                         <span class="hours">burned over {{ activity.hours }} {% if activity.hours == 1 %}hour{% else %}
                             hours{% endif %}</span>
-                    <span class="glyphicon glyphicon-remove"></span>
-                </li>
-            {% endfor %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </li>
+                {% endfor %}
+            </li>
         </ul>
     </div>
 
