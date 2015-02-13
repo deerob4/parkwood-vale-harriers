@@ -194,15 +194,15 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     width: 100%;
 }
 
-#cycling .panel-body, .cycling-input {
+#Cycling .panel-body, .cycling-input {
     border: 1px solid #f0ad4e;
 }
 
-#running .panel-body, .running-input {
+#Running .panel-body, .running-input {
     border: 1px solid #52aa5e;
 }
 
-#swimming .panel-body, .swimming-input {
+#Swimming .panel-body, .swimming-input {
     border: 1px solid #5bc0de;
 }
 

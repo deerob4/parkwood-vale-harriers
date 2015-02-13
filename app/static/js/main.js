@@ -97,10 +97,7 @@ $(document).ready(function() {
                 width: 'auto'
             });
         }, 200);
-        var effigy = $activity.find('#effigy').val();
-        var rating = $activity.find('#rating').val();
-        var hours = calculateHours($activity);
-        calculateCalories(sport, effigy, hours, rating);
+        calculateCalories(sport, $activity);
     }
 
     function removeActivity($activity) {
@@ -116,7 +113,10 @@ $(document).ready(function() {
         return stop - start;
     }
 
-    function calculateCalories(sport, effigy, hours, rating) {
+    function calculateCalories(sport, $activity) {
+        var effigy = $activity.find('#effigy').val();
+        var rating = $activity.find('#rating').val();
+        var hours = calculateHours($activity);
         $.ajax({
             url: '/ajax/calculate-calories',
             type: 'POST',
