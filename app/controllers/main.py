@@ -127,3 +127,10 @@ def add_training():
         total_hours += activity.hours
     return render_template('training/add_training.html', date=current_date,
                            current_user=current_user, activities=activities, total_calories=total_calories, total_hours=total_hours)
+
+
+@main.route('/performance/running', methods=['GET', 'POST'])
+@login_required
+def running_performance():
+    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
+    return render_template('performance/running_performance.html', runs=runs)

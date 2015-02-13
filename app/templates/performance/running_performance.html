@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Running Performance{{ super() }}{% endblock %}
+
+{% block content %}
+    <h1>Running Performance</h1>
+    <h4>Check out a detailed analysis of how you've performed in your runs!</h4>
+    <ul>
+    {% for run in runs %}
+        <li>
+            {{ run.id }} {{ run.date }} {{ run.effigy }} {{ run.calories }} {{ run.opinion }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
