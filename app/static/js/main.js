@@ -83,19 +83,11 @@ $(document).ready(function() {
         var containerWidth = $('.container').width();
         $activity.find('label, input, select, textarea, .panel-body ').addClass('animated zoomOut');
         setTimeout(function() {
-            $activity.find('.panel-heading').animate({
-                width: containerWidth,
-                height: 60,
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                paddingTop: 16
-            }, 500);
+            $activity.find('.panel-heading').animate({width: containerWidth, height: 60, borderBottomLeftRadius: 4,
+                borderBottomRightRadius: 4, paddingTop: 17}, 500);
             $activity.find('.activity-block').css('margin-bottom', '15px');
             $activity.parent().removeClass('col-lg-4 col-md-6 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
             $activity.find('label, input, select, textarea, .form-group, .panel-body').hide();
-            $activity.find('.panel-heading').css({
-                width: 'auto'
-            });
         }, 200);
         calculateCalories(sport, $activity);
     }
