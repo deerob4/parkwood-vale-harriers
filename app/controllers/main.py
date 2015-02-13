@@ -121,7 +121,9 @@ def profiles(username):
 def add_training():
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
     total_calories = 0
+    total_hours = 0
     for activity in activities:
         total_calories += activity.calories
+        total_hours += activity.hours
     return render_template('training/add_training.html', date=current_date,
-                           current_user=current_user, activities=activities, total_calories=total_calories)
+                           current_user=current_user, activities=activities, total_calories=total_calories, total_hours=total_hours)
