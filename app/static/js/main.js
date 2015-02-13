@@ -6,7 +6,17 @@ $(document).ready(function() {
         startDate: '-75y',
         format: 'yyyy-mm-dd'
     });
-    
+
+    $('.running-title').click(function() {
+        $.ajax({
+            url: '/ajax/running',
+            type: 'POST',
+            success: function(data) {
+                alert(data['calories']);
+            }
+        })
+    });
+
     //Called when the delete button on an activity block is pressed
     $('.saved-activity .glyphicon').click(function() {
         var $activity = $(this).closest('li');
@@ -145,7 +155,7 @@ $(document).ready(function() {
                 var newCalories = currentCalories + caloriesBurned;        
                 $totalCalories.text(newCalories);
                 
-                //Updates the total hours box
+                //Updates the total hours text
                 var $totalHours = $('.total-hours');
                 var currentHours = parseInt($totalHours.text());      
                 $totalHours.text(currentHours + hours);

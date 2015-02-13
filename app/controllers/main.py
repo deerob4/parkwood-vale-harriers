@@ -134,3 +134,17 @@ def add_training():
 def running_performance():
     runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
     return render_template('performance/running_performance.html', runs=runs)
+
+
+@main.route('/performance/cycling', methods=['GET', 'POST'])
+@login_required
+def cycling_performance():
+    cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
+    return render_template('performance/cycling_performance.html', cycles=cycles)
+
+
+@main.route('/performance/swimming', methods=['GET', 'POST'])
+@login_required
+def swimming_performance():
+    swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
+    return render_template('performance/swimming_performance.html', swims=swims)

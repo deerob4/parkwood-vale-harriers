@@ -32,8 +32,8 @@
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url_for('main.running_performance') }}">Running</a></li>
-                            <li><a href="#">Cycling</a></li>
-                            <li><a href="#">Swimming</a></li>
+                            <li><a href="{{ url_for('main.cycling_performance') }}">Cycling</a></li>
+                            <li><a href="{{ url_for('main.swimming_performance') }}">Swimming</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
@@ -73,6 +73,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/picker.time.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.3.0/bootbox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
-{#    <script src="{{ url_for('static', filename='js/transit.min.js') }}"></script>#}
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </html>

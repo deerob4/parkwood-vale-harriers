@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, json, request, redirect, url_for, flash
+from flask import Blueprint, render_template, json, request, redirect, url_for, flash, jsonify
 from flask.ext.login import current_user, logout_user
 from app.models import User, Activity, db
 
@@ -86,3 +86,13 @@ def calculate_calories():
     calories += modifier
 
     return str(ceil(calories))
+
+
+@ajax.route('/ajax/running', methods=['POST'])
+def running():
+    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
+    calories = []
+    for run in runs:
+        calories.append(run.calories)
+    print(calories)
+    return jsonify(calories=calories)

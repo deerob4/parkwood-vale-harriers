@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Swimming Performance{{ super() }}{% endblock %}
+
+{% block content %}
+    <h1>Swimming Performance</h1>
+    <h4>Check out a detailed analysis of how you've performed in your swims!</h4>
+    <ul>
+    {% for swim in swims %}
+        <li>
+            {{ swim.id }} {{ swim.date }} {{ swim.effigy }} {{ swim.calories }} {{ swim.opinion }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

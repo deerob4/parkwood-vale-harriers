@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Cycling Performance{{ super() }}{% endblock %}
+
+{% block content %}
+    <h1>Cycling Performance</h1>
+    <h4>Check out a detailed analysis of how you've performed in your cycles!</h4>
+    <ul>
+    {% for cycle in cycles %}
+        <li>
+            {{ cycle.id }} {{ cycle.date }} {{ cycle.effigy }} {{ cycle.calories }} {{ cycle.opinion }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
