@@ -1,27 +1,28 @@
 $(document).ready(function() {
-    // Fantastically hacky way of doing things, but it works. Probably.
-    var totalCalories;
+
+    //Initialises the datepicker plugin for all inputs with a class of "datepicker"
     $('.datepicker').datepicker({
         endDate: '-18y',
         startDate: '-75y',
         format: 'yyyy-mm-dd'
     });
-    $('.activity-block .glyphicon, .saved-activity .glyphicon').click(function() {
+    
+    //Called when the delete button on an activity block is pressed
+    $('.saved-activity .glyphicon').click(function() {
         var $activity = $(this).closest('li');
+        //If the activity block has been returned from the database
         if($activity.hasClass('added')) {
-            removeActivity($activity);
-            var toRemove = {
-                "activityId": $activity.attr('id')
-            };
+            //Calls the remove activity animation
+            removeActivity($activity);   
+            //Stores the id of the activity in a JSON object
+            var toRemove = {"activityId": $activity.attr('id')};
+            //Posts this JSON object to the server to delete it from the db
             $.ajax({
                 url: '/ajax/remove-activity',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify(toRemove),
-                success: function(data) {
-                    console.log(data.responseText);
-                },
                 error: function(data) {
                     console.log(data.responseText);
                 }
@@ -30,7 +31,9 @@ $(document).ready(function() {
             removeActivity($activity);
         }
     });
-    $('.sport').click(function() {
+    
+    //Sends a request to the server for the correct 
+    $('.sport-button').click(function() {
         var activity = $(this).attr('id');
         $.ajax({
             url: '/ajax/sport-block',
@@ -46,22 +49,29 @@ $(document).ready(function() {
     });
 
     function updateActivities($activity) {
+        //Fade out the No activities message
         genericAnimation($('.no-activities'), 'fadeOutDown', 300);
+        //Add the activity to the DOM
         $('.activity-list').append($activity);
+        //Animate it in
         genericAnimation($activity, 'zoomIn', false);
+        //Initialise the timepicker
         $('.time').pickatime({
             interval: 60,
             formatLabel: 'HH:i A',
             formatSubmit: 'HH:i A'
         });
+        //If the delete button is pressed, call the remove function
         $('.activity-block .glyphicon').click(function() {
             removeActivity($(this).closest('li'));
         });
+        //If the add button is clicked, call the validate function
         $('.add-activity').click(function() {
             validateActivity($(this).closest('.panel'));
         });
     }
 
+    //Validates that times have been entered in the activity block
     function validateActivity($activity) {
         var $start = $activity.find('#start');
         var $finish = $activity.find('#finish');
@@ -92,6 +102,7 @@ $(document).ready(function() {
         calculateCalories(sport, $activity);
     }
 
+    //Animates the removal of the block
     function removeActivity($activity) {
         genericAnimation($activity, 'zoomOut', false);
         setTimeout(function() {
@@ -99,6 +110,7 @@ $(document).ready(function() {
         }, 175);
     }
 
+    //Calculates the number of hours between the start and finish times
     function calculateHours($activity) {
         var start = new Date('01/01/2000 ' + $activity.find('#start').val()).getHours();
         var stop = new Date('01/01/2000 ' + $activity.find('#finish').val()).getHours();
@@ -106,9 +118,12 @@ $(document).ready(function() {
     }
 
     function calculateCalories(sport, $activity) {
+        //Activity information needed for calculations are displayed here
         var effigy = $activity.find('#effigy').val();
         var rating = $activity.find('#rating').val();
         var hours = calculateHours($activity);
+        
+        //Sends this information to the server, in order to calculate the calories burned
         $.ajax({
             url: '/ajax/calculate-calories',
             type: 'POST',
@@ -121,16 +136,26 @@ $(document).ready(function() {
                 "rating": rating
             }),
             success: function(data) {
+                //Stores the returned value from the server in caloriesBurned
                 var caloriesBurned = data;
-                var $totalCalories = $('.total-calories');
-                var currentCalories = parseInt($totalCalories.text().replace(' calories in total', ''));
-                var newCalories = currentCalories + caloriesBurned;
                 
-                $totalCalories.text(newCalories + ' calories in total today!');
+                //Updates the total calories text
+                var $totalCalories = $('.total-calories');
+                var currentCalories = parseInt($totalCalories.text());
+                var newCalories = currentCalories + caloriesBurned;        
+                $totalCalories.text(newCalories);
+                
+                //Updates the total hours box
+                var $totalHours = $('.total-hours');
+                var currentHours = parseInt($totalHours.text());      
+                $totalHours.text(currentHours + hours);
+               
+                //Sets the text in the added activity block to the correct things
                 $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
                 $activity.find('.calories').text(caloriesBurned + ' calories burned over');
                 $activity.find('.hours').text(hours + ' hours');
                 
+                //Creates a JSON object containing the information for the activity
                 var activityObject = {
                     "sport": sport.toLowerCase(),
                     "effigy": effigy,
@@ -141,6 +166,8 @@ $(document).ready(function() {
                     "rating": $activity.find('#rating').val(),
                     "thoughts": $activity.find('#thoughts').val()
                 };
+                
+                //Sends the JSON object to the server
                 $.ajax({
                     url: '/ajax/send-activity',
                     type: 'POST',

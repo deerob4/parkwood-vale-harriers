@@ -1,3 +1,5 @@
+from math import ceil
+
 # Base values arrived at by doing CPH / 80
 calories_per_hour = {
     'swimming': {
@@ -27,7 +29,7 @@ calories_per_hour = {
         'brilliant': 10,
         'pretty-good': 5,
         'average': 0,
-        'okay': 0,
+        'okay': -5,
         'awful': 0
     }
 }
@@ -36,9 +38,11 @@ weight = int(input('\nEnter your weight: '))
 sport = input('What sport did you do? ')
 method = input('What method did you use? ')
 hours = int(input('How many hours did you do it for? '))
+rating = input('How did you find it? ')
 
 exam_calories = int(calories_per_hour[sport][method])
 base_figure = (exam_calories / 80) * weight
 total = base_figure * hours
+total += calories_per_hour['modifiers'][rating]
 
-print('\n{0} calories burnt!\n'.format(total))
+print('\n{0} calories burnt!\n'.format(ceil(total)))

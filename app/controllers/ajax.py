@@ -73,7 +73,7 @@ def calculate_calories():
         'running': {'5mph': 5.9, '6mph': 7.375, '7mph': 8.4875, '8mph': 9.9625, '9mph': 11.0625, '10mph': 11.8},
         'cycling': {'leisure': 2.95, 'gentle': 4.425, 'moderate': 5.9, 'vigorous': 6.125, 'very-fast': 8.85,
                     'racing': 11.8},
-        'modifiers': {'brilliant': 10, 'pretty-good': 5, 'average': 0, 'okay': -5, 'awful': -10}
+        'modifiers': {'brilliant': 10, 'pretty-good': 5, 'about-average': 0, 'okay': -5, 'awful': -10}
     }
     sport = request.json['sport'].lower()
     effigy = request.json['effigy']

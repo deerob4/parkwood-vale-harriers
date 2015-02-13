@@ -6,11 +6,11 @@
     <h1>Add a Training Session - {{ date.strftime('%A %e %B %G') }}</h1>
     <h4>Done some exercise? Record it here to add it to your training log.</h4>
     {#    <div class="btn-group add-sport-buttons">#}
-    <button class="btn btn-running sport" id="running">Add Running</button>
-    <button class="btn btn-warning sport" id="cycling">Add Cycling</button>
-    <button class="btn btn-info sport" id="swimming">Add Swimming</button>
+    <button class="btn btn-running sport-button" id="running">Add Running</button>
+    <button class="btn btn-warning sport-button" id="cycling">Add Cycling</button>
+    <button class="btn btn-info sport-button" id="swimming">Add Swimming</button>
     {#    </div>#}
-    <button class="btn btn-primary total-calories">{{ total_calories }} calories | {{ total_hours }} hours</button>
+<button class="btn btn-primary"><span class="total-calories">{{ total_calories }}</span> calories | <span class="total-hours">{{ total_hours }}</span> hours</button>
     <br/>
 
     <div class="row">
