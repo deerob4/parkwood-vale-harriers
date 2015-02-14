@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, abort, r
 from flask.ext.login import current_user, login_required, logout_user
 
 from app.models import User, Activity, db
+from app.helpers import validation_error, update_user
 
 from datetime import datetime
 from random import randint
@@ -14,16 +15,9 @@ current_date = datetime.now().date()
 
 
 @main.route('/')
-def home():
-    if current_user.is_authenticated():
-        return redirect(url_for('main.add_training'))
-    return redirect(url_for('auth.login'))
-
-
-@main.route('/training/')
 @login_required
-def training():
-    return 'All training will be here!'
+def home():
+    return redirect(url_for('main.add_training'))
 
 
 @main.route('/profiles/<username>', methods=['GET', 'POST'])
@@ -31,19 +25,6 @@ def training():
 def profiles(username):
     # If the user has attempted to change their profile
     if request.method == 'POST':
-        def update_user(user, element, redirect_user=True):
-            """Adds the updated user to the db and reloads the page."""
-            db.session.add(user)
-            db.session.commit()
-            flash('Your %s has been successfully changed!' % element, 'success')
-            if redirect_user:
-                return redirect(url_for('main.profiles', username=user.username))
-
-        def validation_error(message):
-            """Displays an appropriate error message and reloads the page."""
-            flash(message, 'warning')
-            return redirect(url_for('main.profiles', username=current_user.username))
-
         user = User.query.filter_by(id=current_user.get_id()).first()
 
         # If the user tries to change their name
@@ -133,7 +114,8 @@ def add_training():
 @login_required
 def running_performance():
     runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    return render_template('performance/running_performance.html', runs=runs)
+    brilliant_runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running', opinion='brilliant').all()
+    return render_template('performance/running_performance.html', runs=runs, brilliant_runs=brilliant_runs)
 
 
 @main.route('/performance/cycling', methods=['GET', 'POST'])

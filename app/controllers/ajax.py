@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, json, request, redirect, url_for, flash, jsonify
-from flask.ext.login import current_user, logout_user
-from app.models import User, Activity, db
+from flask import Blueprint, render_template, request, jsonify
+from flask.ext.login import current_user
+from app.models import Activity, db
 
 from datetime import datetime
 from math import ceil
+
 
 ajax = Blueprint('ajax', __name__)
 
@@ -57,14 +58,11 @@ def remove_activity():
 def calculate_calories():
     """Calculates the number of calories burned in a session
 
-    The base values for each type of training were arrived at
-    by dividing each value provided by the board by 80. From here,
-    total calories for other weights can be worked out. The
-    algorithm works by taking the correct base value, and multiplying
-    it by the weight of the user. This value is then multiplied by
-    the number of hours spent on the activity. Finally, this value
-    is modified based on how well the activity went - each of the
-    five options is assigned a value from -10 to 10; this is then
+    The base values were arrived at by dividing each value provided by the
+    board by 80. The formula takes the correct base value, and multiplies it
+    by the weight of the user. This is then multiplied by
+    the number of hours. This value is modified based on how well the activity went -
+    each of the five options is assigned a value from -10 to 10; this is then
     added to the total value to arrive at the final number of calories.
     """
     base_calories = {
@@ -91,8 +89,6 @@ def calculate_calories():
 @ajax.route('/ajax/running', methods=['POST'])
 def running():
     runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    calories = []
-    for run in runs:
-        calories.append(run.calories)
-    print(calories)
-    return jsonify(calories=calories)
+    running_data = {'calories': [run.calories for run in runs], 'dates': [run.date.strftime('%d %b') for run in runs]}
+    print(running_data)
+    return jsonify(running_data=running_data)

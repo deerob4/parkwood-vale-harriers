@@ -1,23 +1,9 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, DateField, BooleanField, SubmitField, SelectField, IntegerField
-from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError, NumberRange, \
-    StopValidation
+from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError, NumberRange
 
 from app.models import User
-
-from datetime import date
-
-
-def calculate_age(born):
-    """Calculates the age of the user
-
-    This function takes a date object provided
-    by the user (in 'dob) and then operates it
-    in comparison with the current date, working
-    out the age of the user; this is returned as an int.
-    """
-    today = date.today()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+from app.helpers import calculate_age
 
 
 class MemberForm(Form):

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //Initialises the datepicker plugin for all inputs with a class of "datepicker"
     $('.datepicker').datepicker({
@@ -7,23 +7,16 @@ $(document).ready(function() {
         format: 'yyyy-mm-dd'
     });
 
-    $('.running-title').click(function() {
-        $.ajax({
-            url: '/ajax/running',
-            type: 'POST',
-            success: function(data) {
-                alert(data['calories']);
-            }
-        })
-    });
+
+
 
     //Called when the delete button on an activity block is pressed
-    $('.saved-activity .glyphicon').click(function() {
+    $('.saved-activity .glyphicon').click(function () {
         var $activity = $(this).closest('li');
         //If the activity block has been returned from the database
-        if($activity.hasClass('added')) {
+        if ($activity.hasClass('added')) {
             //Calls the remove activity animation
-            removeActivity($activity);   
+            removeActivity($activity);
             //Stores the id of the activity in a JSON object
             var toRemove = {"activityId": $activity.attr('id')};
             //Posts this JSON object to the server to delete it from the db
@@ -33,7 +26,7 @@ $(document).ready(function() {
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify(toRemove),
-                error: function(data) {
+                error: function (data) {
                     console.log(data.responseText);
                 }
             });
@@ -41,18 +34,18 @@ $(document).ready(function() {
             removeActivity($activity);
         }
     });
-    
+
     //Sends a request to the server for the correct 
-    $('.sport-button').click(function() {
+    $('.sport-button').click(function () {
         var activity = $(this).attr('id');
         $.ajax({
             url: '/ajax/sport-block',
             type: 'POST',
             data: activity,
-            success: function(data) {
+            success: function (data) {
                 updateActivities($(data));
             },
-            error: function(data) {
+            error: function (data) {
                 console.log(data.responseText);
             }
         });
@@ -72,11 +65,11 @@ $(document).ready(function() {
             formatSubmit: 'HH:i A'
         });
         //If the delete button is pressed, call the remove function
-        $('.activity-block .glyphicon').click(function() {
+        $('.activity-block .glyphicon').click(function () {
             removeActivity($(this).closest('li'));
         });
         //If the add button is clicked, call the validate function
-        $('.add-activity').click(function() {
+        $('.add-activity').click(function () {
             validateActivity($(this).closest('.panel'));
         });
     }
@@ -87,13 +80,13 @@ $(document).ready(function() {
         var $finish = $activity.find('#finish');
         $start.removeClass('animated zoomIn');
         $finish.removeClass('animated zoomIn');
-        if($start.val() == '') {
+        if ($start.val() == '') {
             genericAnimation($start, 'shake', true);
         }
-        if($finish.val() == '') {
+        if ($finish.val() == '') {
             genericAnimation($finish, 'shake', true);
         }
-        if($start.val() != '' && $finish.val() != '') {
+        if ($start.val() != '' && $finish.val() != '') {
             addActivity($activity);
         }
     }
@@ -102,9 +95,11 @@ $(document).ready(function() {
         var sport = $activity.attr('id');
         var containerWidth = $('.container').width();
         $activity.find('label, input, select, textarea, .panel-body ').addClass('animated zoomOut');
-        setTimeout(function() {
-            $activity.find('.panel-heading').animate({width: containerWidth, height: 60, borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4, paddingTop: 17}, 500);
+        setTimeout(function () {
+            $activity.find('.panel-heading').animate({
+                width: containerWidth, height: 60, borderBottomLeftRadius: 4,
+                borderBottomRightRadius: 4, paddingTop: 17
+            }, 500);
             $activity.find('.activity-block').css('margin-bottom', '15px');
             $activity.parent().removeClass('col-lg-4 col-md-6 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
             $activity.find('label, input, select, textarea, .form-group, .panel-body').hide();
@@ -115,7 +110,7 @@ $(document).ready(function() {
     //Animates the removal of the block
     function removeActivity($activity) {
         genericAnimation($activity, 'zoomOut', false);
-        setTimeout(function() {
+        setTimeout(function () {
             $activity.remove();
         }, 175);
     }
@@ -132,7 +127,7 @@ $(document).ready(function() {
         var effigy = $activity.find('#effigy').val();
         var rating = $activity.find('#rating').val();
         var hours = calculateHours($activity);
-        
+
         //Sends this information to the server, in order to calculate the calories burned
         $.ajax({
             url: '/ajax/calculate-calories',
@@ -145,26 +140,26 @@ $(document).ready(function() {
                 "hours": hours,
                 "rating": rating
             }),
-            success: function(data) {
+            success: function (data) {
                 //Stores the returned value from the server in caloriesBurned
                 var caloriesBurned = data;
-                
+
                 //Updates the total calories text
                 var $totalCalories = $('.total-calories');
                 var currentCalories = parseInt($totalCalories.text());
-                var newCalories = currentCalories + caloriesBurned;        
+                var newCalories = currentCalories + caloriesBurned;
                 $totalCalories.text(newCalories);
-                
+
                 //Updates the total hours text
                 var $totalHours = $('.total-hours');
-                var currentHours = parseInt($totalHours.text());      
+                var currentHours = parseInt($totalHours.text());
                 $totalHours.text(currentHours + hours);
-               
+
                 //Sets the text in the added activity block to the correct things
                 $activity.find('.sport').text(sport + ' (' + effigy.toLowerCase() + ') - ');
                 $activity.find('.calories').text(caloriesBurned + ' calories burned over');
                 $activity.find('.hours').text(hours + ' hours');
-                
+
                 //Creates a JSON object containing the information for the activity
                 var activityObject = {
                     "sport": sport.toLowerCase(),
@@ -176,7 +171,7 @@ $(document).ready(function() {
                     "rating": $activity.find('#rating').val(),
                     "thoughts": $activity.find('#thoughts').val()
                 };
-                
+
                 //Sends the JSON object to the server
                 $.ajax({
                     url: '/ajax/send-activity',
@@ -186,7 +181,7 @@ $(document).ready(function() {
                     data: JSON.stringify(activityObject)
                 });
             },
-            error: function() {
+            error: function () {
                 console.log('Error calculating calories.')
             }
         });
@@ -194,8 +189,8 @@ $(document).ready(function() {
 
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
-        if(timeout == true) {
-            setTimeout(function() {
+        if (timeout == true) {
+            setTimeout(function () {
                 $element.removeClass('animated ' + animation);
             }, 1400);
         }

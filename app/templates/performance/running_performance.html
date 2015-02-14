@@ -8,8 +8,10 @@
     <ul>
     {% for run in runs %}
         <li>
-            {{ run.id }} {{ run.date }} {{ run.effigy }} {{ run.calories }} {{ run.opinion }}
+            <p>{{ run.id }} {{ run.date }} {{ run.effigy }} {{ run.calories }} {{ run.opinion }}</p>
         </li>
     {% endfor %}
     </ul>
+    <p>{{ (brilliant_runs|length / runs|length * 100)|round }}% of runs were brilliant!</p>
+    <canvas id="runningChart" width="800" height="500"></canvas>
 {% endblock %}
