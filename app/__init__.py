@@ -1,6 +1,5 @@
 from flask import Flask
 from flask.ext.login import LoginManager
-from flask_debugtoolbar import DebugToolbarExtension
 
 from app.models import db, User
 
@@ -21,7 +20,6 @@ def create_app():
     # Sets configuration variables used application-wise
     app.config['SECRET_KEY'] = 'vYqTMY88zsuXSG7R4xYdPxYk'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
-    app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
     # Configures SQLAlchemy
     db.init_app(app)
@@ -31,8 +29,6 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'  # Sets the login view.
     login_manager.login_message_category = 'warning'
-
-    toolbar = DebugToolbarExtension(app)
 
     # Loads the current user by running a query on the id
     @login_manager.user_loader

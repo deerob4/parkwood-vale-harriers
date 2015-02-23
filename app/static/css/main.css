@@ -121,9 +121,6 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 /*------------------------------------------------------
 |            Begin general button styles               |
 -------------------------------------------------------*/
-.total-calories {
-    margin-left: 10px;
-}
 
 .btn {
     font-family: ralewaysemibold, "Helvetica Neue", Helvetica, Arial, sans-serif;

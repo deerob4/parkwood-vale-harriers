@@ -76,6 +76,9 @@ def calculate_calories():
     sport = request.json['sport'].lower()
     effigy = request.json['effigy']
     hours = request.json['hours']
+    start = request.json['start']
+    finish = request.json['finish']
+    thoughts = request.json['thoughts']
     rating = request.json['rating']
 
     base_value = base_calories[sport][effigy]
@@ -83,7 +86,10 @@ def calculate_calories():
     modifier = base_calories['modifiers'][rating]
     calories += modifier
 
-    return str(ceil(calories))
+    activity_data = {'calories': str(ceil(calories)), 'sport': sport, 'hours': hours, 'effigy': effigy, 
+                     'start': start, 'finish': finish, 'rating': rating, 'thoughts': thoughts}
+
+    return jsonify(activity_data)
 
 
 @ajax.route('/ajax/running', methods=['POST'])
