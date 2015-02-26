@@ -86,7 +86,7 @@ def calculate_calories():
     modifier = base_calories['modifiers'][rating]
     calories += modifier
 
-    activity_data = {'calories': str(ceil(calories)), 'sport': sport, 'hours': hours, 'effigy': effigy, 
+    activity_data = {'calories': str(ceil(calories)), 'sport': sport, 'hours': hours, 'effigy': effigy,
                      'start': start, 'finish': finish, 'rating': rating, 'thoughts': thoughts}
 
     return jsonify(activity_data)

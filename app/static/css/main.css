@@ -271,3 +271,31 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     float: right;
     font-family: ralewayitalic, sans-serif;
 }
+
+/*------------------------------------------------------
+|                  Begin table styles                   |
+-------------------------------------------------------*/
+.nav-pills {
+    font-family: ralewaymedium;
+    margin-bottom: 13px;
+}
+thead {
+    font-family: Raleway, sans-serif;
+}
+tbody {
+    font-family: Ralewaymedium, sans-serif;
+}
+.table>thead>tr>th {
+    border-bottom: 2px solid #f0ad4e;
+}
+.table>tbody>tr>td {
+    border-top: 1px solid #f0ad4e;
+}
+th.headerSortUp, th.headerSortDown {
+    background-color: #f0ad4e;
+}
+.panel-cycling-data {
+    border-left: 1px solid #f0ad4e;
+    border-bottom: 1px solid #f0ad4e;
+    border-right: 1px solid #f0ad4e;
+}

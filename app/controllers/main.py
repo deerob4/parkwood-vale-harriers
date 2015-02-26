@@ -121,8 +121,9 @@ def running_performance():
 @main.route('/performance/cycling', methods=['GET', 'POST'])
 @login_required
 def cycling_performance():
+    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
     cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
-    return render_template('performance/cycling_performance.html', cycles=cycles)
+    return render_template('performance/cycling_performance.html', cycles=cycles, runs=runs)
 
 
 @main.route('/performance/swimming', methods=['GET', 'POST'])

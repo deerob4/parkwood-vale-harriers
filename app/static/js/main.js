@@ -3,6 +3,8 @@ $(document).ready(function () {
     // Initialises the datepicker plugin for all inputs with a class of "datepicker"
     $('.datepicker').datepicker({endDate: '-18y', startDate: '-75y', format: 'yyyy-mm-dd'});
 
+    $('#cyclingDataTable').tablesorter();
+
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
         if (timeout === true) {
