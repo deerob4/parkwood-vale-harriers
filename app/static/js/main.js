@@ -142,5 +142,26 @@ $(document).ready(function () {
             }
         })
     }
+    
+    $.ajax({
+        url: '/ajax/running',
+        type: 'POST',
+        success: function (data) {
+            constructChart(data)
+        }
+    })
+    
+    function constructChart(chartData) {
+        var data = {
+            labels: chartData.running_data.dates,
+            series: [chartData.running_data.calories]
+        };
+        var options = {
+          width: 600,
+          height: 600,
+          showPoint: false,
+        };
+        new Chartist.Bar('.ct-chart', data, options);
+    }
 
 });

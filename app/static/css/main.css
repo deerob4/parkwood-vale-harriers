@@ -299,3 +299,11 @@ th.headerSortUp, th.headerSortDown {
     border-bottom: 1px solid #f0ad4e;
     border-right: 1px solid #f0ad4e;
 }
+
+/*------------------------------------------------------
+|                  Begin chart styles                  |
+-------------------------------------------------------*/
+.ct-chart label {
+    font-family: ralewaymedium;
+    font-size: 100px;
+}
