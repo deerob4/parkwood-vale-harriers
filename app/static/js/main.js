@@ -104,18 +104,35 @@ $(document).ready(function () {
             finish = $activity.find('#finish').val(),
             thoughts = $activity.find('#thoughts').val(),
             hours = calculateHours($activity);
-        ajaxCall('/ajax/calculate-calories', 'POST', 'json', 'application/json', JSON.stringify({"sport": sport, "effigy": effigy,"hours": hours, "thoughts": thoughts, "start": start, "finish": finish, "rating": rating}), addActivity, $activity);
+        ajaxCall('/ajax/calculate-calories', 'POST', 'json', 'application/json', JSON.stringify({
+            "sport": sport,
+            "effigy": effigy,
+            "hours": hours,
+            "thoughts": thoughts,
+            "start": start,
+            "finish": finish,
+            "rating": rating
+        }), addActivity, $activity);
     }
 
     function addActivity(data, $activity) {
         var caloriesBurned = data.calories,
             currentCalories = parseInt($('.total-calories').text()),
             currentHours = parseInt($('.total-hours').text()),
-            // Builds a string to display in the animated activity block
-            // activityString = data.sport + ' (' + effigy.toLowerCase() + ') - ' + caloriesBurned + ' calories burned over ' + data.hours + ' hours',
+        // Builds a string to display in the animated activity block
+        // activityString = data.sport + ' (' + effigy.toLowerCase() + ') - ' + caloriesBurned + ' calories burned over ' + data.hours + ' hours',
             activityString = data.sport,
-            // Constructs the final activity object in JSON, to send to the server and save to the database
-            activityObject = {"sport": data.sport.toLowerCase(), "effigy": data.effigy, "calories": caloriesBurned, "start": data.start, "finish": data.finish, "hours": data.hours, "rating": data.rating, "thoughts": data.thoughts};
+        // Constructs the final activity object in JSON, to send to the server and save to the database
+            activityObject = {
+                "sport": data.sport.toLowerCase(),
+                "effigy": data.effigy,
+                "calories": caloriesBurned,
+                "start": data.start,
+                "finish": data.finish,
+                "hours": data.hours,
+                "rating": data.rating,
+                "thoughts": data.thoughts
+            };
 
         $('.total-hours').text(currentHours + data.hours);
         $('.total-calories').text(currentCalories + caloriesBurned);
@@ -142,26 +159,35 @@ $(document).ready(function () {
             }
         })
     }
-    
-    $.ajax({
-        url: '/ajax/running',
-        type: 'POST',
-        success: function (data) {
-            constructChart(data)
-        }
-    })
-    
+
+    //$.ajax({
+    //    url: '/ajax/running',
+    //    type: 'POST',
+    //    success: function (data) {
+    //        //constructChart(data)
+    //    }
+    //});
+
+    var ctx = document.getElementById("myChart").getContext("2d");
+
     function constructChart(chartData) {
         var data = {
             labels: chartData.running_data.dates,
-            series: [chartData.running_data.calories]
+            datasets: [
+                {
+                    label: 'Running',
+                    strokeColor: "rgba(236,151,31,0.8)",
+                    fillColor: "rgba(240,173,78, 0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: chartData.running_data.calories
+                }
+            ]
         };
         var options = {
-          width: 600,
-          height: 600,
-          showPoint: false,
+            scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
         };
-        new Chartist.Bar('.ct-chart', data, options);
+        var myBarChart = new Chart(ctx).Bar(data, options);
     }
 
 });

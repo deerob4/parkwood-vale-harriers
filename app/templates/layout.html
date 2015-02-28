@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/themes/classic.css"/>
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/themes/classic.time.css"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chartist/0.7.2/chartist.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
     <title>{% block title %} - Parkwood Vale Harriers{% endblock %}</title>
 </head>
@@ -23,20 +22,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Parkwood Vale Harriers</a>
+            <a class="navbar-brand" href="{{ url_for('main.home') }}">Parkwood Vale Harriers</a>
         </div>
         <div class="collapse navbar-collapse" id="main_nav">
             {% if current_user.is_authenticated() %}
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Performance<span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url_for('main.running_performance') }}">Running</a></li>
-                            <li><a href="{{ url_for('main.cycling_performance') }}">Cycling</a></li>
-                            <li><a href="{{ url_for('main.swimming_performance') }}">Swimming</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ url_for('main.user_performance') }}">My Performance</a></li>
                     <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
                     <li><a href="">Compare Performance</a></li>
                 </ul>
@@ -72,6 +63,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/picker.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/picker.time.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/chartist/0.7.2/chartist.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </html>

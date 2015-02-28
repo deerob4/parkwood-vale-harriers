@@ -1,11 +1,12 @@
+from datetime import datetime
+
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user
+from random import randint
 
 from app.forms import MemberForm, LoginForm
 from app.models import db, User
 
-from random import randint
-from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 

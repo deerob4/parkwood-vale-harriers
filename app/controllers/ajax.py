@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, jsonify
-from flask.ext.login import current_user
-from app.models import Activity, db
-
 from datetime import datetime
 from math import ceil
+
+from flask import Blueprint, render_template, request, jsonify
+from flask.ext.login import current_user
+
+from app.models import Activity, db
 
 
 ajax = Blueprint('ajax', __name__)

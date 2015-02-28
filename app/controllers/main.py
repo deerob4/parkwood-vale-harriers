@@ -1,13 +1,13 @@
+from datetime import datetime
+
 from flask import Blueprint, render_template, flash, redirect, url_for, abort, request
 from flask.ext.login import current_user, login_required, logout_user
+from random import randint
+import re
 
 from app.models import User, Activity, db
 from app.helpers import validation_error, update_user
 
-from datetime import datetime
-from random import randint
-
-import re
 
 main = Blueprint('main', __name__)
 
@@ -17,7 +17,7 @@ current_date = datetime.now().date()
 @main.route('/')
 @login_required
 def home():
-    return redirect(url_for('main.add_training'))
+    return redirect(url_for('main.user_performance'))
 
 
 @main.route('/profiles/<username>', methods=['GET', 'POST'])
@@ -97,7 +97,7 @@ def profiles(username):
     return redirect(url_for('main.profiles', username=current_user.username))
 
 
-@main.route('/training/add', methods=['GET', 'POST'])
+@main.route('/add-training', methods=['GET', 'POST'])
 @login_required
 def add_training():
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
@@ -107,27 +107,34 @@ def add_training():
         total_calories += activity.calories
         total_hours += activity.hours
     return render_template('training/add_training.html', date=current_date,
-                           current_user=current_user, activities=activities, total_calories=total_calories, total_hours=total_hours)
+                           current_user=current_user, activities=activities, total_calories=total_calories,
+                           total_hours=total_hours)
 
 
-@main.route('/performance/running', methods=['GET', 'POST'])
+@main.route('/performance', methods=['GET', 'POST'])
 @login_required
-def running_performance():
-    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    brilliant_runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running', opinion='brilliant').all()
-    return render_template('performance/running_performance.html', runs=runs, brilliant_runs=brilliant_runs)
+def user_performance():
 
+    all_activities = Activity.query.filter_by(user_id=current_user.get_id()).all()
+    all_runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
+    all_cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
+    all_swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
 
-@main.route('/performance/cycling', methods=['GET', 'POST'])
-@login_required
-def cycling_performance():
-    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
-    return render_template('performance/cycling_performance.html', cycles=cycles, runs=runs)
+    total_calories = 0
+    total_hours = 0
 
+    for activity in all_activities:
+        if activity.date.month == current_date.month:
+            total_calories += activity.calories
+            total_hours += activity.hours
 
-@main.route('/performance/swimming', methods=['GET', 'POST'])
-@login_required
-def swimming_performance():
-    swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
-    return render_template('performance/swimming_performance.html', swims=swims)
+    user_data = {
+        'progress_data': {
+            'total_calories': (total_calories / 62700) * 100,
+            'total_hours': (total_hours / 500) * 100,
+        }
+    }
+
+    print(current_user.weight)
+
+    return render_template('performance/user_performance.html', user_data=user_data, month=current_date.strftime('%B'))

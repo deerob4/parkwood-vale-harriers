@@ -9,7 +9,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'ralewaymedium';
     src: url('../fonts/raleway-medium-webfont.eot');
@@ -22,7 +21,6 @@
     font-style: normal;
 
 }
-
 @font-face {
     font-family: 'ralewaysemibold';
     src: url('../fonts/raleway-semibold-webfont.eot');
@@ -35,17 +33,15 @@
     font-style: normal;
 
 }
-
 /*------------------------------------------------------
 |                     Begin footer styles               |
 -------------------------------------------------------*/
 .footer {
     width: 100%;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eeeeee;
     text-align: center;
     font-family: ralewaymedium, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
-
 /*------------------------------------------------------
 |                     Begin misc hacks                 |
 -------------------------------------------------------*/
@@ -58,7 +54,6 @@
 .charity-label {
     width: 50%;
 }
-
 /*------------------------------------------------------
 |        Begin general typography styles               |
 -------------------------------------------------------*/
@@ -66,43 +61,35 @@ h1 {
     color: #292929;
     font-family: ralewaymedium, sans-serif;
 }
-
 h4 {
     color: #2d2d2d;
     font-weight: 400;
     font-size: 20px;
     font-family: ralewaymedium, sans-serif;
 }
-
 label, p, .btn, ul.add-sport-buttons, .datepicker {
     font-family: ralewaysemibold, sans-serif, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 100;
 }
-
 label {
     font-size: 14px;
     width: 100%;
 }
-
 .activity-block label {
     width: 100%;
 }
-
 .timepicker {
-    background-color: #fff !important;
+    background-color: #ffffff !important;
     cursor: auto !important;
 }
-
 .details p {
     margin-bottom: 3px;
     font-size: 20px;
     font-weight: 800;
 }
-
 .jumbotron .alert p {
     font-size: 20px;
 }
-
 /*------------------------------------------------------
 |             Begin general input styles               |
 -------------------------------------------------------*/
@@ -113,11 +100,9 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     -webkit-box-shadow: none !important;
     font-family: ralewaymedium, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 .datepicker {
     padding-left: 12px !important;
 }
-
 /*------------------------------------------------------
 |            Begin general button styles               |
 -------------------------------------------------------*/
@@ -125,28 +110,23 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .btn {
     font-family: ralewaysemibold, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 .btn-running {
     background-color: #52aa5e;
-    color: #fff;
+    color: #ffffff;
 }
-
 .btn-running:hover {
     background-color: #10aa3b;
-    color: #fff;
+    color: #ffffff;
 }
-
 .btn-running:focus {
-    color: #fff;
+    color: #ffffff;
 }
-
 /*------------------------------------------------------
 |             Begin register form styles               |
 -------------------------------------------------------*/
 .charity-row {
     height: 25px;
 }
-
 /*------------------------------------------------------
 |                Begin add training styles               |
 -------------------------------------------------------*/
@@ -156,154 +136,107 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     list-style-type: none;
     padding: 0;
 }
-
 .activity-list .glyphicon {
     float: right;
     font-size: 14px;
     top: 7px;
-    color: #fff;
+    color: #ffffff;
 }
-
 .activity-list .glyphicon:hover {
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
     cursor: pointer;
 }
-
 .activity-list textarea {
     height: 110px;
 }
-
 .activity-list .form-group {
     margin-bottom: 7px;
 }
-
 .activity-list .btn {
     margin-top: 9px;
 }
-
 /*The actual activity li.*/
 .activity {
     -webkit-animation-duration: 0.375s;
 }
-
 .add-activity {
     width: 100%;
 }
-
 #Cycling .panel-body, .cycling-input {
     border: 1px solid #f0ad4e;
 }
-
 #Running .panel-body, .running-input {
     border: 1px solid #52aa5e;
 }
-
 #Swimming .panel-body, .swimming-input {
     border: 1px solid #5bc0de;
 }
-
 .activity-block-cycling {
     background-color: #f0ad4e;
 }
-
 .activity-block-running {
     background-color: #52aa5e;
 }
-
 .activity-block-swimming {
     background-color: #5bc0de;
 }
-
 .saved-activity {
     height: 60px;
     border-radius: 4px;
     margin-bottom: 15px;
     margin-left: 15px;
     font-family: ralewaysemibold, sans-serif;
-    color: #fff;
+    color: #ffffff;
     font-size: 18px;
     padding-top: 17px;
 }
-
 .activity-block .panel-body {
     padding: 24px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 }
-
 .panel-running > .panel-heading {
     background-color: #52aa5e;
-    color: #fff
+    color: #ffffff
 }
-
 /*Misc activity adder styles*/
 .time {
-    background-color: #fff !important;
+    background-color: #ffffff !important;
     cursor: default !important;
 }
-
 /*------------------------------------------------------
 |                  Begin account page                   |
 -------------------------------------------------------*/
 .delete-account {
     margin-top: 8px;
 }
-
 .panel-heading {
     font-weight: 600;
     font-family: ralewaysemibold, sans-serif;
 }
-
 .panel {
     font-family: ralewaymedium, sans-serif;
 }
-
 .panel-list {
-    border-left: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    border-left: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 }
-
 .right {
     float: right;
     font-family: ralewayitalic, sans-serif;
 }
-
 /*------------------------------------------------------
 |                  Begin table styles                   |
 -------------------------------------------------------*/
-.nav-pills {
-    font-family: ralewaymedium;
-    margin-bottom: 13px;
+.calorie-progress-bars {
+    list-style-type: none;
+    margin-bottom: 35px;
+    padding: 0;
 }
-thead {
-    font-family: Raleway, sans-serif;
-}
-tbody {
-    font-family: Ralewaymedium, sans-serif;
-}
-.table>thead>tr>th {
-    border-bottom: 2px solid #f0ad4e;
-}
-.table>tbody>tr>td {
-    border-top: 1px solid #f0ad4e;
-}
-th.headerSortUp, th.headerSortDown {
-    background-color: #f0ad4e;
-}
-.panel-cycling-data {
-    border-left: 1px solid #f0ad4e;
-    border-bottom: 1px solid #f0ad4e;
-    border-right: 1px solid #f0ad4e;
-}
-
-/*------------------------------------------------------
-|                  Begin chart styles                  |
--------------------------------------------------------*/
-.ct-chart label {
-    font-family: ralewaymedium;
-    font-size: 100px;
+.stat-bars h3 {
+    font-family: ralewaysemibold, sans-serif !important;
 }
