@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="main_nav">
             {% if current_user.is_authenticated() %}
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('main.user_performance') }}">My Performance</a></li>
+                    <li><a href="{{ url_for('main.performance') }}">My Performance</a></li>
                     <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
                     <li><a href="">Compare Performance</a></li>
                 </ul>
@@ -63,6 +63,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/picker.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.3/compressed/picker.time.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </html>

@@ -243,9 +243,17 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
 .tooltip {
     font-family: ralewaysemibold, sans-serif;
 }
-thead>tr>th {
+thead > tr > th {
     font-family: ralewaysemibold, sans-serif;
 }
-tbody>tr>td {
+tbody > tr > td {
     font-family: ralewaymedium, sans-serif;
+}
+.performance-subtitle, .calorie-subtitle, .hour-subtitle {
+    -webkit-animation-duration: 0.575s;
+}
+select.months {
+    margin-top: 26px;
+    margin-left: -55px;
+    width: 315px;
 }

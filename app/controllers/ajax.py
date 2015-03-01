@@ -1,10 +1,12 @@
 from datetime import datetime
 from math import ceil
+from calendar import month_name
 
 from flask import Blueprint, render_template, request, jsonify
 from flask.ext.login import current_user
 
 from app.models import Activity, db
+from app.performance_data import performance_data
 
 
 ajax = Blueprint('ajax', __name__)
@@ -99,3 +101,10 @@ def running():
     running_data = {'calories': [run.calories for run in runs], 'dates': [run.date.strftime('%d %b') for run in runs]}
     print(running_data)
     return jsonify(running_data=running_data)
+
+
+@ajax.route('/ajax/performance', methods=['POST'])
+def ajax_performance():
+    month = request.get_data().decode("utf-8").lower()
+    user_data = performance_data(month)
+    return jsonify(user_data=user_data)

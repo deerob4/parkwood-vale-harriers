@@ -3,25 +3,36 @@
 {% block title %}Training Performance{{ super() }}{% endblock %}
 
 {% block content %}
-    <h1>Training Performance</h1>
+    <div class="row">
+        <div class="col-md-5"><h1>Training Performance</h1></div>
+        <div class="col-md-3">
+            <select class="months form-control" name="months">
+                {% for month in available_months %}
+                    <option value="{{ month }}"
+                            {% if month|title == current_month %}selected="selected"{% endif %}>{{ month|title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
     <h4>Check out a detailed analysis of how you've performed in your training sessions!</h4>
 
     <div class="row">
         <div class="col-md-6">
-            <h3 class="performance-subtitle">Calorie Progress for {{ month }}</h3>
+            <h3 class="performance-subtitle calorie-subtitle">{{ current_month }} Calorie Progress</h3>
 
             <div class="progress">
-                <div class="progress-bar progress-bar-success"
+                <div class="progress-bar progress-bar-success running-calories-bar"
                      style="width: {{ user_data.progress_data.running.calories.percentage }}%;"
                      role="progressbar" data-toggle="tooltip"
                      title="{{ user_data.progress_data.running.calories.value }} calories"></div>
 
-                <div class="progress-bar progress-bar-warning"
+                <div class="progress-bar progress-bar-warning cycling-calories-bar"
                      style="width: {{ user_data.progress_data.cycling.calories.percentage }}%;"
                      role="progressbar" data-toggle="tooltip"
                      title="{{ user_data.progress_data.cycling.calories.value }} calories"></div>
 
-                <div class="progress-bar progress-bar-info"
+                <div class="progress-bar progress-bar-info swimming-calories-bar"
                      style="width: {{ user_data.progress_data.swimming.calories.percentage }}%;"
                      role="progressbar" data-toggle="tooltip"
                      title="{{ user_data.progress_data.swimming.calories.value }} calories"></div>
@@ -30,20 +41,22 @@
         </div>
 
         <div class="col-md-6">
-            <h3 class="performance-subtitle">Hourly Progress for {{ month }}</h3>
+            <h3 class="performance-subtitle hour-subtitle"><span class="month-text">{{ current_month }}</span> Hourly
+                Progress
+            </h3>
 
             <div class="progress">
-                <div class="progress-bar progress-bar-success"
+                <div class="progress-bar progress-bar-success running-hours-bar"
                      style="width: {{ user_data.progress_data.running.hours.percentage }}%;"
                      role="progressbar" data-toggle="tooltip"
                      title="{{ user_data.progress_data.running.hours.value }} hours"></div>
 
-                <div class="progress-bar progress-bar-warning"
+                <div class="progress-bar progress-bar-warning cycling-hours-bar"
                      style="width: {{ user_data.progress_data.cycling.hours.percentage }}%;"
                      role="progressbar" data-toggle="tooltip"
                      title="{{ user_data.progress_data.cycling.hours.value }} hours"></div>
 
-                <div class="progress-bar progress-bar-info"
+                <div class="progress-bar progress-bar-info swimming-hours-bar"
                      style="width: {{ user_data.progress_data.swimming.hours.percentage }}%;"
                      role="progressbar" data-toggle="tooltip"
                      title="{{ user_data.progress_data.swimming.hours.value }} hours"></div>
@@ -51,75 +64,75 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Effigy</th>
-                    <th>Calories</th>
-                    <th>Hours</th>
-                    <th>Rating</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for run in user_data.sport_data.running %}
-                    <tr>
-                        <td>{{ run.date }}</td>
-                        <td>{{ run.effigy }}</td>
-                        <td>{{ run.calories }}</td>
-                        <td>{{ run.hours }}</td>
-                        <td>{{ run.opinion }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Effigy</th>
-                    <th>Calories</th>
-                    <th>Hours</th>
-                    <th>Rating</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Effigy</th>
-                    <th>Calories</th>
-                    <th>Hours</th>
-                    <th>Rating</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+{#        <div class="row">#}
+{#            <div class="col-md-4">#}
+{#                <table class="table">#}
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th>Date</th>#}
+{#                        <th>Effigy</th>#}
+{#                        <th>Calories</th>#}
+{#                        <th>Hours</th>#}
+{#                        <th>Rating</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    {% for run in user_data.sport_data.running %}#}
+{#                        <tr>#}
+{#                            <td>{{ run.date }}</td>#}
+{#                            <td>{{ run.effigy }}</td>#}
+{#                            <td>{{ run.calories }}</td>#}
+{#                            <td>{{ run.hours }}</td>#}
+{#                            <td>{{ run.opinion }}</td>#}
+{#                        </tr>#}
+{#                    {% endfor %}#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <table class="table">#}
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th>Date</th>#}
+{#                        <th>Effigy</th>#}
+{#                        <th>Calories</th>#}
+{#                        <th>Hours</th>#}
+{#                        <th>Rating</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    <tr>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                    </tr>#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <table class="table">#}
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th>Date</th>#}
+{#                        <th>Effigy</th>#}
+{#                        <th>Calories</th>#}
+{#                        <th>Hours</th>#}
+{#                        <th>Rating</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    <tr>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                        <td></td>#}
+{#                    </tr>#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            </div>#}
+{#        </div>#}
 
 {% endblock %}

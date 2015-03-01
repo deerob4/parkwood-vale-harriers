@@ -160,6 +160,38 @@ $(document).ready(function () {
         })
     }
 
+    $('.months').change(function () {
+        var month = $(this).val();
+        $.ajax({
+            url: '/ajax/performance',
+            type: 'POST',
+            data: month,
+            success: function (data) {
+                updatePerformance(data)
+            }
+        });
+    });
+
+    function updatePerformance(data) {
+        $('.running-calories-bar').transit({'width': data.user_data.progress_data.running.calories.percentage + "%"});
+        $('.cycling-calories-bar').transit({'width': data.user_data.progress_data.cycling.calories.percentage + "%"});
+        $('.swimming-calories-bar').transit({'width': data.user_data.progress_data.swimming.calories.percentage + "%"});
+
+        $('.running-hours-bar').transit({'width': data.user_data.progress_data.running.hours.percentage + "%"});
+        $('.cycling-hours-bar').transit({'width': data.user_data.progress_data.cycling.hours.percentage + "%"});
+        $('.swimming-hours-bar').transit({'width': data.user_data.progress_data.swimming.hours.percentage + "%"});
+
+        $('.performance-subtitle').addClass('animated fadeOut');
+        setTimeout(function () {
+            $('.calorie-subtitle').text(data.user_data.month + ' Calorie Progress').removeClass('animated fadeOut').addClass('animated fadeIn');
+            $('.hour-subtitle').text(data.user_data.month + ' Hourly Progress').removeClass('animated fadeOut').addClass('animated fadeIn')
+        }, 60);
+
+        $('.selected').removeClass('btn-primary selected').addClass('btn-default');
+        $('#' + data.user_data.month.toLowerCase()).removeClass('btn-default').addClass('btn-primary selected');
+
+    }
+
     //$.ajax({
     //    url: '/ajax/running',
     //    type: 'POST',
