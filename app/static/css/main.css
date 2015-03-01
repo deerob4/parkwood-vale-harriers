@@ -237,6 +237,15 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     margin-bottom: 35px;
     padding: 0;
 }
-.stat-bars h3 {
+.performance-subtitle {
     font-family: ralewaysemibold, sans-serif !important;
+}
+.tooltip {
+    font-family: ralewaysemibold, sans-serif;
+}
+thead>tr>th {
+    font-family: ralewaysemibold, sans-serif;
+}
+tbody>tr>td {
+    font-family: ralewaymedium, sans-serif;
 }

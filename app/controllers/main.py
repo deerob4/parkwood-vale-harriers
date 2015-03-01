@@ -1,4 +1,6 @@
 from datetime import datetime
+from math import floor
+from calendar import month_name
 
 from flask import Blueprint, render_template, flash, redirect, url_for, abort, request
 from flask.ext.login import current_user, login_required, logout_user
@@ -111,30 +113,90 @@ def add_training():
                            total_hours=total_hours)
 
 
-@main.route('/performance', methods=['GET', 'POST'])
+@main.route('/performance', methods=['GET'])
 @login_required
 def user_performance():
+    return redirect(url_for('main.performance', month=current_date.strftime('%B').lower()))
 
-    all_activities = Activity.query.filter_by(user_id=current_user.get_id()).all()
-    all_runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    all_cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
-    all_swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
 
-    total_calories = 0
-    total_hours = 0
+@main.route('/performance/<month>', methods=['GET', 'POST'])
+@login_required
+def performance(month):
+    months = [month_name[x].lower() for x in range(1, 13)]  # Constructs a list of month names
+    if month in months:
+        all_activities = Activity.query.filter_by(user_id=current_user.get_id()).all()
+        all_runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
+        all_cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
+        all_swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
 
-    for activity in all_activities:
-        if activity.date.month == current_date.month:
-            total_calories += activity.calories
-            total_hours += activity.hours
+        month_map = dict(zip(months, range(1, 13)))  # Creates a dict with month names and values - Jan: 1 etc
 
-    user_data = {
-        'progress_data': {
-            'total_calories': (total_calories / 62700) * 100,
-            'total_hours': (total_hours / 500) * 100,
+        print(months)
+        print(month_map)
+
+        calorie_goal = 62700
+        hour_goal = 60
+
+        # [0] contains the calories burned; [1] contains the hours
+        total_run_data = [0, 0]
+        total_cycle_data = [0, 0]
+        total_swim_data = [0, 0]
+
+        for run in all_runs:
+            if run.date.month == month_map[month]:
+                total_run_data[0] += run.calories
+                total_run_data[1] += run.hours
+
+        for cycle in all_cycles:
+            if cycle.date.month == month_map[month]:
+                total_cycle_data[0] += cycle.calories
+                total_cycle_data[1] += cycle.hours
+
+        for swim in all_swims:
+            if swim.date.month == month_map[month]:
+                total_swim_data[0] += swim.calories
+                total_swim_data[1] += swim.hours
+
+        user_data = {
+            'progress_data': {
+                'running': {
+                    'calories': {
+                        'value': total_run_data[0],
+                        'percentage': total_run_data[0] / calorie_goal * 100
+                    },
+                    'hours': {
+                        'value': total_run_data[1],
+                        'percentage': total_run_data[1] / hour_goal * 100
+                    }
+                },
+                'cycling': {
+                    'calories': {
+                        'value': total_cycle_data[0],
+                        'percentage': total_cycle_data[0] / calorie_goal * 100
+                    },
+                    'hours': {
+                        'value': total_cycle_data[1],
+                        'percentage': total_cycle_data[1] / hour_goal * 100
+                    }
+                },
+                'swimming': {
+                    'calories': {
+                        'value': total_swim_data[0],
+                        'percentage': total_swim_data[0] / calorie_goal * 100
+                    },
+                    'hours': {
+                        'value': total_swim_data[1],
+                        'percentage': total_swim_data[1] / hour_goal * 100
+                    }
+                }
+            },
+            'sport_data': {
+                'running': all_runs,
+                'cycling': all_cycles,
+                'swimming': all_swims
+            }
         }
-    }
 
-    print(current_user.weight)
-
-    return render_template('performance/user_performance.html', user_data=user_data, month=current_date.strftime('%B'))
+        # return render_template('performance/user_performance.html', user_data=user_data, month=month.title())
+        return render_template('errors/404.html')
+    abort(404)

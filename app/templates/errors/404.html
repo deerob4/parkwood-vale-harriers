@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block title %}404 Page Not Found{{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>404 Page Not Found!</h1>
+
+        <p>Sorry, we couldn't find that page for you. It's possible that you've typed an incorrect address, in which
+            case the best thing to do is <a href="{{ url_for('main.home') }}">return home.</a></p>
+    </div>
+{% endblock %}

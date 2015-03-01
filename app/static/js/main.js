@@ -168,6 +168,8 @@ $(document).ready(function () {
     //    }
     //});
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     var ctx = document.getElementById("myChart").getContext("2d");
 
     function constructChart(chartData) {
