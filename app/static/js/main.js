@@ -189,7 +189,6 @@ $(document).ready(function () {
 
         $('.selected').removeClass('btn-primary selected').addClass('btn-default');
         $('#' + data.user_data.month.toLowerCase()).removeClass('btn-default').addClass('btn-primary selected');
-
     }
 
     //$.ajax({
