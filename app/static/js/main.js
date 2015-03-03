@@ -191,13 +191,13 @@ $(document).ready(function () {
         $('#' + data.user_data.month.toLowerCase()).removeClass('btn-default').addClass('btn-primary selected');
     }
 
-    //$.ajax({
-    //    url: '/ajax/running',
-    //    type: 'POST',
-    //    success: function (data) {
-    //        //constructChart(data)
-    //    }
-    //});
+    $.ajax({
+       url: '/ajax/running',
+       type: 'POST',
+       success: function (data) {
+           constructChart(data)
+       }
+    });
 
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -220,7 +220,7 @@ $(document).ready(function () {
         var options = {
             scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
         };
-        var myBarChart = new Chart(ctx).Bar(data, options);
+        var myBarChart = new Chart(ctx).Line(data, options);
     }
 
 });

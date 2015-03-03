@@ -68,79 +68,93 @@
         <div class="col-md-6">
             {% if user_data.sport_data.running|length > 0 %}
                 <h3>Running Sessions</h3>
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Effigy</th>
-                            <th>Calories</th>
-                            <th>Hours</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for run in user_data.sport_data.running %}
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ run.date.strftime('%d %b %y') }}</td>
-                                <td>{{ run.effigy }}</td>
-                                <td>{{ run.calories }} calories</td>
-                                <td>{{ run.hours }} hours</td>
-                                <td>{{ run.opinion }}</td>
+                                <th>Date</th>
+                                <th>Effigy</th>
+                                <th>Calories</th>
+                                <th>Hours</th>
+                                <th>Rating</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for run in user_data.sport_data.running %}
+                                <tr>
+                                    <td>{{ run.date.strftime('%d %b %y') }}</td>
+                                    <td>{{ run.effigy }}</td>
+                                    <td>{{ run.calories }} calories</td>
+                                    <td>{{ run.hours }} hours</td>
+                                    <td>{{ run.opinion }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             {% endif %}
             {% if user_data.sport_data.cycling|length > 0 %}
                 <h3>Cycling Sessions</h3>
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Effigy</th>
-                            <th>Calories</th>
-                            <th>Hours</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for cycle in user_data.sport_data.cycling %}
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ cycle.date.strftime('%d %b %y') }}</td>
-                                <td>{{ cycle.effigy|title }}</td>
-                                <td>{{ cycle.calories }} calories</td>
-                                <td>{{ cycle.hours }} hours</td>
-                                <td>{{ cycle.opinion }}</td>
+                                <th>Date</th>
+                                <th>Effigy</th>
+                                <th>Calories</th>
+                                <th>Hours</th>
+                                <th>Rating</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for cycle in user_data.sport_data.cycling %}
+                                <tr>
+                                    <td>{{ cycle.date.strftime('%d %b %y') }}</td>
+                                    <td>{{ cycle.effigy|title }}</td>
+                                    <td>{{ cycle.calories }} calories</td>
+                                    <td>{{ cycle.hours }} hours</td>
+                                    <td>{{ cycle.opinion }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             {% endif %}
             {% if user_data.sport_data.swimming|length > 0 %}
                 <h3>Swimming Sessions</h3>
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Effigy</th>
-                            <th>Calories</th>
-                            <th>Hours</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for swim in user_data.sport_data.swimming %}
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ swim.date.strftime('%d %b %y') }}</td>
-                                <td>{{ swim.effigy|title }}</td>
-                                <td>{{ swim.calories }} calories</td>
-                                <td>{{ swim.hours }} hours</td>
-                                <td>{{ swim.opinion }}</td>
+                                <th>Date</th>
+                                <th>Effigy</th>
+                                <th>Calories</th>
+                                <th>Hours</th>
+                                <th>Rating</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for swim in user_data.sport_data.swimming %}
+                                <tr>
+                                    <td>{{ swim.date.strftime('%d %b %y') }}</td>
+                                    <td>{{ swim.effigy|title }}</td>
+                                    <td>{{ swim.calories }} calories</td>
+                                    <td>{{ swim.hours }} hours</td>
+                                    <td>{{ swim.opinion }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             {% endif %}
+        </div>
+        <div class="col-md-6">
+            <canvas id="myChart" width="550" height="500"></canvas>
+            <select name="weedledum" class="form-control">
+                <option value="">Podge</option>
+                <option value="">Wodge</option>
+                <option value="">Hodge</option>
+            </select>
         </div>
     </div>
 

@@ -249,6 +249,9 @@ thead > tr > th {
 tbody > tr > td {
     font-family: ralewaymedium, sans-serif;
 }
+table {
+    border-radius: 40px;
+}
 .performance-subtitle, .calorie-subtitle, .hour-subtitle {
     -webkit-animation-duration: 0.575s;
 }
