@@ -237,7 +237,7 @@ input:not(.input_membership_charity):not(.add-activity):not(.btn-modal), select,
     margin-bottom: 35px;
     padding: 0;
 }
-.performance-subtitle {
+h3 {
     font-family: ralewaysemibold, sans-serif !important;
 }
 .tooltip {

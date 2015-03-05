@@ -19,20 +19,20 @@ def performance_data(month):
     total_run_data = [0, 0]
     total_cycle_data = [0, 0]
     total_swim_data = [0, 0]
-    
-    run_list = [{'date': run.date, 'effigy': run.effigy, 'calories': run.calories, 'hours': run.hours, 'opinion': run.opinion} for run in all_runs if run.date.month == month_map[month]]
-    
-    cycle_list = [{'date': cycle.date, 'effigy': cycle.effigy, 'calories': cycle.calories, 'hours': cycle.hours, 'opinion': cycle.opinion} for cycle in all_cycles if cycle.date.month == month_map[month]]
-    
-    swim_list = [{'date': swim.date, 'effigy': swim.effigy, 'calories': swim.calories, 'hours': swim.hours, 'opinion': swim.opinion} for swim in all_swims if swim.date.month == month_map[month]]
-    
+
+    run_list = [{'id': run.id, 'date': run.date.strftime('%d %b %y'), 'effigy': run.effigy, 'calories': run.calories, 'hours': run.hours, 'opinion': run.opinion} for run in all_runs if run.date.month == month_map[month]]
+
+    cycle_list = [{'id': cycle.id, 'date': cycle.date.strftime('%d %b %y'), 'effigy': cycle.effigy, 'calories': cycle.calories, 'hours': cycle.hours, 'opinion': cycle.opinion} for cycle in all_cycles if cycle.date.month == month_map[month]]
+
+    swim_list = [{'id': swim.id, 'date': swim.date.strftime('%d %b %y'), 'effigy': swim.effigy, 'calories': swim.calories, 'hours': swim.hours, 'opinion': swim.opinion} for swim in all_swims if swim.date.month == month_map[month]]
+
     print(run_list, cycle_list, swim_list)
-    
+
     for run in all_runs:
         if run.date.month == month_map[month]:
             total_run_data[0] += run.calories
             total_run_data[1] += run.hours
-    
+
     for cycle in all_cycles:
         if cycle.date.month == month_map[month]:
             total_cycle_data[0] += cycle.calories
@@ -42,7 +42,7 @@ def performance_data(month):
         if swim.date.month == month_map[month]:
             total_swim_data[0] += swim.calories
             total_swim_data[1] += swim.hours
-            
+
     user_data = {
         'progress_data': {
             'running': {

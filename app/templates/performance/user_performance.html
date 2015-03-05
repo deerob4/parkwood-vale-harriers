@@ -71,24 +71,24 @@
                 <div class="panel panel-default">
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Effigy</th>
-                                <th>Calories</th>
-                                <th>Hours</th>
-                                <th>Rating</th>
-                            </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Speed</th>
+                            <th>Calories</th>
+                            <th>Hours</th>
+                            <th>Rating</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {% for run in user_data.sport_data.running %}
-                                <tr>
-                                    <td>{{ run.date.strftime('%d %b %y') }}</td>
-                                    <td>{{ run.effigy }}</td>
-                                    <td>{{ run.calories }} calories</td>
-                                    <td>{{ run.hours }} hours</td>
-                                    <td>{{ run.opinion }}</td>
-                                </tr>
-                            {% endfor %}
+                        {% for run in user_data.sport_data.running %}
+                            <tr>
+                                <td><a href="{{ url_for('main.single_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
+                                <td>{{ run.effigy }}</td>
+                                <td>{{ run.calories }} calories</td>
+                                <td>{{ run.hours }} hours</td>
+                                <td>{{ run.opinion }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -98,24 +98,24 @@
                 <div class="panel panel-default">
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Effigy</th>
-                                <th>Calories</th>
-                                <th>Hours</th>
-                                <th>Rating</th>
-                            </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Speed</th>
+                            <th>Calories</th>
+                            <th>Hours</th>
+                            <th>Rating</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {% for cycle in user_data.sport_data.cycling %}
-                                <tr>
-                                    <td>{{ cycle.date.strftime('%d %b %y') }}</td>
-                                    <td>{{ cycle.effigy|title }}</td>
-                                    <td>{{ cycle.calories }} calories</td>
-                                    <td>{{ cycle.hours }} hours</td>
-                                    <td>{{ cycle.opinion }}</td>
-                                </tr>
-                            {% endfor %}
+                        {% for cycle in user_data.sport_data.cycling %}
+                            <tr>
+                                <td>{{ cycle.date }}</td>
+                                <td>{{ cycle.effigy|title }}</td>
+                                <td>{{ cycle.calories }} calories</td>
+                                <td>{{ cycle.hours }} hours</td>
+                                <td>{{ cycle.opinion }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -125,24 +125,24 @@
                 <div class="panel panel-default">
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Effigy</th>
-                                <th>Calories</th>
-                                <th>Hours</th>
-                                <th>Rating</th>
-                            </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Stroke</th>
+                            <th>Calories</th>
+                            <th>Hours</th>
+                            <th>Rating</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {% for swim in user_data.sport_data.swimming %}
-                                <tr>
-                                    <td>{{ swim.date.strftime('%d %b %y') }}</td>
-                                    <td>{{ swim.effigy|title }}</td>
-                                    <td>{{ swim.calories }} calories</td>
-                                    <td>{{ swim.hours }} hours</td>
-                                    <td>{{ swim.opinion }}</td>
-                                </tr>
-                            {% endfor %}
+                        {% for swim in user_data.sport_data.swimming %}
+                            <tr>
+                                <td>{{ swim.date }}</td>
+                                <td>{{ swim.effigy|title }}</td>
+                                <td>{{ swim.calories }} calories</td>
+                                <td>{{ swim.hours }} hours</td>
+                                <td>{{ swim.opinion }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

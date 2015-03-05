@@ -69,12 +69,12 @@ def calculate_calories():
     added to the total value to arrive at the final number of calories.
     """
     base_calories = {
-        'swimming': {'backstroke': 5.1625, 'breaststroke': 7.375, 'butterfly': 8.1125, 'freestyle-slow': 5.1625,
-                     'freestyle-fast': 7.375},
-        'running': {'5mph': 5.9, '6mph': 7.375, '7mph': 8.4875, '8mph': 9.9625, '9mph': 11.0625, '10mph': 11.8},
-        'cycling': {'leisure': 2.95, 'gentle': 4.425, 'moderate': 5.9, 'vigorous': 6.125, 'very-fast': 8.85,
-                    'racing': 11.8},
-        'modifiers': {'brilliant': 10, 'pretty-good': 5, 'about-average': 0, 'okay': -5, 'awful': -10}
+        'swimming': {'Backstroke': 5.1625, 'Breaststroke': 7.375, 'Butterfly': 8.1125, 'Freestyle (slow)': 5.1625,
+                     'Freestyle (fast)': 7.375},
+        'running': {'5 mph': 5.9, '6 mph': 7.375, '7 mph': 8.4875, '8 mph': 9.9625, '9 mph': 11.0625, '10 mph': 11.8},
+        'cycling': {'Leisurely': 2.95, 'Gently': 4.425, 'Moderately': 5.9, 'Vigorously': 6.125, 'Very fast': 8.85,
+                    'Racing': 11.8},
+        'modifiers': {'Brilliant': 10, 'Pretty good': 5, 'About average': 0, 'Okay': -5, 'Awful': -10}
     }
     sport = request.json['sport'].lower()
     effigy = request.json['effigy']
@@ -98,7 +98,8 @@ def calculate_calories():
 @ajax.route('/ajax/running', methods=['POST'])
 def running():
     runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    running_data = {'calories': [run.calories for run in runs], 'dates': [run.date.strftime('%d %b') for run in runs]}
+    running_data = {'calories': [run.calories for run in runs if run.date.month == 3],
+                    'dates': [run.date.strftime('%d %b') for run in runs if run.date.month == 3]}
     print(running_data)
     return jsonify(running_data=running_data)
 
