@@ -133,13 +133,6 @@ def performance():
                            available_months=available_months)
 
 
-@main.route('/performance/<int:activity_id>')
-@login_required
-def single_activity(activity_id):
-    activity = Activity.query.filter_by(id=activity_id).first_or_404()
-    return activity.opinion
-
-
 @main.errorhandler(404)
 def page_not_found(error):
     return render_template('errors/404.html'), 404

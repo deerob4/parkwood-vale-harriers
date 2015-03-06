@@ -82,7 +82,7 @@
                         <tbody>
                         {% for run in user_data.sport_data.running %}
                             <tr>
-                                <td><a href="{{ url_for('main.single_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
+                                <td>{{ run.date }}</td>
                                 <td>{{ run.effigy }}</td>
                                 <td>{{ run.calories }} calories</td>
                                 <td>{{ run.hours }} hours</td>
