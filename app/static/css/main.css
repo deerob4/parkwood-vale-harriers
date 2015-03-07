@@ -260,3 +260,6 @@ select.months {
     margin-left: -55px;
     width: 315px;
 }
+#myChart {
+    margin-top: 60px;
+}

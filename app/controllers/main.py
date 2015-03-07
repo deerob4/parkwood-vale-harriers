@@ -113,24 +113,20 @@ def add_training():
                            total_hours=total_hours)
 
 
-@main.route('/performance', methods=['GET', 'POST'])
+@main.route('/performance/<month>', methods=['GET', 'POST'])
 @login_required
-def performance():
-    current_month = current_date.strftime('%B').lower()
-    months = [month_name[x].lower() for x in range(1, 13)]
-    all_activities = Activity.query.filter_by(user_id=current_user.get_id()).all()
-    available_months = []
-
-    for activity in all_activities:
-        for x in range(1, 13):
-            if activity.date.month == x and months[x - 1] not in available_months:
-                available_months.append(months[x - 1])
-
-    user_data = performance_data(current_month)
+def performance(month):
+    user_data = performance_data(month.lower())
 
     return render_template('performance/user_performance.html', user_data=user_data,
-                           current_month=current_month.title(),
-                           available_months=available_months)
+                           month=month.title())
+
+
+@main.route('/performance/activity/<int:activity_id>')
+@login_required
+def individual_activity(activity_id):
+    activity = Activity.query.filter_by(id=activity_id).first_or_404()
+    return render_template('performance/individual_activity.html', activity=activity)
 
 
 @main.errorhandler(404)

@@ -220,7 +220,7 @@ $(document).ready(function () {
         var options = {
             scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
         };
-        var myBarChart = new Chart(ctx).Line(data, options);
+        var myBarChart = new Chart(ctx).Bar(data, options);
 
         $('h1').click(function () {
             alert('wee')

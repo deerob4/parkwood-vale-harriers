@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="main_nav">
             {% if current_user.is_authenticated() %}
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('main.performance') }}">My Performance</a></li>
+                    <li><a href="{{ url_for('main.performance', month='march') }}">My Performance</a></li>
                     <li><a href="{{ url_for('main.add_training') }}">Add Training Session</a></li>
                     <li><a href="">Compare Performance</a></li>
                 </ul>

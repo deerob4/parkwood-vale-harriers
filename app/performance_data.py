@@ -12,8 +12,8 @@ def performance_data(month):
 
     month_map = dict(zip(months, range(1, 13)))  # Creates a dict with month names and values - Jan: 1 etc
 
-    calorie_goal = 62700
-    hour_goal = 60
+    calorie_goal = 40000
+    hour_goal = 100
 
     # [0] contains the calories burned; [1] contains the hours
     total_run_data = [0, 0]
