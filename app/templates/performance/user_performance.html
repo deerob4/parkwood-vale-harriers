@@ -3,23 +3,12 @@
 {% block title %}Training Performance{{ super() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-5"><h1>Training Performance</h1></div>
-        <div class="col-md-3">
-            <select class="months form-control" name="months">
-                {% for month in available_months %}
-                    <option value="{{ month }}"
-                            {% if month|title == current_month %}selected="selected"{% endif %}>{{ month|title }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-
+    <h1>Training Performance</h1>
     <h4>Check out a detailed analysis of how you've performed in your training sessions!</h4>
 
     <div class="row">
         <div class="col-md-6">
-            <h3 class="performance-subtitle calorie-subtitle">{{ month|title }} Calorie Progress</h3>
+            <h3 class="performance-subtitle calorie-subtitle">{{ current_month|title }} Calorie Progress</h3>
 
             <div class="progress">
                 <div class="progress-bar progress-bar-success running-calories-bar"
@@ -41,7 +30,7 @@
         </div>
 
         <div class="col-md-6">
-            <h3 class="performance-subtitle hour-subtitle"><span class="month-text">{{ month|title }}</span> Hourly
+            <h3 class="performance-subtitle hour-subtitle"><span class="month-text">{{ current_month|title }}</span> Hourly
                 Progress
             </h3>
 

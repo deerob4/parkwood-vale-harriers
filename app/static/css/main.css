@@ -263,3 +263,10 @@ select.months {
 #myChart {
     margin-top: 60px;
 }
+.month-buttons {
+    list-style-type: none;
+    display: inline;
+}
+.month-buttons li {
+    display: inline;
+}

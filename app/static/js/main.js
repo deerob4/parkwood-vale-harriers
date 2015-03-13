@@ -221,10 +221,6 @@ $(document).ready(function () {
             scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
         };
         var myBarChart = new Chart(ctx).Bar(data, options);
-
-        $('h1').click(function () {
-            alert('wee')
-        });
     }
 
 });

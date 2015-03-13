@@ -19,7 +19,7 @@ current_date = datetime.now().date()
 @main.route('/')
 @login_required
 def home():
-    return redirect(url_for('main.performance'))
+    return redirect(url_for('main.performance', month='march'))
 
 
 @main.route('/profiles/<username>', methods=['GET', 'POST'])
@@ -116,10 +116,12 @@ def add_training():
 @main.route('/performance/<month>', methods=['GET', 'POST'])
 @login_required
 def performance(month):
-    user_data = performance_data(month.lower())
-
-    return render_template('performance/user_performance.html', user_data=user_data,
-                           month=month.title())
+    months = [month_name[x].lower() for x in range(1, 13)]
+    if month.lower() in months:
+        user_data = performance_data(month.lower())
+        return render_template('performance/user_performance.html', user_data=user_data,
+                               current_month=month.title(), months=months)
+    abort(404)
 
 
 @main.route('/performance/activity/<int:activity_id>')
@@ -127,6 +129,13 @@ def performance(month):
 def individual_activity(activity_id):
     activity = Activity.query.filter_by(id=activity_id).first_or_404()
     return render_template('performance/individual_activity.html', activity=activity)
+
+
+@main.route('/performance/compare', methods=['GET', 'POST'])
+@login_required
+def compare_performance():
+    users = User.query.filter_by(charity_event=0).all()
+    return render_template('/performance/compare_performance.html', users=users)
 
 
 @main.errorhandler(404)
