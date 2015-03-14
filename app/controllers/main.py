@@ -134,8 +134,9 @@ def individual_activity(activity_id):
 @main.route('/performance/compare', methods=['GET', 'POST'])
 @login_required
 def compare_performance():
-    users = User.query.filter_by(charity_event=0).all()
-    return render_template('/performance/compare_performance.html', users=users)
+    users = User.query.filter_by(charity_event=0).filter(id is not current_user.id).all()
+    user_list = sorted(user.name for user in users)
+    return render_template('/performance/compare_performance.html', users=users, user_list=user_list)
 
 
 @main.errorhandler(404)

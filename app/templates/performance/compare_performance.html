@@ -8,27 +8,46 @@
     <p>Want to see how you’re doing compared to others? Use this page!</p>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <select name="user_list" class="form-control">
-                {% for user in users %}
-                    <option value="{{ user.id }}">{{ user.name }}</option>
+                {% for user in user_list %}
+                    <option value="{{ loop.index0 }}">{{ user }}</option>
                 {% endfor %}
             </select>
         </div>
+    </div>
+
+    <br>
+
+    <div class="row">
         <div class="col-md-6">
-            <select name="compare_type" class="form-control">
-                <option value="graph">Graph View</option>
-                <option value="list">List View</option>
-            </select>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="panel-title">Your Performance</div>
+                </div>
+                <ul class="list-group panel-list">
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                </ul>
+            </div>
         </div>
-    </div>
-
-    <div class="graph-view">
-        <div class="graph">Graph!</div>
-    </div>
-
-    <div class="list-view">
-        <div>Very good</div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Their Performance</div>
+                </div>
+                <ul class="list-group panel-list">
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                    <li class="list-group-item">gosh</li>
+                </ul>
+            </div>
+        </div>
     </div>
     
 
