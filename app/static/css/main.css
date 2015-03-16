@@ -270,3 +270,12 @@ select.months {
 .month-buttons li {
     display: inline;
 }
+
+/*------------------------------------------------------
+|                  Begin comparison styles              |
+-------------------------------------------------------*/
+/*#running_comparison {*/
+    /*border: 1px solid #000;*/
+    /*border-radius: 4px;*/
+    /*margin-bottom: 20px;*/
+/*}*/

@@ -135,7 +135,7 @@ def individual_activity(activity_id):
 @login_required
 def compare_performance():
     users = User.query.filter_by(charity_event=0).filter(id is not current_user.id).all()
-    user_list = sorted(user.name for user in users)
+    user_list = sorted([[user.id, user.name] for user in users])
     return render_template('/performance/compare_performance.html', users=users, user_list=user_list)
 
 

@@ -160,37 +160,6 @@ $(document).ready(function () {
         })
     }
 
-    $('.months').change(function () {
-        var month = $(this).val();
-        $.ajax({
-            url: '/ajax/performance',
-            type: 'POST',
-            data: month,
-            success: function (data) {
-                updatePerformance(data)
-            }
-        });
-    });
-
-    function updatePerformance(data) {
-        $('.running-calories-bar').transit({'width': data.user_data.progress_data.running.calories.percentage + "%"});
-        $('.cycling-calories-bar').transit({'width': data.user_data.progress_data.cycling.calories.percentage + "%"});
-        $('.swimming-calories-bar').transit({'width': data.user_data.progress_data.swimming.calories.percentage + "%"});
-
-        $('.running-hours-bar').transit({'width': data.user_data.progress_data.running.hours.percentage + "%"});
-        $('.cycling-hours-bar').transit({'width': data.user_data.progress_data.cycling.hours.percentage + "%"});
-        $('.swimming-hours-bar').transit({'width': data.user_data.progress_data.swimming.hours.percentage + "%"});
-
-        $('.performance-subtitle').addClass('animated fadeOut');
-        setTimeout(function () {
-            $('.calorie-subtitle').text(data.user_data.month + ' Calorie Progress').removeClass('animated fadeOut').addClass('animated fadeIn');
-            $('.hour-subtitle').text(data.user_data.month + ' Hourly Progress').removeClass('animated fadeOut').addClass('animated fadeIn')
-        }, 60);
-
-        $('.selected').removeClass('btn-primary selected').addClass('btn-default');
-        $('#' + data.user_data.month.toLowerCase()).removeClass('btn-default').addClass('btn-primary selected');
-    }
-
     $.ajax({
        url: '/ajax/running',
        type: 'POST',
@@ -201,7 +170,7 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    var ctx = document.getElementById("myChart").getContext("2d");
+    var ctx = document.getElementById("running_comparison").getContext("2d");
 
     function constructChart(chartData) {
         var data = {
@@ -222,5 +191,16 @@ $(document).ready(function () {
         };
         var myBarChart = new Chart(ctx).Bar(data, options);
     }
+
+    $('#graph_select').change(function () {
+        var graphData = JSON.stringify({"graphType": $(this).val(), "comparisonUser": $('#user_list').val()});
+        ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', graphData, updateComparisonChart);
+    });
+
+
+    function updateComparisonChart(graphData) {
+        console.log(graphData.graphData.comparison_user);
+    }
+
 
 });

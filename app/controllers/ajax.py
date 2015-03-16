@@ -100,7 +100,6 @@ def running():
     runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
     running_data = {'calories': [run.calories for run in runs if run.date.month == 3],
                     'dates': [run.date.strftime('%d %b') for run in runs if run.date.month == 3]}
-    print(running_data)
     return jsonify(running_data=running_data)
 
 
@@ -109,3 +108,39 @@ def ajax_performance():
     month = request.get_data().decode("utf-8").lower()
     user_data = performance_data(month)
     return jsonify(user_data=user_data)
+
+
+@ajax.route('/ajax/comparison-graph', methods=['POST'])
+def comparison_graphs():
+    graph_type = request.json['graphType']
+    comparison_user = int(request.json['comparisonUser'])
+
+    user_runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
+    comparison_runs = Activity.query.filter_by(user_id=comparison_user, sport='running').all()
+
+    user_cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
+    comparison_cycles = Activity.query.filter_by(user_id=comparison_user, sport='cycling').all()
+
+    user_swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
+    comparison_swims = Activity.query.filter_by(user_id=comparison_user, sport='swimming').all()
+
+    if graph_type == 'running_calories':
+        graph_data = {'current_user': [run.calories for run in user_runs], 'comparison_user': [run.calories for run in comparison_runs]}
+
+    elif graph_type == 'running_hours':
+        graph_data = {'current_user': [run.hours for run in user_runs], 'comparison_user': [run.hours for run in comparison_runs]}
+
+    elif graph_type == 'cycling_calories':
+        graph_data = {'current_user': [cycle.calories for cycle in user_cycles], 'comparison_user': [cycle.calories for cycle in comparison_cycles]}
+
+    elif graph_type == 'cycling_hours':
+        graph_data = {'current_user': [cycle.hours for cycle in user_cycles], 'comparison_user': [cycle.hours for cycle in comparison_cycles]}
+
+    elif graph_type == 'swimming_calories':
+        graph_data = {'current_user': [swim.calories for swim in user_swims], 'comparison_user': [swim.calories for swim in comparison_swims]}
+
+    elif graph_type == 'swimming_hours':
+        graph_data = {'current_user': [swim.hours for swim in user_swims], 'comparison_user': [swim.hours for swim in comparison_swims]}
+
+    print(graph_data)
+    return jsonify(graphData=graph_data)

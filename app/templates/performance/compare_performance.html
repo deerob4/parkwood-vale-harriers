@@ -9,15 +9,17 @@
 
     <div class="row">
         <div class="col-md-12">
-            <select name="user_list" class="form-control">
+            <select name="user_list" id="user_list" class="form-control">
                 {% for user in user_list %}
-                    <option value="{{ loop.index0 }}">{{ user }}</option>
+                    <option value="{{ user[0] }}">{{ user[1] }}</option>
                 {% endfor %}
             </select>
         </div>
     </div>
 
     <br>
+
+    <h3>Statistical Comparison</h3>
 
     <div class="row">
         <div class="col-md-6">
@@ -49,6 +51,25 @@
             </div>
         </div>
     </div>
-    
+
+    <h3>Graphical Comparison</h3>
+
+    <div class="row">
+        <div class="col-md-12"><canvas id="running_comparison" width="1140" height="600"></canvas></div>
+    </div>
+
+    <br/>
+
+    <select name="graph_select" id="graph_select" title="Graph Select" class="form-control">
+        <option value="running_calories">Running Calories</option>
+        <option value="cycling_calories">Cycling Calories</option>
+        <option value="swimming_calories">Swimming Calories</option>
+        <option disabled>──────────────</option>
+        <option value="running_hours">Running Hours</option>
+        <option value="cycling_hours">Cycling Hours</option>
+        <option value="swimming_hours">Swimming Hours</option>
+    </select>
+
+    <br/>
 
 {% endblock %}
