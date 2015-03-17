@@ -183,17 +183,32 @@ $(document).ready(function () {
                     highlightFill: "rgba(220,220,220,0.75)",
                     highlightStroke: "rgba(220,220,220,1)",
                     data: chartData.running_data.calories
+                },
+                {
+                    label: 'Podign',
+                    fillColor: "rgba(134,173,78, 0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: chartData.running_data.calories
+                },
+                {
+                    label: 'Running',
+                    strokeColor: "rgba(98,21,31,0.8)",
+                    fillColor: "rgba(98,21,31,0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: chartData.running_data.calories
                 }
             ]
         };
         var options = {
             scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
         };
-        var myBarChart = new Chart(ctx).Bar(data, options);
+        var myBarChart = new Chart(ctx).Line(data, options);
     }
 
-    $('#graph_select').change(function () {
-        var graphData = JSON.stringify({"graphType": $(this).val(), "comparisonUser": $('#user_list').val()});
+    $('.graph_buttons li').click(function () {
+        var graphData = JSON.stringify({"graphType": $(this).attr('id'), "comparisonUser": $('#user_list').val()});
         ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', graphData, updateComparisonChart);
     });
 

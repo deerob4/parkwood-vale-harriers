@@ -29,6 +29,31 @@ class User(UserMixin, db.Model):
 
     activities = db.RelationshipProperty('Activity', backref='user', lazy='dynamic')
 
+    @staticmethod
+    def generate_fake(count=10):
+        from random import seed, randint, choice
+        from sqlalchemy.exc import IntegrityError
+        import forgery_py
+
+        seed()
+        for x in range(count):
+            name = forgery_py.name.full_name()
+            email = forgery_py.internet.email_address()
+            username = (name.split()[0] + str(randint(1, 10))).lower()
+            password = forgery_py.lorem_ipsum.word()
+            dob = forgery_py.date.date()
+            phone = forgery_py.address.phone()
+            weight = randint(40, 100)
+            distance = 'lt1'
+            joined = forgery_py.date.date()
+            charity_event = choice([True, False])
+            u = User(name=name, email=email, username=username, password=password, dob=dob, phone=phone, weight=weight, distance=distance, joined=joined, charity_event=charity_event)
+            db.session.add(u)
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+
     # Initialises the class to allow it to be referenced in helper functions.
     def __init__(self, name, username, email, dob, password, distance, charity_event, weight, phone, joined):
         self.name = name
