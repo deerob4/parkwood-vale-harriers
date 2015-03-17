@@ -277,3 +277,6 @@ select.months {
 .graph_buttons {
     padding: 0;
 }
+ul.month_buttons {
+    padding: none !important;
+}

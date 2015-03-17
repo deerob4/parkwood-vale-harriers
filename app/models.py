@@ -40,7 +40,7 @@ class User(UserMixin, db.Model):
             name = forgery_py.name.full_name()
             email = forgery_py.internet.email_address()
             username = (name.split()[0] + str(randint(1, 10))).lower()
-            password = forgery_py.lorem_ipsum.word()
+            password = 'unicorn'
             dob = forgery_py.date.date()
             phone = forgery_py.address.phone()
             weight = randint(40, 100)
@@ -113,6 +113,38 @@ class Activity(db.Model):
     thoughts = db.Column(db.Text)
 
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+    
+    @staticmethod
+    def generate_fake(user_id, count=5):
+        from random import seed, randint, choice
+        from sqlalchemy.exc import IntegrityError
+        import forgery_py
+        
+        seed()
+        
+        for x in range(count):
+            sport = choice(['running', 'cycling', 'swimming'])
+            if sport == 'running':
+                effigy = choice(['5 mph', '6 mph', '7 mph', '8 mph', '10 mph'])
+            elif sport == 'cycling':
+                effigy = choice(['backstroke', 'breaststroke', 'butterfly', 'freestyle (slow)', 'freestyle (fast)'])
+            else:
+                effigy = choice(['leisurely', 'gently', 'moderately', 'vigorously', 'very fast', 'racing'])
+            date = forgery_py.date.date()
+            start = '10:00 am'
+            finish = '12:00 am'
+            hours = 2
+            calories = randint(500, 2500)
+            opinion = choice(['brilliant', 'pretty good', 'about average', 'okay', 'awful'])
+            thoughts = forgery_py.forgery.lorem_ipsum.words(quantity=randint(20, 70))
+            
+            a = Activity(sport=sport, effigy=effigy, date=date, start=start, finish=finish, hours=hours, calories=calories, opinion=opinion, thoughts=thoughts, user_id=user_id)
+            
+            db.session.add(a)
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
 
     # Initialises the class to allow it to be referenced in helper functions.
     def __init__(self, sport, effigy, date, start, finish, calories, opinion, thoughts, hours, user_id):

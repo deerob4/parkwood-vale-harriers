@@ -2,7 +2,7 @@ from flask.ext.script import Manager, Server
 from flask.ext.script.commands import Clean, ShowUrls
 
 from app import create_app
-from app.models import db, User
+from app.models import db, User, Activity
 
 import os
 
@@ -21,7 +21,7 @@ manager.add_command('show-urls', ShowUrls())
 @manager.shell
 def make_shell_context():
     """Creates a Python shell with the below variables already imported."""
-    return dict(app=app, db=db, User=User)
+    return dict(app=app, db=db, User=User, Activity=Activity)
 
 
 @manager.command

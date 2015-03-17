@@ -1,5 +1,17 @@
 $(document).ready(function () {
 
+//     $(window).on("error", function(evt) {
+
+//         console.log("jQuery error event:", evt);
+//         var e = evt.originalEvent; // get the javascript event
+//         console.log("original event:", e);
+//         if (e.message) { 
+//             alert("Error:\n\t" + e.message + "\nLine:\n\t" + e.lineno + "\nFile:\n\t" + e.filename);
+//         } else {
+//             alert("Error:\n\t" + e.type + "\nElement:\n\t" + (e.srcElement || e.target));
+//         }
+//     });
+    
     // Initialises the datepicker plugin for all inputs with a class of "datepicker"
     $('.datepicker').datepicker({endDate: '-18y', startDate: '-75y', format: 'yyyy-mm-dd'});
 
@@ -160,13 +172,7 @@ $(document).ready(function () {
         })
     }
 
-    $.ajax({
-       url: '/ajax/running',
-       type: 'POST',
-       success: function (data) {
-           constructChart(data)
-       }
-    });
+    ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', JSON.stringify({"graphType": 'running_calories', "comparisonUser": 3}), constructChart);
 
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -174,7 +180,7 @@ $(document).ready(function () {
 
     function constructChart(chartData) {
         var data = {
-            labels: chartData.running_data.dates,
+            labels: chartData.graphData.months,
             datasets: [
                 {
                     label: 'Running',
@@ -182,22 +188,14 @@ $(document).ready(function () {
                     fillColor: "rgba(240,173,78, 0.8)",
                     highlightFill: "rgba(220,220,220,0.75)",
                     highlightStroke: "rgba(220,220,220,1)",
-                    data: chartData.running_data.calories
+                    data: chartData.graphData.current_user
                 },
                 {
                     label: 'Podign',
                     fillColor: "rgba(134,173,78, 0.8)",
                     highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
-                    data: chartData.running_data.calories
-                },
-                {
-                    label: 'Running',
-                    strokeColor: "rgba(98,21,31,0.8)",
-                    fillColor: "rgba(98,21,31,0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
-                    data: chartData.running_data.calories
+                    highlightStroke: "rgba(134,173,78)",
+                    data: chartData.graphData.comparison_user
                 }
             ]
         };
@@ -205,16 +203,25 @@ $(document).ready(function () {
             scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
         };
         var myBarChart = new Chart(ctx).Line(data, options);
+        
+        $('.graph_buttons .btn').click(function () {
+        var graphData = JSON.stringify({"graphType": $(this).attr('id'), "comparisonUser": $('#user_list').val()});
+        ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', graphData, updateChart);
+    });
+        function updateChart(data) {
+            myBarChart.labels = data.graphData.months
+            myBarChart.datasets[0] = data.graphData.current_user
+            myBarChart.datasets[1] = data.graphData.comparison_user
+            myBarChart.update()
+        } 
     }
 
-    $('.graph_buttons li').click(function () {
-        var graphData = JSON.stringify({"graphType": $(this).attr('id'), "comparisonUser": $('#user_list').val()});
-        ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', graphData, updateComparisonChart);
-    });
 
+//     delete from Users where id between 6 and 115;  
 
     function updateComparisonChart(graphData) {
-        console.log(graphData.graphData.comparison_user);
+//         alert(graphData.graphData.comparison_user);
+        var ctx = document.getElementById("running_comparison").getContext("2d");
     }
 
 

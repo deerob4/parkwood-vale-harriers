@@ -7,28 +7,31 @@
     <h1>Compare Performance</h1>
     <p>Want to see how you’re doing compared to others? Use this page!</p>
 
-    <div class="row">
-        <div class="col-md-12">
-            <select name="user_list" id="user_list" class="form-control">
-                {% for user in user_list %}
-                    <option value="{{ user[0] }}">{{ user[1] }}</option>
-                {% endfor %}
-            </select>
+    <label for="user_list">Select user to compare aginst:</label>
+    <select name="user_list" id="user_list" class="form-control">
+        {% for user in user_list %}
+            <option value="{{ user[0] }}">{{ user[1] }}</option>
+        {% endfor %}
+    </select>
+
+    <h3>Graphical Comparison</h3>
+
+    <div class="graph_buttons">
+        <div class="btn-group">
+            <div class="btn btn-success" id="running_calories">Running Calories</div>
+            <div class="btn btn-success" id="running_hours">Running Hours</div>
+        </div>
+        <div class="btn-group">
+            <div class="btn btn-warning" id="cycling_calories">Cycling Calories</div>
+            <div class="btn btn-warning" id="cycling_hours">Cycling Hours</div>
+        </div>
+        <div class="btn-group">
+            <div class="btn btn-info" id="swimming_calories">Swimming Calories</div>
+            <div class="btn btn-info" id="swimming_hours">Swimming Hours</div>
         </div>
     </div>
 
     <br>
-
-    <h3>Graphical Comparison</h3>
-
-    <ul class="graph_buttons">
-        <li class="btn btn-success" id="running_calories">Running Calories</li>
-        <li class="btn btn-success" id="running_hours">Running Hours</li>
-        <li class="btn btn-warning" id="cycling_calories">Cycling Calories</li>
-        <li class="btn btn-warning" id="cycling_hours">Cycling Hours</li>
-        <li class="btn btn-info" id="swimming_calories">Swimming Calories</li>
-        <li class="btn btn-info" id="swimming_hours">Swimming Hours</li>
-    </ul>
 
     <div class="row">
         <div class="col-md-12"><canvas id="running_comparison" width="1140" height="600"></canvas></div>
