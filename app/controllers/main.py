@@ -4,6 +4,7 @@ from calendar import month_name
 
 from flask import Blueprint, render_template, flash, redirect, url_for, abort, request
 from flask.ext.login import current_user, login_required, logout_user
+from flask.ext.sqlalchemy import *
 from random import randint
 import re
 
@@ -139,6 +140,21 @@ def compare_performance():
     return render_template('/performance/compare_performance.html', users=users, user_list=user_list)
 
 
+@main.route('/rankings')
+@login_required
+def show_team():
+    runners = User.query.filter_by(charity_event=False).all()
+    activities = []
+    for runner in runners:
+        training_sessions = Activity.query.filter_by(user_id=runner.id).all()
+        for session in training_sessions:
+            user_calories = {'user': runner.name, 'calories': session.calories}
+            activities.append(user_calories)
+    print(activities)
+    return render_template('/training/rankings.html', running_team=runners)
+
+
 @main.errorhandler(404)
 def page_not_found(error):
     return render_template('errors/404.html'), 404
+
