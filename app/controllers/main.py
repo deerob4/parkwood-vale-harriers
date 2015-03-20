@@ -39,7 +39,7 @@ def profiles(username):
                 update_user(user, 'name', False)
                 return redirect(url_for('main.profiles', username=user.username))
             else:
-                validation_error('Your name may only contain letters.')
+                validation_error('Your name may only contain letters and dashes.')
 
         # If the user tries to change their email
         elif request.form.get('email'):
@@ -144,18 +144,26 @@ def compare_performance():
 @login_required
 def rankings():
     runners = User.query.filter_by(charity_event=False).all()
-    user_calories = {}
-    for runner in runners:
+    user_calories = []
+    for i, runner in enumerate(runners):
+        print(i)
         training_sessions = Activity.query.filter_by(user_id=runner.id).all()
-        user_calories[runner.name] = {'calories': [session.calories for session in training_sessions], 'username': runner.username}
-    print(user_calories)
-    for user in user_calories:
+        for session in training_sessions:
+            if session.sport == 'running':
+                user_calories.append([runner.name, [session.calories * 2 for session in training_sessions]])
+            elif session.sport == 'swimming':
+                user_calories.append([runner.name, [session.calories * 1.5 for session in training_sessions]])
+            else:
+                user_calories.append([runner.name, [session.calories for session in training_sessions]])
+        
+    for i, not_needed in enumerate(user_calories):
         total = 0
-        for x in user_calories[user]['calories']:
+        for x in user_calories[i][1]:
             total += x
-        user_calories[user]['calories'] = total
+        user_calories[i][1] = total
 
     print(user_calories)
+        
     return render_template('/training/rankings.html', running_team=user_calories)
 
 

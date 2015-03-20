@@ -14,8 +14,8 @@
          </div>
          <ul class="user-details list-group panel-list">
              {% for runner in running_team %}
-                {% if loop.index <= 8 %}
-                    <li class="list-group-item{{ loop.cycle(' list-group-item-success', '') }}">{{ loop.index }}. <a href="{{ url_for('main.profiles', username=running_team[runner].username) }}">{{ runner }}</a> - {{ running_team[runner].calories }} calories</li>
+                {% if loop.index <= 12 %}
+                    <li class="list-group-item">{{ loop.index }}. {{ runner }} - {{ running_team[runner] }} calories</li>
                 {% endif %}
              {% endfor %}
          </ul>

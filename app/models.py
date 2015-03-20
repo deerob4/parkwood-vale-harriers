@@ -46,7 +46,7 @@ class User(UserMixin, db.Model):
             weight = randint(40, 100)
             distance = 'lt1'
             joined = forgery_py.date.date()
-            charity_event = choice([True, False])
+            charity_event = False
             u = User(name=name, email=email, username=username, password=password, dob=dob, phone=phone, weight=weight, distance=distance, joined=joined, charity_event=charity_event)
             db.session.add(u)
             try:
@@ -115,36 +115,37 @@ class Activity(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
     
     @staticmethod
-    def generate_fake(user_id, count=5):
+    def generate_fake(user_id, count=8):
         from random import seed, randint, choice
         from sqlalchemy.exc import IntegrityError
         import forgery_py
         
         seed()
         
-        for x in range(count):
-            sport = choice(['running', 'cycling', 'swimming'])
-            if sport == 'running':
-                effigy = choice(['5 mph', '6 mph', '7 mph', '8 mph', '10 mph'])
-            elif sport == 'cycling':
-                effigy = choice(['backstroke', 'breaststroke', 'butterfly', 'freestyle (slow)', 'freestyle (fast)'])
-            else:
-                effigy = choice(['leisurely', 'gently', 'moderately', 'vigorously', 'very fast', 'racing'])
-            date = forgery_py.date.date()
-            start = '10:00 am'
-            finish = '12:00 am'
-            hours = 2
-            calories = randint(500, 2500)
-            opinion = choice(['brilliant', 'pretty good', 'about average', 'okay', 'awful'])
-            thoughts = forgery_py.forgery.lorem_ipsum.words(quantity=randint(20, 70))
-            
-            a = Activity(sport=sport, effigy=effigy, date=date, start=start, finish=finish, hours=hours, calories=calories, opinion=opinion, thoughts=thoughts, user_id=user_id)
-            
-            db.session.add(a)
-            try:
-                db.session.commit()
-            except IntegrityError:
-                db.session.rollback()
+        for user in user_id:
+            for x in range(count):
+                sport = choice(['running', 'cycling', 'swimming'])
+                if sport == 'running':
+                    effigy = choice(['5 mph', '6 mph', '7 mph', '8 mph', '10 mph'])
+                elif sport == 'cycling':
+                    effigy = choice(['backstroke', 'breaststroke', 'butterfly', 'freestyle (slow)', 'freestyle (fast)'])
+                else:
+                    effigy = choice(['leisurely', 'gently', 'moderately', 'vigorously', 'very fast', 'racing'])
+                date = forgery_py.date.date()
+                start = '10:00 am'
+                finish = '12:00 am'
+                hours = 2
+                calories = randint(500, 3000)
+                opinion = choice(['brilliant', 'pretty good', 'about average', 'okay', 'awful'])
+                thoughts = forgery_py.forgery.lorem_ipsum.words(quantity=randint(20, 70))
+
+                a = Activity(sport=sport, effigy=effigy, date=date, start=start, finish=finish, hours=hours, calories=calories, opinion=opinion, thoughts=thoughts, user_id=user)
+
+                db.session.add(a)
+                try:
+                    db.session.commit()
+                except IntegrityError:
+                    db.session.rollback()
 
     # Initialises the class to allow it to be referenced in helper functions.
     def __init__(self, sport, effigy, date, start, finish, calories, opinion, thoughts, hours, user_id):
