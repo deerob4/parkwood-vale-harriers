@@ -142,16 +142,21 @@ def compare_performance():
 
 @main.route('/rankings')
 @login_required
-def show_team():
+def rankings():
     runners = User.query.filter_by(charity_event=False).all()
-    activities = []
+    user_calories = {}
     for runner in runners:
         training_sessions = Activity.query.filter_by(user_id=runner.id).all()
-        for session in training_sessions:
-            user_calories = {'user': runner.name, 'calories': session.calories}
-            activities.append(user_calories)
-    print(activities)
-    return render_template('/training/rankings.html', running_team=runners)
+        user_calories[runner.name] = {'calories': [session.calories for session in training_sessions], 'username': runner.username}
+    print(user_calories)
+    for user in user_calories:
+        total = 0
+        for x in user_calories[user]['calories']:
+            total += x
+        user_calories[user]['calories'] = total
+
+    print(user_calories)
+    return render_template('/training/rankings.html', running_team=user_calories)
 
 
 @main.errorhandler(404)

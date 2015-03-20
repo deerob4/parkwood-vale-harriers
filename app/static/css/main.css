@@ -278,5 +278,5 @@ select.months {
     padding: 0;
 }
 ul.month_buttons {
-    padding: none !important;
+    padding: 0 !important;
 }

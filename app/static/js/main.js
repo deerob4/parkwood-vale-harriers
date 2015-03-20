@@ -1,17 +1,5 @@
 $(document).ready(function () {
 
-//     $(window).on("error", function(evt) {
-
-//         console.log("jQuery error event:", evt);
-//         var e = evt.originalEvent; // get the javascript event
-//         console.log("original event:", e);
-//         if (e.message) { 
-//             alert("Error:\n\t" + e.message + "\nLine:\n\t" + e.lineno + "\nFile:\n\t" + e.filename);
-//         } else {
-//             alert("Error:\n\t" + e.type + "\nElement:\n\t" + (e.srcElement || e.target));
-//         }
-//     });
-    
     // Initialises the datepicker plugin for all inputs with a class of "datepicker"
     $('.datepicker').datepicker({endDate: '-18y', startDate: '-75y', format: 'yyyy-mm-dd'});
 

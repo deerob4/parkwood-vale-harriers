@@ -8,13 +8,15 @@
 <h4>View the current team for the charity event, updated real-time using the data from your fellow runners!</h4>
 
 <div class="rankings">
-    <div class="panel panel-success">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-title">Charity Team Rankings</div>
          </div>
          <ul class="user-details list-group panel-list">
              {% for runner in running_team %}
-                 <li class="list-group-item">{{ loop.index }}. {{ runner.name }} - {{ runner.calories }}</li>
+                {% if loop.index <= 8 %}
+                    <li class="list-group-item{{ loop.cycle(' list-group-item-success', '') }}">{{ loop.index }}. <a href="{{ url_for('main.profiles', username=running_team[runner].username) }}">{{ runner }}</a> - {{ running_team[runner].calories }} calories</li>
+                {% endif %}
              {% endfor %}
          </ul>
     </div>
