@@ -118,10 +118,19 @@ def add_training():
 @login_required
 def performance(month):
     months = [month_name[x].lower() for x in range(1, 13)]
-    if month.lower() in months:
+    all_activities = Activity.query.filter_by(user_id=current_user.get_id()).all()
+    available_months = []
+
+    for activity in all_activities:
+        for x in range(1, 13):
+            if activity.date.month == x and months[x - 1] not in available_months:
+                available_months.append(months[x - 1])
+    print(available_months)
+
+    if month.lower() in available_months:
         user_data = performance_data(month.lower())
         return render_template('performance/user_performance.html', user_data=user_data,
-                               current_month=month.title(), months=months)
+                               current_month=month.title(), months=available_months)
     abort(404)
 
 
@@ -146,23 +155,28 @@ def rankings():
     runners = User.query.filter_by(charity_event=False).all()
     user_calories = []
     for i, runner in enumerate(runners):
-        print(i)
         training_sessions = Activity.query.filter_by(user_id=runner.id).all()
         for session in training_sessions:
             if session.sport == 'running':
                 user_calories.append([runner.name, [session.calories * 2 for session in training_sessions]])
-            elif session.sport == 'swimming':
+                print('%s %s session %s appended.' % (runner.name, session.sport, session.id))
+                print(user_calories)
+            if session.sport == 'swimming':
                 user_calories.append([runner.name, [session.calories * 1.5 for session in training_sessions]])
-            else:
+                print('%s %s session %s appended.' % (runner.name, session.sport, session.id))
+                print(user_calories)
+            if session.sport == 'cycling':
                 user_calories.append([runner.name, [session.calories for session in training_sessions]])
-        
+                print('%s %s session %s appended.' % (runner.name, session.sport, session.id))
+                print(user_calories)
+
+    print(user_calories)
+
     for i, not_needed in enumerate(user_calories):
         total = 0
         for x in user_calories[i][1]:
             total += x
         user_calories[i][1] = total
-
-    print(user_calories)
         
     return render_template('/training/rankings.html', running_team=user_calories)
 

@@ -3,7 +3,9 @@ $(document).ready(function () {
     // Initialises the datepicker plugin for all inputs with a class of "datepicker"
     $('.datepicker').datepicker({endDate: '-18y', startDate: '-75y', format: 'yyyy-mm-dd'});
 
-    $('#cyclingDataTable').tablesorter();
+    $('#running-activities, #cycling-activities, #swimming-activities').DataTable({
+        "filter": false
+    });
 
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
@@ -164,7 +166,7 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    var ctx = document.getElementById("running_comparison").getContext("2d");
+    var ctx = document.getElementById("myChart").getContext("2d");
 
     function constructChart(chartData) {
         var data = {
@@ -203,7 +205,6 @@ $(document).ready(function () {
             myBarChart.update()
         } 
     }
-
 
 //     delete from Users where id between 6 and 115;  
 

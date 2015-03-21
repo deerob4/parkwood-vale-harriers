@@ -260,15 +260,18 @@ select.months {
     margin-left: -55px;
     width: 315px;
 }
-#myChart {
-    margin-top: 60px;
-}
 .month-buttons {
     list-style-type: none;
     display: inline;
 }
 .month-buttons li {
     display: inline;
+}
+.nav-pills, .no-footer {
+    font-family: 'ralewaymedium', sans-serif;
+}
+input[type=search] {
+    width: 90% !important;
 }
 
 /*------------------------------------------------------
