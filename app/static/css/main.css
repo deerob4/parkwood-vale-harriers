@@ -243,22 +243,8 @@ h3 {
 .tooltip {
     font-family: ralewaysemibold, sans-serif;
 }
-thead > tr > th {
-    font-family: ralewaysemibold, sans-serif;
-}
-tbody > tr > td {
-    font-family: ralewaymedium, sans-serif;
-}
-table {
-    border-radius: 40px;
-}
 .performance-subtitle, .calorie-subtitle, .hour-subtitle {
     -webkit-animation-duration: 0.575s;
-}
-select.months {
-    margin-top: 26px;
-    margin-left: -55px;
-    width: 315px;
 }
 .month-buttons {
     list-style-type: none;
@@ -276,10 +262,12 @@ input[type=search] {
 .activity-view {
     margin-top: 25px;
 }
-#cyclingChart, #swimmingChart {
+.running-data, .cycling-data, .swimming-data {
+    margin-bottom: 100px;
+}
+.cycling-data, .swimming-data {
     display: none;
 }
-
 /*------------------------------------------------------
 |                  Begin comparison styles              |
 -------------------------------------------------------*/

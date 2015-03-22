@@ -3,7 +3,7 @@
 {% block title %}Training Performance{{ super() }}{% endblock %}
 
 {% block content %}
-    <h1>Training Performance</h1>
+    <h1 class="trainingHeading">Training Performance</h1>
     <h4>Check out a detailed analysis of how you've performed in your training sessions!</h4>
 
     <ul class="month_buttons">
@@ -59,109 +59,96 @@
         </div>
     </div>
 
-    <canvas id="runningChart" width="1140" height="650"></canvas>
-    <canvas id="cyclingChart" width="1140" height="650"></canvas>
-    <canvas id="swimmingChart" width="1140" height="650"></canvas>
+    <button class="btn btn-running activity-change" id="running">View Runs</button>
+    <button class="btn btn-warning activity-change" id="cycling">View Cycles</button>
+    <button class="btn btn-info activity-change" id="swimming">View Swims</button>
 
-    <select name="weedledum" class="form-control">
-        <option value="running">Running Sessions</option>
-        <option value="cycling">Cycling Sessions</option>
-        <option value="swimming">Swimming Sessions</option>
-    </select>
-
-    <div class="activity-view">
-        <a href="#running" roles="tab" data-toggle="tab" aria-controls="running">
-            <button class="btn btn-running">View Runs</button>
-        </a>
-
-        <a href="#cycling" roles="tab" data-toggle="tab" aria-controls="cycling">
-            <button class="btn btn-warning">View Cycles</button>
-        </a>
-
-        <a href="#swimming" roles="tab" data-toggle="tab" aria-controls="swimming">
-            <button class="btn btn-info">View Swims</button>
-        </a>
-
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="running">
-                <h3>Running Sessions</h3>
-                <table id="running-activities" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Speed</th>
-                            <th>Calories</th>
-                            <th>Hours</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for run in user_data.sport_data.running %}
-                            <tr>
-                                <td><a href="{{ url_for('main.individual_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
-                                <td>{{ run.effigy }}</td>
-                                <td>{{ run.calories }} calories</td>
-                                <td>{{ run.hours }} hours</td>
-                                <td>{{ run.opinion }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="cycling">
-                <h3>Cycling Sessions</h3>
-                <table id="cycling-activities" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Speed</th>
-                            <th>Calories</th>
-                            <th>Hours</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for cycle in user_data.sport_data.cycling %}
-                            <tr>
-                                <td><a href="{{ url_for('main.individual_activity', activity_id=cycle.id) }}">{{ cycle.date }}</a></td>
-                                <td>{{ cycle.effigy }}</td>
-                                <td>{{ cycle.calories }} calories</td>
-                                <td>{{ cycle.hours }} hours</td>
-                                <td>{{ cycle.opinion }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="swimming">
-                <h3>Swimming Sessions</h3>
-                <table id="swimming-activities" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Speed</th>
-                            <th>Calories</th>
-                            <th>Hours</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for swim in user_data.sport_data.swimming %}
-                            <tr>
-                                <td><a href="{{ url_for('main.individual_activity', activity_id=swim.id) }}">{{ swim.date }}</a></td>
-                                <td>{{ swim.effigy }}</td>
-                                <td>{{ swim.calories }} calories</td>
-                                <td>{{ swim.hours }} hours</td>
-                                <td>{{ swim.opinion }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div class="running-data active">
+        <h3>Running Data</h3>
+        <canvas id="runningChart" width="1140" height="650"></canvas>
+        <h3>Tabular View</h3>
+        <table id="running-activities" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Speed</th>
+                    <th>Calories</th>
+                    <th>Hours</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for run in user_data.sport_data.running %}
+                    <tr>
+                        <td><a href="{{ url_for('main.individual_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
+                        <td>{{ run.effigy }}</td>
+                        <td>{{ run.calories }} calories</td>
+                        <td>{{ run.hours }} hours</td>
+                        <td>{{ run.opinion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
-    <br/>
-    <br/>
+    <div class="cycling-data">
+        <h3>Cycling Data</h3>
+        <canvas id="cyclingChart" width="1140" height="650"></canvas>
+        <h3>Tabular View</h3>
+        <table id="cycling-activities" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Speed</th>
+                    <th>Calories</th>
+                    <th>Hours</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cycle in user_data.sport_data.cycling %}
+                    <tr>
+                        <td><a href="{{ url_for('main.individual_activity', activity_id=cycle.id) }}">{{ cycle.date }}</a></td>
+                        <td>{{ cycle.effigy }}</td>
+                        <td>{{ cycle.calories }} calories</td>
+                        <td>{{ cycle.hours }} hours</td>
+                        <td>{{ cycle.opinion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+    <div class="swimming-data">
+        <h3>Swimming Data</h3>
+        <canvas id="swimmingChart" width="1140" height="650"></canvas>
+        <h3>Tabular View</h3>
+        <table id="swimming-activities" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Speed</th>
+                    <th>Calories</th>
+                    <th>Hours</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for swim in user_data.sport_data.swimming %}
+                    <tr>
+                        <td><a href="{{ url_for('main.individual_activity', activity_id=swim.id) }}">{{ swim.date }}</a></td>
+                        <td>{{ swim.effigy }}</td>
+                        <td>{{ swim.calories }} calories</td>
+                        <td>{{ swim.hours }} hours</td>
+                        <td>{{ swim.opinion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/individual_charts.js') }}"></script>
 {% endblock %}

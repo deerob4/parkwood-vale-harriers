@@ -159,18 +159,10 @@ def rankings():
         for session in training_sessions:
             if session.sport == 'running':
                 user_calories.append([runner.name, [session.calories * 2 for session in training_sessions]])
-                print('%s %s session %s appended.' % (runner.name, session.sport, session.id))
-                print(user_calories)
             if session.sport == 'swimming':
                 user_calories.append([runner.name, [session.calories * 1.5 for session in training_sessions]])
-                print('%s %s session %s appended.' % (runner.name, session.sport, session.id))
-                print(user_calories)
             if session.sport == 'cycling':
                 user_calories.append([runner.name, [session.calories for session in training_sessions]])
-                print('%s %s session %s appended.' % (runner.name, session.sport, session.id))
-                print(user_calories)
-
-    print(user_calories)
 
     for i, not_needed in enumerate(user_calories):
         total = 0

@@ -162,40 +162,7 @@ $(document).ready(function () {
         })
     }
 
-    ajaxCall('/ajax/user-charts', 'POST', 'json', 'application/json', JSON.stringify({"month": $('.calorie-subtitle').text().replace(' Calorie Progress', '')}), constructUserChart);
-
     $('[data-toggle="tooltip"]').tooltip();
-
     Chart.defaults.global.scaleFontFamily = "'Raleway', 'Helvetica', 'Arial', sans-serif";
-
-    function constructUserChart(chartData) {
-        var runningCtx = document.getElementById("runningChart").getContext("2d");
-        var runningData = {
-            labels: chartData.activities.running.dates,
-            datasets: [{label: 'Running', strokeColor: "rgba(16,170,59, 0.8)", fillColor: "rgba(82,170,94, 0.8)", data: chartData.activities.running.calories}]
-        };
-        var cyclingCtx = document.getElementById("cyclingChart").getContext("2d");
-        var cyclingData = {
-            labels: chartData.activities.cycling.dates,
-            datasets: [{label: 'Cycling', strokeColor: "rgba(236,151,31,0.8)", fillColor: "rgba(240,173,78,0.8)", data: chartData.activities.cycling.calories}]
-        };
-        var swimmingCtx = document.getElementById("swimmingChart").getContext("2d");
-        var swimmingData = {
-            labels: chartData.activities.swimming.dates,
-            datasets: [{label: 'Swimming', strokeColor: "rgba(49,176,213,0.8)", fillColor: "rgba(91,192,222,0.8)", data: chartData.activities.swimming.calories}]
-        };
-        
-        var runningChart = new Chart(runningCtx).Line(runningData, {bezierCurve: false});
-        var cyclingChart = new Chart(cyclingCtx).Line(cyclingData, {bezierCurve: false, animation: false});
-        var swimmingChart = new Chart(swimmingCtx).Line(swimmingData, {bezierCurve: false, animation: false});
-    }
-
-//     delete from Users where id between 6 and 115;  
-
-    function updateComparisonChart(graphData) {
-//         alert(graphData.graphData.comparison_user);
-        var ctx = document.getElementById("running_comparison").getContext("2d");
-    }
-
 
 });
