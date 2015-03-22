@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.datepicker').datepicker({endDate: '-18y', startDate: '-75y', format: 'yyyy-mm-dd'});
 
     $('#running-activities, #cycling-activities, #swimming-activities').DataTable({
-        "filter": false
+        //"filter": false
     });
 
     function genericAnimation($element, animation, timeout) {
@@ -162,48 +162,32 @@ $(document).ready(function () {
         })
     }
 
-    ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', JSON.stringify({"graphType": 'running_calories', "comparisonUser": 3}), constructChart);
+    ajaxCall('/ajax/user-charts', 'POST', 'json', 'application/json', JSON.stringify({"month": $('.calorie-subtitle').text().replace(' Calorie Progress', '')}), constructUserChart);
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    var ctx = document.getElementById("myChart").getContext("2d");
+    Chart.defaults.global.scaleFontFamily = "'Raleway', 'Helvetica', 'Arial', sans-serif";
 
-    function constructChart(chartData) {
-        var data = {
-            labels: chartData.graphData.months,
-            datasets: [
-                {
-                    label: 'Running',
-                    strokeColor: "rgba(236,151,31,0.8)",
-                    fillColor: "rgba(240,173,78, 0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
-                    data: chartData.graphData.current_user
-                },
-                {
-                    label: 'Podign',
-                    fillColor: "rgba(134,173,78, 0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(134,173,78)",
-                    data: chartData.graphData.comparison_user
-                }
-            ]
+    function constructUserChart(chartData) {
+        var runningCtx = document.getElementById("runningChart").getContext("2d");
+        var runningData = {
+            labels: chartData.activities.running.dates,
+            datasets: [{label: 'Running', strokeColor: "rgba(16,170,59, 0.8)", fillColor: "rgba(82,170,94, 0.8)", data: chartData.activities.running.calories}]
         };
-        var options = {
-            scaleFontFamily: "'Raleway', 'Helvetica', 'Arial', sans-serif"
+        var cyclingCtx = document.getElementById("cyclingChart").getContext("2d");
+        var cyclingData = {
+            labels: chartData.activities.cycling.dates,
+            datasets: [{label: 'Cycling', strokeColor: "rgba(236,151,31,0.8)", fillColor: "rgba(240,173,78,0.8)", data: chartData.activities.cycling.calories}]
         };
-        var myBarChart = new Chart(ctx).Line(data, options);
+        var swimmingCtx = document.getElementById("swimmingChart").getContext("2d");
+        var swimmingData = {
+            labels: chartData.activities.swimming.dates,
+            datasets: [{label: 'Swimming', strokeColor: "rgba(49,176,213,0.8)", fillColor: "rgba(91,192,222,0.8)", data: chartData.activities.swimming.calories}]
+        };
         
-        $('.graph_buttons .btn').click(function () {
-        var graphData = JSON.stringify({"graphType": $(this).attr('id'), "comparisonUser": $('#user_list').val()});
-        ajaxCall('/ajax/comparison-graph', 'POST', 'json', 'application/json', graphData, updateChart);
-    });
-        function updateChart(data) {
-            myBarChart.labels = data.graphData.months
-            myBarChart.datasets[0] = data.graphData.current_user
-            myBarChart.datasets[1] = data.graphData.comparison_user
-            myBarChart.update()
-        } 
+        var runningChart = new Chart(runningCtx).Line(runningData, {bezierCurve: false});
+        var cyclingChart = new Chart(cyclingCtx).Line(cyclingData, {bezierCurve: false, animation: false});
+        var swimmingChart = new Chart(swimmingCtx).Line(swimmingData, {bezierCurve: false, animation: false});
     }
 
 //     delete from Users where id between 6 and 115;  

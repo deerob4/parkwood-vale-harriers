@@ -95,12 +95,24 @@ def calculate_calories():
     return jsonify(activity_data)
 
 
-@ajax.route('/ajax/running', methods=['POST'])
-def running():
+@ajax.route('/ajax/user-charts', methods=['POST'])
+def user_charts():
+    print(request.get_data().decode("utf-8").lower())
+    month_map = dict(zip([month_name[x].lower() for x in range(1, 13)], range(1, 13)))
+    user_month = month_map[request.json['month'].lower()]
+
     runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    running_data = {'calories': [run.calories for run in runs if run.date.month == 3],
-                    'dates': [run.date.strftime('%d %b') for run in runs if run.date.month == 3]}
-    return jsonify(running_data=running_data)
+
+    cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
+
+    swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
+
+    activity_data = {
+        'running': {'calories': [run.calories for run in runs if run.date.month == user_month], 'dates': [run.date.strftime('%d %b') for run in runs if run.date.month == user_month]},
+        'cycling': {'calories': [cycle.calories for cycle in cycles if cycle.date.month == user_month], 'dates': [cycle.date.strftime('%d %b') for cycle in cycles if cycle.date.month == user_month]},
+        'swimming': {'calories': [swim.calories for swim in swims if swim.date.month == user_month], 'dates': [swim.date.strftime('%d %b') for swim in swims if swim.date.month == user_month]}
+    }
+    return jsonify(activities=activity_data)
 
 
 @ajax.route('/ajax/performance', methods=['POST'])

@@ -273,6 +273,12 @@ select.months {
 input[type=search] {
     width: 90% !important;
 }
+.activity-view {
+    margin-top: 25px;
+}
+#cyclingChart, #swimmingChart {
+    display: none;
+}
 
 /*------------------------------------------------------
 |                  Begin comparison styles              |
