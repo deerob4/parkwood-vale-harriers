@@ -4,23 +4,9 @@
 
 {% block content %}
 
-        <h1>{{ activity.sport|title }} on {{ activity.date.strftime('%A %d %B %Y') }} &nbsp; <a href="{{ url_for('main.delete_activity', activity_id=activity.id) }}">
+        <h1>{{ activity.sport|title }} on {{ activity.date.strftime('%A %d %B %Y') }} <a href="{{ url_for('main.delete_activity', activity_id=activity.id) }}">
             <div class="btn btn-danger btn-sm">Delete Activity</div>
         </a></h1>
-        
-        
         <hr>
-                <div class="panel  {% if activity.sport == 'running' %}panel-success{% elif activity.sport == 'cycling' %}panel-warning{% else %}panel-info{% endif %}">
-                    <div class="panel-heading">
-                        <div class="panel-title">{{ activity.sport|title }}</div>
-                    </div>
-                    <ul class="account-details list-group panel-list">
-                        <li class="username list-group-item">Username: </li>
-                        <li class="joined list-group-item">Joined on:</li>
-                        <li class="charity-event list-group-item">Charity event: </li>
-                        <li class="activities-added list-group-item">Activities added: </li>
-                        <li class="joined list-group-item">Your ranking: 0 out of</li>
-                    </ul>
-                </div>
 
 {% endblock %}

@@ -91,6 +91,7 @@
                     <th>Date</th>
                     <th>Speed</th>
                     <th>Calories</th>
+                    <th>Time</th>
                     <th>Hours</th>
                     <th>Rating</th>
                 </tr>
@@ -101,6 +102,7 @@
                         <td><a href="{{ url_for('main.individual_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
                         <td>{{ run.effigy }}</td>
                         <td>{{ run.calories }} calories</td>
+                        <td>{{ run.start }} - {{ run.finish }}</td>
                         <td>{{ run.hours }} hours</td>
                         <td>{{ run.opinion }}</td>
                     </tr>
@@ -119,6 +121,7 @@
                     <th>Date</th>
                     <th>Speed</th>
                     <th>Calories</th>
+                    <th>Time</th>
                     <th>Hours</th>
                     <th>Rating</th>
                 </tr>
@@ -129,6 +132,7 @@
                         <td><a href="{{ url_for('main.individual_activity', activity_id=cycle.id) }}">{{ cycle.date }}</a></td>
                         <td>{{ cycle.effigy }}</td>
                         <td>{{ cycle.calories }} calories</td>
+                        <td>{{ cycle.start }} - {{ cycle.finish }}</td>
                         <td>{{ cycle.hours }} hours</td>
                         <td>{{ cycle.opinion }}</td>
                     </tr>
@@ -147,6 +151,7 @@
                     <th>Date</th>
                     <th>Speed</th>
                     <th>Calories</th>
+                    <th>Time</th>
                     <th>Hours</th>
                     <th>Rating</th>
                 </tr>
@@ -157,6 +162,7 @@
                         <td><a href="{{ url_for('main.individual_activity', activity_id=swim.id) }}">{{ swim.date }}</a></td>
                         <td>{{ swim.effigy }}</td>
                         <td>{{ swim.calories }} calories</td>
+                        <td>{{ swim.start }} - {{ swim.finish }}</td>
                         <td>{{ swim.hours }} hours</td>
                         <td>{{ swim.opinion }}</td>
                     </tr>

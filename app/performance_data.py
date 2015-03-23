@@ -20,11 +20,11 @@ def performance_data(month):
     total_cycle_data = [0, 0]
     total_swim_data = [0, 0]
 
-    run_list = [{'id': run.id, 'date': run.date.strftime('%d %b %y'), 'effigy': run.effigy, 'calories': run.calories, 'hours': run.hours, 'opinion': run.opinion} for run in all_runs if run.date.month == month_map[month]]
+    run_list = [{'id': run.id, 'date': run.date.strftime('%d %b %y'), 'effigy': run.effigy, 'calories': run.calories, 'start': run.start, 'finish': run.finish, 'hours': run.hours, 'opinion': run.opinion} for run in all_runs if run.date.month == month_map[month]]
 
-    cycle_list = [{'id': cycle.id, 'date': cycle.date.strftime('%d %b %y'), 'effigy': cycle.effigy, 'calories': cycle.calories, 'hours': cycle.hours, 'opinion': cycle.opinion} for cycle in all_cycles if cycle.date.month == month_map[month]]
+    cycle_list = [{'id': cycle.id, 'date': cycle.date.strftime('%d %b %y'), 'effigy': cycle.effigy, 'calories': cycle.calories, 'start': cycle.start, 'finish': cycle.finish, 'hours': cycle.hours, 'opinion': cycle.opinion} for cycle in all_cycles if cycle.date.month == month_map[month]]
 
-    swim_list = [{'id': swim.id, 'date': swim.date.strftime('%d %b %y'), 'effigy': swim.effigy, 'calories': swim.calories, 'hours': swim.hours, 'opinion': swim.opinion} for swim in all_swims if swim.date.month == month_map[month]]
+    swim_list = [{'id': swim.id, 'date': swim.date.strftime('%d %b %y'), 'effigy': swim.effigy, 'calories': swim.calories, 'start': swim.start, 'finish': swim.finish, 'hours': swim.hours,  'opinion': swim.opinion} for swim in all_swims if swim.date.month == month_map[month]]
 
     print(run_list, cycle_list, swim_list)
 

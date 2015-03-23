@@ -138,7 +138,9 @@ def performance(month):
 @login_required
 def individual_activity(activity_id):
     activity = Activity.query.filter_by(id=activity_id).first_or_404()
-    return render_template('performance/individual_activity.html', activity=activity)
+    if activity.user_id == current_user.get_id():
+        return render_template('performance/individual_activity.html', activity=activity)
+    return abort(404)
 
 
 @main.route('/performance/compare', methods=['GET', 'POST'])
