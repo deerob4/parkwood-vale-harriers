@@ -7,6 +7,7 @@ from flask.ext.login import current_user
 
 from app.models import Activity, db
 from app.performance_data import performance_data
+from app.helpers import remove_sport
 
 
 ajax = Blueprint('ajax', __name__)
@@ -51,10 +52,7 @@ def send_activity():
 @ajax.route('/ajax/remove-activity', methods=['POST'])
 def remove_activity():
     activity_id = request.json['activityId']
-    Activity.query.filter_by(id=activity_id).delete()
-    db.session.commit()
-    print('Activity deleted.')
-    return 'Activity deleted.', 200
+    return remove_sport(activity_id)
 
 
 @ajax.route('/ajax/calculate-calories', methods=['POST'])

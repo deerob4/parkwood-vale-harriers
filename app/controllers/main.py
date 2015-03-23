@@ -9,7 +9,7 @@ from random import randint
 import re
 
 from app.models import User, Activity, db
-from app.helpers import validation_error, update_user
+from app.helpers import validation_error, update_user, remove_sport
 from app.performance_data import performance_data
 
 main = Blueprint('main', __name__)
@@ -171,6 +171,13 @@ def rankings():
         user_calories[i][1] = total
         
     return render_template('/training/rankings.html', running_team=user_calories)
+
+
+@main.route('/delete/<int:activity_id>')
+def delete_activity(activity_id):
+    remove_sport(activity_id)
+    flash('Your training session was deleted!', 'success')
+    return redirect(url_for('main.home'))
 
 
 @main.errorhandler(404)

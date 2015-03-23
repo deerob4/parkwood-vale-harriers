@@ -161,7 +161,7 @@ $(document).ready(function () {
             }
         })
     }
-
+    
     $('[data-toggle="tooltip"]').tooltip();
     Chart.defaults.global.scaleFontFamily = "'Raleway', 'Helvetica', 'Arial', sans-serif";
 

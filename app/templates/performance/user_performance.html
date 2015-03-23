@@ -12,6 +12,24 @@
         {% endfor %}
     </ul>
 
+    {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="row">
+                <div class="col-md-12">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <div class="row">
         <div class="col-md-6">
             <h3 class="performance-subtitle calorie-subtitle">{{ current_month|title }} Calorie Progress</h3>
@@ -65,7 +83,7 @@
 
     <div class="running-data active">
         <h3>Running Data</h3>
-        <canvas id="runningChart" width="1140" height="650"></canvas>
+        <canvas id="runningChart" width="1140" height="550"></canvas>
         <h3>Tabular View</h3>
         <table id="running-activities" class="table table-bordered table-striped table-hover" style="border-radius: 4px;">
             <thead>
@@ -93,7 +111,7 @@
 
     <div class="cycling-data">
         <h3>Cycling Data</h3>
-        <canvas id="cyclingChart" width="1140" height="650"></canvas>
+        <canvas id="cyclingChart" width="1140" height="550"></canvas>
         <h3>Tabular View</h3>
         <table id="cycling-activities" class="table table-bordered table-striped table-hover"  style="border-radius: 4px;">
             <thead>
@@ -121,7 +139,7 @@
 
     <div class="swimming-data">
         <h3>Swimming Data</h3>
-        <canvas id="swimmingChart" width="1140" height="650"></canvas>
+        <canvas id="swimmingChart" width="1140" height="550"></canvas>
         <h3>Tabular View</h3>
         <table id="swimming-activities" class="table table-bordered table-striped table-hover" style="border-radius: 4px;">
             <thead>

@@ -1,7 +1,7 @@
 from flask import flash, redirect, url_for
 from flask.ext.login import current_user
 
-from app.models import db
+from app.models import db, Activity
 
 from datetime import date
 
@@ -25,3 +25,10 @@ def calculate_age(born):
     """Calculates the age of the user"""
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+
+def remove_sport(activity_id):
+    Activity.query.filter_by(id=activity_id).delete()
+    db.session.commit()
+    print('Activity %s deleted' % id)
+    return 'Activity %s deleted' % activity_id
