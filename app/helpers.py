@@ -28,6 +28,7 @@ def calculate_age(born):
 
 
 def remove_sport(activity_id):
+    """Removes the activity from the database"""
     Activity.query.filter_by(id=activity_id).delete()
     db.session.commit()
     print('Activity %s deleted' % id)

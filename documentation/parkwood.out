@@ -1,0 +1,54 @@
+\BOOKMARK [0][-]{part.1}{I Analysis and Design}{}% 1
+\BOOKMARK [1][-]{section.1}{Problem Definition}{part.1}% 2
+\BOOKMARK [2][-]{subsection.1.1}{Background}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.2}{Broad Aims}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.3}{Limitations}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.4}{Assumptions}{section.1}% 6
+\BOOKMARK [2][-]{subsection.1.5}{Objectives}{section.1}% 7
+\BOOKMARK [2][-]{subsection.1.6}{Justification of Proposed Solution}{section.1}% 8
+\BOOKMARK [1][-]{section.2}{Data Structures and Methods of Access}{part.1}% 9
+\BOOKMARK [2][-]{subsection.2.1}{Database Tables}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Users Table}{subsection.2.1}% 11
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Activities Table}{subsection.2.1}% 12
+\BOOKMARK [1][-]{section.3}{User Interface Design}{part.1}% 13
+\BOOKMARK [2][-]{subsection.3.1}{Main Layout Template}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{Hardware and Software Requirements}{part.1}% 15
+\BOOKMARK [1][-]{section.5}{Processing Stages}{part.1}% 16
+\BOOKMARK [1][-]{section.6}{Evaluation Criteria}{part.1}% 17
+\BOOKMARK [0][-]{part.2}{II Program Documentation}{}% 18
+\BOOKMARK [1][-]{section.7}{User Interface}{part.2}% 19
+\BOOKMARK [2][-]{subsection.7.1}{Main Layout}{section.7}% 20
+\BOOKMARK [2][-]{subsection.7.2}{Register Page}{section.7}% 21
+\BOOKMARK [2][-]{subsection.7.3}{Login Page}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.4}{Profile Page}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.5}{User Performance Page}{section.7}% 24
+\BOOKMARK [2][-]{subsection.7.6}{Add Activity Page}{section.7}% 25
+\BOOKMARK [2][-]{subsection.7.7}{Rankings Page}{section.7}% 26
+\BOOKMARK [1][-]{section.8}{Annotated Listings}{part.2}% 27
+\BOOKMARK [2][-]{subsection.8.1}{HTML Views}{section.8}% 28
+\BOOKMARK [3][-]{subsubsection.8.1.1}{layout.html}{subsection.8.1}% 29
+\BOOKMARK [3][-]{subsubsection.8.1.2}{register.html}{subsection.8.1}% 30
+\BOOKMARK [3][-]{subsubsection.8.1.3}{login.html}{subsection.8.1}% 31
+\BOOKMARK [3][-]{subsubsection.8.1.4}{user\137performance.html}{subsection.8.1}% 32
+\BOOKMARK [3][-]{subsubsection.8.1.5}{own\137profile.html}{subsection.8.1}% 33
+\BOOKMARK [3][-]{subsubsection.8.1.6}{add\137training.html}{subsection.8.1}% 34
+\BOOKMARK [3][-]{subsubsection.8.1.7}{compare\137performance.html}{subsection.8.1}% 35
+\BOOKMARK [3][-]{subsubsection.8.1.8}{rankings.html}{subsection.8.1}% 36
+\BOOKMARK [3][-]{subsubsection.8.1.9}{running\137block.html}{subsection.8.1}% 37
+\BOOKMARK [3][-]{subsubsection.8.1.10}{cycling\137block.html}{subsection.8.1}% 38
+\BOOKMARK [3][-]{subsubsection.8.1.11}{swimming\137block.html}{subsection.8.1}% 39
+\BOOKMARK [2][-]{subsection.8.2}{JavaScript Functions}{section.8}% 40
+\BOOKMARK [3][-]{subsubsection.8.2.1}{main.js}{subsection.8.2}% 41
+\BOOKMARK [3][-]{subsubsection.8.2.2}{individual\137charts.js}{subsection.8.2}% 42
+\BOOKMARK [2][-]{subsection.8.3}{CSS Styling}{section.8}% 43
+\BOOKMARK [2][-]{subsection.8.4}{Python Processes}{section.8}% 44
+\BOOKMARK [3][-]{subsubsection.8.4.1}{\137\137init\137\137.py}{subsection.8.4}% 45
+\BOOKMARK [3][-]{subsubsection.8.4.2}{forms.py}{subsection.8.4}% 46
+\BOOKMARK [3][-]{subsubsection.8.4.3}{models.py}{subsection.8.4}% 47
+\BOOKMARK [3][-]{subsubsection.8.4.4}{helpers.py}{subsection.8.4}% 48
+\BOOKMARK [3][-]{subsubsection.8.4.5}{performance\137data.py}{subsection.8.4}% 49
+\BOOKMARK [3][-]{subsubsection.8.4.6}{auth.py}{subsection.8.4}% 50
+\BOOKMARK [3][-]{subsubsection.8.4.7}{ajax.py}{subsection.8.4}% 51
+\BOOKMARK [3][-]{subsubsection.8.4.8}{main.py}{subsection.8.4}% 52
+\BOOKMARK [0][-]{part.3}{III Testing and Evaluation}{}% 53
+\BOOKMARK [1][-]{section*.2}{Unnumbered Section}{part.3}% 54

@@ -41,6 +41,12 @@
     border-top: 1px solid #eeeeee;
     text-align: center;
     font-family: ralewaymedium, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    padding-top: 35px;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0;
+    position: fixed;
+    bottom: 35px;
 }
 /*------------------------------------------------------
 |                     Begin misc hacks                 |
