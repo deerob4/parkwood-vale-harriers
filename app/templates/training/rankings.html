@@ -8,17 +8,35 @@
 <h4>View the current team for the charity event, updated using up to date data from your fellow runners!</h4>
 
 <div class="rankings">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="panel-title">Charity Team Rankings</div>
-         </div>
-         <ul class="user-details list-group panel-list">
-             {% for runner in running_team %}
-                {% if loop.index <= 12 %}
-                    <li class="list-group-item">{{ loop.index }}. {{ runner }} - {{ running_team[runner] }} calories</li>
-                {% endif %}
-             {% endfor %}
-         </ul>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="panel-title">Main Charity Team</div>
+                 </div>
+                 <ul class="user-details list-group panel-list">
+                     {% for runner in running_team %}
+                        {% if loop.index <= 8 %}
+                            <li class="list-group-item">{{ loop.index }}. {{ runner }}</li>
+                        {% endif %}
+                     {% endfor %}
+                 </ul>
+            </div>  
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Reserve Team</div>
+                 </div>
+                 <ul class="user-details list-group panel-list">
+                     {% for runner in running_team %}
+                        {% if 9 <= loop.index <= 12 %}
+                             <li class="list-group-item">{{ loop.index }}. {{ runner }}</li>
+                        {% endif %}
+                     {% endfor %}
+                 </ul>
+            </div>
+        </div>
     </div>
 </div>
 

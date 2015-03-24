@@ -154,25 +154,18 @@ def compare_performance():
 @main.route('/rankings')
 @login_required
 def rankings():
+    user_ranking = {}
     runners = User.query.filter_by(charity_event=False).all()
-    user_calories = []
-    for i, runner in enumerate(runners):
+    for runner in runners:
+        total_calories = 0
         training_sessions = Activity.query.filter_by(user_id=runner.id).all()
         for session in training_sessions:
-            if session.sport == 'running':
-                user_calories.append([runner.name, [session.calories * 2 for session in training_sessions]])
-            if session.sport == 'swimming':
-                user_calories.append([runner.name, [session.calories * 1.5 for session in training_sessions]])
-            if session.sport == 'cycling':
-                user_calories.append([runner.name, [session.calories for session in training_sessions]])
+            total_calories += session.calories
+        user_ranking[runner.name] = total_calories
 
-    for i, not_needed in enumerate(user_calories):
-        total = 0
-        for x in user_calories[i][1]:
-            total += x
-        user_calories[i][1] = total
+    user_ranking = sorted(user_ranking, key=user_ranking.get, reverse=True)
         
-    return render_template('/training/rankings.html', running_team=user_calories)
+    return render_template('/training/rankings.html', running_team=user_ranking)
 
 
 @main.route('/delete/<int:activity_id>')
