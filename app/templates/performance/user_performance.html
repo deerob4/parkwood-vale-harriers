@@ -99,7 +99,7 @@
             <tbody>
                 {% for run in user_data.sport_data.running %}
                     <tr>
-                        <td><a href="{{ url_for('main.individual_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
+                        <td><span data-toggle="modal" data-target="#{{ run.id }}-modal"><a href="#">{{ run.date }}</a></span></td>
                         <td>{{ run.effigy }}</td>
                         <td>{{ run.calories }} calories</td>
                         <td>{{ run.start }} - {{ run.finish }}</td>
@@ -129,7 +129,7 @@
             <tbody>
                 {% for cycle in user_data.sport_data.cycling %}
                     <tr>
-                        <td><a href="{{ url_for('main.individual_activity', activity_id=cycle.id) }}">{{ cycle.date }}</a></td>
+                        <td><span data-toggle="modal" data-target="#{{ cycle.id }}-modal"><a href="#">{{ cycle.date }}</a></span></td>
                         <td>{{ cycle.effigy }}</td>
                         <td>{{ cycle.calories }} calories</td>
                         <td>{{ cycle.start }} - {{ cycle.finish }}</td>
@@ -159,7 +159,7 @@
             <tbody>
                 {% for swim in user_data.sport_data.swimming %}
                     <tr>
-                        <td><a href="{{ url_for('main.individual_activity', activity_id=swim.id) }}">{{ swim.date }}</a></td>
+                        <td><span data-toggle="modal" data-target="#{{ swim.id }}-modal"><a href="#">{{ swim.date }}</a></span></td>
                         <td>{{ swim.effigy }}</td>
                         <td>{{ swim.calories }} calories</td>
                         <td>{{ swim.start }} - {{ swim.finish }}</td>
@@ -170,6 +170,60 @@
             </tbody>
         </table>
     </div>
+
+    {% for run in user_data.sport_data.running %}
+        <div class="modal fade" id="{{ run.id }}-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Running on {{ run.date }}&nbsp;<a href="{{ url_for('main.delete_activity', activity_id=run.id) }}">
+                            <div class="btn btn-danger btn-sm">Delete Activity</div>
+                        </a></h3>
+                    </div>
+                    <div class="modal-body">
+                        <h5>You thought the run was:</h5>
+                        <p>{{ run.opinion }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for cycle in user_data.sport_data.cycling %}
+        <div class="modal fade" id="{{ cycle.id }}-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Cycling on {{ cycle.date }}&nbsp;<a href="{{ url_for('main.delete_activity', activity_id=cycle.id) }}">
+                            <div class="btn btn-danger btn-sm">Delete Activity</div>
+                        </a></h3>
+
+                    </div>
+                    <div class="modal-body">
+                        {{ cycle.opinion }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for swim in user_data.sport_data.swimming %}
+        <div class="modal fade" id="{{ swim.id }}-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Swimming on {{ swim.date }}&nbsp;<a href="{{ url_for('main.delete_activity', activity_id=swim.id) }}">
+                            <div class="btn btn-danger btn-sm">Delete Activity</div>
+                        </a></h3>
+
+                    </div>
+                    <div class="modal-body">
+                        {{ swim.opinion }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}
 
