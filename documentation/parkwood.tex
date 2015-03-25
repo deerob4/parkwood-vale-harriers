@@ -87,8 +87,6 @@
     tabsize=2
 }
 
-% \lstset{style=python}
-
 \begin{document}
 
 \title{WJEC GCE Computing CG2 - Extended Task}
@@ -252,16 +250,19 @@ To ensure visual consistency throughout the system, every page will derive itsel
 This section contains screen captures of the all the different areas of the completed system, along with additional notes stating how they are fit for purpose.
 
 \subsection{Main Layout}
-\includegraphics[scale=0.24]{final_ui/layout}
+Every other page derives the constant elements, like the navigation bar and footer, from this template, to ensure visual consistency.
+\includegraphics[scale=0.30]{final_ui/layout}
 
 \subsection{Register Page}
-\includegraphics[scale=0.22]{final_ui/register}
+\includegraphics[scale=0.35]{final_ui/register}
 
 \subsection{Login Page}
 \includegraphics[scale=0.35]{final_ui/login}
 
 \subsection{Profile Page}
+\subsubsection{Main Profile Page}
 \includegraphics[scale=0.35]{final_ui/profile}
+\subsubsection{Delete Profile Section}
 \includegraphics[scale=0.35]{final_ui/account_delete}
 
 \subsection{User Performance Page}
@@ -272,6 +273,21 @@ This section contains screen captures of the all the different areas of the comp
 
 \subsection{Rankings Page}
 \includegraphics[scale=0.35]{final_ui/rankings}
+
+\section{Database Models}
+This section contains documentation on the finished database tables and models, including an ER diagram showing the relationship between the tables, schematics, and a visual view.
+
+\subsection{Table Relationships}
+\includegraphics[scale=0.4]{images/database/er_diagram}
+
+\subsection{Table Schemas}
+Each table in the database has its own schema, in which is described the name, data type and key type of each column. They can be found below.
+
+\subsubsection{Users Table}
+\includegraphics[scale=0.65]{images/database/users_schema}
+
+\subsubsection{Activities Table}
+\includegraphics[scale=0.65]{images/database/activities_schema}
 
 \section{Annotated Listings}
 This section contains all of the code for the system, split into several logical categories. The system is made up of a very large number of Python functions, as well as some additional aspects, such as Jinja2 HTML templates to display the interface, and CSS to provide styling.
