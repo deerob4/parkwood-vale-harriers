@@ -250,20 +250,59 @@ To ensure visual consistency throughout the system, every page will derive itsel
 This section contains screen captures of the all the different areas of the completed system, along with additional notes stating how they are fit for purpose.
 
 \subsection{Main Layout}
-Every other page derives the constant elements, like the navigation bar and footer, from this template, to ensure visual consistency.
-\includegraphics[scale=0.30]{final_ui/layout}
+Every other page derives the constant elements, like the navigation bar and footer, from this template, to ensure visual consistency. Every other page derives the constant elements, like the navigation bar and footer, from this template, to ensure visual consistency. 
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.30]{final_ui/layout}
+  \caption{Master Layout}
+\end{figure}
 
 \subsection{Register Page}
-\includegraphics[scale=0.35]{final_ui/register}
+The register page features a clear, simple design, with input boxes laid out in a consistent style. Each input box features placeholder text, to provide a visual guide to the user as to what sort of data they should be typing in. To simplify entry, the date of birth input brings up a datepicker widget upon click, making it simple for users to enter their date of birth. Additionally, validation errors are featured at the top of the page in a big yellow box, making them easy to see; they also have a close button to prevent them getting in the way. A link to the login page allows users who already have an account to quickly login.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{final_ui/register}
+  \caption{Registration Page}
+\end{figure}
+\clearpage
 
 \subsection{Login Page}
-\includegraphics[scale=0.35]{final_ui/login}
+As the login page has only one function - to get the user logged in to the system - it features a very simple layout, with only two input forms and a button. Like the registration form, though not visible in this capture, placeholders are overlaid on the inputs to provide a visual guide as to should be typed in. Additionally, the password field blanks out the input, a helpful security measure that prevents onlookers viewing the user's password. For consistency, the same validation error system as with the registration page is used.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{final_ui/login}
+  \caption{Login Page}
+\end{figure}
+\clearpage
 
 \subsection{Profile Page}
-\subsubsection{Main Profile Page}
-\includegraphics[scale=0.35]{final_ui/profile}
-\subsubsection{Delete Profile Section}
-\includegraphics[scale=0.35]{final_ui/account_delete}
+The profile page allows the user to view and update their personal information. Certain sections appear on demand, so multiple captures have been taken.
+
+\subsubsection{Main View}
+Due to the large amount of data that is being presented on this page, a structured approach has been taken, with a three-panel view being implemented. This helps to seperate the different areas of the page in a logical manner, making it easier for the user to find what they are looking for. Each item of data is given its own row, making it clear which is which. The delete account section has been coloured in red, a colour traditionally associated with danger. This helps to convey to the user that bad things will happen if they delete their account. Furthermore, playful text has been used in the delete account panel, to bring a sense of amusement and, hopefully, dissuade the user from following through with their actions.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{final_ui/profile}
+  \caption{Profile Page - Main View}
+\end{figure}
+\clearpage
+
+\subsubsection{Change Details}
+The interface for changing details is very simple - it features just an input for changing the element, and a button to confirm. The placeholder text for the input is set to the current item, for visual consistency. Making this panel pop up as opposed to being on a seperate page improves the flow of the page, preventing the user becoming disorientated.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{final_ui/profile_change}
+  \caption{Profile Page - Change Details}
+\end{figure}
+\clearpage
+
+\subsubsection{Delete Account}
+To ensure that the user is fully aware of the severity of deleting their account, they must type in "I will lose everything" into the box; this also makes it harder for them to accidentally delete their account. Positive reinforcement is used in this section through the use of colours - greeen is associated with positivity, and users have been shown to click on green coloured buttons more often than red; this further dissuades them from deleting their account.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{final_ui/account_delete}
+  \caption{Profile Page - Delete Account}
+\end{figure}
 
 \subsection{User Performance Page}
 \includegraphics[scale=0.35]{final_ui/user_performance}
@@ -278,16 +317,267 @@ Every other page derives the constant elements, like the navigation bar and foot
 This section contains documentation on the finished database tables and models, including an ER diagram showing the relationship between the tables, schematics, and a visual view.
 
 \subsection{Table Relationships}
-\includegraphics[scale=0.4]{images/database/er_diagram}
+The activities and users are linked through a foreign key This means that there is a one to many relationship between users and activities - one user can have many activities, but each activity can only have one user.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.5]{images/database/er_diagram}
+  \caption{Table Relationships}
+\end{figure}
+
+\clearpage
 
 \subsection{Table Schemas}
 Each table in the database has its own schema, in which is described the name, data type and key type of each column. They can be found below.
 
 \subsubsection{Users Table}
-\includegraphics[scale=0.65]{images/database/users_schema}
+The id column is the primary key. Email is used to login. Username is used in certain routes; see processes. Weight is used to calculate calories.
+\begin{figure}[h!]
+  \includegraphics[scale=0.65]{images/database/users_schema}
+  \caption{Users Table Schema}
+\end{figure}
 
 \subsubsection{Activities Table}
-\includegraphics[scale=0.65]{images/database/activities_schema}
+The id column is the primary key. Effigy is the specific details of each activity, such as the swimming stroke or running speed. user\_id is the foreign key linking the activity to a user.
+\begin{figure}[h!]
+  \includegraphics[scale=0.65]{images/database/activities_schema}
+  \caption{Activities Table Schema}
+\end{figure}
+
+\clearpage
+
+\subsection{Data Views}
+The following is a snapshot of the data in the two tables at the time of writing, to illustrate how they will appear in production.
+
+\subsubsection{Users Table}
+\begin{figure}[h!]
+  \includegraphics[scale=0.37]{images/database/users_visual}
+  \caption{Users Table Data View}
+\end{figure}
+
+\subsubsection{Activities Table}
+\begin{figure}[h!]
+  \includegraphics[scale=0.37]{images/database/activities_visual}
+  \caption{Activities Table Data View}
+\end{figure}
+
+\section{Variables}
+A very large number of variables have been used throughout the system in order to store data temporarily. It should be noted that variables in Python do not work in the same way as in other languages like Visual Basic: a variable acts as a pointer to something already in memory (created by Python automatically), as opposed to creating a space in memory to store the contents of the variable. Therefore, the code x = 10 merely sets the variable x to an address that points at 10, as opposed to writing 10 into memory.
+
+\subsection{Global Variables}
+Throughout the system, a small number of global variables are used in order to provide functionality. The following table lists their names, type and purpose.
+\begin{table}[h]
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Type} & \textbf{Purpose}                        \\ \hline
+login\_manager                    & Object                 & Creates the actual Flask application object.     \\ \hline
+db                     & Object                 & Returns a connection to the database.            \\ \hline
+User                   & Object                 & Creates a connection to the Users db table.      \\ \hline
+Activity               & Object                 & Creates a connection to the Activities db table. \\ \hline
+current\_user          & Object                 & Returns details about the logged in user.        \\ \hline
+\end{tabular}
+\caption{Global Variables}
+\end{table}
+
+\subsection{Local Variables}
+The following table contains a list of all the variables used locally throughout the functions / classes.
+\begin{table}[h]
+\begin{tabular}{lllll}
+\textbf{Name}     & \textbf{Type} & \textbf{File Found} & \textbf{Function / Class} & \textbf{Purpose}                        \\
+login\_manager    & Object        & \_init\_.py         & create\_app             & Creates the login object.               \\ \hline
+name              & Object        & forms.py            & MemberForm              & Creates the name input.                 \\ \hline
+dob               & Object        & forms.py            & MemberForm              & Creates the dob input.                  \\ \hline
+password          & Object        & forms.py            & MemberForm              & Creates the password input.             \\ \hline
+confirm           & Object        & forms.py            & MemberForm              & Creates the confirm input.              \\ \hline
+charity\_event    & Object        & forms.py            & MemberForm              & Creates the charity input.              \\ \hline
+distance          & Object        & forms.py            & MemberForm              & Creates the distance input.             \\ \hline
+weight            & Object        & forms.py            & MemberForm              & Creates the weight input.               \\ \hline
+phone             & Object        & forms.py            & MemberForm              & Creates the phone input,                \\ \hline
+submit            & Object        & forms.py            & MemberForm              & Creates the submit button.              \\ \hline
+age               & int           & forms.py            & validate\_dob           & Stores the user's age.                  \\ \hline
+email             & Object        & forms.py            & LoginForm               & Creates the email input.                \\ \hline
+password          & Object        & forms.py            & LoginForm               & Creates the password input.             \\ \hline
+remember          & Bool          & forms.py            & LoginForm               & Creates the remember input.             \\ \hline
+login             & Object        & forms.py            & LoginForm               & Creates the login button.               \\ \hline
+id                & Object        & models.py           & User                    & Creates the id column.                  \\ \hline
+name              & Object        & models.py           & User                    & Creates the name column.                \\ \hline
+email             & Object        & models.py           & User                    & Creates the email column.               \\ \hline
+username          & Object        & models.py           & User                    & Creates the username column.            \\ \hline
+password\_hash    & Object        & models.py           & User                    & Creates the hash column.                \\ \hline
+dob               & Object        & models.py           & User                    & Creates the dob column.                 \\ \hline
+phone             & Object        & models.py           & User                    & Creates the phone column.               \\ \hline
+weight            & Object        & models.py           & User                    & Creates the weight column.              \\ \hline
+distance          & Object        & models.py           & User                    & Creates the distance column.            \\ \hline
+joined            & Object        & models.py           & User                    & Creates the joined column.              \\ \hline
+charity\_event    & Object        & models.py           & User                    & Creates the charity column.             \\ \hline
+activities        & Object        & models.py           & User                    & Creates relationship property.          \\ \hline
+id                & Object        & models.py           & Activity                & Creates the id column.                  \\ \hline
+sport             & Object        & models.py           & Activity                & Creates the effigy column.              \\ \hline
+date              & Object        & models.py           & Activity                & Creates the date column.                \\ \hline
+start             & Object        & models.py           & Activity                & Creates the start column.               \\ \hline
+finish            & Object        & models.py           & Activity                & Creates the finish column.              \\ \hline
+hours             & Object        & models.py           & Activity                & Creates the hours column.               \\ \hline
+calories          & Object        & models.py           & Activity                & Creates the calories column.            \\ \hline
+opinion           & Object        & models.py           & Activity                & Creates the opinion column.             \\ \hline
+thoughts          & Object        & models.py           & Activity                & Creates the thoughts column.            \\ \hline
+user\_id          & Object        & models.py           & Activity                & Creates the user\_id column.            \\ \hline
+today             & Date          & helpers.py          & calculate\_age          & Stores the current date.                \\ \hline
+months            & List          & perf\_data.py       & perf\_data              & Stores a list of months.                \\ \hline
+all\_activities   & Object        & per\_data.py        & perf\_data              & Stores all the user's sessions.         \\ \hline
+all\_runs         & Object        & per\_data.py        & perf\_data              & Stores all the user's runs.             \\ \hline
+all\_cycles       & Object        & per\_data.py        & perf\_data              & Stores all the user's cycles.           \\ \hline
+all\_swims        & Object        & per\_data.py        & perf\_data              & Stores all the user's swims.            \\ \hline
+month\_map        & Dict          & per\_data.py        & perf\_data              & Maps months to integers.                \\ \hline
+calorie\_goal     & int           & per\_data.py        & perf\_data              & Stores the calorie goal.                \\ \hline
+hour\_goal        & int           & per\_data.py        & perf\_data              & Stores the hourly goal.                 \\ \hline
+sport             & String        & ajax.py             & sport\_block            & Stores the type of sport                \\ \hline
+sport             & String        & ajax.py             & send\_activity          & Retrieves the sport                     \\ \hline
+effiy             & String        & ajax.py             & send\_activity          & Retrieves the effigy                    \\ \hline
+hours             & int           & ajax.py             & send\_activity          & Retrieves the hours                     \\ \hline
+start             & int           & ajax.py             & send\_activity          & Retrieves the start                     \\ \hline
+finish            & int           & ajax.py             & send\_activity          & Retrieves the finish                    \\ \hline
+opinion           & String        & ajax.py             & send\_activity          & Retrieves the opinion                   \\ \hline
+thoughts          & String        & ajax.py             & send\_activity          & Retrieves the thoughts                  \\ \hline
+activity          & Object        & ajax.py             & send\_activity          & Stores the completed activity           \\ \hline
+activity\_id      & int           & ajax.py             & remove\_activity        & Stores the id of the activity           \\ \hline
+base\_calories    & Dict          & ajax.py             & calculate\_calories     & Stores the base calorie values          \\ \hline
+sport             & String        & ajax.py             & calculate\_calories     & Retrieves the sport                     \\ \hline
+effiy             & String        & ajax.py             & calculate\_calories     & Retrieves the effigy                    \\ \hline
+hours             & int           & ajax.py             & calculate\_calories     & Retrieves the hours                     \\ \hline
+start             & int           & ajax.py             & calculate\_calories     & Retrieves the start                     \\ \hline
+finish            & int           & ajax.py             & calculate\_calories     & Retrieves the finish                    \\ \hline
+opinion           & String        & ajax.py             & calculate\_calories     & Retrieves the opinion                   \\ \hline
+thoughts          & String        & ajax.py             & calculate\_calories     & Retrieves the thoughts                  \\ \hline
+base\_value       & int           & ajax.py             & calculate\_calories     & Stores the base value for activity      \\ \hline
+calories          & int           & ajax.py             & calculate\_calories     & Stores the total calories               \\ \hline
+modifier          & int           & ajax.py             & calculate\_calories     & Stores the correct calorie modifier     \\ \hline
+activity\_data    & Dict          & ajax.py             & calculate\_calories     & Stores all the activity data            \\ \hline
+month\_map        & Dict          & ajax.py             & user\_charts            & Stores a mapping of months to int       \\ \hline
+runs              & Object        & ajax.py             & user\_charts            & Stores all the user's runs              \\ \hline
+cycles            & Object        & ajax.py             & user\_charts            & Stores all the user's cycles            \\ \hline
+swims             & Object        & ajax.py             & user\_charts            & Stores all the user's swims             \\ \hline
+activity\_data    & Dict          & ajax.py             & user\_charts            & Stores calories and dates for charts    \\ \hline
+month             & String        & ajax.py             & user\_charts            & Stores the requested month              \\ \hline
+user\_data        & Dict          & ajax.py             & user\_charts            & Stores the performance data of user.    \\ \hline
+form              & Object        & auth.py             & register                & Stores instance of class MemberForm     \\ \hline
+username          & String        & auth.py             & register                & Stores the inputted username.           \\ \hline
+user              & Object        & auth.py             & register                & Stores a User object with data          \\ \hline
+form              & Object        & auth.py             & login                   & Stores instance of class LoginForm      \\ \hline
+user              & Object        & auth.py             & login                   & Stores details of user with email       \\ \hline
+only\_letters     & String        & main.py             & profiles                & Stores regexp to check valid name       \\ \hline
+valid\_email      & String        & main.py             & profiles                & Stores regexp to check valid email      \\ \hline
+valid\_phone      & String        & main.py             & profiles                & Stores regexp to check valid phone      \\ \hline
+check\_integer    & String        & main.py             & profiles                & Stores regexp to check valid weight     \\ \hline
+activity\_number  & int           & main.py             & profiles                & Stores number of activities of user     \\ \hline
+total\_users      & int           & main.py             & profiles                & Stores the total number of users        \\ \hline
+activities        & Object        & main.py             & add\_training           & Stores all activities for user on today \\ \hline
+total\_calories   & int           & main.py             & add\_training           & Stores the total calories done today    \\ \hline
+total\_hours      & int           & main.py             & add\_training           & Stores the total hours done today       \\ \hline
+months            & List          & main.py             & performance             & Stores a list of months                 \\ \hline
+all\_activities   & Object        & main.py             & performance             & Stores all activities for user          \\ \hline
+available\_months & List          & main.py             & performance             & Stores months user has sessions in      \\ \hline
+users             & Object        & main.py             & compare\_perf           & Stores all users who are charitable     \\ \hline
+user\_list        & List          & main.py             & compare\_perf           & Stores sorted list of above users       \\ \hline
+user\_ranking     & Dict / List   & main.py             & rankings                & Stores the best running team            \\ \hline
+sport             & String        & ajax.py             & sport\_block              & Stores the type of sport                \\
+sport             & String        & ajax.py             & send\_activity            & Retrieves the sport                     \\
+effiy             & String        & ajax.py             & send\_activity            & Retrieves the effigy                    \\
+hours             & int           & ajax.py             & send\_activity            & Retrieves the hours                     \\
+start             & int           & ajax.py             & send\_activity            & Retrieves the start                     \\
+finish            & int           & ajax.py             & send\_activity            & Retrieves the finish                    \\
+opinion           & String        & ajax.py             & send\_activity            & Retrieves the opinion                   \\
+thoughts          & String        & ajax.py             & send\_activity            & Retrieves the thoughts                  \\
+activity          & Object        & ajax.py             & send\_activity            & Stores the completed activity           \\
+activity\_id      & int           & ajax.py             & remove\_activity          & Stores the id of the activity           \\
+base\_calories    & Dict          & ajax.py             & calculate\_calories       & Stores the base calorie values          \\
+sport             & String        & ajax.py             & calculate\_calories       & Retrieves the sport                     \\
+effiy             & String        & ajax.py             & calculate\_calories       & Retrieves the effigy                    \\
+hours             & int           & ajax.py             & calculate\_calories       & Retrieves the hours                     \\
+start             & int           & ajax.py             & calculate\_calories       & Retrieves the start                     \\
+finish            & int           & ajax.py             & calculate\_calories       & Retrieves the finish                    \\
+opinion           & String        & ajax.py             & calculate\_calories       & Retrieves the opinion                   \\
+thoughts          & String        & ajax.py             & calculate\_calories       & Retrieves the thoughts                  \\
+base\_value       & int           & ajax.py             & calculate\_calories       & Stores the base value for activity      \\
+calories          & int           & ajax.py             & calculate\_calories       & Stores the total calories               \\
+modifier          & int           & ajax.py             & calculate\_calories       & Stores the correct calorie modifier     \\
+activity\_data    & Dict          & ajax.py             & calculate\_calories       & Stores all the activity data            \\
+sport             & String        & ajax.py             & sport\_block              & Stores the type of sport                \\
+sport             & String        & ajax.py             & send\_activity            & Retrieves the sport                     \\
+effiy             & String        & ajax.py             & send\_activity            & Retrieves the effigy                    \\
+hours             & int           & ajax.py             & send\_activity            & Retrieves the hours                     \\
+start             & int           & ajax.py             & send\_activity            & Retrieves the start                     \\
+finish            & int           & ajax.py             & send\_activity            & Retrieves the finish                    \\
+opinion           & String        & ajax.py             & send\_activity            & Retrieves the opinion                   \\
+thoughts          & String        & ajax.py             & send\_activity            & Retrieves the thoughts                  \\
+activity          & Object        & ajax.py             & send\_activity            & Stores the completed activity           \\
+activity\_id      & int           & ajax.py             & remove\_activity          & Stores the id of the activity           \\
+base\_calories    & Dict          & ajax.py             & calculate\_calories       & Stores the base calorie values          \\
+sport             & String        & ajax.py             & calculate\_calories       & Retrieves the sport                     \\
+effiy             & String        & ajax.py             & calculate\_calories       & Retrieves the effigy                    \\
+hours             & int           & ajax.py             & calculate\_calories       & Retrieves the hours                     \\
+start             & int           & ajax.py             & calculate\_calories       & Retrieves the start                     \\
+finish            & int           & ajax.py             & calculate\_calories       & Retrieves the finish                    \\
+opinion           & String        & ajax.py             & calculate\_calories       & Retrieves the opinion                   \\
+thoughts          & String        & ajax.py             & calculate\_calories       & Retrieves the thoughts                  \\
+base\_value       & int           & ajax.py             & calculate\_calories       & Stores the base value for activity      \\
+calories          & int           & ajax.py             & calculate\_calories       & Stores the total calories               \\
+modifier          & int           & ajax.py             & calculate\_calories       & Stores the correct calorie modifier     \\
+activity\_data    & Dict          & ajax.py             & calculate\_calories       & Stores all the activity data            \\
+month\_map        & Dict          & ajax.py             & user\_charts              & Stores a mapping of months to int       \\
+runs              & Object        & ajax.py             & user\_charts              & Stores all the user's runs              \\
+cycles            & Object        & ajax.py             & user\_charts              & Stores all the user's cycles            \\
+swims             & Object        & ajax.py             & user\_charts              & Stores all the user's swims             \\
+activity\_data    & Dict          & ajax.py             & user\_charts              & Stores calories and dates for charts    \\
+month             & String        & ajax.py             & user\_charts              & Stores the requested month              \\
+user\_data        & Dict          & ajax.py             & user\_charts              & Stores the performance data of user.    \\
+form              & Object        & auth.py             & register                  & Stores instance of class MemberForm     \\
+username          & String        & auth.py             & register                  & Stores the inputted username.           \\
+user              & Object        & auth.py             & register                  & Stores a User object with data          \\
+form              & Object        & auth.py             & login                     & Stores instance of class LoginForm      \\
+user              & Object        & auth.py             & login                     & Stores details of user with email       \\
+only\_letters     & String        & main.py             & profiles                  & Stores regexp to check valid name       \\
+valid\_email      & String        & main.py             & profiles                  & Stores regexp to check valid email      \\
+valid\_phone      & String        & main.py             & profiles                  & Stores regexp to check valid phone      \\
+check\_integer    & String        & main.py             & profiles                  & Stores regexp to check valid weight     \\
+activity\_number  & int           & main.py             & profiles                  & Stores number of activities of user     \\
+total\_users      & int           & main.py             & profiles                  & Stores the total number of users        \\
+activities        & Object        & main.py             & add\_training             & Stores all activities for user on today \\
+total\_calories   & int           & main.py             & add\_training             & Stores the total calories done today    \\
+total\_hours      & int           & main.py             & add\_training             & Stores the total hours done today       \\
+months            & List          & main.py             & performance               & Stores a list of months                 \\
+all\_activities   & Object        & main.py             & performance               & Stores all activities for user          \\
+available\_months & List          & main.py             & performance               & Stores months user has sessions in      \\
+users             & Object        & main.py             & compare\_perf             & Stores all users who are charitable     \\
+user\_list        & List          & main.py             & compare\_perf             & Stores sorted list of above users       \\
+user\_ranking     & Dict / List   & main.py             & rankings                  & Stores the best running team            \\
+sport             & String        & main.js             & \$sport-click             & Stores requested sport type             \\
+\$start           & Object        & main.js             & validateActivity          & Stores the start time input             \\
+\$finish          & Object        & main.js             & validateActivity          & Stores the finish time input            \\
+\$activity        & Object        & main.js             & updateActivities          & Stores the activity panel               \\
+sport             & String        & main.js             & animateActivity           & Stores the session sport                \\
+containerWidth    & int           & main.js             & animateActivity           & Stores the width of the screen          \\
+start             & Date          & main.js             & calculateHours            & Stores the inputted start time          \\
+finish            & Date          & main.js             & calculateHours            & Stores the inputted finish time         \\
+effigy            & String        & main.js             & calculateCalories         & Stores the effigy of training session   \\
+rating            & String        & main.js             & calculateCalories         & Stores the rating of training session   \\
+start             & String        & main.js             & calculateCalories         & Stores the start time of session        \\
+finish            & String        & main.js             & calculateCalories         & Stores the finish time of session       \\
+thoughts          & String        & main.js             & calculateCalories         & Stores the thoughts of training session \\
+hours             & String        & main.js             & calculateCalories         & Stores the hours of training session    \\
+caloriesBurned    & int           & main.js             & addActivity               & Stores the calories burned by session   \\
+currentCalories   & int           & main.js             & addActivity               & Stores the day's current calories       \\
+currentHours      & int           & main.js             & addActivity               & Stores the day's current hours          \\
+activityString    & String        & main.js             & addActivity               & Stores the string to display in session \\
+runningCtx        & Object        & ind\_charts.js      & constructChart            & Stores the running graph canvas         \\
+swimmingCtx       & Object        & ind\_charts.js      & constructChart            & Stores the swimming graph canvas        \\
+cyclingCtx        & Object        & ind\_charts.js      & constructChart            & Stores the cycling graph canvas         \\
+runningData       & Object        & ind\_charts.js      & constructChart            & Stores the data for the running graph   \\
+cyclingData       & Object        & ind\_charts.js      & constructChart            & Stores the data for the cycling graph   \\
+swimmingData      & Object        & ind\_charts.js      & constructChart            & Stores the data for the swimming graph  \\
+runningChart      & Object        & ind\_charts.js      & constructChart            & Stores the running chart                \\
+cyclingChart      & Object        & ind\_charts.js      & constructChart            & Stores the cycling chart                \\
+swimmingChart     & Object        & ind\_charts.js      & constructChart            & Stores the swimming chart              
+\end{tabular}
+\end{table}
 
 \section{Annotated Listings}
 This section contains all of the code for the system, split into several logical categories. The system is made up of a very large number of Python functions, as well as some additional aspects, such as Jinja2 HTML templates to display the interface, and CSS to provide styling.

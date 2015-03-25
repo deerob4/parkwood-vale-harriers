@@ -95,7 +95,6 @@ def calculate_calories():
 
 @ajax.route('/ajax/user-charts', methods=['POST'])
 def user_charts():
-    print(request.get_data().decode("utf-8").lower())
     month_map = dict(zip([month_name[x].lower() for x in range(1, 13)], range(1, 13)))
     user_month = month_map[request.json['month'].lower()]
 

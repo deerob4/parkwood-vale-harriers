@@ -1,61 +1,68 @@
-\contentsline {part}{I\hspace {1em}Analysis and Design}{3}{part.1}
-\contentsline {section}{\numberline {1}Problem Definition}{3}{section.1}
-\contentsline {subsection}{\numberline {1.1}Background}{3}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Broad Aims}{3}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Limitations}{4}{subsection.1.3}
-\contentsline {subsection}{\numberline {1.4}Assumptions}{5}{subsection.1.4}
-\contentsline {subsection}{\numberline {1.5}Objectives}{5}{subsection.1.5}
-\contentsline {subsection}{\numberline {1.6}Justification of Proposed Solution}{6}{subsection.1.6}
-\contentsline {section}{\numberline {2}Data Structures and Methods of Access}{7}{section.2}
-\contentsline {subsection}{\numberline {2.1}Database Tables}{7}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Users Table}{7}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}Activities Table}{8}{subsubsection.2.1.2}
-\contentsline {section}{\numberline {3}User Interface Design}{9}{section.3}
-\contentsline {subsection}{\numberline {3.1}Main Layout Template}{9}{subsection.3.1}
-\contentsline {section}{\numberline {4}Hardware and Software Requirements}{9}{section.4}
-\contentsline {section}{\numberline {5}Processing Stages}{9}{section.5}
-\contentsline {section}{\numberline {6}Evaluation Criteria}{9}{section.6}
-\contentsline {part}{II\hspace {1em}Program Documentation}{10}{part.2}
-\contentsline {section}{\numberline {7}User Interface}{10}{section.7}
-\contentsline {subsection}{\numberline {7.1}Main Layout}{10}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Register Page}{11}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Login Page}{12}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Profile Page}{12}{subsection.7.4}
-\contentsline {subsubsection}{\numberline {7.4.1}Main Profile Page}{12}{subsubsection.7.4.1}
-\contentsline {subsubsection}{\numberline {7.4.2}Delete Profile Section}{13}{subsubsection.7.4.2}
-\contentsline {subsection}{\numberline {7.5}User Performance Page}{14}{subsection.7.5}
-\contentsline {subsection}{\numberline {7.6}Add Activity Page}{15}{subsection.7.6}
-\contentsline {subsection}{\numberline {7.7}Rankings Page}{15}{subsection.7.7}
-\contentsline {section}{\numberline {8}Database Models}{16}{section.8}
-\contentsline {subsection}{\numberline {8.1}Table Relationships}{16}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Table Schemas}{16}{subsection.8.2}
-\contentsline {subsubsection}{\numberline {8.2.1}Users Table}{16}{subsubsection.8.2.1}
-\contentsline {subsubsection}{\numberline {8.2.2}Activities Table}{17}{subsubsection.8.2.2}
-\contentsline {section}{\numberline {9}Annotated Listings}{17}{section.9}
-\contentsline {subsection}{\numberline {9.1}HTML Views}{17}{subsection.9.1}
-\contentsline {subsubsection}{\numberline {9.1.1}layout.html}{17}{subsubsection.9.1.1}
-\contentsline {subsubsection}{\numberline {9.1.2}register.html}{19}{subsubsection.9.1.2}
-\contentsline {subsubsection}{\numberline {9.1.3}login.html}{21}{subsubsection.9.1.3}
-\contentsline {subsubsection}{\numberline {9.1.4}user\_performance.html}{23}{subsubsection.9.1.4}
-\contentsline {subsubsection}{\numberline {9.1.5}own\_profile.html}{27}{subsubsection.9.1.5}
-\contentsline {subsubsection}{\numberline {9.1.6}add\_training.html}{33}{subsubsection.9.1.6}
-\contentsline {subsubsection}{\numberline {9.1.7}compare\_performance.html}{34}{subsubsection.9.1.7}
-\contentsline {subsubsection}{\numberline {9.1.8}rankings.html}{36}{subsubsection.9.1.8}
-\contentsline {subsubsection}{\numberline {9.1.9}running\_block.html}{37}{subsubsection.9.1.9}
-\contentsline {subsubsection}{\numberline {9.1.10}cycling\_block.html}{38}{subsubsection.9.1.10}
-\contentsline {subsubsection}{\numberline {9.1.11}swimming\_block.html}{40}{subsubsection.9.1.11}
-\contentsline {subsection}{\numberline {9.2}JavaScript Functions}{42}{subsection.9.2}
-\contentsline {subsubsection}{\numberline {9.2.1}main.js}{42}{subsubsection.9.2.1}
-\contentsline {subsubsection}{\numberline {9.2.2}individual\_charts.js}{46}{subsubsection.9.2.2}
-\contentsline {subsection}{\numberline {9.3}CSS Styling}{47}{subsection.9.3}
-\contentsline {subsection}{\numberline {9.4}Python Processes}{52}{subsection.9.4}
-\contentsline {subsubsection}{\numberline {9.4.1}\_\_init\_\_.py}{53}{subsubsection.9.4.1}
-\contentsline {subsubsection}{\numberline {9.4.2}forms.py}{54}{subsubsection.9.4.2}
-\contentsline {subsubsection}{\numberline {9.4.3}models.py}{58}{subsubsection.9.4.3}
-\contentsline {subsubsection}{\numberline {9.4.4}helpers.py}{60}{subsubsection.9.4.4}
-\contentsline {subsubsection}{\numberline {9.4.5}performance\_data.py}{61}{subsubsection.9.4.5}
-\contentsline {subsubsection}{\numberline {9.4.6}auth.py}{63}{subsubsection.9.4.6}
-\contentsline {subsubsection}{\numberline {9.4.7}ajax.py}{65}{subsubsection.9.4.7}
-\contentsline {subsubsection}{\numberline {9.4.8}main.py}{69}{subsubsection.9.4.8}
-\contentsline {part}{III\hspace {1em}Testing and Evaluation}{74}{part.3}
-\contentsline {section}{Unnumbered Section}{74}{section*.2}
+\contentsline {part}{I\hspace {1em}Analysis and Design}{4}{part.1}
+\contentsline {section}{\numberline {1}Problem Definition}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Background}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Broad Aims}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Limitations}{5}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Assumptions}{6}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Objectives}{6}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Justification of Proposed Solution}{7}{subsection.1.6}
+\contentsline {section}{\numberline {2}Data Structures and Methods of Access}{8}{section.2}
+\contentsline {subsection}{\numberline {2.1}Database Tables}{8}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Users Table}{8}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Activities Table}{9}{subsubsection.2.1.2}
+\contentsline {section}{\numberline {3}User Interface Design}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Main Layout Template}{10}{subsection.3.1}
+\contentsline {section}{\numberline {4}Hardware and Software Requirements}{10}{section.4}
+\contentsline {section}{\numberline {5}Processing Stages}{10}{section.5}
+\contentsline {section}{\numberline {6}Evaluation Criteria}{10}{section.6}
+\contentsline {part}{II\hspace {1em}Program Documentation}{11}{part.2}
+\contentsline {section}{\numberline {7}User Interface}{11}{section.7}
+\contentsline {subsection}{\numberline {7.1}Main Layout}{11}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Register Page}{12}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Login Page}{13}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Profile Page}{14}{subsection.7.4}
+\contentsline {subsubsection}{\numberline {7.4.1}Main View}{14}{subsubsection.7.4.1}
+\contentsline {subsubsection}{\numberline {7.4.2}Change Details}{15}{subsubsection.7.4.2}
+\contentsline {subsubsection}{\numberline {7.4.3}Delete Account}{16}{subsubsection.7.4.3}
+\contentsline {subsection}{\numberline {7.5}User Performance Page}{17}{subsection.7.5}
+\contentsline {subsection}{\numberline {7.6}Add Activity Page}{18}{subsection.7.6}
+\contentsline {subsection}{\numberline {7.7}Rankings Page}{18}{subsection.7.7}
+\contentsline {section}{\numberline {8}Database Models}{19}{section.8}
+\contentsline {subsection}{\numberline {8.1}Table Relationships}{19}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Table Schemas}{20}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}Users Table}{20}{subsubsection.8.2.1}
+\contentsline {subsubsection}{\numberline {8.2.2}Activities Table}{20}{subsubsection.8.2.2}
+\contentsline {subsection}{\numberline {8.3}Data Views}{21}{subsection.8.3}
+\contentsline {subsubsection}{\numberline {8.3.1}Users Table}{21}{subsubsection.8.3.1}
+\contentsline {subsubsection}{\numberline {8.3.2}Activities Table}{21}{subsubsection.8.3.2}
+\contentsline {section}{\numberline {9}Variables}{22}{section.9}
+\contentsline {subsection}{\numberline {9.1}Global Variables}{22}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Local Variables}{22}{subsection.9.2}
+\contentsline {section}{\numberline {10}Annotated Listings}{22}{section.10}
+\contentsline {subsection}{\numberline {10.1}HTML Views}{22}{subsection.10.1}
+\contentsline {subsubsection}{\numberline {10.1.1}layout.html}{23}{subsubsection.10.1.1}
+\contentsline {subsubsection}{\numberline {10.1.2}register.html}{25}{subsubsection.10.1.2}
+\contentsline {subsubsection}{\numberline {10.1.3}login.html}{27}{subsubsection.10.1.3}
+\contentsline {subsubsection}{\numberline {10.1.4}user\_performance.html}{28}{subsubsection.10.1.4}
+\contentsline {subsubsection}{\numberline {10.1.5}own\_profile.html}{32}{subsubsection.10.1.5}
+\contentsline {subsubsection}{\numberline {10.1.6}add\_training.html}{39}{subsubsection.10.1.6}
+\contentsline {subsubsection}{\numberline {10.1.7}compare\_performance.html}{40}{subsubsection.10.1.7}
+\contentsline {subsubsection}{\numberline {10.1.8}rankings.html}{41}{subsubsection.10.1.8}
+\contentsline {subsubsection}{\numberline {10.1.9}running\_block.html}{42}{subsubsection.10.1.9}
+\contentsline {subsubsection}{\numberline {10.1.10}cycling\_block.html}{44}{subsubsection.10.1.10}
+\contentsline {subsubsection}{\numberline {10.1.11}swimming\_block.html}{45}{subsubsection.10.1.11}
+\contentsline {subsection}{\numberline {10.2}JavaScript Functions}{47}{subsection.10.2}
+\contentsline {subsubsection}{\numberline {10.2.1}main.js}{47}{subsubsection.10.2.1}
+\contentsline {subsubsection}{\numberline {10.2.2}individual\_charts.js}{51}{subsubsection.10.2.2}
+\contentsline {subsection}{\numberline {10.3}CSS Styling}{52}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Python Processes}{58}{subsection.10.4}
+\contentsline {subsubsection}{\numberline {10.4.1}\_\_init\_\_.py}{58}{subsubsection.10.4.1}
+\contentsline {subsubsection}{\numberline {10.4.2}forms.py}{59}{subsubsection.10.4.2}
+\contentsline {subsubsection}{\numberline {10.4.3}models.py}{63}{subsubsection.10.4.3}
+\contentsline {subsubsection}{\numberline {10.4.4}helpers.py}{65}{subsubsection.10.4.4}
+\contentsline {subsubsection}{\numberline {10.4.5}performance\_data.py}{66}{subsubsection.10.4.5}
+\contentsline {subsubsection}{\numberline {10.4.6}auth.py}{68}{subsubsection.10.4.6}
+\contentsline {subsubsection}{\numberline {10.4.7}ajax.py}{70}{subsubsection.10.4.7}
+\contentsline {subsubsection}{\numberline {10.4.8}main.py}{74}{subsubsection.10.4.8}
+\contentsline {part}{III\hspace {1em}Testing and Evaluation}{80}{part.3}
+\contentsline {section}{Unnumbered Section}{80}{section*.2}
