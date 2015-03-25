@@ -12,57 +12,64 @@
 \BOOKMARK [3][-]{subsubsection.2.1.2}{Activities Table}{subsection.2.1}% 12
 \BOOKMARK [1][-]{section.3}{User Interface Design}{part.1}% 13
 \BOOKMARK [2][-]{subsection.3.1}{Main Layout Template}{section.3}% 14
-\BOOKMARK [1][-]{section.4}{Hardware and Software Requirements}{part.1}% 15
-\BOOKMARK [1][-]{section.5}{Processing Stages}{part.1}% 16
-\BOOKMARK [1][-]{section.6}{Evaluation Criteria}{part.1}% 17
-\BOOKMARK [0][-]{part.2}{II Program Documentation}{}% 18
-\BOOKMARK [1][-]{section.7}{User Interface}{part.2}% 19
-\BOOKMARK [2][-]{subsection.7.1}{Main Layout}{section.7}% 20
-\BOOKMARK [2][-]{subsection.7.2}{Register Page}{section.7}% 21
-\BOOKMARK [2][-]{subsection.7.3}{Login Page}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.4}{Profile Page}{section.7}% 23
-\BOOKMARK [3][-]{subsubsection.7.4.1}{Main View}{subsection.7.4}% 24
-\BOOKMARK [3][-]{subsubsection.7.4.2}{Change Details}{subsection.7.4}% 25
-\BOOKMARK [3][-]{subsubsection.7.4.3}{Delete Account}{subsection.7.4}% 26
-\BOOKMARK [2][-]{subsection.7.5}{User Performance Page}{section.7}% 27
-\BOOKMARK [2][-]{subsection.7.6}{Add Activity Page}{section.7}% 28
-\BOOKMARK [2][-]{subsection.7.7}{Rankings Page}{section.7}% 29
-\BOOKMARK [1][-]{section.8}{Database Models}{part.2}% 30
-\BOOKMARK [2][-]{subsection.8.1}{Table Relationships}{section.8}% 31
-\BOOKMARK [2][-]{subsection.8.2}{Table Schemas}{section.8}% 32
-\BOOKMARK [3][-]{subsubsection.8.2.1}{Users Table}{subsection.8.2}% 33
-\BOOKMARK [3][-]{subsubsection.8.2.2}{Activities Table}{subsection.8.2}% 34
-\BOOKMARK [2][-]{subsection.8.3}{Data Views}{section.8}% 35
-\BOOKMARK [3][-]{subsubsection.8.3.1}{Users Table}{subsection.8.3}% 36
-\BOOKMARK [3][-]{subsubsection.8.3.2}{Activities Table}{subsection.8.3}% 37
-\BOOKMARK [1][-]{section.9}{Variables}{part.2}% 38
-\BOOKMARK [2][-]{subsection.9.1}{Global Variables}{section.9}% 39
-\BOOKMARK [2][-]{subsection.9.2}{Local Variables}{section.9}% 40
-\BOOKMARK [1][-]{section.10}{Annotated Listings}{part.2}% 41
-\BOOKMARK [2][-]{subsection.10.1}{HTML Views}{section.10}% 42
-\BOOKMARK [3][-]{subsubsection.10.1.1}{layout.html}{subsection.10.1}% 43
-\BOOKMARK [3][-]{subsubsection.10.1.2}{register.html}{subsection.10.1}% 44
-\BOOKMARK [3][-]{subsubsection.10.1.3}{login.html}{subsection.10.1}% 45
-\BOOKMARK [3][-]{subsubsection.10.1.4}{user\137performance.html}{subsection.10.1}% 46
-\BOOKMARK [3][-]{subsubsection.10.1.5}{own\137profile.html}{subsection.10.1}% 47
-\BOOKMARK [3][-]{subsubsection.10.1.6}{add\137training.html}{subsection.10.1}% 48
-\BOOKMARK [3][-]{subsubsection.10.1.7}{compare\137performance.html}{subsection.10.1}% 49
-\BOOKMARK [3][-]{subsubsection.10.1.8}{rankings.html}{subsection.10.1}% 50
-\BOOKMARK [3][-]{subsubsection.10.1.9}{running\137block.html}{subsection.10.1}% 51
-\BOOKMARK [3][-]{subsubsection.10.1.10}{cycling\137block.html}{subsection.10.1}% 52
-\BOOKMARK [3][-]{subsubsection.10.1.11}{swimming\137block.html}{subsection.10.1}% 53
-\BOOKMARK [2][-]{subsection.10.2}{JavaScript Functions}{section.10}% 54
-\BOOKMARK [3][-]{subsubsection.10.2.1}{main.js}{subsection.10.2}% 55
-\BOOKMARK [3][-]{subsubsection.10.2.2}{individual\137charts.js}{subsection.10.2}% 56
-\BOOKMARK [2][-]{subsection.10.3}{CSS Styling}{section.10}% 57
-\BOOKMARK [2][-]{subsection.10.4}{Python Processes}{section.10}% 58
-\BOOKMARK [3][-]{subsubsection.10.4.1}{\137\137init\137\137.py}{subsection.10.4}% 59
-\BOOKMARK [3][-]{subsubsection.10.4.2}{forms.py}{subsection.10.4}% 60
-\BOOKMARK [3][-]{subsubsection.10.4.3}{models.py}{subsection.10.4}% 61
-\BOOKMARK [3][-]{subsubsection.10.4.4}{helpers.py}{subsection.10.4}% 62
-\BOOKMARK [3][-]{subsubsection.10.4.5}{performance\137data.py}{subsection.10.4}% 63
-\BOOKMARK [3][-]{subsubsection.10.4.6}{auth.py}{subsection.10.4}% 64
-\BOOKMARK [3][-]{subsubsection.10.4.7}{ajax.py}{subsection.10.4}% 65
-\BOOKMARK [3][-]{subsubsection.10.4.8}{main.py}{subsection.10.4}% 66
-\BOOKMARK [0][-]{part.3}{III Testing and Evaluation}{}% 67
-\BOOKMARK [1][-]{section*.2}{Unnumbered Section}{part.3}% 68
+\BOOKMARK [2][-]{subsection.3.2}{Register Page}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.3}{Login Page}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.4}{Performance Page}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.5}{Add Training Page}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.6}{Profile Page}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.7}{Charity Team Ranking Page}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.8}{Page Linkages}{section.3}% 21
+\BOOKMARK [1][-]{section.4}{Hardware and Software Requirements}{part.1}% 22
+\BOOKMARK [1][-]{section.5}{Processing Stages}{part.1}% 23
+\BOOKMARK [1][-]{section.6}{Evaluation Criteria}{part.1}% 24
+\BOOKMARK [0][-]{part.2}{II Program Documentation}{}% 25
+\BOOKMARK [1][-]{section.7}{User Interface}{part.2}% 26
+\BOOKMARK [2][-]{subsection.7.1}{Main Layout}{section.7}% 27
+\BOOKMARK [2][-]{subsection.7.2}{Register Page}{section.7}% 28
+\BOOKMARK [2][-]{subsection.7.3}{Login Page}{section.7}% 29
+\BOOKMARK [2][-]{subsection.7.4}{Profile Page}{section.7}% 30
+\BOOKMARK [3][-]{subsubsection.7.4.1}{Main View}{subsection.7.4}% 31
+\BOOKMARK [3][-]{subsubsection.7.4.2}{Change Details}{subsection.7.4}% 32
+\BOOKMARK [3][-]{subsubsection.7.4.3}{Delete Account}{subsection.7.4}% 33
+\BOOKMARK [2][-]{subsection.7.5}{User Performance Page}{section.7}% 34
+\BOOKMARK [2][-]{subsection.7.6}{Add Activity Page}{section.7}% 35
+\BOOKMARK [2][-]{subsection.7.7}{Rankings Page}{section.7}% 36
+\BOOKMARK [1][-]{section.8}{Database Models}{part.2}% 37
+\BOOKMARK [2][-]{subsection.8.1}{Table Relationships}{section.8}% 38
+\BOOKMARK [2][-]{subsection.8.2}{Table Schemas}{section.8}% 39
+\BOOKMARK [3][-]{subsubsection.8.2.1}{Users Table}{subsection.8.2}% 40
+\BOOKMARK [3][-]{subsubsection.8.2.2}{Activities Table}{subsection.8.2}% 41
+\BOOKMARK [2][-]{subsection.8.3}{Data Views}{section.8}% 42
+\BOOKMARK [3][-]{subsubsection.8.3.1}{Users Table}{subsection.8.3}% 43
+\BOOKMARK [3][-]{subsubsection.8.3.2}{Activities Table}{subsection.8.3}% 44
+\BOOKMARK [1][-]{section.9}{Variables}{part.2}% 45
+\BOOKMARK [2][-]{subsection.9.1}{Global Variables}{section.9}% 46
+\BOOKMARK [2][-]{subsection.9.2}{Local Variables}{section.9}% 47
+\BOOKMARK [1][-]{section.10}{Annotated Listings}{part.2}% 48
+\BOOKMARK [2][-]{subsection.10.1}{HTML Views}{section.10}% 49
+\BOOKMARK [3][-]{subsubsection.10.1.1}{layout.html}{subsection.10.1}% 50
+\BOOKMARK [3][-]{subsubsection.10.1.2}{register.html}{subsection.10.1}% 51
+\BOOKMARK [3][-]{subsubsection.10.1.3}{login.html}{subsection.10.1}% 52
+\BOOKMARK [3][-]{subsubsection.10.1.4}{user\137performance.html}{subsection.10.1}% 53
+\BOOKMARK [3][-]{subsubsection.10.1.5}{own\137profile.html}{subsection.10.1}% 54
+\BOOKMARK [3][-]{subsubsection.10.1.6}{add\137training.html}{subsection.10.1}% 55
+\BOOKMARK [3][-]{subsubsection.10.1.7}{compare\137performance.html}{subsection.10.1}% 56
+\BOOKMARK [3][-]{subsubsection.10.1.8}{rankings.html}{subsection.10.1}% 57
+\BOOKMARK [3][-]{subsubsection.10.1.9}{running\137block.html}{subsection.10.1}% 58
+\BOOKMARK [3][-]{subsubsection.10.1.10}{cycling\137block.html}{subsection.10.1}% 59
+\BOOKMARK [3][-]{subsubsection.10.1.11}{swimming\137block.html}{subsection.10.1}% 60
+\BOOKMARK [2][-]{subsection.10.2}{JavaScript Functions}{section.10}% 61
+\BOOKMARK [3][-]{subsubsection.10.2.1}{main.js}{subsection.10.2}% 62
+\BOOKMARK [3][-]{subsubsection.10.2.2}{individual\137charts.js}{subsection.10.2}% 63
+\BOOKMARK [2][-]{subsection.10.3}{CSS Styling}{section.10}% 64
+\BOOKMARK [2][-]{subsection.10.4}{Python Processes}{section.10}% 65
+\BOOKMARK [3][-]{subsubsection.10.4.1}{\137\137init\137\137.py}{subsection.10.4}% 66
+\BOOKMARK [3][-]{subsubsection.10.4.2}{forms.py}{subsection.10.4}% 67
+\BOOKMARK [3][-]{subsubsection.10.4.3}{models.py}{subsection.10.4}% 68
+\BOOKMARK [3][-]{subsubsection.10.4.4}{helpers.py}{subsection.10.4}% 69
+\BOOKMARK [3][-]{subsubsection.10.4.5}{performance\137data.py}{subsection.10.4}% 70
+\BOOKMARK [3][-]{subsubsection.10.4.6}{auth.py}{subsection.10.4}% 71
+\BOOKMARK [3][-]{subsubsection.10.4.7}{ajax.py}{subsection.10.4}% 72
+\BOOKMARK [3][-]{subsubsection.10.4.8}{main.py}{subsection.10.4}% 73
+\BOOKMARK [0][-]{part.3}{III Testing and Evaluation}{}% 74
+\BOOKMARK [1][-]{section*.2}{Unnumbered Section}{part.3}% 75

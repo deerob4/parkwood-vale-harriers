@@ -159,14 +159,8 @@ def rankings():
     return render_template('/training/rankings.html', running_team=user_ranking)
 
 
-@main.route('/delete/<int:activity_id>')
-def delete_activity(activity_id):
-    remove_sport(activity_id)
-    flash('Your training session was deleted!', 'success')
-    return redirect(url_for('main.home'))
-
-
 @main.errorhandler(404)
 def page_not_found(error):
+    """If page cannot be found, return custom error page"""
     return render_template('errors/404.html'), 404
 

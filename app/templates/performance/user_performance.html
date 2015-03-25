@@ -99,7 +99,7 @@
             <tbody>
                 {% for run in user_data.sport_data.running %}
                     <tr>
-                        <td><a href="{{ url_for('main.individual_activity', activity_id=run.id) }}">{{ run.date }}</a></td>
+                        <td>{{ run.date }}</td>
                         <td>{{ run.effigy }}</td>
                         <td>{{ run.calories }} calories</td>
                         <td>{{ run.start }} - {{ run.finish }}</td>
@@ -129,7 +129,7 @@
             <tbody>
                 {% for cycle in user_data.sport_data.cycling %}
                     <tr>
-                        <td><a href="{{ url_for('main.individual_activity', activity_id=cycle.id) }}">{{ cycle.date }}</a></td>
+                        <td>{{ cycle.date }}</td>
                         <td>{{ cycle.effigy }}</td>
                         <td>{{ cycle.calories }} calories</td>
                         <td>{{ cycle.start }} - {{ cycle.finish }}</td>
@@ -159,7 +159,7 @@
             <tbody>
                 {% for swim in user_data.sport_data.swimming %}
                     <tr>
-                        <td><a href="{{ url_for('main.individual_activity', activity_id=swim.id) }}">{{ swim.date }}</a></td>
+                        <td>{{ swim.date }}</td>
                         <td>{{ swim.effigy }}</td>
                         <td>{{ swim.calories }} calories</td>
                         <td>{{ swim.start }} - {{ swim.finish }}</td>
