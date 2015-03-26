@@ -171,7 +171,7 @@ When building a solution to a problem like one faced by Parkwood Vale Harriers, 
 
 An original solution created using a programming language would suffer from rather opposite issues: as a result of practically endless results that can be achieved through their use, there is a definite learning curve that is not present (or is less exacerbated) in software packages; as a result of this, development time will likely be considerably longer. Despite these drawbacks, it is clear that, if a programming language is used, final solution is likely to be of a higher quality: not only can more advanced features be implemented, these features - as well as those of a more basic level - are likely to be of a higher quality.  In addition, developer will have a greater understanding of system, as they will have built it entirely themselves (aside from any additional packages/libraries used); this will aid in areas like debugging, and will also make it easier to write up system documentation and like.
 
-The question then falls to exactly which programming language is most appropriate. There are a large number of languages available, ranging from \textit{compiled} languages like Java, C\# and Visual Basic to \textit{interpreted} languages like Ruby, Python and PHP. differences between compiled and iterpreted languages are complex and varied, but, in essence, compiled languages are likely to perform algorithms more quickly (due to directly using native code of target machine), whereas code written in an interpreted language can be executed "on fly", so to speak, increasing development speed. 
+The question then falls to exactly which programming language is most appropriate. There are a large number of languages available, ranging from \textit{compiled} languages like Java, C\# and Visual Basic to \textit{interpreted} languages like Ruby, Python and PHP. differences between compiled and iterpreted languages are complex and varied, but, in essence, compiled languages are likely to perform algorithms more quickly (due to directly using native code of target machine), whereas code written in an interpreted language can be executed ``on the fly'', so to speak, increasing development speed. 
 
 \section{Data Structures and Methods of Access}
 In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. system will also make use of a number of arrays and JSON structures, to temporarily store data.
@@ -288,8 +288,56 @@ The following diagram shows how the different pages of the system link together.
 
 
 \section{Hardware and Software Requirements}
+In order for the system to function correctly, a minimum level of hardware, and some certain software, is needed.
+
+\subsection{Hardware}
+The system is a web application, and as such requires a stable internet connection to function correctly; therefore, the device used to access the system will need support for the internet, either through a wireless card or an ethernet connection. As a web application, the system can be used on both traditional computing devices, such as desktop PCs and laptops, as well as smart phones and tablets. If using a non touch device, the system has been designed for screens at least 17" in size - a resolution of 1280x1024. The system will function at smaller displays than this, but has not been fully tested as such. Desktops will also requires a mouse, in order to point at and click elements on the page; any mouse is suitable for this task. Additionally, a keyboard is needed for data entry. Laptops usually come with trackpads and keyboards built in, so the need for these additional peripherals is reduced.
+
+If the user is using a smart phone or tablet - a scenario that is likely, as the audience is a group not known for sitting down at a desk all day - no additional hardware is needed, as the device would come with everything built in, such as a touch screen for interacting with element and a virtual keyboard for data entry. The same internet connection requirements apply.
+
+\subsection{Software}
+As a web application, a web browser is the only piece of software needed to access the system - the user need simply visit the correct web address, and they can access the system. The most suitable browser to open the system in is Google Chrome; luckily, this also happens to be the most popular browser worldwide, so it is likely that they runners are already using it.
+
+ Chrome boasts superior rendering technology to other browsers, as well as greater performance; in addition, all the testing of the system has been performed in Chrome, so it is possible that the system may not function correctly if used in other browsers. 
+
+ Additionally, the user will need an operating system installed on their computer. Google Chrome is available for Windows, OSX and all Debian/Red Hat distributions of Linux, so their choice of operating system does not matter.
 
 \section{Processing Stages}
+This section documents the large range of processes that go into making the system function correctly. It has been split up into a number of sections for organisation. For Python/web development constructs in general that the examiners may find themselves unfamiliar with, an explanation in English has been provided.
+
+\subsection{Global Processes}
+A number of processes have been used multiple times throughout the system, such as routing and validation. To avoid writing them out every time they occur, they have been documented here.
+
+\subsubsection{Routing}
+The concept of \textit{routing} is fundamental to a Flask application. Practically every function is linked to a route, and every route is linked to a URL. For example, the function auth.login is linked to the URL ``/login'', as makes logical sense. Therefore, visiting the URL ``/login'' will run the code in the function auth.login. 
+
+\begin{verbatim}
+@file.route('/url', methods=[METHODS])
+begin function route_name:
+  begin route logic
+  return route result
+\end{verbatim}
+As can be seen, each route is made up of a number of elements. \textit{file} is equivalent to the file in which the route appears; for example, the function auth.login is in auth.py, therefore its \textit{file} parameter would be set to \textit{auth}. The \textit{url} paramater is equivalent to the URL that the route links to, so for auth.login it would be ``/login'', as written above.
+
+The \textit{methods} parameter specifies which HTTP method(s) can be used to access the route - either \textit{GET}, \textit{POST}, or a combination of the two. A detailed discussion on the differences between the the two is beyond the scope of this explanation, but, put simply, a route with only \textit{GET} specified is designed to be accessed by the user, whereas those with \textit{POST} are designed for the server (in this system, they are always AJAX routes). A route with both \textit{GET} and \textit{POST} is designed to be accessed by the user, but it also sends data to the server.
+
+The route logic is the main code for the route. In auth.login, for example, it contains processing to check that their are no validation errors on the form, and for logging the user in. Every route returns something. For routes with just \textit{GET} or both \textit{GET} and \textit{POST}, this will always be a Jinja2 HTML template, which is then rendered by the browser. For purely \textit{POST} routes, often a JSON object or dictionary is returned, but this varies; see the individual route processes for details.
+
+\subsection{AJAX Calls}
+AJAX, which stands for \textit{Asynchronous JavaScript and XML}, is a method by which the rendered HTML can interact with the Python server without having to reload the page, creating a smooth experience. The syntax is as follows:
+
+\begin{verbatim}
+$.ajax({
+  url: `/ajax/ROUTE',
+  type: `POST',
+  dataType: `DATA_TYPE',
+  contentType: `CONTENT_TYPE'
+  data: `DATA',
+  success: function (data) {
+    CALLBACK(data);
+  }
+});
+\end{verbatim}
 
 \section{Evaluation Criteria}
 
@@ -349,7 +397,7 @@ interface for changing details is very simple - it features just an input for ch
 \clearpage
 
 \subsubsection{Delete Account}
-To ensure that user is fully aware of severity of deleting their account, they must type in "I will lose everything" into box; this also makes it harder for them to accidentally delete their account. Positive reinforcement is used in this section through use of colours - greeen is associated with positivity, and users have been shown to click on green coloured buttons more often than red; this further dissuades them from deleting their account.
+To ensure that user is fully aware of severity of deleting their account, they must type in ``I will lose everything'' into box; this also makes it harder for them to accidentally delete their account. Positive reinforcement is used in this section through use of colours - greeen is associated with positivity, and users have been shown to click on green coloured buttons more often than red; this further dissuades them from deleting their account.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/account_delete}
@@ -366,7 +414,7 @@ The user performance page is the main page of the system, and is the first page 
 \end{figure}
 \clearpage
 
-To prevent the user being overloaded with data, the performance data is seperated into months, with a different URL for each month - "/performance/march" to view performance for March, for example. By default, the user is automatically taken to the page for the current month, ensuring that they always see the most up to date data. Buttons are available at the top to switch between months; notably, only months where training sessions have been added are visible, ensuring that the user never sees blank data - something which could be discouraging to the runner.
+To prevent the user being overloaded with data, the performance data is seperated into months, with a different URL for each month - ``/performance/march'' to view performance for March, for example. By default, the user is automatically taken to the page for the current month, ensuring that they always see the most up to date data. Buttons are available at the top to switch between months; notably, only months where training sessions have been added are visible, ensuring that the user never sees blank data - something which could be discouraging to the runner.
 
 It allows the user to view a number of elements relating to their performance in the three sports. The two bars at the top display a simple view of how far the user is to reaching their goal for the month. The different sports that make up goal progress are shown through colours - green for running, yellow for cycling and blue for swimming, as in the rest of the application. Not shown in the capture are the popups that appear when the user hovers over the bars - these display the number of calories / hours that make up the bars. 
 
