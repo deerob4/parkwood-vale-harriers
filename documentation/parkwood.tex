@@ -11,20 +11,10 @@
     urlcolor=black
 }
 
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
-
-\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
-\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black, fill=orange!30]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-
 \usepackage{listings}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{longtable}
-\usepackage{tikz-qtree}
 
 \graphicspath{ {images/} }
 
@@ -144,12 +134,16 @@ Furthermore, the system relies on premise that runners will add every session th
 
 In addition, the brief asks for only top eight members of running team to be calculated. This does not take into account possibilities of injuries or runners dropping out for other reasons; as such, the system should also calculate a number of reserve runners, in event of an accident.
 
+Additionally, the system will need a team of experienced professionals to keep and maintain it - the running club may wish for an aspect of the system to be modified, and, depending on its complexity, this could require great expertise.
+
+Though pains will be taken to ensure that the system is easy to use, it will still require a degree of training for those members of the club who lack experience in using computers; this will take time, something, with the charity event looming, the running club may not have.
+
 \subsection{Assumptions}
 Throughout the system, a number of assumptions have been made in order to increase ease of development. 
 
 One of these is that in each individual session, only one method of exercise will be used, such as breaststroke for an entire swimming session or a leisurely speed for an entire cycling session. Though this is alleviated to some extent by ability to add multiple sessions for each sport on a single day, assumption still has to be made. 
 
-In addition to this, assumption that each session lasts for at least an hour has been made: time picker only uses stages of sixty minutes, as opposed to thirty or fifteen.
+In addition to this, an assumption that each session lasts for at least an hour has been made: the time picker only uses stages of sixty minutes, as opposed to thirty or fifteen.
 
 Naturally, the system also assumes that user is relatively proficient with a computer based interface. Effort has been put in to make the system as user friendly and as easy to use as possible, but someone using a computer for first time will undoubtedly find it more difficult than someone with at least a little experience.
 
@@ -157,11 +151,10 @@ Naturally, the system also assumes that user is relatively proficient with a com
 In order for the system to be of an acceptable quality, a number of objectives will have to be fulfilled. The system must:
 
 \begin{itemize}
-    \item Have a simple, clear interface that allows tasks to be performed easily.
-    \item Allow runner to add, view, update and, if they choose, delete their personal information, such as their name, email address, date of birth and phone number.
-    \item Allow runner to add, view and delete sessions they perform in over course of period; this will include information like date and time of session, speed they were at, and how well it went.
-    \item Persistently store this data in appropriately named tables in a database.
-    \item Ensure security of this data by giving each runner their own personal account, protected by a username and an encrypted password.
+    \item Have a simple, clear interface that allows tasks to be performed easily. This will be done by using a consistent colour scheme for each of the sports - green for running, yellow for cycling and blue for swimming, as well as through the use of common user interface paradigms such as buttons and dropdown boxes; these are all things that the user will be familiar with, so they will find less difficulty in using the system. Additionally, animation will be used to transition smoothly from element to element, creating a more enjoyable user experience that encourages the runner to use the system more frequently.
+    \item Allow runner to add, view, update and, if they choose, delete their personal information, such as their name, email address, date of birth and phone number. For this to be achieved, a database will have to be designed and built with appropriate columns and data types, and pages and routes will have to be designed and programmed to facilitate the adding, viewing and deleting of this data - a registration page could be used for adding the data, and a profile page for viewing, updating and deleting the data.
+    \item Allow the runner to add, view and delete the training sessions they perform in over course of period; this will include information like date and time of the session, the speed they were at, and how well it went. To do this, a database table will have to be designed and built in order to store these activities, and pages will have to be designed and built to facilitate the adding, viewing and deleting of the training sessions. Processes and routes will also have to be built in order to make these functions actually work.
+    \item Ensure security of this data by giving each runner their own personal account, protected by a username and an encrypted password. To do this, an additional column in the users table will have to be built that stores the encrypted version of the password. Additionally, it will have to be decided which areas of the system can be accessed by those without an account.
     \item Calculate thenumber of calories burned in each session, by taking into account runner's weight, time spent on session, nature of session, and how well the runner thought it went.
     \item Allow user to view graphical, interactive graphs of their sessions, allowing them to easily view trends in their performance.
 \end{itemize}
@@ -173,7 +166,16 @@ An original solution created using a programming language would suffer from rath
 
 The question then falls to exactly which programming language is most appropriate. There are a large number of languages available, ranging from \textit{compiled} languages like Java, C\# and Visual Basic to \textit{interpreted} languages like Ruby, Python and PHP. differences between compiled and iterpreted languages are complex and varied, but, in essence, compiled languages are likely to perform algorithms more quickly (due to directly using native code of target machine), whereas code written in an interpreted language can be executed ``on the fly'', so to speak, increasing development speed. 
 
-\section{Data Structures and Methods of Access}
+As such, the most appropriate programming language for the system would be Python. P
+
+Though Visual Basic undoubtedly has many admirable qualities (*cough*), it falls rather flat when compared to other, arguably more superior languages, such as Python.  
+
+Python has an extremely wide range of benefits, perhaps more so than any other language, that make it absolutely suited to the needs of the running club. One of the benefits of Python is that it, not only can it connect to a database, it can also be used with any database system. This allows a great deal of freedom when choosing a database system - one can choose between MySQL, or SQLite, or even PostgreSQL. A database is the best method of storing the data, as it can be seperated into a number of logical tables, ensuring that the data is organised. Additionally, a database means that primary and foreign keys can be used, linking data tables and ensuring that each record is uniquely identifiable.
+
+Python is also extremely simple to use - it is commonly ranked as the easisest language to learn, owing to its well thoght and structure and similarity, in many regards, to the English language. Indeed, when compared to a language like, say, Visual Basic, Python stands out as a bastion of sensible language design, and most importantly, common sense. This means that devlopment time can either 
+
+However, this simplicity should not be mistaken for a lack of functionality: Python is far more capable than most languages, particularly those of an ; it can be used for everything from system administration to web development (as in the case of this system) to game design. This 
+
 In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. system will also make use of a number of arrays and JSON structures, to temporarily store data.
 
 \subsection{Database Tables}
@@ -283,7 +285,7 @@ To ensure visual consistency throughout the system, every page will derive itsel
 \end{figure}
 \clearpage
 
-\subsection{Page Linkages}
+\subsection{Page Relationships}
 The following diagram shows how the different pages of the system link together.
 
 
@@ -294,6 +296,8 @@ In order for the system to function correctly, a minimum level of hardware, and 
 The system is a web application, and as such requires a stable internet connection to function correctly; therefore, the device used to access the system will need support for the internet, either through a wireless card or an ethernet connection. As a web application, the system can be used on both traditional computing devices, such as desktop PCs and laptops, as well as smart phones and tablets. If using a non touch device, the system has been designed for screens at least 17" in size - a resolution of 1280x1024. The system will function at smaller displays than this, but has not been fully tested as such. Desktops will also requires a mouse, in order to point at and click elements on the page; any mouse is suitable for this task. Additionally, a keyboard is needed for data entry. Laptops usually come with trackpads and keyboards built in, so the need for these additional peripherals is reduced.
 
 If the user is using a smart phone or tablet - a scenario that is likely, as the audience is a group not known for sitting down at a desk all day - no additional hardware is needed, as the device would come with everything built in, such as a touch screen for interacting with element and a virtual keyboard for data entry. The same internet connection requirements apply.
+
+The hardware need to run the system does not need to be particularly powerful - as it is a web application, it is not memory intensive; as such, only 1GB of RAM would be needed. As most people do not live in 2006 any longer, when 1GB was considered standard, the vast majority of the running club's users should be able to run the system easily. Additionally, the computer would not need a powerful processor; the system should run easily on a system with 1GHz, a clock speed that was considered low end in 2010 - five years ago at the time of writing. 
 
 \subsection{Software}
 As a web application, a web browser is the only piece of software needed to access the system - the user need simply visit the correct web address, and they can access the system. The most suitable browser to open the system in is Google Chrome; luckily, this also happens to be the most popular browser worldwide, so it is likely that they runners are already using it.
@@ -338,8 +342,27 @@ $.ajax({
   }
 });
 \end{verbatim}
-
+The \textit{route} parameter defines which route the request should be sent to, as mentioned above. The 
+type parameter defines the request type; this is almost always POST, but can be GET on one or two occasions; see specific processes for details. The \textit{data\_type} parameter is set to the type of data that will be sent via the request; this is likely to be JSON in most cases. The \textit{content\_type} parameter is equal s
+ 
 \section{Evaluation Criteria}
+measurablle
+validation appropriate
+calculations are accurate
+enter and store training details within a certain amount of time
+also is good is also very good, please god help me fiddle fee fiddle fum golly gosh wow pow etcetera
+
+The running club has commissioned  a computer based system that will allow runners to keep an accurate record of their running, cycling and swimming sessions. This data will then be used to calculate an informed decision of most appropriate team for relay race.
+
+The system must allow each runner to monitor their progress during programme, clearly showing them extent to which they have improved. As such, the system must provide an interface to allow runner to add each session they perform, with spaces for type of training, time spent, how hard they pushed themselves, and other such parameters. Using this data, the system must then calculate number of calories burned in session, providing a series of data points through which performance of runner can be monitored.
+
+To further aid in this, the system must be able to output these sessions in a clear format that runner is able to clearly understand. This can be achieved through use of tables to display each session in a listed, tabular format, as well as through graphs and charts to display data in a graphical form; this maes overall performance trends easy to visualise.
+
+Due to nature of the system, ability to store certain personal information, such as name, age and weight of runner, must also be included. runner should have ability to input this information themselves, most likely upon first use of the system. There should be ability to modify this data, in result of an error being made or circumstances of runner changing.
+
+An important aspect of the system, and one that is key to promoting competitive values of club, is ability to compare results with other participants in program. This area of the system should allow runners to compare key aspects of their performance, such as results of their individual sessions, as well as their overall performance over time in all three of activities.
+
+As the main point of the system, ability to select final team must also be included. By analysing data points provided by runners, the system should be able to choose most appropriate team.
 
 \cleardoublepage
 
