@@ -13,8 +13,10 @@
 
 \usepackage{listings}
 \usepackage{color}
-\usepackage{graphicx}
 \usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{subfigure}
+\usepackage{graphicx}
 
 \graphicspath{ {images/} }
 
@@ -228,14 +230,14 @@ user\_id            & Foreign          & 02                    & Integer        
 \caption{Activities Table}
 \end{table}
 
-id of each activity serves as its primary key; it is automatically incremented whenever a new activity is added, hence data type of integer. sport field will be a string; it will store type of sport that activity belongs to, and so string is most appropriate data type. effigy field will store specific detail for each activity, such as speed for running sessions, or type of stroke for swimming sessions. Due to wide range of options that can be stored in this, and fact that no calculations will be performed, string data type would be most appropriate. 
+The id of each activity serves as its primary key; it is automatically incremented whenever a new activity is added, hence data type of integer. The sport field will be a string; it will store type of sport that activity belongs to, and so string is the most appropriate data type. The effigy field will store specific detail for each activity, such as speed for running sessions, or the type of stroke for swimming sessions. Due to wide the range of options that can be stored in this, and the fact that no calculations will be performed, the string data type would be the most appropriate. 
 
 \section{User Interface Design}
 The system will use a web based, graphical user interface. It will be simple and easy to use, making use of user interface paradigms well known to users, such as buttons, form inputs and drop-down boxes, through their use of other computer systems. In order to increase usability, the system will make use of a consistent colour palette - each sport will be associated with a particular colour:
 \\\\\textcolor{uigreen}{Green - rgb(82, 170, 94) - associated with running}
 \\\textcolor{uiyellow}{Yellow - rgb(240, 173, 78) - associated with cycling}
 \\\textcolor{uiblue}{Blue - rgb(91, 192, 222) - associated with swimming}
-\\\\In addition, the system will make use of a consistent font: Raleway, and its variants. Raleway is a distinctive yet readable sans-serif font, and is only font used throughout system. It can be seen in the user interface documentation.
+\\\\In addition, the system will make use of a consistent font: Raleway, and its variants. Raleway is a distinctive yet readable sans-serif font, and is the only font used throughout the system. It can be seen in the user interface documentation.
 
 \subsection{Main Layout Template}
 To ensure visual consistency throughout the system, every page will derive itself from a master template, which will contain aspects like navigation, footer and placement of elements.
@@ -266,8 +268,6 @@ To ensure visual consistency throughout the system, every page will derive itsel
 \clearpage
 
 \subsection{Add Training Page}
-To ensure visual consistency throughout the system, every page will derive itself from a master template, which will contain aspects like navigation, footer and placement of elements.
-
 \begin{figure}[h!]
   \includegraphics[scale=0.55]{design_ui/add_training}
 \end{figure}
@@ -307,7 +307,7 @@ As a web application, a web browser is the only piece of software needed to acce
  Additionally, the user will need an operating system installed on their computer. Google Chrome is available for Windows, OSX and all Debian/Red Hat distributions of Linux, so their choice of operating system does not matter.
 
 \section{Processing Stages}
-This section documents the large range of processes that go into making the system function correctly. It has been split up into a number of sections for organisation. For Python/web development constructs in general that the examiners may find themselves unfamiliar with, an explanation in English has been provided.
+This section documents the large range of processes that go into making the system function correctly. It has been split up into a number of sections for organisation. For Python/web development constructs in general that the general reader may find themselves unfamiliar with, an explanation in English has been provided.
 
 \subsection{Global Processes}
 A number of processes have been used multiple times throughout the system, such as routing and validation. To avoid writing them out every time they occur, they have been documented here.
@@ -327,7 +327,7 @@ The \textit{methods} parameter specifies which HTTP method(s) can be used to acc
 
 The route logic is the main code for the route. In auth.login, for example, it contains processing to check that their are no validation errors on the form, and for logging the user in. Every route returns something. For routes with just \textit{GET} or both \textit{GET} and \textit{POST}, this will always be a Jinja2 HTML template, which is then rendered by the browser. For purely \textit{POST} routes, often a JSON object or dictionary is returned, but this varies; see the individual route processes for details.
 
-\subsection{AJAX Calls}
+\subsubsection{AJAX Calls}
 AJAX, which stands for \textit{Asynchronous JavaScript and XML}, is a method by which the rendered HTML can interact with the Python server without having to reload the page, creating a smooth experience. The syntax is as follows:
 
 \begin{verbatim}
@@ -343,14 +343,159 @@ $.ajax({
 });
 \end{verbatim}
 The \textit{route} parameter defines which route the request should be sent to, as mentioned above. The 
-type parameter defines the request type; this is almost always POST, but can be GET on one or two occasions; see specific processes for details. The \textit{data\_type} parameter is set to the type of data that will be sent via the request; this is likely to be JSON in most cases. The \textit{content\_type} parameter is equal s
+type parameter defines the request type; this is almost always POST, but can be GET on one or two occasions; see specific processes for details. The \textit{data\_type} parameter is set to the type of data that will be sent via the request; this is likely to be JSON in most cases. The \textit{content\_type} parameter is equal to either \textit{application/json} or \textit{text/plain}, depending on the data being sent. The \textit{data} parameter is set to whatever data needs to be sent to the server; this is usually a JSON object or plain text. The \textit{success} parameter is equal to a function that should be run using the data.
+
+\subsubsection{Modify Database}
+This process will be used multiple times throughout the system in order to make changes to the database. The process for adding to and updating a database in Python is the same, so the same process is used (this process may look sparse, but it really is this simple in Python; only a single line is needed to add to the database - rows and such are created automatically).
+
+\begin{verbatim}
+import database from models
+add updated object to database session
+save database
+\end{verbatim}
+
+The process for deleting a record from the database in Python is similar:
+
+\begin{verbatim}
+import database from models
+add updated object to database session
+delete session
+\end{verbatim}
+
+\subsubsection{Query User Table}
+Querying the database in Python uses a special syntax that is then converted to raw SQL at runtime. The query parameter is defined when the function is called.
+\begin{verbatim}
+User.query.filter_by(query).first|all
+\end{verbatim}
+
+\subsubsection{Query Activity Table}
+Querying the database in Python uses a special syntax that is then converted to raw SQL at runtime. The query parameter is defined when the function is called.
+\begin{verbatim}
+Activity.query.filter_by(query).first|all
+\end{verbatim}
+
+
+\subsubsection{Presence Validation Check}
+Checks whether an input has actually been filled. element is equal to whatever element the process is called on.
+\begin{verbatim}
+if length of element == 0:
+  show message You must enter your \textit{element}
+\end{verbatim}
+
+\subsubsection{Format Validation Check}
+Checks whether an element matches the correct format, through a regular expression. element is equal to whatever element the process is called on, and regexp is defined at process call.
+\begin{verbatim}
+if element does not match regexp:
+  show message You must enter a valid element
+\end{verbatim}
+
+\subsubsection{Length Check}
+Checks whether an element is between a certain length. element is equal to whatever element the process is called on, x is equal to the bottom number and y is equal to the top.
+\begin{verbatim}
+if length of element not between x and y:
+  show message You element must be between x and y characters
+\end{verbatim}
+
+\subsubsection{Range Check}
+Checks whether an element is between a certain length. element is equal to whatever element the process is called on, x is equal to the bottom number and y is equal to the top.
+\begin{verbatim}
+if element not between x and y:
+  show message You element must be between x and y
+\end{verbatim}
+
+
+\subsection{Main Processes}
+This section contains all the processes that will make up the application, written in psuedo code. In some cases, a small commentary has been given for explanation.
+
+\subsubsection{Change User Details}
+This process is used to modify the personal info of the user. It checks which element the user wants to change, and then matches their changed element against a regular expression to ensure they are valid. 
+
+\begin{verbatim}
+if request == 'name':
+  name_check = [A-Za-z\-" "]
+  if name_check matches request:
+    set user to request
+    save updated user to database
+  else:
+    flash message "invalid name"
+elif request == 'email':
+  email_check = ^.+@[^.].*\.[a-z]{2,10}$
+  if email_check matches request:
+    set user to request
+    save updated user to database
+  else:
+    flash message "invalid email"
+elif request == 'phone':
+  phone_check = \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
+  if phone_check matches request:
+    set user to request
+    save updated user to database
+  else:
+    flash message "invalid email"
+elif request == 'dob':
+  dob_check = dob_regex
+  if dob_check matches request:
+    set user to request
+    save updated user to database
+  else:
+    flash message "invalid dob"
+elif request == 'weight':
+  weight_check = ^-?[0-9]+$
+  if weight_check matches request:
+    set user to request
+    save updated user to database
+  else:
+    flash message "invalid weight"
+\end{verbatim}
+
+\subsubsection{Register Page}
+On page load:
+\begin{verbatim}
+  render template register.html
+\end{verbatim}
+
+On form submit:
+\begin{verbatim}
+  presence check on email
+  format check on email - regexp ^.+@[^.].*\.[a-z]{2,10}$
+  presence check on password
+  length check on password - 8 - 20 chars
+  presence check on confirm
+  double entry on confirm - must match password
+  presence check on dob
+  presence check on phone
+  format check on phone - regexp \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
+  presence check on weight
+  query User table for first where email == email input
+  if user found:
+    check password matches
+    login_user()
+  else:
+    show message Invalid username or password
+\end{verbatim}
+
+\subsubsection{Login Page}
+On page load:
+\begin{verbatim}
+  render template login.html
+\end{verbatim}
+
+On form submit:
+\begin{verbatim}
+  presence check on email
+  format check on email - regexp ^.+@[^.].*\.[a-z]{2,10}$
+  presence check on password
+  query User table for first where email == email input
+  if user found:
+    check password matches
+    login_user()
+  else:
+    show message Invalid username or password
+\end{verbatim}
  
 \section{Evaluation Criteria}
-measurablle
-validation appropriate
-calculations are accurate
-enter and store training details within a certain amount of time
-also is good is also very good, please god help me fiddle fee fiddle fum golly gosh wow pow etcetera
+\subsection{Measurable Criterion}
+Certain evaluation points can be measured using raw data; these are listed below.
 
 The running club has commissioned  a computer based system that will allow runners to keep an accurate record of their running, cycling and swimming sessions. This data will then be used to calculate an informed decision of most appropriate team for relay race.
 
@@ -364,6 +509,22 @@ An important aspect of the system, and one that is key to promoting competitive 
 
 As the main point of the system, ability to select final team must also be included. By analysing data points provided by runners, the system should be able to choose most appropriate team.
 
+The system should also have appropriate validation for each input, to ensure that no erroneous data is added into the system; this would result in errors, likely causing the system to crash.
+
+Additionally, the calculations performed by the system should be accurate, to ensure that the runner is not given false data, and that the system does not calculate an incorrect running team.
+
+The system must also be able to add a training session in at least 2 seconds from when the user clicked the add button, and the database should be able to store at least 100 users.
+
+\subsection{Non-Measurable Criterion}
+The system should be very easy to use. It should have sensible, coherent navigation to allow the user to easily move between each section of the system. 
+
+Additionally, the system should have a consistent layout on each of the pages; this will serve to ensure that the user does not get lost when navigating through the system: the navigation bar, logo and footer should always be in the same location.
+
+It is also important that the buttons and other controls, such as inputs, on the form are easy for the user to understand - they should know exactly what each button does, and what the program will do when they click it. 
+
+Furthermore, the system should have a consistent ``house style'': the same colours should be used for similar elements, and the typography used should be the same throughout every page. Headings should always be kept the same size, depending on their importance - one H3 level header should not be 20px whilst another is 25px.
+
+The classes and variable names given to different elements of the code should be appropriate and be self-documenting: the running graph should not be called g\_ru, as this is not specific enough, and would make maintenance on the system very difficult.
 \cleardoublepage
 
 
@@ -774,6 +935,133 @@ This file defines majority of routes used by system.
 
 
 \part{Testing and Evaluation}
+This section contains the detailed tests that were performed on the system as it was developed, to ensure that any bugs that existed in the system were caught. Also included is a detailed evaluation of the system.
+
+\subsection{Testing}
+The different tests for the different parts of the system have been split up into sections - every test has its own system for organisation.
+
+\subsubsection{Registration Page Validation}
+This section tests the validation for the registration page. Most of the inputs on the page have validation to prevent erroneous data being entered, and they are tested here.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Enacted Test}          & \textbf{Expected Action}                  & \textbf{Result} & \textbf{Proof} \\ \hline
+Leave name input blank         & Message "you must enter your name"        & As expected.    & Fig1           \\ \hline
+Enter 123Dan into name         & Message "name can only have letters"      & As expected.    & Fig2           \\ \hline
+Leave email input blank        & Message "you must enter your email"       & As expected.    & Fig3           \\ \hline
+Enter danny.com in email       & Message "email must be valid"             & As expected.    & Fig4           \\ \hline
+Leave password input blank     & Message "you must enter password"         & As expected.    & Fig5           \\ \hline
+Enter abc123 in password field & Message "password must be 8-20 chars"     & As expected.    & Fig6           \\ \hline
+Leave date input blank         & Message "you must enter date of birth"    & As expected.    & Fig7           \\ \hline
+Leave weight input blank       & Message "you must enter your weight"      & As expected.    & Fig8           \\ \hline
+Enter 200 in weight input      & Message "weight must be between 10-100kg" & As expected.    & Fig9           \\ \hline
+Leave phone input blank        & Message "you must enter your phone"       & As expected.    & Fig10          \\ \hline
+Enter 0123456789 in phone      & Message "phone number must be valid"      & As expected.    & Fig11          \\ \hline
+\end{tabular}
+\caption{Registration Page Validation}
+\end{table}
+
+As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the user, as is written in the processes.
+
+\clearpage
+
+\subsubsection{Login Page Validation}
+This section tests the validation for the login page. All of the inputs on this page have validation to prevent erroneous data being entered, and they are tested here.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Enacted Test}                                                                                             & \textbf{Expected Action}                                                                   & \textbf{Actual Result} & \textbf{Proof} \\ \hline
+Leave email input blank                                                                                           & \begin{tabular}[c]{@{}l@{}}Error message "you must \\ enter your email"\end{tabular}       & As expected.           & Fig12           \\ \hline
+Enter danny.com in email                                                                                          & \begin{tabular}[c]{@{}l@{}}Error message "your email \\ must be valid"\end{tabular}        & As expected.           & Fig13           \\ \hline
+Leave password input blank                                                                                        & \begin{tabular}[c]{@{}l@{}}Error message "you must \\ enter your password"\end{tabular}    & As expected.           & Fig14           \\ \hline
+\begin{tabular}[c]{@{}l@{}}Enter john@smith.com in\\ email input and abc123def \\ in password input.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Error message "invalid\\ email / password entered"\end{tabular} & As expected.           & Fig15           \\ \hline
+\end{tabular}
+\caption{Login Page Validation}
+\end{table}
+
+As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the user, as is written in the processes. Additionally, the system correctly identifies if a user enters an incorrect email or password, an important security feature.
+
+\subsubsection{Registering User to Database}
+This section tests that the registration page actually works, and the user is successfully added to the database with all the correct data.\\
+
+{\setlength{\parindent}{0cm}
+Navigate to the registration page, and fill in the inputs as follows:
+\begin{description}[labelindent=1cm]
+  \item[Name Input:] Katrina Smith
+  \item[Email Input:] katrina@gmail.com
+  \item[Password Input:] pythonisdifficult
+  \item[Password Confirm:] pythonisdifficult
+  \item[DOB Input:] 06/03/1951
+  \item[Maximum Distance:] 11 - 15 miles
+  \item[Weight Input:] 56kg
+  \item[Phone Number Input:] 01743 548397
+  \item[Charity Event:] True (ticked)
+\end{description}
+}
+
+\clearpage
+
+When the submit button is pressed, a new user should be added to the Users table with these parameters. The username field should be set to \textit{katrinasmith} and a random number between 1 and 10, and the joined field should be set to the date the test was performed. Additionally, the password\_hash field should contain an encrypted version of the string \textit{pythonisdifficult}. This is the Users table before the test was run:
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{images/testing/add_user/database_before}
+  \caption{Users Table Before Test}
+\end{figure}
+
+And this is the table afterwards (new user highlighted):
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.34]{images/testing/add_user/database_after_broken}
+  \caption{Users Table After Test}
+\end{figure}
+
+\clearpage
+
+As is clear, the test succeeded in every regard but the storage of the \textit{joined} field, which was set to \textit{null}. This was because the datatype for the column in models.py had been set to \textit{DateTime} as opposed to \textit{Date}, as shown here:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.5]{images/testing/add_user/code_before}
+    \caption{models.py before modification}
+\end{figure}
+
+It was replaced with this:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.5]{images/testing/add_user/code_after}
+    \caption{models.py after modification}
+\end{figure}
+
+This fixed the issue; entire section works perfectly now:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_user/database_fixed}
+    \caption{Fixed Users Table}
+\end{figure}
+
+\subsubsection{Adding Training Session to Database}
+This section tests the system's ability to add training sessions to the database. Log in as Katrina Smith:
+\begin{description}[labelindent=1cm]
+  \item[Email address:] katrina@gmail.com
+  \item[Password:] pythonisdifficult
+\end{description}
+
+{\setlength{\parindent}{0cm}
+Navigate to the Add Session page, and click the green Add Run button. Fill in the details as follows:
+\begin{description}[labelindent=1cm]
+  \item[Average Speed:] 7mph
+  \item[Start Time:] 13:00pm
+  \item[Finish Time:] 15:00pm
+  \item[Rating:] Pretty good
+  \item[Extra Thoughts:] I liked it. It was very fun. No no?
+\end{description}
+The box should look like this:
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_activity/activity_box}
+    \caption{Fixed Users Table}
+\end{figure}
+}
 
 \addcontentsline{toc}{section}{Unnumbered Section}
 
