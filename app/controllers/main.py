@@ -103,6 +103,7 @@ def profiles(username):
 @main.route('/add-training', methods=['GET', 'POST'])
 @login_required
 def add_training():
+    """Returns add activity page; returns all the training sessions done on current day"""
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
     total_calories = 0
     total_hours = 0
@@ -121,6 +122,7 @@ def performance(month):
     all_activities = Activity.query.filter_by(user_id=current_user.get_id()).all()
     available_months = []
 
+    # Calculates all the months that the user has done activities in
     for activity in all_activities:
         for x in range(1, 13):
             if activity.date.month == x and months[x - 1] not in available_months:
@@ -137,6 +139,7 @@ def performance(month):
 @main.route('/performance/compare', methods=['GET', 'POST'])
 @login_required
 def compare_performance():
+    """Builds the dropdown list for comparison page"""
     users = User.query.filter_by(charity_event=0).filter(User.id != current_user.id).all()
     user_list = sorted([[user.id, user.name] for user in users])
     return render_template('/performance/compare_performance.html', users=users, user_list=user_list)
@@ -145,6 +148,7 @@ def compare_performance():
 @main.route('/rankings')
 @login_required
 def rankings():
+    """Calculates the best running team"""
     user_ranking = {}
     runners = User.query.filter_by(charity_event=False).all()
     for runner in runners:

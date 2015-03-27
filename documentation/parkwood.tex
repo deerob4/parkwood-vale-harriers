@@ -168,15 +168,11 @@ An original solution created using a programming language would suffer from rath
 
 The question then falls to exactly which programming language is most appropriate. There are a large number of languages available, ranging from \textit{compiled} languages like Java, C\# and Visual Basic to \textit{interpreted} languages like Ruby, Python and PHP. differences between compiled and iterpreted languages are complex and varied, but, in essence, compiled languages are likely to perform algorithms more quickly (due to directly using native code of target machine), whereas code written in an interpreted language can be executed ``on the fly'', so to speak, increasing development speed. 
 
-As such, the most appropriate programming language for the system would be Python. P
-
-Though Visual Basic undoubtedly has many admirable qualities (*cough*), it falls rather flat when compared to other, arguably more superior languages, such as Python.  
-
 Python has an extremely wide range of benefits, perhaps more so than any other language, that make it absolutely suited to the needs of the running club. One of the benefits of Python is that it, not only can it connect to a database, it can also be used with any database system. This allows a great deal of freedom when choosing a database system - one can choose between MySQL, or SQLite, or even PostgreSQL. A database is the best method of storing the data, as it can be seperated into a number of logical tables, ensuring that the data is organised. Additionally, a database means that primary and foreign keys can be used, linking data tables and ensuring that each record is uniquely identifiable.
 
 Python is also extremely simple to use - it is commonly ranked as the easisest language to learn, owing to its well thoght and structure and similarity, in many regards, to the English language. Indeed, when compared to a language like, say, Visual Basic, Python stands out as a bastion of sensible language design, and most importantly, common sense. This means that devlopment time can either 
 
-However, this simplicity should not be mistaken for a lack of functionality: Python is far more capable than most languages, particularly those of an ; it can be used for everything from system administration to web development (as in the case of this system) to game design. This 
+However, this simplicity should not be mistaken for a lack of functionality: Python is far more capable than most languages; it can be used for everything from system administration to web development (as in the case of this system) to game design.
 
 In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. system will also make use of a number of arrays and JSON structures, to temporarily store data.
 
@@ -190,7 +186,7 @@ This table will store personal information for each runner. Whenever a runner cr
 \begin{table}[htbp]
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-\textbf{Field Name}     & \textbf{Primary Key} & \textbf{Typical Data} & \textbf{Data Type} \\ \hline
+\textbf{Field Name}     & \textbf{Primary Key} & \textbf{Typical Data} & \textbf{Data Type} & \textbf{Data Type} \\ \hline
 id             & True        & 01                   & Integer   \\ \hline
 name           & n/a         & John Smith           & String    \\ \hline
 email          & n/a         & john@smith.com       & String    \\ \hline
@@ -213,19 +209,19 @@ Each user will be given an id which serves as their primary key; it is automatic
 Every activity that runners add will be given its own record in this table. It is accessed sequentially, according to id of each activity. In addition, each activity will be linked to a user through a foreign key, called user\_id. It is a one-to-many relationship.
 
 \begin{table}[h]
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l}
 \hline
-\textbf{Field Name} & \textbf{PK / FK} & \textbf{Typical Data} & \textbf{Data Type} \\ \hline
-id                  & Primary          & 01                    & Integer            \\ \hline
-sport               & n/a              & running               & String             \\ \hline
-effigy              & n/a              & 5 mph                 & String             \\ \hline
-date                & n/a              & 2015-01-04            & Date               \\ \hline
-start               & n/a              & 8:00AM                & String             \\ \hline
-finish              & n/a              & 10:00AM               & String             \\ \hline
-hours               & n/a              & 2                     & Integer            \\ \hline
-opinion             & n/a              & Brilliant             & String             \\ \hline
-thoughts            & n/a              & It was great.         & String             \\ \hline
-user\_id            & Foreign          & 02                    & Integer            \\ \hline
+\textbf{Field Name} & \textbf{PK / FK} & \textbf{Typical Data} & \textbf{Data Type} & \textbf{Validation} \\ \hline
+id                  & Primary          & 01                    & Integer  & Presence          \\ \hline
+sport               & n/a              & running               & String   & Presence          \\ \hline
+effigy              & n/a              & 5 mph                 & String   & Presence          \\ \hline
+date                & n/a              & 2015-01-04            & Date     & Presence, Range          \\ \hline
+start               & n/a              & 8:00AM                & String   & Presence, Range          \\ \hline
+finish              & n/a              & 10:00AM               & String   & Presence, Range          \\ \hline
+hours               & n/a              & 2                     & Integer  & Presence          \\ \hline
+opinion             & n/a              & Brilliant             & String   & Presence          \\ \hline
+thoughts            & n/a              & It was great.         & String   & None          \\ \hline
+user\_id            & Foreign          & 02                    & Integer  & Presence          \\ \hline
 \end{tabular}
 \caption{Activities Table}
 \end{table}
@@ -256,6 +252,12 @@ To ensure visual consistency throughout the system, every page will derive itsel
 \subsection{Login Page}
 \begin{figure}[h!]
   \includegraphics[scale=0.55]{design_ui/login}
+\end{figure}
+\clearpage
+
+\subsection{Compare Performance Page}
+\begin{figure}[h!]
+  \includegraphics[scale=0.55]{design_ui/compare_performance}
 \end{figure}
 \clearpage
 
@@ -424,28 +426,28 @@ elif request == 'email':
     set user to request
     save updated user to database
   else:
-    flash message "invalid email"
+    flash message ``invalid email''
 elif request == 'phone':
   phone_check = \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
   if phone_check matches request:
     set user to request
     save updated user to database
   else:
-    flash message "invalid email"
+    flash message ``invalid email''
 elif request == 'dob':
   dob_check = dob_regex
   if dob_check matches request:
     set user to request
     save updated user to database
   else:
-    flash message "invalid dob"
+    flash message ``invalid dob''
 elif request == 'weight':
   weight_check = ^-?[0-9]+$
   if weight_check matches request:
     set user to request
     save updated user to database
   else:
-    flash message "invalid weight"
+    flash message ``invalid weight''
 \end{verbatim}
 
 \subsubsection{Register Page}
@@ -463,13 +465,19 @@ On form submit:
   presence check on confirm
   double entry on confirm - must match password
   presence check on dob
+  set today = today.date()
+  if today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day)) < 18:
+    show message ``You must be at least 18 to signup''
   presence check on phone
   format check on phone - regexp \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
   presence check on weight
+  range check on weight - between 10 and 100
   query User table for first where email == email input
-  if user found:
-    check password matches
-    login_user()
+  if distance == less than 1 mile and charity_event == true:
+    show message ``You must be physically fit to run in the charity event''
+  if no validation errors:
+    add user to database
+    redirect user to login page
   else:
     show message Invalid username or password
 \end{verbatim}
@@ -490,8 +498,108 @@ On form submit:
     check password matches
     login_user()
   else:
-    show message Invalid username or password
+    show message ``Invalid username or password''
 \end{verbatim}
+
+\subsubsection{Calculate Calories Burned}
+This function will calculate the number of calories burned in the training session. It builds on the idea suggested in the brief by taking into account how well a user thought the session went, and also taking into account the weight of the user.
+
+\begin{verbatim}
+  Set base_calories to dictionary: {
+    'swimming': {
+        'Backstroke': 5.1625, 
+        'Breaststroke': 7.375, 
+        'Butterfly': 8.1125, 
+        'Freestyle (slow)': 5.1625,
+        'Freestyle (fast)': 7.375
+    },
+    'running': {
+        '5 mph': 5.9, 
+        '6 mph': 7.375, 
+        '7 mph': 8.4875, 
+        '8 mph': 9.9625, 
+        '9 mph': 11.0625, 
+        '10 mph': 11.8
+    },
+      'cycling': {
+        'Leisurely': 2.95, 
+        'Gently': 4.425, 
+        'Moderately': 5.9, 
+        'Vigorously': 6.125, 
+        'Very fast': 8.85,
+        'Racing': 11.8
+    },
+        'modifiers': {
+          'Brilliant': 10, 
+          'Pretty good': 5, 
+          'About average': 0, 
+          'Okay': -5, 
+          'Awful': -10}
+  }
+  Set sport to request['sport']
+  Set effigy to request['effigy']
+  Set hours to request['hours']
+  Set weight to request['weight']
+
+  Set base_value to base_calories[sport][effigy]
+  set calories to (base_value * current_user.weight) * hours
+  set modifier to base_calories['modifiers'][rating]
+
+  Add modifier to calories
+
+  return calories
+\end{verbatim}
+
+\subsubsection{Add Training Session Page}
+On page load:
+\begin{verbatim}
+  query Activity table for all activities where date = today and user_id = current_user.id
+  set total_hours to 0
+  set total_calories to 0
+  for activity.hour in today's activities:
+    add activity.hour to total_hours
+    add activity.calories to total_calories
+  render template login.html with today's sessions
+\end{verbatim}
+
+On add sport button press:
+\begin{verbatim}
+  AJAX request to /ajax/sport_block. Data parameter name of sport. Data type text/plain.
+  if data == `running':
+    return running_block.html
+  elif data == `cycling':
+    return cycling_block.html
+  else:
+    return swimming_block.html
+  Append returned HTML to page
+\end{verbatim}
+
+On activity block submit:
+\begin{verbatim}
+  start time input presence check
+  finish time input presence check
+  if validation passed:
+    animate activity block - height -= 100px; width += 1000px
+    AJAX request to /ajax/calculate_calories. Data parameter a JSON object containing session hours and rating
+    return calculate_calories()
+    save activity to database
+\end{verbatim}
+
+\subsubsection{Calculate Running Team}
+Calculates the running team. Calculates the total calories burned for each runner who opted into the charity event, and then sorts this by the highest number. Displaying the top 8 is performed in the Jinja template; beyond the scope of this.
+
+\begin{verbatim}
+set user_ranking to empty dict
+set runners to db query for all runners who opted into charity event
+for runner in runners:
+  set total_calories = 0
+  set training_sessions to db query for all of runner's activities
+  for session in training_sessions:
+    add session.calories to total_calories
+  set user_ranking[runner.name] to total_calories
+sort user_ranking using built in Python sorted function
+\end{verbatim}
+
  
 \section{Evaluation Criteria}
 \subsection{Measurable Criterion}
@@ -560,7 +668,7 @@ As login page has only one function - to get user logged in to system - it featu
 \clearpage
 
 \subsection{Profile Page}
-profile page allows user to view and update their personal information. Certain sections appear on demand, so multiple captures have been taken.
+The profile page allows user to view and update their personal information. Certain sections appear on demand, so multiple captures have been taken.
 
 \subsubsection{Main View}
 Due to large amount of data that is being presented on this page, a structured approach has been taken, with a three-panel view being implemented. This helps to seperate different areas of page in a logical manner, making it easier for user to find what they are looking for. Each item of data is given its own row, making it clear which is which. delete account section has been coloured in red, a colour traditionally associated with danger. This helps to convey to user that bad things will happen if they delete their account. Furthermore, playful text has been used in delete account panel, to bring a sense of amusement and, hopefully, dissuade user from following through with their actions.
@@ -572,7 +680,7 @@ Due to large amount of data that is being presented on this page, a structured a
 \clearpage
 
 \subsubsection{Change Details}
-interface for changing details is very simple - it features just an input for changing element, and a button to confirm. placeholder text for input is set to current item, for visual consistency. Making this panel pop up as opposed to being on a seperate page improves flow of page, preventing user becoming disorientated.
+The interface for changing details is very simple - it features just an input for changing element, and a button to confirm. The placeholder text for the input is set to current item, for visual consistency. Making this panel pop up as opposed to being on a seperate page improves flow of page, preventing user becoming disorientated.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/profile_change}
@@ -588,6 +696,14 @@ To ensure that user is fully aware of severity of deleting their account, they m
   \caption{Profile Page - Delete Account}
 \end{figure}
 \clearpage
+
+\subsection{Compare Peformance}
+Unfortunately, time constraints meant that the implementation of the comparison graphs was never completed, so users are unable to compare their performance. 
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{final_ui/compare_performance}
+  \caption{Compare Performance Page}
+\end{figure}
 
 \subsection{User Performance Page}
 The user performance page is the main page of the system, and is the first page the user sees when they log into the system.
@@ -1063,6 +1179,155 @@ The box should look like this:
 \end{figure}
 }
 
+This is the Activities table before the test was run:
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_activity/database_before}
+    \caption{Activities Table Before}
+\end{figure}
+
+This is the Activities table after the test was run:
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_activity/database_after}
+    \caption{Activities Table After}
+\end{figure}
+
+As can be seen, the activity was added perfectly; the test succeeded.
+
+\clearpage
+
+\subsubsection{Delete User}
+This section tests the system's ability to delete the user. Log in as Katrina Smith:
+\begin{description}[labelindent=1cm]
+  \item[Email address:] katrina@gmail.com
+  \item[Password:] pythonisdifficult
+\end{description}
+Navigate to the profile page and press the ``Delete my account'' button. Type ``I will lose everything'' into the box and press the ``Delete account'' button:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/delete_user/panel}
+    \caption{Delete User Panel}
+\end{figure}
+
+You should be redirected to the login page with a message saying ``Your account has been delete. Sorry to see you go!'' and the user should be removed from the Users Table. All their activities should be removed.
+
+This is the Users table before the test:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_user/database_after_broken}
+    \caption{Users Table before Test}
+\end{figure}
+
+\clearpage
+
+And this is the Users table after the test:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_user/database_before}
+    \caption{Users Table after Test}
+\end{figure}
+
+The redirect and message also worked:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/delete_user/sorry}
+    \caption{Redirected to login screen after account delete}
+\end{figure}
+
+As can be seen, the user was deleted perfectly; the test succeeded.
+
+\clearpage
+
+\subsubsection{User Performance Graphs}
+This section tests that the performance graphs work properly, and display the correct data.
+
+{\setlength{\parindent}{0cm}
+Create three users:
+Create three new members, with the following details:
+Name: Peter Kennedy | Email: peterk@gmail.com | D.O.B: 02/03/1956 | Max distance: Less than 1 mile | Weight: 60kg | Phone Number: 01742247845 | Charity event: false\\
+
+Name: Chrissie Taylor | Email: chrissie@gmail.com | D.O.B: 01/09/1951 | Max distance:  1-5 miles | Weight: 80kg | Phone Number: 01742247845 | Charity event: true\\
+
+Name: Jerry Bridgeland | Email: jezzab@gmail.com | D.O.B: 01/09/1951 | Max distance:  11-15 miles | Weight: 100kg | Phone Number: 01742247845 | Charity event: true\\
+
+For Peter Kennedy, do not add any training sessions.
+
+For Chrissie Taylor, add the following training sessions:\\
+Sport: Cycling | Start Time: 10:00am | Finish time: 12:00am | Speed: vigorously | Rating: average\\
+Sport: Cycling | Start Time: 10:00am | Finish time: 16:00am | Speed: racing | Rating: brilliant\\\\
+Sport: Cycling | Start Time: 10:00am | Finish time: 13:00am | Speed: racing | Rating: brilliant\\\\
+
+For Jerry Bridgeland, add the following training sessions\\:
+Sport: Swimming | Start Time: 10:00am | Finish time: 12:00am | Speed: backstroke | Rating: average\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 16:00am | Speed: breaststroke | Rating: brilliant\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 12:00am | Speed: butterfly | Rating: okay\\
+Sport: swimming | Start Time: 09:00am | Finish time: 11:00am | Speed: backstroke | Rating: awful\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 13:00am | Speed: backstroke | Rating: brilliant\\
+
+\clearpage
+
+Peter's graph should contain no data.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/graphs/peter}
+    \caption{Peter Kennedy's Graph}
+\end{figure}
+
+Chrissie's graph sould contain three data points with connecting lines.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/graphs/chrissie}
+    \caption{Chrissie Taylor's Graph}
+\end{figure}
+
+\clearpage
+
+Jerry's graph should contain five data points with connecting lines.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/graphs/jerry}
+    \caption{Jerry Bridgeland's Graph}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Calorie Calculation}
+Create a user with a weight of 87kg. Add a running session with the following parameters:
+
+\begin{description}[labelindent=1cm]
+  \item[Speed:] 8 mph
+  \item[Start time:] 12 PM
+  \item[Finish time:] 3:00 PM
+  \item[Rating:] Pretty good
+\end{description}
+
+It should look like this:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/calorie/running}
+    \caption{Running Block}
+\end{figure}
+
+The session is worth 2602 calories. This should be reflected in the system. It was, as shown here:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/calorie/finished}
+    \caption{Correct Calorie Calculation}
+\end{figure}
+
+\section{Evaluation}
+This is the evalulation; it evaluates different parts of the system.
+\subsection{Testing Evaluation}
+I believe that my testing strategy was sound: it allowed me to test most of the different parts of the system, and several bugs and flaws were fixed and sorted out through this process. Each part of the test has been well documented with clear instructions for the tester, as well as good screenshots. This has improved the quality of the system, making it more reliable for the user.
+
+I have tested all the validation on the system to ensure that erroneous data cannot be entered. I have tested that the database works correctly, ensuring that all read/write/update/delete operations work properly; this is a very important aspect of the system, so it is important that it works.
+
+Additionally, I have tested the calorie calculation - it is very important that this works properly, else the incorrect team could be picked, leading to the running club performing poorly in the charity event.
+
+Unfortunately, time restraints meant that I was unable to document the testing for the rankings page; this suggests that the testing strategy could be improved by making it quicker.
+
+\subsection{Possible Improvements}
+A major improvement would be if users were able to compare their performance, as this was unfortunately not functional at the time of release. Additionally, a seperate area for staff to view more data about the runners, and make changes of their own would be useful; it could help prevent malpractise.
+ 
 \addcontentsline{toc}{section}{Unnumbered Section}
 
 \end{document}

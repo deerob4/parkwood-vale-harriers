@@ -16,6 +16,7 @@ ajax = Blueprint('ajax', __name__)
 # Defines the route for displaying the activity blocks
 @ajax.route('/ajax/sport-block', methods=['POST'])
 def sport_block():
+    """Returns the appropriate sport block for add activity page"""
     sport = request.get_data().decode("utf-8")
     if sport == 'running':
         return render_template('training/running_block.html')
@@ -30,6 +31,7 @@ def sport_block():
 # Defines the route for uploading activity block data
 @ajax.route('/ajax/send-activity', methods=['POST'])
 def send_activity():
+    """Saves the activity sessions to the database"""
     sport = request.json['sport']
     effigy = request.json['effigy']
     calories = request.json['calories']
@@ -95,6 +97,7 @@ def calculate_calories():
 
 @ajax.route('/ajax/user-charts', methods=['POST'])
 def user_charts():
+    """Creates the data dictionaries used in the graphs"""
     month_map = dict(zip([month_name[x].lower() for x in range(1, 13)], range(1, 13)))
     user_month = month_map[request.json['month'].lower()]
 
@@ -124,6 +127,7 @@ def ajax_performance():
 
 @ajax.route('/ajax/comparison-graph', methods=['POST'])
 def comparison_graphs():
+    """Creates the data for the comparison graph. Non-functional."""
     graph_type = request.json['graphType']
     comparison_user = int(request.json['comparisonUser'])
 

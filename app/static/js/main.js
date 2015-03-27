@@ -7,6 +7,7 @@ $(document).ready(function () {
         //"filter": false
     });
 
+    // Helful general function used to quickly animate an element
     function genericAnimation($element, animation, timeout) {
         $element.addClass('animated ' + animation);
         if (timeout === true) {
