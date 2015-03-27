@@ -13,8 +13,10 @@
 
 \usepackage{listings}
 \usepackage{color}
-\usepackage{graphicx}
 \usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{subfigure}
+\usepackage{graphicx}
 
 \graphicspath{ {images/} }
 
@@ -325,7 +327,7 @@ The \textit{methods} parameter specifies which HTTP method(s) can be used to acc
 
 The route logic is the main code for the route. In auth.login, for example, it contains processing to check that their are no validation errors on the form, and for logging the user in. Every route returns something. For routes with just \textit{GET} or both \textit{GET} and \textit{POST}, this will always be a Jinja2 HTML template, which is then rendered by the browser. For purely \textit{POST} routes, often a JSON object or dictionary is returned, but this varies; see the individual route processes for details.
 
-\subsection{AJAX Calls}
+\subsubsection{AJAX Calls}
 AJAX, which stands for \textit{Asynchronous JavaScript and XML}, is a method by which the rendered HTML can interact with the Python server without having to reload the page, creating a smooth experience. The syntax is as follows:
 
 \begin{verbatim}
@@ -775,6 +777,133 @@ This file defines majority of routes used by system.
 
 
 \part{Testing and Evaluation}
+This section contains the detailed tests that were performed on the system as it was developed, to ensure that any bugs that existed in the system were caught. Also included is a detailed evaluation of the system.
+
+\subsection{Testing}
+The different tests for the different parts of the system have been split up into sections - every test has its own system for organisation.
+
+\subsubsection{Registration Page Validation}
+This section tests the validation for the registration page. Most of the inputs on the page have validation to prevent erroneous data being entered, and they are tested here.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Enacted Test}          & \textbf{Expected Action}                  & \textbf{Result} & \textbf{Proof} \\ \hline
+Leave name input blank         & Message "you must enter your name"        & As expected.    & Fig1           \\ \hline
+Enter 123Dan into name         & Message "name can only have letters"      & As expected.    & Fig2           \\ \hline
+Leave email input blank        & Message "you must enter your email"       & As expected.    & Fig3           \\ \hline
+Enter danny.com in email       & Message "email must be valid"             & As expected.    & Fig4           \\ \hline
+Leave password input blank     & Message "you must enter password"         & As expected.    & Fig5           \\ \hline
+Enter abc123 in password field & Message "password must be 8-20 chars"     & As expected.    & Fig6           \\ \hline
+Leave date input blank         & Message "you must enter date of birth"    & As expected.    & Fig7           \\ \hline
+Leave weight input blank       & Message "you must enter your weight"      & As expected.    & Fig8           \\ \hline
+Enter 200 in weight input      & Message "weight must be between 10-100kg" & As expected.    & Fig9           \\ \hline
+Leave phone input blank        & Message "you must enter your phone"       & As expected.    & Fig10          \\ \hline
+Enter 0123456789 in phone      & Message "phone number must be valid"      & As expected.    & Fig11          \\ \hline
+\end{tabular}
+\caption{Registration Page Validation}
+\end{table}
+
+As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the user, as is written in the processes.
+
+\clearpage
+
+\subsubsection{Login Page Validation}
+This section tests the validation for the login page. All of the inputs on this page have validation to prevent erroneous data being entered, and they are tested here.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Enacted Test}                                                                                             & \textbf{Expected Action}                                                                   & \textbf{Actual Result} & \textbf{Proof} \\ \hline
+Leave email input blank                                                                                           & \begin{tabular}[c]{@{}l@{}}Error message "you must \\ enter your email"\end{tabular}       & As expected.           & Fig12           \\ \hline
+Enter danny.com in email                                                                                          & \begin{tabular}[c]{@{}l@{}}Error message "your email \\ must be valid"\end{tabular}        & As expected.           & Fig13           \\ \hline
+Leave password input blank                                                                                        & \begin{tabular}[c]{@{}l@{}}Error message "you must \\ enter your password"\end{tabular}    & As expected.           & Fig14           \\ \hline
+\begin{tabular}[c]{@{}l@{}}Enter john@smith.com in\\ email input and abc123def \\ in password input.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Error message "invalid\\ email / password entered"\end{tabular} & As expected.           & Fig15           \\ \hline
+\end{tabular}
+\caption{Login Page Validation}
+\end{table}
+
+As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the user, as is written in the processes. Additionally, the system correctly identifies if a user enters an incorrect email or password, an important security feature.
+
+\subsubsection{Registering User to Database}
+This section tests that the registration page actually works, and the user is successfully added to the database with all the correct data.\\
+
+{\setlength{\parindent}{0cm}
+Navigate to the registration page, and fill in the inputs as follows:
+\begin{description}[labelindent=1cm]
+  \item[Name Input:] Katrina Smith
+  \item[Email Input:] katrina@gmail.com
+  \item[Password Input:] pythonisdifficult
+  \item[Password Confirm:] pythonisdifficult
+  \item[DOB Input:] 06/03/1951
+  \item[Maximum Distance:] 11 - 15 miles
+  \item[Weight Input:] 56kg
+  \item[Phone Number Input:] 01743 548397
+  \item[Charity Event:] True (ticked)
+\end{description}
+}
+
+\clearpage
+
+When the submit button is pressed, a new user should be added to the Users table with these parameters. The username field should be set to \textit{katrinasmith} and a random number between 1 and 10, and the joined field should be set to the date the test was performed. Additionally, the password\_hash field should contain an encrypted version of the string \textit{pythonisdifficult}. This is the Users table before the test was run:
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.35]{images/testing/add_user/database_before}
+  \caption{Users Table Before Test}
+\end{figure}
+
+And this is the table afterwards (new user highlighted):
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.34]{images/testing/add_user/database_after_broken}
+  \caption{Users Table After Test}
+\end{figure}
+
+\clearpage
+
+As is clear, the test succeeded in every regard but the storage of the \textit{joined} field, which was set to \textit{null}. This was because the datatype for the column in models.py had been set to \textit{DateTime} as opposed to \textit{Date}, as shown here:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.5]{images/testing/add_user/code_before}
+    \caption{models.py before modification}
+\end{figure}
+
+It was replaced with this:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.5]{images/testing/add_user/code_after}
+    \caption{models.py after modification}
+\end{figure}
+
+This fixed the issue; entire section works perfectly now:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_user/database_fixed}
+    \caption{Fixed Users Table}
+\end{figure}
+
+\subsubsection{Adding Training Session to Database}
+This section tests the system's ability to add training sessions to the database. Log in as Katrina Smith:
+\begin{description}[labelindent=1cm]
+  \item[Email address:] katrina@gmail.com
+  \item[Password:] pythonisdifficult
+\end{description}
+
+{\setlength{\parindent}{0cm}
+Navigate to the Add Session page, and click the green Add Run button. Fill in the details as follows:
+\begin{description}[labelindent=1cm]
+  \item[Average Speed:] 7mph
+  \item[Start Time:] 13:00pm
+  \item[Finish Time:] 15:00pm
+  \item[Rating:] Pretty good
+  \item[Extra Thoughts:] I liked it. It was very fun. No no?
+\end{description}
+The box should look like this:
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_activity/database_fixed}
+    \caption{Fixed Users Table}
+\end{figure}
+}
 
 \addcontentsline{toc}{section}{Unnumbered Section}
 

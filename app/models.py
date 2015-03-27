@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.String)
     weight = db.Column(db.Integer)
     distance = db.Column(db.String)
-    joined = db.Column(db.DateTime)
+    joined = db.Column(db.Date)
     charity_event = db.Column(db.Boolean)
 
     activities = db.RelationshipProperty('Activity', backref='user', lazy='dynamic')
