@@ -38,7 +38,7 @@ $(document).ready(function () {
         }
     });
 
-    // Sends a request to the server for the correct 
+    // Sends a request to the server for the correct
     $('.sport-button').click(function () {
         var activity = $(this).attr('id');
         ajaxCall('/ajax/sport-block', 'POST', 'text', 'text/plain', activity, updateActivities);
@@ -107,6 +107,8 @@ $(document).ready(function () {
             finish = $activity.find('#finish').val(),
             thoughts = $activity.find('#thoughts').val(),
             hours = calculateHours($activity);
+
+        // Sends a dictionary containing all the information about the activity to ajax.calculate_calories()
         ajaxCall('/ajax/calculate-calories', 'POST', 'json', 'application/json', JSON.stringify({
             "sport": sport,
             "effigy": effigy,
@@ -119,13 +121,15 @@ $(document).ready(function () {
     }
 
     function addActivity(data, $activity) {
-        var caloriesBurned = data.calories,
+        // parseInt() used to ensure that the value is treated as an integer as opposed to string
+        var caloriesBurned = parseInt(data.calories),
             currentCalories = parseInt($('.total-calories').text()),
             currentHours = parseInt($('.total-hours').text()),
-        // Builds a string to display in the animated activity block
-        // activityString = data.sport + ' (' + effigy.toLowerCase() + ') - ' + caloriesBurned + ' calories burned over ' + data.hours + ' hours',
-            activityString = data.sport,
-        // Constructs the final activity object in JSON, to send to the server and save to the database
+
+            // Builds a string to display in the animated activity block
+            activityString = data.sport.toTitleCase() + ' (' + data.effigy.toLowerCase() + ') - ' + caloriesBurned + ' calories burned over ' + data.hours + ' hours',
+
+            // Constructs the final activity object in JSON, to send to the server and save to the database
             activityObject = {
                 "sport": data.sport.toLowerCase(),
                 "effigy": data.effigy,
@@ -137,11 +141,14 @@ $(document).ready(function () {
                 "thoughts": data.thoughts
             };
 
+        // Sets the Total Calories and Total Calories blocks to their updated value
         $('.total-hours').text(currentHours + data.hours);
         $('.total-calories').text(currentCalories + caloriesBurned);
 
+        // Actually sets the text of the sport block to activityString
         $activity.find('.sport').text(activityString);
 
+        // Sends the constructed activityBlock to the server - received by ajax.send_activity()
         ajaxCall('/ajax/send-activity', 'POST', 'json', 'application/json', JSON.stringify(activityObject), null)
     }
 
@@ -162,8 +169,16 @@ $(document).ready(function () {
             }
         })
     }
-    
+
+    // A small function to capitalise the first letter of words
+    String.prototype.toTitleCase = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+
+    // Toggles the tooltip library on the charts
     $('[data-toggle="tooltip"]').tooltip();
+
+    // Sets the global font family for the charts, in line with the rest of the application
     Chart.defaults.global.scaleFontFamily = "'Raleway', 'Helvetica', 'Arial', sans-serif";
 
 });

@@ -100,65 +100,70 @@
 \cleardoublepage
 
 \part{Analysis and Design}
-This part of documentation contains analysis that was performed on Parkwood Vale Harriers, taking into account what running club asked for in their brief, and exploring these requirements. It also covers preliminary design that was created for system, including interface design for every page, design of data structures and process design, detailing different algorithms that have been used, and how system interacts with itself.
+This part of documentation contains analysis that was performed on Parkwood Vale Harriers, taking into account what the running club asked for in their brief, and exploring these requirements. It also covers preliminary design that was created for system, including interface design for every page, design of data structures and process design, detailing different algorithms that have been used, and how system interacts with itself.
 
 \section{Problem Definition}
 \subsection{Background}
-Parkwood Vale Harriers is a running club that serves fitness needs of many different members, through regular sessions, as well as races. club gets involved in local community, a position that consists, in part, of raising money for local charities. 
+Parkwood Vale Harriers is a running club that serves the fitness needs of many different members, through both regular meetup sessions, and races. The club gets involved in the local community, a position that consists, in part, of raising money for local charities.
 
-Recently, club has decided to raise money for one of charities by putting on a relay event, wherein a team of runners will run, non-stop, from John O\textsc{\char13} Groats to Land’s End, in shortest time possible. team will consist of eight members, and each runner will run for an hour at a time, whilst others rest in minibus. entire trip is estimated to take three days and as a result of this, each member of team will have to be very fit.
+Recently, the club has decided to raise money for one of charities by putting on a relay event, wherein a team of runners will run, non-stop, from John O\textsc{\char13} Groats to Land’s End, in the shortest time possible. The team will consist of eight members, and each runner will run for an hour at a time, whilst the others rest in minibus. The entire trip is estimated to take three days and as a result of this, each member of team will have to be very fit.
 
-In order to increase their chances of completing run, club has decided to find out most appropriate team, based on results of a physically challenging programme. This programme will consist of running, cycling and swimming, and will serve to ensure that only top members of club are included in team.
+In order to increase their chances of completing run, the club has decided to find out the most appropriate team, based on results of a physically challenging programme. This programme will consist of running, cycling and swimming, and will serve to ensure that only the very best members of the club are included in the team.
 
 \subsection{Broad Aims}
-running club has commissioned  a computer based system that will allow runners to keep an accurate record of their running, cycling and swimming sessions. This data will then be used to calculate an informed decision of most appropriate team for relay race.
+The running club has commissioned  a computer based system that will allow runners to keep an accurate record of their running, cycling and swimming sessions. This data will then be used to calculate an informed decision of the most appropriate team for the relay race.
 
-The system must allow each runner to monitor their progress during programme, clearly showing them extent to which they have improved. As such, the system must provide an interface to allow runner to add each session they perform, with spaces for type of training, time spent, how hard they pushed themselves, and other such parameters. Using this data, the system must then calculate number of calories burned in session, providing a series of data points through which performance of runner can be monitored.
+The system must allow each runner to monitor their progress during programme, clearly showing them the extent to which they have improved. As such, the system must provide an interface to allow runner to add each session they perform, with spaces for type of training, time spent, how hard they pushed themselves, and other such parameters. Using this data, the system must then calculate number of calories burned in the session, providing a series of data points through which performance of the runner can be monitored.
 
-To further aid in this, the system must be able to output these sessions in a clear format that runner is able to clearly understand. This can be achieved through use of tables to display each session in a listed, tabular format, as well as through graphs and charts to display data in a graphical form; this maes overall performance trends easy to visualise.
+To further aid in this, the system must be able to output these sessions in a clear format that the runner is able to clearly understand. This can be achieved through the use of tables to display each session in a listed, tabular format, as well as through graphs and charts to display data in a graphical form; this makes overall performance trends easy to visualise.
 
-Due to nature of the system, ability to store certain personal information, such as name, age and weight of runner, must also be included. runner should have ability to input this information themselves, most likely upon first use of the system. There should be ability to modify this data, in result of an error being made or circumstances of runner changing.
+Due to the nature of the system, the ability to store certain personal information, such as name, age and weight of runner, must also be included. The runner should have ability to input this information themselves, most likely upon first use of the system. There should be the ability to modify this data, in result of an error being made or the circumstances of the runner changing.
 
-An important aspect of the system, and one that is key to promoting competitive values of club, is ability to compare results with other participants in program. This area of the system should allow runners to compare key aspects of their performance, such as results of their individual sessions, as well as their overall performance over time in all three of activities.
+An important aspect of the system, and one that is key to promoting the competitive values of club, is the ability to compare results with other participants in program. This area of the system should allow the runners to compare key aspects of their performance, such as the results of their individual sessions, as well as their overall performance over time in all three of the activities.
 
-As the main point of the system, ability to select final team must also be included. By analysing data points provided by runners, the system should be able to choose most appropriate team.
+As the main point of the system, the ability to select final team must also be included. By analysing data points provided by runners, the system should be able to choose most appropriate team.
 
 \subsection{Limitations}
-Though brief provided by running club contains several good ideas and acts as an effective base upon which to work, there are a number of areas which running club has not thought about that could be factored into solution, creating a more effective system. 
+Though the brief provided by running club contains several good ideas and acts as an effective base upon which to work, there are a number of areas which the running club has not thought about that could be factored into solution, thus creating a more effective and, over all, higher quality system. 
 
-One very important factor that running club has left out is security. In a system like this, where intensely personal data is being stored, including data that user may not which to become public, such as their weight, it is important that data is stored in a secure manner that allows only those with correct permissions to access it. 
+One very important factor that the running club has left out is security. In a system like this, where intensely personal data is being stored, including data that runner may not which to become public, such as their weight, it is important that the data is stored in a secure manner that allows only those with correct permissions to access it. 
 
-Another issue with brief is that of an objective decision being made when selecting team. Running a marathon is about far more than just physical fitness; more personal aspects, such as how well runners get along and different roles within team, should also be taken into account for maximum efficiency. The system would be unable to do this (without each runner giving their opinion on others, which is unrealistic), and so team it comes up with may not be most appropriate choice. 
+Another issue with the brief is that of an objective decision being made when selecting team. Running a marathon is about far more than just physical fitness; more personal aspects, such as how well runners get along, as well as different roles within team, should also be taken into account for maximum efficiency. The system would be unable to do this (without each runner giving their opinion on others, which is unrealistic), and so team it comes up with may not be most appropriate choice. 
 
-Another limitation in the system is that data will have to be entered manually: there is no way of taking data from some sort of personal tracking device. This could result in some issues with accuracy, or even with malpractice: people entering exaggerated data in order to manipulate rankings and make themselves seem better. A mixture of validation and verification can be put in place to prevent this, such as ensuring users cannot go for a straight eight hour swim (something which is obviously unrealistic), but this will be unable to catch all cases of exaggeration; it is therefore necessary to rely on goodwill and sportsmanship of runners.
+Another limitation in the system is that data will have to be entered manually: there is no way of taking data from some sort of personal tracking device. This could result in some issues with accuracy, or even with malpractice: people could enter exaggerated data in order to manipulate the rankings and make themselves appear better. A mixture of validation and verification can be put in place to prevent this, such as ensuring users cannot go for a straight eight hour swim (something which is obviously unrealistic), but this will be unable to catch all cases of exaggeration; it is therefore necessary to rely on the goodwill and sportsmanship of runners.
 
-Furthermore, the system relies on premise that runners will add every session they perform to application. It is not unlikely that they will go on unsolicited sessions that they do not bother adding, or they may simply forget. There is no foolproof manner to prevent these occurences, but a number of steps can be taken to reduce their likelihood, such as by making process of adding a session as simple as possible - easier process is, more likely runner is to do it.
+Furthermore, the system relies on the premise that runners will add every session they perform to application. It is not unlikely that they will go on unsolicited sessions that they do not bother adding, or they may simply forget. There is no foolproof manner to prevent these occurences, but a number of steps can be taken to reduce their likelihood, such as by making the process of adding a session as simple as possible - the easier the process is, the more likely runner is to do it.
 
-In addition, the brief asks for only top eight members of running team to be calculated. This does not take into account possibilities of injuries or runners dropping out for other reasons; as such, the system should also calculate a number of reserve runners, in event of an accident.
+In addition, the brief asks for only top eight members of running team to be calculated. This does not take into account the possibility of injuries or runners dropping out for other reasons; as such, the system should also calculate a number of reserve runners, in the event of an accident.
 
 Additionally, the system will need a team of experienced professionals to keep and maintain it - the running club may wish for an aspect of the system to be modified, and, depending on its complexity, this could require great expertise.
 
-Though pains will be taken to ensure that the system is easy to use, it will still require a degree of training for those members of the club who lack experience in using computers; this will take time, something, with the charity event looming, the running club may not have.
+Though pains will be taken to ensure that the system is easy to use, it will still require a degree of training for those members of the club who lack experience in using computers; this will take time, something that, with the charity event looming, the running club may not have.
 
 \subsection{Assumptions}
 Throughout the system, a number of assumptions have been made in order to increase ease of development. 
 
-One of these is that in each individual session, only one method of exercise will be used, such as breaststroke for an entire swimming session or a leisurely speed for an entire cycling session. Though this is alleviated to some extent by ability to add multiple sessions for each sport on a single day, assumption still has to be made. 
+One of these is that in each individual session, only one method of exercise will be used, such as breaststroke for an entire swimming session or a leisurely speed for an entire cycling session. Though this is alleviated to some extent by the ability to add multiple sessions for each sport on a single day, the assumption still has to be made. 
 
-In addition to this, an assumption that each session lasts for at least an hour has been made: the time picker only uses stages of sixty minutes, as opposed to thirty or fifteen.
+In addition to this, an assumption that each session lasts for at least an hour has been made: the time picker uses stages of sixty minutes, as opposed to thirty or fifteen.
 
-Naturally, the system also assumes that user is relatively proficient with a computer based interface. Effort has been put in to make the system as user friendly and as easy to use as possible, but someone using a computer for first time will undoubtedly find it more difficult than someone with at least a little experience.
+Naturally, the system also assumes that the runner is relatively proficient with a computer based interface. Effort has been put in to make the system as runner friendly and as easy to use as possible, but someone using a computer for first time will undoubtedly find it more difficult than someone with a little experience.
 
 \subsection{Objectives}
 In order for the system to be of an acceptable quality, a number of objectives will have to be fulfilled. The system must:
 
 \begin{itemize}
-    \item Have a simple, clear interface that allows tasks to be performed easily. This will be done by using a consistent colour scheme for each of the sports - green for running, yellow for cycling and blue for swimming, as well as through the use of common user interface paradigms such as buttons and dropdown boxes; these are all things that the user will be familiar with, so they will find less difficulty in using the system. Additionally, animation will be used to transition smoothly from element to element, creating a more enjoyable user experience that encourages the runner to use the system more frequently.
-    \item Allow runner to add, view, update and, if they choose, delete their personal information, such as their name, email address, date of birth and phone number. For this to be achieved, a database will have to be designed and built with appropriate columns and data types, and pages and routes will have to be designed and programmed to facilitate the adding, viewing and deleting of this data - a registration page could be used for adding the data, and a profile page for viewing, updating and deleting the data.
+    \item Have a simple, clear interface that allows tasks to be performed easily. This will be done by using a consistent colour scheme for each of the sports - green for running, yellow for cycling and blue for swimming, as well as through the use of common runner interface paradigms such as buttons and dropdown boxes; these are all things that the runner should be familiar with, so they will find less difficulty in using the system. Additionally, animation will be used to transition smoothly from element to element, creating a more enjoyable runner experience that encourages the runner to use the system more frequently.
+
+    \item Allow the runner to add, view, update and, if they choose, delete their personal information, including their name, email address, date of birth and phone number. For this to be achieved, a database will have to be designed and built with appropriate columns and data types, and pages and routes will have to be designed and programmed to facilitate the adding, viewing and deleting of this data - a registration page could be used for adding the data, and a profile page for viewing, updating and deleting the data.
+
     \item Allow the runner to add, view and delete the training sessions they perform in over course of period; this will include information like date and time of the session, the speed they were at, and how well it went. To do this, a database table will have to be designed and built in order to store these activities, and pages will have to be designed and built to facilitate the adding, viewing and deleting of the training sessions. Processes and routes will also have to be built in order to make these functions actually work.
+
     \item Ensure security of this data by giving each runner their own personal account, protected by a username and an encrypted password. To do this, an additional column in the users table will have to be built that stores the encrypted version of the password. Additionally, it will have to be decided which areas of the system can be accessed by those without an account.
-    \item Calculate thenumber of calories burned in each session, by taking into account runner's weight, time spent on session, nature of session, and how well the runner thought it went.
-    \item Allow user to view graphical, interactive graphs of their sessions, allowing them to easily view trends in their performance.
+
+    \item Calculate the number of calories burned in each session, by taking into account the runner's weight, time spent on the session,  the nature of the session, and how well the runner believed it went.
+
+    \item Allow the runner to view graphical, interactive graphs of their sessions, allowing them to easily view trends in their performance.
 \end{itemize}
 
 \subsection{Justification of Proposed Solution}
@@ -174,7 +179,7 @@ Python is also extremely simple to use - it is commonly ranked as the easisest l
 
 However, this simplicity should not be mistaken for a lack of functionality: Python is far more capable than most languages; it can be used for everything from system administration to web development (as in the case of this system) to game design.
 
-In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. system will also make use of a number of arrays and JSON structures, to temporarily store data.
+In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. The system will also make use of a number of arrays and JSON structures, to temporarily store data.
 
 \subsection{Database Tables}
 The system will use SQLite database system. SQLite is a very popular database system (in same vein as MySQL). All of the database tables will be accessed sequentially - every item is ordered according to their primary key, which, as is custom for an SQLite database, is always an id number stored as an integer.
@@ -186,7 +191,7 @@ This table will store personal information for each runner. Whenever a runner cr
 \begin{table}[htbp]
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-\textbf{Field Name}     & \textbf{Primary Key} & \textbf{Typical Data} & \textbf{Data Type} & \textbf{Data Type} \\ \hline
+\textbf{Field Name}     & \textbf{Primary Key} & \textbf{Typical Data} & \textbf{Data Type} \\ \hline
 id             & True        & 01                   & Integer   \\ \hline
 name           & n/a         & John Smith           & String    \\ \hline
 email          & n/a         & john@smith.com       & String    \\ \hline
@@ -202,11 +207,11 @@ charity\_event & n/a         & True                 & Boolean   \\ \hline
 \caption{Users Table}
 \end{table}
 
-Each user will be given an id which serves as their primary key; it is automatically incremented whenever a new user is added, hence the data type of integer. The name will be used as an identifier throughout the system; as a string of characters, it has been given the string data type. Likewise with the email field: it can contain a combination of letters, numbers and other characters, and so has been will be set as a string. The username field will be a combination of the runner's first name and a random number; as such it will be a string. The password hash field stores an encrypted version of the user's password; depending on the length of password, it can contain a very large number of letters, numbers and symbols - it is therefore a string. The dob field will store the runner's date of birth; the most appropriate data type would therefore be date; likewise with the date runner joined the application. No calculations are being performed on the runner's phone number, so it is more efficient to store it as a string - one character takes just 1 bit. Conversely, calculations will performed with runner's weight, so it is appropriate to store it as an integer. The charity event field stores either True or False depending on whether the runner wishes to be chosen to run in charity event; the most appropriate data type is therefore Boolean.
+Each runner will be given an id which serves as their primary key; it is automatically incremented whenever a new runner is added, hence the data type of integer. The name will be used as an identifier throughout the system; as a string of characters, it has been given the string data type. Likewise with the email field: it can contain a combination of letters, numbers and other characters, and so has been will be set as a string. The username field will be a combination of the runner's first name and a random number; as such it will be a string. The password hash field stores an encrypted version of the runner's password; depending on the length of password, it can contain a very large number of letters, numbers and symbols - it is therefore a string. The dob field will store the runner's date of birth; the most appropriate data type would therefore be date; likewise with the date runner joined the application. No calculations are being performed on the runner's phone number, so it is more efficient to store it as a string - one character takes just 1 bit. Conversely, calculations will performed with runner's weight, so it is appropriate to store it as an integer. The charity event field stores either True or False depending on whether the runner wishes to be chosen to run in charity event; the most appropriate data type is therefore Boolean.
 
 \subsubsection{Activities Table}
 
-Every activity that runners add will be given its own record in this table. It is accessed sequentially, according to id of each activity. In addition, each activity will be linked to a user through a foreign key, called user\_id. It is a one-to-many relationship.
+Every activity that the runners add will be given its own record in this table. It is accessed sequentially, according to id of each activity. In addition, each activity will be linked to a runner through a foreign key, called user\_id. It is a one-to-many relationship.
 
 \begin{table}[h]
 \begin{tabular}{|l|l|l|l|l}
@@ -229,14 +234,14 @@ user\_id            & Foreign          & 02                    & Integer  & Pres
 The id of each activity serves as its primary key; it is automatically incremented whenever a new activity is added, hence data type of integer. The sport field will be a string; it will store type of sport that activity belongs to, and so string is the most appropriate data type. The effigy field will store specific detail for each activity, such as speed for running sessions, or the type of stroke for swimming sessions. Due to wide the range of options that can be stored in this, and the fact that no calculations will be performed, the string data type would be the most appropriate. 
 
 \section{User Interface Design}
-The system will use a web based, graphical user interface. It will be simple and easy to use, making use of user interface paradigms well known to users, such as buttons, form inputs and drop-down boxes, through their use of other computer systems. In order to increase usability, the system will make use of a consistent colour palette - each sport will be associated with a particular colour:
+The system will use a web based, graphical runner interface. It will be simple and easy to use, making use of runner interface paradigms well known to users, such as buttons, form inputs and drop-down boxes, through their use of other computer systems. In order to increase usability, the system will make use of a consistent colour palette - each sport will be associated with a particular colour:
 \\\\\textcolor{uigreen}{Green - rgb(82, 170, 94) - associated with running}
 \\\textcolor{uiyellow}{Yellow - rgb(240, 173, 78) - associated with cycling}
 \\\textcolor{uiblue}{Blue - rgb(91, 192, 222) - associated with swimming}
-\\\\In addition, the system will make use of a consistent font: Raleway, and its variants. Raleway is a distinctive yet readable sans-serif font, and is the only font used throughout the system. It can be seen in the user interface documentation.
+\\\\In addition, the system will make use of a consistent font: Raleway, and its variants. Raleway is a distinctive yet readable sans-serif font, and is the only font used throughout the system. It can be seen in the runner interface documentation.
 
 \subsection{Main Layout Template}
-To ensure visual consistency throughout the system, every page will derive itself from a master template, which will contain aspects like navigation, footer and placement of elements.
+To ensure visual consistency throughout the system, every page will derive itself from a master template, which will contain aspects like navigation, the footer and general placement of elements in a grid.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.45]{design_ui/layout}
@@ -297,16 +302,16 @@ In order for the system to function correctly, a minimum level of hardware, and 
 \subsection{Hardware}
 The system is a web application, and as such requires a stable internet connection to function correctly; therefore, the device used to access the system will need support for the internet, either through a wireless card or an ethernet connection. As a web application, the system can be used on both traditional computing devices, such as desktop PCs and laptops, as well as smart phones and tablets. If using a non touch device, the system has been designed for screens at least 17" in size - a resolution of 1280x1024. The system will function at smaller displays than this, but has not been fully tested as such. Desktops will also requires a mouse, in order to point at and click elements on the page; any mouse is suitable for this task. Additionally, a keyboard is needed for data entry. Laptops usually come with trackpads and keyboards built in, so the need for these additional peripherals is reduced.
 
-If the user is using a smart phone or tablet - a scenario that is likely, as the audience is a group not known for sitting down at a desk all day - no additional hardware is needed, as the device would come with everything built in, such as a touch screen for interacting with element and a virtual keyboard for data entry. The same internet connection requirements apply.
+If the runner is using a smart phone or tablet - a scenario that is likely, as the audience is a group not known for sitting down at a desk all day - no additional hardware is needed, as the device would come with everything built in, such as a touch screen for interacting with element and a virtual keyboard for data entry. The same internet connection requirements apply.
 
 The hardware need to run the system does not need to be particularly powerful - as it is a web application, it is not memory intensive; as such, only 1GB of RAM would be needed. As most people do not live in 2006 any longer, when 1GB was considered standard, the vast majority of the running club's users should be able to run the system easily. Additionally, the computer would not need a powerful processor; the system should run easily on a system with 1GHz, a clock speed that was considered low end in 2010 - five years ago at the time of writing. 
 
 \subsection{Software}
-As a web application, a web browser is the only piece of software needed to access the system - the user need simply visit the correct web address, and they can access the system. The most suitable browser to open the system in is Google Chrome; luckily, this also happens to be the most popular browser worldwide, so it is likely that they runners are already using it.
+As a web application, a web browser is the only piece of software needed to access the system - the runner need simply visit the correct web address, and they can access the system. The most suitable browser to open the system in is Google Chrome; luckily, this also happens to be the most popular browser worldwide, so it is likely that they runners are already using it.
 
  Chrome boasts superior rendering technology to other browsers, as well as greater performance; in addition, all the testing of the system has been performed in Chrome, so it is possible that the system may not function correctly if used in other browsers. 
 
- Additionally, the user will need an operating system installed on their computer. Google Chrome is available for Windows, OSX and all Debian/Red Hat distributions of Linux, so their choice of operating system does not matter.
+ Additionally, the runner will need an operating system installed on their computer. Google Chrome is available for Windows, OSX and all Debian/Red Hat distributions of Linux, so their choice of operating system does not matter.
 
 \section{Processing Stages}
 This section documents the large range of processes that go into making the system function correctly. It has been split up into a number of sections for organisation. For Python/web development constructs in general that the general reader may find themselves unfamiliar with, an explanation in English has been provided.
@@ -325,9 +330,9 @@ begin function route_name:
 \end{verbatim}
 As can be seen, each route is made up of a number of elements. \textit{file} is equivalent to the file in which the route appears; for example, the function auth.login is in auth.py, therefore its \textit{file} parameter would be set to \textit{auth}. The \textit{url} paramater is equivalent to the URL that the route links to, so for auth.login it would be ``/login'', as written above.
 
-The \textit{methods} parameter specifies which HTTP method(s) can be used to access the route - either \textit{GET}, \textit{POST}, or a combination of the two. A detailed discussion on the differences between the the two is beyond the scope of this explanation, but, put simply, a route with only \textit{GET} specified is designed to be accessed by the user, whereas those with \textit{POST} are designed for the server (in this system, they are always AJAX routes). A route with both \textit{GET} and \textit{POST} is designed to be accessed by the user, but it also sends data to the server.
+The \textit{methods} parameter specifies which HTTP method(s) can be used to access the route - either \textit{GET}, \textit{POST}, or a combination of the two. A detailed discussion on the differences between the the two is beyond the scope of this explanation, but, put simply, a route with only \textit{GET} specified is designed to be accessed by the runner, whereas those with \textit{POST} are designed for the server (in this system, they are always AJAX routes). A route with both \textit{GET} and \textit{POST} is designed to be accessed by the runner, but it also sends data to the server.
 
-The route logic is the main code for the route. In auth.login, for example, it contains processing to check that their are no validation errors on the form, and for logging the user in. Every route returns something. For routes with just \textit{GET} or both \textit{GET} and \textit{POST}, this will always be a Jinja2 HTML template, which is then rendered by the browser. For purely \textit{POST} routes, often a JSON object or dictionary is returned, but this varies; see the individual route processes for details.
+The route logic is the main code for the route. In auth.login, for example, it contains processing to check that their are no validation errors on the form, and for logging the runner in. Every route returns something. For routes with just \textit{GET} or both \textit{GET} and \textit{POST}, this will always be a Jinja2 HTML template, which is then rendered by the browser. For purely \textit{POST} routes, often a JSON object or dictionary is returned, but this varies; see the individual route processes for details.
 
 \subsubsection{AJAX Calls}
 AJAX, which stands for \textit{Asynchronous JavaScript and XML}, is a method by which the rendered HTML can interact with the Python server without having to reload the page, creating a smooth experience. The syntax is as follows:
@@ -410,42 +415,42 @@ if element not between x and y:
 This section contains all the processes that will make up the application, written in psuedo code. In some cases, a small commentary has been given for explanation.
 
 \subsubsection{Change User Details}
-This process is used to modify the personal info of the user. It checks which element the user wants to change, and then matches their changed element against a regular expression to ensure they are valid. 
+This process is used to modify the personal info of the runner. It checks which element the runner wants to change, and then matches their changed element against a regular expression to ensure they are valid. 
 
 \begin{verbatim}
 if request == 'name':
   name_check = [A-Za-z\-" "]
   if name_check matches request:
-    set user to request
-    save updated user to database
+    set runner to request
+    save updated runner to database
   else:
     flash message "invalid name"
 elif request == 'email':
   email_check = ^.+@[^.].*\.[a-z]{2,10}$
   if email_check matches request:
-    set user to request
-    save updated user to database
+    set runner to request
+    save updated runner to database
   else:
     flash message ``invalid email''
 elif request == 'phone':
   phone_check = \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
   if phone_check matches request:
-    set user to request
-    save updated user to database
+    set runner to request
+    save updated runner to database
   else:
     flash message ``invalid email''
 elif request == 'dob':
   dob_check = dob_regex
   if dob_check matches request:
-    set user to request
-    save updated user to database
+    set runner to request
+    save updated runner to database
   else:
     flash message ``invalid dob''
 elif request == 'weight':
   weight_check = ^-?[0-9]+$
   if weight_check matches request:
-    set user to request
-    save updated user to database
+    set runner to request
+    save updated runner to database
   else:
     flash message ``invalid weight''
 \end{verbatim}
@@ -476,8 +481,8 @@ On form submit:
   if distance == less than 1 mile and charity_event == true:
     show message ``You must be physically fit to run in the charity event''
   if no validation errors:
-    add user to database
-    redirect user to login page
+    add runner to database
+    redirect runner to login page
   else:
     show message Invalid username or password
 \end{verbatim}
@@ -494,7 +499,7 @@ On form submit:
   format check on email - regexp ^.+@[^.].*\.[a-z]{2,10}$
   presence check on password
   query User table for first where email == email input
-  if user found:
+  if runner found:
     check password matches
     login_user()
   else:
@@ -502,7 +507,7 @@ On form submit:
 \end{verbatim}
 
 \subsubsection{Calculate Calories Burned}
-This function will calculate the number of calories burned in the training session. It builds on the idea suggested in the brief by taking into account how well a user thought the session went, and also taking into account the weight of the user.
+This function will calculate the number of calories burned in the training session. It builds on the idea suggested in the brief by taking into account how well a runner thought the session went, and also taking into account the weight of the runner.
 
 \begin{verbatim}
   Set base_calories to dictionary: {
@@ -621,14 +626,14 @@ The system should also have appropriate validation for each input, to ensure tha
 
 Additionally, the calculations performed by the system should be accurate, to ensure that the runner is not given false data, and that the system does not calculate an incorrect running team.
 
-The system must also be able to add a training session in at least 2 seconds from when the user clicked the add button, and the database should be able to store at least 100 users.
+The system must also be able to add a training session in at least 2 seconds from when the runner clicked the add button, and the database should be able to store at least 100 users.
 
 \subsection{Non-Measurable Criterion}
-The system should be very easy to use. It should have sensible, coherent navigation to allow the user to easily move between each section of the system. 
+The system should be very easy to use. It should have sensible, coherent navigation to allow the runner to easily move between each section of the system. 
 
-Additionally, the system should have a consistent layout on each of the pages; this will serve to ensure that the user does not get lost when navigating through the system: the navigation bar, logo and footer should always be in the same location.
+Additionally, the system should have a consistent layout on each of the pages; this will serve to ensure that the runner does not get lost when navigating through the system: the navigation bar, logo and footer should always be in the same location.
 
-It is also important that the buttons and other controls, such as inputs, on the form are easy for the user to understand - they should know exactly what each button does, and what the program will do when they click it. 
+It is also important that the buttons and other controls, such as inputs, on the form are easy for the runner to understand - they should know exactly what each button does, and what the program will do when they click it. 
 
 Furthermore, the system should have a consistent ``house style'': the same colours should be used for similar elements, and the typography used should be the same throughout every page. Headings should always be kept the same size, depending on their importance - one H3 level header should not be 20px whilst another is 25px.
 
@@ -650,7 +655,7 @@ Every other page derives constant elements, like the navigation bar and footer, 
 \end{figure}
 
 \subsection{Register Page}
-The register page features a clear, simple design, with input boxes laid out in a consistent style. Each input box features placeholder text, to provide a visual guide to user as to what sort of data they should be typing in. To simplify entry, date of birth input brings up a datepicker widget upon click, making it simple for users to enter their date of birth. Additionally, validation errors are featured at top of page in a big yellow box, making them easy to see; they also have a close button to prevent them getting in way. A link to login page allows users who already have an account to quickly login.
+The register page features a clear, simple design, with input boxes laid out in a consistent style. Each input box features placeholder text, to provide a visual guide to runner as to what sort of data they should be typing in. To simplify entry, date of birth input brings up a datepicker widget upon click, making it simple for users to enter their date of birth. Additionally, validation errors are featured at top of page in a big yellow box, making them easy to see; they also have a close button to prevent them getting in way. A link to login page allows users who already have an account to quickly login.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/register}
@@ -659,7 +664,7 @@ The register page features a clear, simple design, with input boxes laid out in 
 \clearpage
 
 \subsection{Login Page}
-As login page has only one function - to get user logged in to system - it features a very simple layout, with only two input forms and a button. Like registration form, though not visible in this capture, placeholders are overlaid on inputs to provide a visual guide as to should be typed in. Additionally, password field blanks out input, a helpful security measure that prevents onlookers viewing user's password. For consistency, same validation error system as with registration page is used.
+As login page has only one function - to get runner logged in to system - it features a very simple layout, with only two input forms and a button. Like registration form, though not visible in this capture, placeholders are overlaid on inputs to provide a visual guide as to should be typed in. Additionally, password field blanks out input, a helpful security measure that prevents onlookers viewing runner's password. For consistency, same validation error system as with registration page is used.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/login}
@@ -668,10 +673,10 @@ As login page has only one function - to get user logged in to system - it featu
 \clearpage
 
 \subsection{Profile Page}
-The profile page allows user to view and update their personal information. Certain sections appear on demand, so multiple captures have been taken.
+The profile page allows runner to view and update their personal information. Certain sections appear on demand, so multiple captures have been taken.
 
 \subsubsection{Main View}
-Due to large amount of data that is being presented on this page, a structured approach has been taken, with a three-panel view being implemented. This helps to seperate different areas of page in a logical manner, making it easier for user to find what they are looking for. Each item of data is given its own row, making it clear which is which. delete account section has been coloured in red, a colour traditionally associated with danger. This helps to convey to user that bad things will happen if they delete their account. Furthermore, playful text has been used in delete account panel, to bring a sense of amusement and, hopefully, dissuade user from following through with their actions.
+Due to large amount of data that is being presented on this page, a structured approach has been taken, with a three-panel view being implemented. This helps to seperate different areas of page in a logical manner, making it easier for runner to find what they are looking for. Each item of data is given its own row, making it clear which is which. delete account section has been coloured in red, a colour traditionally associated with danger. This helps to convey to runner that bad things will happen if they delete their account. Furthermore, playful text has been used in delete account panel, to bring a sense of amusement and, hopefully, dissuade runner from following through with their actions.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/profile}
@@ -680,7 +685,7 @@ Due to large amount of data that is being presented on this page, a structured a
 \clearpage
 
 \subsubsection{Change Details}
-The interface for changing details is very simple - it features just an input for changing element, and a button to confirm. The placeholder text for the input is set to current item, for visual consistency. Making this panel pop up as opposed to being on a seperate page improves flow of page, preventing user becoming disorientated.
+The interface for changing details is very simple - it features just an input for changing element, and a button to confirm. The placeholder text for the input is set to current item, for visual consistency. Making this panel pop up as opposed to being on a seperate page improves flow of page, preventing runner becoming disorientated.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/profile_change}
@@ -689,7 +694,7 @@ The interface for changing details is very simple - it features just an input fo
 \clearpage
 
 \subsubsection{Delete Account}
-To ensure that user is fully aware of severity of deleting their account, they must type in ``I will lose everything'' into box; this also makes it harder for them to accidentally delete their account. Positive reinforcement is used in this section through use of colours - greeen is associated with positivity, and users have been shown to click on green coloured buttons more often than red; this further dissuades them from deleting their account.
+To ensure that runner is fully aware of severity of deleting their account, they must type in ``I will lose everything'' into box; this also makes it harder for them to accidentally delete their account. Positive reinforcement is used in this section through use of colours - greeen is associated with positivity, and users have been shown to click on green coloured buttons more often than red; this further dissuades them from deleting their account.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/account_delete}
@@ -706,7 +711,7 @@ Unfortunately, time constraints meant that the implementation of the comparison 
 \end{figure}
 
 \subsection{User Performance Page}
-The user performance page is the main page of the system, and is the first page the user sees when they log into the system.
+The runner performance page is the main page of the system, and is the first page the runner sees when they log into the system.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/user_performance}
@@ -714,15 +719,15 @@ The user performance page is the main page of the system, and is the first page 
 \end{figure}
 \clearpage
 
-To prevent the user being overloaded with data, the performance data is seperated into months, with a different URL for each month - ``/performance/march'' to view performance for March, for example. By default, the user is automatically taken to the page for the current month, ensuring that they always see the most up to date data. Buttons are available at the top to switch between months; notably, only months where training sessions have been added are visible, ensuring that the user never sees blank data - something which could be discouraging to the runner.
+To prevent the runner being overloaded with data, the performance data is seperated into months, with a different URL for each month - ``/performance/march'' to view performance for March, for example. By default, the runner is automatically taken to the page for the current month, ensuring that they always see the most up to date data. Buttons are available at the top to switch between months; notably, only months where training sessions have been added are visible, ensuring that the runner never sees blank data - something which could be discouraging to the runner.
 
-It allows the user to view a number of elements relating to their performance in the three sports. The two bars at the top display a simple view of how far the user is to reaching their goal for the month. The different sports that make up goal progress are shown through colours - green for running, yellow for cycling and blue for swimming, as in the rest of the application. Not shown in the capture are the popups that appear when the user hovers over the bars - these display the number of calories / hours that make up the bars. 
+It allows the runner to view a number of elements relating to their performance in the three sports. The two bars at the top display a simple view of how far the runner is to reaching their goal for the month. The different sports that make up goal progress are shown through colours - green for running, yellow for cycling and blue for swimming, as in the rest of the application. Not shown in the capture are the popups that appear when the runner hovers over the bars - these display the number of calories / hours that make up the bars. 
 
-All of the sessions the user has done in each sport is plotted on a line chart, allowing for easy visualisation of trends over the month; this makes it very easy for the user to see how they are doing, a feature that runners would find very helpful When each plot point is moused over, the exact number of calories are shown. There are three different graphs for each sport; these are changed by clicking the colour coded buttons at the top of the graph. When switching sport, the entire section smoothly slides out, allowing the new one to slide in. By providing such a seamless animation, the user is provided with a sense of place within the system, improving its ease of use.
+All of the sessions the runner has done in each sport is plotted on a line chart, allowing for easy visualisation of trends over the month; this makes it very easy for the runner to see how they are doing, a feature that runners would find very helpful When each plot point is moused over, the exact number of calories are shown. There are three different graphs for each sport; these are changed by clicking the colour coded buttons at the top of the graph. When switching sport, the entire section smoothly slides out, allowing the new one to slide in. By providing such a seamless animation, the runner is provided with a sense of place within the system, improving its ease of use.
 
-The page also shows each training session the user has performed in the selected sport in a table. The table shows all the information about the training session, allowing the user gain a detailed understanding of how they are progressing - something that is important when training for a charity event. The tables allow for the number of entries shown to be limited, introducing an element of pagination. This allows the user to control how many sessions they see at once, keeping them orientated within the view. The tables can also be sorted by clicking on the headers, allowing the user greater control over how they view the sessions; they are listed in date order by default, as the user would expect.
+The page also shows each training session the runner has performed in the selected sport in a table. The table shows all the information about the training session, allowing the runner gain a detailed understanding of how they are progressing - something that is important when training for a charity event. The tables allow for the number of entries shown to be limited, introducing an element of pagination. This allows the runner to control how many sessions they see at once, keeping them orientated within the view. The tables can also be sorted by clicking on the headers, allowing the runner greater control over how they view the sessions; they are listed in date order by default, as the runner would expect.
 
-Additionally, and perhaps most helpfully, the tables allow for the user to search for specific training sessions. This would be particularly helpful if a user wished to find all sessions that they rated as brilliant, or all on a particulary day - they would just have to type the term into the search box, and the data is automatically filtered.
+Additionally, and perhaps most helpfully, the tables allow for the runner to search for specific training sessions. This would be particularly helpful if a runner wished to find all sessions that they rated as brilliant, or all on a particulary day - they would just have to type the term into the search box, and the data is automatically filtered.
 
 \clearpage
 
@@ -746,7 +751,7 @@ Additionally, and perhaps most helpfully, the tables allow for the user to searc
 This section contains documentation on finished database tables and models, including an ER diagram showing relationship between tables, schematics, and a visual view.
 
 \subsection{Table Relationships}
-The activities and users are linked through a foreign key. This means that there is a one to many relationship between users and activities - one user can have many activities, but each activity can only have one user.
+The activities and users are linked through a foreign key. This means that there is a one to many relationship between users and activities - one runner can have many activities, but each activity can only have one runner.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.5]{images/database/er_diagram}
@@ -766,7 +771,7 @@ id column is primary key. Email is used to login. Username is used in certain ro
 \end{figure}
 
 \subsubsection{Activities Table}
-id column is primary key. Effigy is specific details of each activity, such as swimming stroke or running speed. user\_id is foreign key linking activity to a user.
+id column is primary key. Effigy is specific details of each activity, such as swimming stroke or running speed. user\_id is foreign key linking activity to a runner.
 \begin{figure}[h!]
   \includegraphics[scale=0.65]{images/database/activities_schema}
   \caption{Activities Table Schema}
@@ -802,7 +807,7 @@ login\_manager                    & Object                 & Creates actual Flas
 db                     & Object                 & Returns a connection to database.            \\ \hline
 User                   & Object                 & Creates a connection to Users db table.      \\ \hline
 Activity               & Object                 & Creates a connection to Activities db table. \\ \hline
-current\_user          & Object                 & Returns details about logged in user.        \\ \hline
+current\_user          & Object                 & Returns details about logged in runner.        \\ \hline
 \end{tabular}
 \caption{Global Variables}
 \end{table}
@@ -821,7 +826,7 @@ distance        & Object        & forms.py            & MemberForm              
 weight          & Object        & forms.py            & MemberForm              & Creates weight input.       \\ \hline
 phone           & Object        & forms.py            & MemberForm              & Creates phone input,        \\ \hline
 submit          & Object        & forms.py            & MemberForm              & Creates submit button.      \\ \hline
-age             & int           & forms.py            & validate\_dob           & Stores user's age.          \\ \hline
+age             & int           & forms.py            & validate\_dob           & Stores runner's age.          \\ \hline
 email           & Object        & forms.py            & LoginForm               & Creates email input.        \\ \hline
 password        & Object        & forms.py            & LoginForm               & Creates password input.     \\ \hline
 remember        & Bool          & forms.py            & LoginForm               & Creates remember input.     \\ \hline
@@ -850,9 +855,9 @@ thoughts        & Object        & models.py           & Activity                
 user\_id        & Object        & models.py           & Activity                & Creates user\_id column.    \\ \hline
 today           & Date          & helpers.py          & calculate\_age          & Stores current date.        \\ \hline
 months          & List          & perf\_data.py       & perf\_data              & Stores a list of months.        \\ \hline
-all\_runs       & Object        & per\_data.py        & perf\_data              & Stores all user's runs.     \\ \hline
-all\_cycles     & Object        & per\_data.py        & perf\_data              & Stores all user's cycles.   \\ \hline
-all\_swims      & Object        & per\_data.py        & perf\_data              & Stores all user's swims.    \\ \hline
+all\_runs       & Object        & per\_data.py        & perf\_data              & Stores all runner's runs.     \\ \hline
+all\_cycles     & Object        & per\_data.py        & perf\_data              & Stores all runner's cycles.   \\ \hline
+all\_swims      & Object        & per\_data.py        & perf\_data              & Stores all runner's swims.    \\ \hline
 month\_map      & Dict          & per\_data.py        & perf\_data              & Maps months to integers.        \\ \hline
 calorie\_goal   & int           & per\_data.py        & perf\_data              & Stores calorie goal.        \\ \hline
 hour\_goal      & int           & per\_data.py        & perf\_data              & Stores hourly goal.         \\ \hline
@@ -901,29 +906,29 @@ calories          & int         & ajax.py        & calculate\_calories & Stores 
 modifier          & int         & ajax.py        & calculate\_calories & Stores correct calorie modifier     \\ \hline
 activity\_data    & Dict        & ajax.py        & calculate\_calories & Stores all activity data            \\ \hline
 month\_map        & Dict        & ajax.py        & user\_charts        & Stores a mapping of months to int       \\ \hline
-runs              & Object      & ajax.py        & user\_charts        & Stores all user's runs              \\ \hline
-cycles            & Object      & ajax.py        & user\_charts        & Stores all user's cycles            \\ \hline
-swims             & Object      & ajax.py        & user\_charts        & Stores all user's swims             \\ \hline
+runs              & Object      & ajax.py        & user\_charts        & Stores all runner's runs              \\ \hline
+cycles            & Object      & ajax.py        & user\_charts        & Stores all runner's cycles            \\ \hline
+swims             & Object      & ajax.py        & user\_charts        & Stores all runner's swims             \\ \hline
 activity\_data    & Dict        & ajax.py        & user\_charts        & Stores chart calories, dates    \\ \hline
 month             & String      & ajax.py        & user\_charts        & Stores requested month              \\ \hline
-user\_data        & Dict        & ajax.py        & user\_charts        & Stores performance data of user.    \\ \hline
+user\_data        & Dict        & ajax.py        & user\_charts        & Stores performance data of runner.    \\ \hline
 form              & Object      & auth.py        & register            & Stores instance of MemberForm     \\ \hline
 username          & String      & auth.py        & register            & Stores inputted username.           \\ \hline
-user              & Object      & auth.py        & register            & Stores a User object with data          \\ \hline
+runner              & Object      & auth.py        & register            & Stores a User object with data          \\ \hline
 form              & Object      & auth.py        & login               & Stores instance of LoginForm      \\ \hline
-user              & Object      & auth.py        & login               & Stores details of user; email       \\ \hline
+runner              & Object      & auth.py        & login               & Stores details of runner; email       \\ \hline
 only\_letters     & String      & main.py        & profiles            & Stores regexp to check name       \\ \hline
 valid\_email      & String      & main.py        & profiles            & Stores regexp to check email      \\ \hline
 valid\_phone      & String      & main.py        & profiles            & Stores regexp to check phone      \\ \hline
 check\_integer    & String      & main.py        & profiles            & Stores regexp to check weight     \\ \hline
-activity\_number  & int         & main.py        & profiles            & Stores number of activities of user \\ \hline
+activity\_number  & int         & main.py        & profiles            & Stores number of activities of runner \\ \hline
 total\_users      & int         & main.py        & profiles            & Stores total number of users        \\ \hline
-activities        & Object      & main.py        & add\_training       & Stores all activities for user on day \\ \hline
+activities        & Object      & main.py        & add\_training       & Stores all activities for runner on day \\ \hline
 total\_calories   & int         & main.py        & add\_training       & Stores total calories done today    \\ \hline
 total\_hours      & int         & main.py        & add\_training       & Stores total hours done today       \\ \hline
 months            & List        & main.py        & performance         & Stores a list of months             \\ \hline
-all\_activities   & Object      & main.py        & performance         & Stores all activities for user      \\ \hline
-available\_months & List        & main.py        & performance         & Stores months user has sessions in  \\ \hline
+all\_activities   & Object      & main.py        & performance         & Stores all activities for runner      \\ \hline
+available\_months & List        & main.py        & performance         & Stores months runner has sessions in  \\ \hline
 users             & Object      & main.py        & compare\_perf       & Stores all users who are charitable \\ \hline
 user\_list        & List        & main.py        & compare\_perf       & Stores sorted list of above users   \\ \hline
 user\_ranking     & Dict / List & main.py        & rankings            & Stores best running team            \\ \hline
@@ -958,10 +963,10 @@ swimmingChart     & Object      & ind\_charts.js & constructChart      & Stores 
 \end{longtable}
 
 \section{Annotated Listings}
-This section contains all of code for system, split into several logical categories. system is made up of a very large number of Python functions, as well as some additional aspects, such as Jinja2 HTML templates to display interface, and CSS to provide styling.
+This section contains all of code for system, split into several logical categories. The system is made up of a very large number of Python functions, as well as some additional aspects, such as Jinja2 HTML templates to display interface, and CSS to provide styling.
 
 \subsection{HTML Views}
-Every page of system has its own corresponding HTML template. These are used to display data passed by Python back-end, and provide interface elements such as buttons and dropdown boxes. A comparison can be drawn between them and XML built by Design Mode in Visual Basic, but, as thesealso contain some logic of their own, such as for-loops to loop through arrays, it is appropriate to include them in documentation.
+Every page of the system has its own corresponding HTML template. These are used to display data passed by the Python back-end, and provide interface elements such as buttons and dropdown boxes. A comparison can be drawn between them and the XML built by Design Mode in Visual Basic, but, as these also contain some logic of their own, such as for-loops to loop through arrays, it is appropriate to include them in the documentation.
 
 \subsubsection{layout.html}
 \lstinputlisting[language=HTML, caption=Main Layout]{../app/templates/layout.html}
@@ -1032,7 +1037,7 @@ This file defines several smaller helper functions used multiple times throughou
 \lstinputlisting[language=Python, caption=helpers.py]{../app/helpers.py}
 
 \subsubsection{performance\_data.py}
-This file returns a JSON object containing all sessions for a user in a particular month. It is used throughout system to return data for use in tables and graphs.
+This file returns a JSON object containing all sessions for a runner in a particular month. It is used throughout system to return data for use in tables and graphs.
 \lstinputlisting[language=Python, caption=performance\_data.py]{../app/performance_data.py}
 
 \subsubsection{auth.py}
@@ -1078,7 +1083,7 @@ Enter 0123456789 in phone      & Message "phone number must be valid"      & As 
 \caption{Registration Page Validation}
 \end{table}
 
-As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the user, as is written in the processes.
+As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the runner, as is written in the processes.
 
 \clearpage
 
@@ -1097,10 +1102,10 @@ Leave password input blank                                                      
 \caption{Login Page Validation}
 \end{table}
 
-As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the user, as is written in the processes. Additionally, the system correctly identifies if a user enters an incorrect email or password, an important security feature.
+As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the runner, as is written in the processes. Additionally, the system correctly identifies if a runner enters an incorrect email or password, an important security feature.
 
 \subsubsection{Registering User to Database}
-This section tests that the registration page actually works, and the user is successfully added to the database with all the correct data.\\
+This section tests that the registration page actually works, and the runner is successfully added to the database with all the correct data.\\
 
 {\setlength{\parindent}{0cm}
 Navigate to the registration page, and fill in the inputs as follows:
@@ -1119,14 +1124,14 @@ Navigate to the registration page, and fill in the inputs as follows:
 
 \clearpage
 
-When the submit button is pressed, a new user should be added to the Users table with these parameters. The username field should be set to \textit{katrinasmith} and a random number between 1 and 10, and the joined field should be set to the date the test was performed. Additionally, the password\_hash field should contain an encrypted version of the string \textit{pythonisdifficult}. This is the Users table before the test was run:
+When the submit button is pressed, a new runner should be added to the Users table with these parameters. The username field should be set to \textit{katrinasmith} and a random number between 1 and 10, and the joined field should be set to the date the test was performed. Additionally, the password\_hash field should contain an encrypted version of the string \textit{pythonisdifficult}. This is the Users table before the test was run:
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{images/testing/add_user/database_before}
   \caption{Users Table Before Test}
 \end{figure}
 
-And this is the table afterwards (new user highlighted):
+And this is the table afterwards (new runner highlighted):
 
 \begin{figure}[h!]
   \includegraphics[scale=0.34]{images/testing/add_user/database_after_broken}
@@ -1196,7 +1201,7 @@ As can be seen, the activity was added perfectly; the test succeeded.
 \clearpage
 
 \subsubsection{Delete User}
-This section tests the system's ability to delete the user. Log in as Katrina Smith:
+This section tests the system's ability to delete the runner. Log in as Katrina Smith:
 \begin{description}[labelindent=1cm]
   \item[Email address:] katrina@gmail.com
   \item[Password:] pythonisdifficult
@@ -1208,7 +1213,7 @@ Navigate to the profile page and press the ``Delete my account'' button. Type ``
     \caption{Delete User Panel}
 \end{figure}
 
-You should be redirected to the login page with a message saying ``Your account has been delete. Sorry to see you go!'' and the user should be removed from the Users Table. All their activities should be removed.
+You should be redirected to the login page with a message saying ``Your account has been delete. Sorry to see you go!'' and the runner should be removed from the Users Table. All their activities should be removed.
 
 This is the Users table before the test:
 
@@ -1233,7 +1238,7 @@ The redirect and message also worked:
     \caption{Redirected to login screen after account delete}
 \end{figure}
 
-As can be seen, the user was deleted perfectly; the test succeeded.
+As can be seen, the runner was deleted perfectly; the test succeeded.
 
 \clearpage
 
@@ -1291,7 +1296,7 @@ Jerry's graph should contain five data points with connecting lines.
 \clearpage
 
 \subsubsection{Calorie Calculation}
-Create a user with a weight of 87kg. Add a running session with the following parameters:
+Create a runner with a weight of 87kg. Add a running session with the following parameters:
 
 \begin{description}[labelindent=1cm]
   \item[Speed:] 8 mph
@@ -1317,7 +1322,7 @@ The session is worth 2602 calories. This should be reflected in the system. It w
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.
 \subsection{Testing Evaluation}
-I believe that my testing strategy was sound: it allowed me to test most of the different parts of the system, and several bugs and flaws were fixed and sorted out through this process. Each part of the test has been well documented with clear instructions for the tester, as well as good screenshots. This has improved the quality of the system, making it more reliable for the user.
+I believe that my testing strategy was sound: it allowed me to test most of the different parts of the system, and several bugs and flaws were fixed and sorted out through this process. Each part of the test has been well documented with clear instructions for the tester, as well as good screenshots. This has improved the quality of the system, making it more reliable for the runner.
 
 I have tested all the validation on the system to ensure that erroneous data cannot be entered. I have tested that the database works correctly, ensuring that all read/write/update/delete operations work properly; this is a very important aspect of the system, so it is important that it works.
 

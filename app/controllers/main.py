@@ -1,15 +1,13 @@
 from datetime import datetime
-from math import floor
 from calendar import month_name
 
-from flask import Blueprint, render_template, flash, redirect, url_for, abort, request
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask.ext.login import current_user, login_required, logout_user
 from flask.ext.sqlalchemy import *
-from random import randint
 import re
 
 from app.models import User, Activity, db
-from app.helpers import validation_error, update_user, remove_sport
+from app.helpers import validation_error, update_user
 from app.performance_data import performance_data
 
 main = Blueprint('main', __name__)
