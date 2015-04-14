@@ -37,37 +37,11 @@
         <div class="col-md-12"><canvas id="running_comparison" width="1140" height="600"></canvas></div>
     </div>
 
-    <h3>Statistical Comparison</h3>
+    <br>
+    <br>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <div class="panel-title">Your Performance</div>
-                </div>
-                <ul class="list-group panel-list">
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">Their Performance</div>
-                </div>
-                <ul class="list-group panel-list">
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                    <li class="list-group-item">gosh</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+{% endblock %}
 
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/comparison_charts.js') }}"></script>
 {% endblock %}

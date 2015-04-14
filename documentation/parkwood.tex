@@ -175,11 +175,15 @@ The question then falls to exactly which programming language is most appropriat
 
 Python has an extremely wide range of benefits, perhaps more so than any other language, that make it absolutely suited to the needs of the running club. One of the benefits of Python is that it, not only can it connect to a database, it can also be used with any database system. This allows a great deal of freedom when choosing a database system - one can choose between MySQL, or SQLite, or even PostgreSQL. A database is the best method of storing the data, as it can be seperated into a number of logical tables, ensuring that the data is organised. Additionally, a database means that primary and foreign keys can be used, linking data tables and ensuring that each record is uniquely identifiable.
 
-Python is also extremely simple to use - it is commonly ranked as the easisest language to learn, owing to its well thoght and structure and similarity, in many regards, to the English language. Indeed, when compared to a language like, say, Visual Basic, Python stands out as a bastion of sensible language design, and most importantly, common sense. This means that devlopment time can either 
+Python is also extremely simple to use - it is commonly ranked as the easisest language to learn, owing to its well thoght and structure and similarity, in many regards, to the English language. Indeed, when compared to a language like, say, Visual Basic, Python stands out as a bastion of sensible language design, and most importantly, common sense. This means that devlopment time can either be dramatically reduced, or 
 
-However, this simplicity should not be mistaken for a lack of functionality: Python is far more capable than most languages; it can be used for everything from system administration to web development (as in the case of this system) to game design.
+However, this simplicity should not be mistaken for a lack of functionality: Python is an extremely capable languages; it can be used for everything from system administration to game design to, as in the case of this system, web development.
 
 In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. The system will also make use of a number of arrays and JSON structures, to temporarily store data.
+
+Additionally, Python, combined with HTML and CSS to create a web interface allows for a highly complex, fully interactive user interface to be created. Due to the nature of the languages, rapid prototyping can be achieved - any changes made are visible instantly, without the need for recompilation; this means that it is easier, as well as quicker, to create an appealing interface.
+
+Common UI paradigms, such as buttons and input boxes can be included; these are effective, as the runner is likely to already have a working knowledge of how to use this system. 
 
 \subsection{Database Tables}
 The system will use SQLite database system. SQLite is a very popular database system (in same vein as MySQL). All of the database tables will be accessed sequentially - every item is ordered according to their primary key, which, as is custom for an SQLite database, is always an id number stored as an integer.
@@ -1161,6 +1165,23 @@ This fixed the issue; entire section works perfectly now:
     \caption{Fixed Users Table}
 \end{figure}
 
+\subsubsection{Navigation Bar}
+This section tests that the navigation bar works correctly, with the correct links pointing to the correct areas; likewise, the two different navigation bars are differentiated, as the links change depending on whether the user is logged in or not.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Navigation Link} & \multicolumn{1}{c|}{Expected Result} & \multicolumn{1}{c|}{Teacher Signature} \\ \hline
+My Performance                        & /performance/current\_month          &                                        \\ \hline
+Add Training                          & /add-training                        &                                        \\ \hline
+Compare Performance                   & /performance/compare                 &                                        \\ \hline
+Charity Team Rankings                 & /rankings                            &                                        \\ \hline
+Your Profiles                         & /profiles/username                   &                                        \\ \hline
+Logout                                & /logout                              &                                        \\ \hline
+\end{tabular}
+\end{table}
+
+
 \subsubsection{Adding Training Session to Database}
 This section tests the system's ability to add training sessions to the database. Log in as Katrina Smith:
 \begin{description}[labelindent=1cm]
@@ -1318,6 +1339,70 @@ The session is worth 2602 calories. This should be reflected in the system. It w
     \includegraphics[scale=0.33]{images/testing/calorie/finished}
     \caption{Correct Calorie Calculation}
 \end{figure}
+
+\subsubsection{Profile Page - Viewing Data}
+This section tests that the correct information is displayed on the runner's profile page, according to the runner that is logged in.
+
+Login as Peter Kennedy:
+
+\begin{description}[labelindent=1cm]
+    Email: peterk@gmail.com
+    Password: 70153590
+\end{description}
+
+The profile page personal details should look as follows:
+
+\begin{description}[labelindent=1cm]
+    Name: Peter Kennedy
+    Email: peterk@gmail.com
+    Phone: 01743 247046
+    Date of birth: Tuesday 11 February 1997
+    Weight: 60kg
+\end{description}
+
+The account details page should look as follows:
+
+\begin{description}[labelindent=1cm]
+    Username: peterkennedy6
+    Joined on: January 16th 2015
+    Charity event: No
+    Activities added: \textit{variable}
+    Your ranking: \textit{variable}
+\end{description}
+
+As can be seen, the data displays perfectly:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/profile/working_profile}
+    \caption{Working Profile Page}
+\end{figure}
+
+\subsubsection{Profile Page - Updating Data}
+This section tests that the user's data can be updated successfully, using the Edit buttons and modals provided by each element.
+
+Login as Peter Kennedy:
+
+\begin{description}[labelindent=1cm]
+    Email: peterk@gmail.com
+    Password: 70153590
+\end{description}
+
+Click the Edit button on the side of the name field. Type in "Dave Ellis" into the name box, and press the "Change name" button. The box should look like this:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/profile/change_name}
+    \caption{Change Name Box}
+\end{figure}
+
+After the button is pressed, the page should refresh, and a green message should appear saying "Your name has been successfully changed." Likewise, the name shown in the Name box should also have been modified to Dave Ellis, and the username should have been changed to "daveellis", and then a random number from 1 - 10. As can be seen, the test ran perfectly:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/profile/change_name_success}
+    \caption{Successful Name Change}
+\end{figure}
+
+The code is practically the same for each element that is changed, so testing one element ensures that they all work properly.
+
 
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.

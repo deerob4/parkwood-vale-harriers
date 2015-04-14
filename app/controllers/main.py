@@ -1,5 +1,6 @@
 from datetime import datetime
 from calendar import month_name
+from random import randint
 
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask.ext.login import current_user, login_required, logout_user
