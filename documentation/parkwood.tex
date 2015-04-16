@@ -661,9 +661,9 @@ sort user_ranking using built in Python sorted function
 
  
 \section{Evaluation Criteria}
-This section contains a number of criterion that the system will be judged upon to determine the extent to which it has been successful. It has been split into two sections: measurable criteria, which can be easily determined; ie. the system has met this point irrefutably, because the evidence is visible. Non-measurable criteria have also been included; these are somewhat more subjective, but still provide a useful base upon which the system can be based.
+This section contains a number of critera that the system will be judged upon to determine the extent to which it has been successful. It has been split into two sections: measurable criteria, which can be easily determined; ie. the system has met this point irrefutably, because the evidence is visible. Non-measurable criteria have also been included; these are somewhat more subjective, but still provide a useful base upon which the system can be based.
 
-\subsection{Measurable Criterion}
+\subsection{Measurable Criteria}
 The running club has commissioned  a computer based system that will allow runners to keep an accurate record of their running, cycling and swimming sessions. This data will then be used to calculate an informed decision of most appropriate team for relay race.
 
 The system must allow each runner to monitor their progress during programme, clearly showing them extent to which they have improved. As such, the system must provide an interface to allow runner to add each session they perform, with spaces for type of training, time spent, how hard they pushed themselves, and other such parameters. Using this data, the system must then calculate number of calories burned in session, providing a series of data points through which performance of runner can be monitored.
@@ -682,7 +682,7 @@ Additionally, the calculations performed by the system should be accurate, to en
 
 The system must also be able to add a training session in at least 2 seconds from when the runner clicked the add button, and the database should be able to store at least 100 users.
 
-\subsection{Non-Measurable Criterion}
+\subsection{Non-Measurable Criteria}
 The system should be very easy to use. It should have sensible, coherent navigation to allow the runner to easily move between each section of the system. 
 
 Additionally, the system should have a consistent layout on each of the pages; this will serve to ensure that the runner does not get lost when navigating through the system: the navigation bar, logo and footer should always be in the same location.
@@ -690,6 +690,10 @@ Additionally, the system should have a consistent layout on each of the pages; t
 It is also important that the buttons and other controls, such as inputs, on the form are easy for the runner to understand - they should know exactly what each button does, and what the program will do when they click it. 
 
 Furthermore, the system should have a consistent ``house style'': the same colours should be used for similar elements, and the typography used should be the same throughout every page. Headings should always be kept the same size, depending on their importance - one H3 level header should not be 20px whilst another is 25px.
+
+In addition, the system should be smooth and pleasurable to use - the user should not feel annoyance towards the system; indeed, it should make the user feel less annoyed, through it's somewhat delightful animations and quick responsiveness.
+
+The sytem should also be stable, able to withstand all the data the user inputs without crashing. If the user does something unexpected, like navigating to an undefined URL, the application should fail gracefully, redirecting the user to an error page that explains exactly what has gone wrong, as opposed to displaying arcane messages the contents of which the user cannot realistically be expected to understand. 
 
 The classes and variable names given to different elements of the code should be appropriate and be self-documenting: for example, the running graph should not be called \textit{g\_ru}, as this is not specific enough, and would make maintenance on the system very difficult.
 \cleardoublepage
@@ -1141,6 +1145,7 @@ I will follow this extensive test strategy to ensure that every part of the syst
   \item Test that the correct number of calories are calculated
   \item Test that the training sessions are saved to the database properly
   \item Test that the training sessions can be deleted from the database
+  \item Test that the calorie and hour counters work properly
   \item Test that the correct date is shown at the top of the page
 \end{itemize}
 
@@ -1161,6 +1166,12 @@ I will follow this extensive test strategy to ensure that every part of the syst
 \subsubsection{Compare Performance}
 \begin{itemize}
   \item Test that the dropdown box is sorted alphabetically and contains only those users who have opted in
+  \item Test that the correct data is shown depending on the current user and the other user chosen
+\end{itemize}
+
+\subsubsection{Charity Team Rankings}
+\begin{itemize}
+  \item Test that the correct team is shown, according to a manually calculated version
   \item Test that the correct data is shown depending on the current user and the other user chosen
 \end{itemize}
 
@@ -1382,6 +1393,38 @@ The redirect and message also worked:
 As can be seen, the runner was deleted perfectly; the test succeeded.
 
 \clearpage
+
+\subsubsection{Correct Date Shown}
+The application should show the correct date at the top of the Add Training Session page, in the format Weekday Day Month Year. Today the date is Thursday 16th April 2015, so this should be reflected in the application.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_activity/current_date}
+    \caption{Correct Date on Page}
+\end{figure}
+
+As can be seen, the correct date is shown, and in the correct format; the test succeeded.
+
+\clearpage
+
+\subsubsection{Update Calorie / Hour Counter}
+When a training session is added, the counter for the day by the sport buttons should update, showing the new total. This section tests that this is the case.
+
+Login as Peter Kennedy. Make sure that no other training sessions have been added for this day (if there are, delete them) and add the following training session:
+
+\begin{itemize}
+  \item[Sport:] Running
+  \item[Average Speed:] 5mph
+  \item[Start Time:] 10:00am
+  \item[Finish Time:] 12:00am
+  \item[Rating:] Pretty good
+\end{itemize}
+
+This training session is worth 713 calories, and took 2 hours. This should be reflected in the counter.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/add_activity/counter_update}
+    \caption{Correctly Updated Counter}
+\end{figure}
 
 \subsubsection{User Performance Graphs}
 This section tests that the performance graphs work properly, and display the correct data.\\
