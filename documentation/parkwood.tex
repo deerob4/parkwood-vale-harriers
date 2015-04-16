@@ -17,6 +17,13 @@
 \usepackage{enumitem}
 \usepackage{subfigure}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{framed}
+\usepackage{fontspec}
+\usepackage{parskip}
+
+\newfontfamily\raleway{Raleway}
 
 \graphicspath{ {images/} }
 
@@ -100,7 +107,7 @@
 \cleardoublepage
 
 \part{Analysis and Design}
-This part of documentation contains analysis that was performed on Parkwood Vale Harriers, taking into account what the running club asked for in their brief, and exploring these requirements. It also covers preliminary design that was created for system, including interface design for every page, design of data structures and process design, detailing different algorithms that have been used, and how system interacts with itself.
+This part of documentation contains the analysis that was performed on Parkwood Vale Harriers, taking into account what the running club asked for in their brief, and exploring these requirements. It also covers preliminary designs that were created for the system, including interface designs for every page, design of data structures and process design, details of the different algorithms that have been used, and information on how the system interacts with different aspects of itself; ie. the different technologies that have been used.
 
 \section{Problem Definition}
 \subsection{Background}
@@ -128,13 +135,13 @@ Though the brief provided by running club contains several good ideas and acts a
 
 One very important factor that the running club has left out is security. In a system like this, where intensely personal data is being stored, including data that runner may not which to become public, such as their weight, it is important that the data is stored in a secure manner that allows only those with correct permissions to access it. 
 
-Another issue with the brief is that of an objective decision being made when selecting team. Running a marathon is about far more than just physical fitness; more personal aspects, such as how well runners get along, as well as different roles within team, should also be taken into account for maximum efficiency. The system would be unable to do this (without each runner giving their opinion on others, which is unrealistic), and so team it comes up with may not be most appropriate choice. 
+Another issue with the brief is that of an objective decision being made when selecting the team. Running a marathon is about far more than just physical fitness; more personal aspects, such as how well runners get along, as well as different roles within team, should also be taken into account for maximum efficiency. The system would be unable to do this (without each runner giving their opinion on others, which is unrealistic), and so the team it comes up with may not be most appropriate choice. 
 
-Another limitation in the system is that data will have to be entered manually: there is no way of taking data from some sort of personal tracking device. This could result in some issues with accuracy, or even with malpractice: people could enter exaggerated data in order to manipulate the rankings and make themselves appear better. A mixture of validation and verification can be put in place to prevent this, such as ensuring users cannot go for a straight eight hour swim (something which is obviously unrealistic), but this will be unable to catch all cases of exaggeration; it is therefore necessary to rely on the goodwill and sportsmanship of runners.
+Another limitation in the system is that data will have to be entered manually: there is no way of extrapolating data from some sort of personal tracking device without diverging some distance away from the actual brief. This could result in some issues with accuracy, or even with malpractice: people could enter exaggerated data in order to manipulate the rankings and make themselves appear more suitable for the team. A mixture of validation and verification can be put in place to prevent this, such as ensuring users cannot go for a straight eight hour swim (something which is obviously unrealistic), but this will be unable to catch all cases of exaggeration; it is therefore necessary to rely on the goodwill and sportsmanship of runners.
 
-Furthermore, the system relies on the premise that runners will add every session they perform to application. It is not unlikely that they will go on unsolicited sessions that they do not bother adding, or they may simply forget. There is no foolproof manner to prevent these occurences, but a number of steps can be taken to reduce their likelihood, such as by making the process of adding a session as simple as possible - the easier the process is, the more likely runner is to do it.
+Furthermore, the system relies on the premise that runners will add every session they perform to the application. It is not unlikely that they will go on unsolicited sessions that they do not bother adding, or they may simply forget. There is no foolproof manner to prevent these occurences, but a number of steps can be taken to reduce their likelihood, such as by making the process of adding a session as simple as possible - it follows that the easier the process is, the more likely the runners are to do it.
 
-In addition, the brief asks for only top eight members of running team to be calculated. This does not take into account the possibility of injuries or runners dropping out for other reasons; as such, the system should also calculate a number of reserve runners, in the event of an accident.
+In addition, the brief asks for only the top eight members of the running team to be calculated. This does not take into account the possibility of injuries or runners dropping out for other reasons; as such, the system should also calculate a number of reserve runners, in the event of an accident.
 
 Additionally, the system will need a team of experienced professionals to keep and maintain it - the running club may wish for an aspect of the system to be modified, and, depending on its complexity, this could require great expertise.
 
@@ -185,11 +192,16 @@ Additionally, Python, combined with HTML and CSS to create a web interface allow
 
 Common UI paradigms, such as buttons and input boxes can be included; these are effective, as the runner is likely to already have a working knowledge of how to use this system. 
 
-\subsection{Database Tables}
+\section{Database Tables}
 The system will use SQLite database system. SQLite is a very popular database system (in same vein as MySQL). All of the database tables will be accessed sequentially - every item is ordered according to their primary key, which, as is custom for an SQLite database, is always an id number stored as an integer.
-\\\\\textbf{\textit{A note on validation: }}\textit{SQLite does not perform any validation itself. All validation will be performed during processing of data, before it is added into database. As such, details on validation performed on data saved to these tables can be found in their relevant section.}
 
-\subsubsection{Users Table}
+All of the fields will be of \textbf{variable} length: this is because the data will need to be shown back to the the user at different points throughout the system, something that, due to truncation, fixed length fields would make difficult. Additionally, this method is more space efficient.
+
+Both tables will be accessed serially, because the order of the data does not matter - as primary keys are included on each record, they can be looked up this way.
+
+\textbf{\textit{A note on validation: }}\textit{SQLite does not perform any validation itself. All validation will be performed during processing of data, before it is added into database. As such, details on validation performed on data saved to these tables can be found in their relevant section.}
+
+\subsection{Users Table}
 This table will store personal information for each runner. Whenever a runner creates an account, the data they input into registration form will end up in this table.
 
 \begin{table}[htbp]
@@ -211,44 +223,53 @@ charity\_event & n/a         & True                 & Boolean   \\ \hline
 \caption{Users Table}
 \end{table}
 
-Each runner will be given an id which serves as their primary key; it is automatically incremented whenever a new runner is added, hence the data type of integer. The name will be used as an identifier throughout the system; as a string of characters, it has been given the string data type. Likewise with the email field: it can contain a combination of letters, numbers and other characters, and so has been will be set as a string. The username field will be a combination of the runner's first name and a random number; as such it will be a string. The password hash field stores an encrypted version of the runner's password; depending on the length of password, it can contain a very large number of letters, numbers and symbols - it is therefore a string. The dob field will store the runner's date of birth; the most appropriate data type would therefore be date; likewise with the date runner joined the application. No calculations are being performed on the runner's phone number, so it is more efficient to store it as a string - one character takes just 1 bit. Conversely, calculations will performed with runner's weight, so it is appropriate to store it as an integer. The charity event field stores either True or False depending on whether the runner wishes to be chosen to run in charity event; the most appropriate data type is therefore Boolean.
+\noindent
+Each runner will be given an id which serves as their primary key; it is automatically incremented whenever a new runner is added, hence the data type of integer. 
 
-\subsubsection{Activities Table}
+The name will be used as an identifier throughout the system; as a string of characters, it has been given the string data type. Likewise with the email field: it can contain a combination of letters, numbers and other characters, and so has been will be set as a string. Username field will be a combination of the runner's first name and a random number; as such it will be a string. Password hash field stores an encrypted version of the runner's password; depending on the length of password, it can contain a very large number of letters, numbers and symbols - it is therefore a string. DOB field will store the runner's date of birth; the most appropriate data type would therefore be date; likewise with the date runner joined the application. No calculations are being performed on the runner's phone number, so it is more efficient to store it as a string - one character takes just 1 bit. Conversely, calculations will performed with runner's weight, so it is appropriate to store it as an integer. The charity event field stores either True or False depending on whether the runner wishes to be chosen to run in charity event; the most appropriate data type is therefore Boolean.
 
-Every activity that the runners add will be given its own record in this table. It is accessed sequentially, according to id of each activity. In addition, each activity will be linked to a runner through a foreign key, called user\_id. It is a one-to-many relationship.
+\subsection{Activities Table}
+
+Every activity that the runners add will be given its own record in this table. Like the Users table, it is accessed serially - each new record is appended to the bottom. This is for the same reasons as above: the order in which the record is stored makes no difference, because they can be easily queried through their primary key. In addition, each activity will be linked to a runner through a foreign key, called user\_id; the relationsip is one-to-many in nature.
 
 \begin{table}[h]
-\begin{tabular}{|l|l|l|l|l}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
 \textbf{Field Name} & \textbf{PK / FK} & \textbf{Typical Data} & \textbf{Data Type} & \textbf{Validation} \\ \hline
-id                  & Primary          & 01                    & Integer  & Presence          \\ \hline
-sport               & n/a              & running               & String   & Presence          \\ \hline
-effigy              & n/a              & 5 mph                 & String   & Presence          \\ \hline
-date                & n/a              & 2015-01-04            & Date     & Presence, Range          \\ \hline
-start               & n/a              & 8:00AM                & String   & Presence, Range          \\ \hline
-finish              & n/a              & 10:00AM               & String   & Presence, Range          \\ \hline
-hours               & n/a              & 2                     & Integer  & Presence          \\ \hline
-opinion             & n/a              & Brilliant             & String   & Presence          \\ \hline
-thoughts            & n/a              & It was great.         & String   & None          \\ \hline
-user\_id            & Foreign          & 02                    & Integer  & Presence          \\ \hline
+id                  & Primary          & 01                    & Integer  & Presence                      \\ \hline
+sport               & n/a              & running               & String   & Presence                      \\ \hline
+effigy              & n/a              & 5 mph                 & String   & Presence                      \\ \hline
+date                & n/a              & 2015-01-04            & Date     & Presence, Range               \\ \hline
+start               & n/a              & 8:00AM                & String   & Presence, Range               \\ \hline
+finish              & n/a              & 10:00AM               & String   & Presence, Range               \\ \hline
+hours               & n/a              & 2                     & Integer  & Presence                      \\ \hline
+opinion             & n/a              & Brilliant             & String   & Presence                      \\ \hline
+thoughts            & n/a              & It was great.         & String   & None                          \\ \hline
+user\_id            & Foreign          & 02                    & Integer  & Presence                      \\ \hline
 \end{tabular}
 \caption{Activities Table}
 \end{table}
 
+\noindent
 The id of each activity serves as its primary key; it is automatically incremented whenever a new activity is added, hence data type of integer. The sport field will be a string; it will store type of sport that activity belongs to, and so string is the most appropriate data type. The effigy field will store specific detail for each activity, such as speed for running sessions, or the type of stroke for swimming sessions. Due to wide the range of options that can be stored in this, and the fact that no calculations will be performed, the string data type would be the most appropriate. 
 
 \section{User Interface Design}
-The system will use a web based, graphical runner interface. It will be simple and easy to use, making use of runner interface paradigms well known to users, such as buttons, form inputs and drop-down boxes, through their use of other computer systems. In order to increase usability, the system will make use of a consistent colour palette - each sport will be associated with a particular colour:
-\\\\\textcolor{uigreen}{Green - rgb(82, 170, 94) - associated with running}
-\\\textcolor{uiyellow}{Yellow - rgb(240, 173, 78) - associated with cycling}
-\\\textcolor{uiblue}{Blue - rgb(91, 192, 222) - associated with swimming}
-\\\\In addition, the system will make use of a consistent font: Raleway, and its variants. Raleway is a distinctive yet readable sans-serif font, and is the only font used throughout the system. It can be seen in the runner interface documentation.
+The system will use a web based, graphical user interface. It will be simple and easy to use, making use of interface paradigms well known to the runners, such as buttons, form inputs and drop-down boxes, through their use of other computer systems. In order to increase usability, the system will make use of a consistent colour palette - each sport will be associated with a particular colour:\\
+
+\begin{itemize}[label={}]
+  \item \raleway{\textcolor{uigreen}{Green - rgb(82, 170, 94) - associated with running}}
+  \item \textcolor{uiyellow}{Yellow - rgb(240, 173, 78) - associated with cycling}
+  \item \textcolor{uiblue}{Blue - rgb(91, 192, 222) - associated with swimming}\\
+\end{itemize}
+
+\noindent
+In addition, the system will use a consistent font throughout: Raleway, and its variants. Distinctive yet readable, Raleway is a highly renowned sans-serif font, and wil give the system a playful yet progressive demeanour. The somewhat futuristic look to some of the glyphs, most notably the W, give the font an element of the progressive, something that will suggest to the runners that they themselves should be making progress in their own personal training, albeit in a somewhat subtle manner. An example can be seen above, as well as in the system screenshots.
 
 \subsection{Main Layout Template}
 To ensure visual consistency throughout the system, every page will derive itself from a master template, which will contain aspects like navigation, the footer and general placement of elements in a grid.
 
 \begin{figure}[h!]
-  \includegraphics[scale=0.45]{design_ui/layout}
+  \includegraphics[scale=0.38]{design_ui/layout}
 \end{figure}
 \clearpage
 
@@ -271,8 +292,6 @@ To ensure visual consistency throughout the system, every page will derive itsel
 \clearpage
 
 \subsection{Performance Page}
-To ensure visual consistency throughout the system, every page will derive itself from a master template, which will contain aspects like navigation, footer and placement of elements.
-
 \begin{figure}[h!]
   \includegraphics[scale=0.55]{design_ui/user_performance}
 \end{figure}
@@ -297,18 +316,25 @@ To ensure visual consistency throughout the system, every page will derive itsel
 \clearpage
 
 \subsection{Page Relationships}
-The following diagram shows how the different pages of the system link together.
+The following hierarchy diagram demonstrates how the different pages of the system will link together.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.265]{sitemap}
+\end{figure}
+
+\noindent
+Upon logging in, users will be directed the main performance page, which will show them a range of information about their progress, including graphs for each sport and a table of all their running sessions. For obvious reasons, the signup page links only to the login page, as every part of the application will depend on the user having made an account.
 
 
 \section{Hardware and Software Requirements}
-In order for the system to function correctly, a minimum level of hardware, and some certain software, is needed.
+In order for the system to function correctly, a minimum level of hardware, and some certain software, is needed. A discussion of recommendations in each area can be found below.
 
 \subsection{Hardware}
 The system is a web application, and as such requires a stable internet connection to function correctly; therefore, the device used to access the system will need support for the internet, either through a wireless card or an ethernet connection. As a web application, the system can be used on both traditional computing devices, such as desktop PCs and laptops, as well as smart phones and tablets. If using a non touch device, the system has been designed for screens at least 17" in size - a resolution of 1280x1024. The system will function at smaller displays than this, but has not been fully tested as such. Desktops will also requires a mouse, in order to point at and click elements on the page; any mouse is suitable for this task. Additionally, a keyboard is needed for data entry. Laptops usually come with trackpads and keyboards built in, so the need for these additional peripherals is reduced.
 
 If the runner is using a smart phone or tablet - a scenario that is likely, as the audience is a group not known for sitting down at a desk all day - no additional hardware is needed, as the device would come with everything built in, such as a touch screen for interacting with element and a virtual keyboard for data entry. The same internet connection requirements apply.
 
-The hardware need to run the system does not need to be particularly powerful - as it is a web application, it is not memory intensive; as such, only 1GB of RAM would be needed. As most people do not live in 2006 any longer, when 1GB was considered standard, the vast majority of the running club's users should be able to run the system easily. Additionally, the computer would not need a powerful processor; the system should run easily on a system with 1GHz, a clock speed that was considered low end in 2010 - five years ago at the time of writing. 
+The hardware need to run the system does not need to be particularly powerful - as it is a web application, it is not memory intensive; as such, only 1GB of RAM would be needed. As most people are no longer living in 2006, a time when 1GB was considered standard, the vast majority of the running club's users should be able to run the system easily. Additionally, the computer would not need a powerful processor; the system should run easily on a system with 1GHz, a clock speed that was considered low end in 2010 - five years ago at the time of writing. 
 
 \subsection{Software}
 As a web application, a web browser is the only piece of software needed to access the system - the runner need simply visit the correct web address, and they can access the system. The most suitable browser to open the system in is Google Chrome; luckily, this also happens to be the most popular browser worldwide, so it is likely that they runners are already using it.
@@ -356,17 +382,16 @@ $.ajax({
 The \textit{route} parameter defines which route the request should be sent to, as mentioned above. The 
 type parameter defines the request type; this is almost always POST, but can be GET on one or two occasions; see specific processes for details. The \textit{data\_type} parameter is set to the type of data that will be sent via the request; this is likely to be JSON in most cases. The \textit{content\_type} parameter is equal to either \textit{application/json} or \textit{text/plain}, depending on the data being sent. The \textit{data} parameter is set to whatever data needs to be sent to the server; this is usually a JSON object or plain text. The \textit{success} parameter is equal to a function that should be run using the data.
 
-\subsubsection{Modify Database}
+\subsubsection{Add Record to Database}
 This process will be used multiple times throughout the system in order to make changes to the database. The process for adding to and updating a database in Python is the same, so the same process is used (this process may look sparse, but it really is this simple in Python; only a single line is needed to add to the database - rows and such are created automatically).
-
 \begin{verbatim}
 import database from models
 add updated object to database session
 save database
 \end{verbatim}
 
-The process for deleting a record from the database in Python is similar:
-
+\subsubsection{Delete Record from Database}
+The process for deleting a record from the database in Python is practically identical to adding a record, except a different builtin function is called at the end.
 \begin{verbatim}
 import database from models
 add updated object to database session
@@ -429,6 +454,7 @@ if request == 'name':
     save updated runner to database
   else:
     flash message "invalid name"
+
 elif request == 'email':
   email_check = ^.+@[^.].*\.[a-z]{2,10}$
   if email_check matches request:
@@ -436,6 +462,7 @@ elif request == 'email':
     save updated runner to database
   else:
     flash message ``invalid email''
+
 elif request == 'phone':
   phone_check = \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
   if phone_check matches request:
@@ -443,6 +470,7 @@ elif request == 'phone':
     save updated runner to database
   else:
     flash message ``invalid email''
+
 elif request == 'dob':
   dob_check = dob_regex
   if dob_check matches request:
@@ -450,6 +478,7 @@ elif request == 'dob':
     save updated runner to database
   else:
     flash message ``invalid dob''
+
 elif request == 'weight':
   weight_check = ^-?[0-9]+$
   if weight_check matches request:
@@ -465,6 +494,7 @@ On page load:
   render template register.html
 \end{verbatim}
 
+\noindent
 On form submit:
 \begin{verbatim}
   presence check on email
@@ -475,15 +505,19 @@ On form submit:
   double entry on confirm - must match password
   presence check on dob
   set today = today.date()
+
   if today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day)) < 18:
     show message ``You must be at least 18 to signup''
+
   presence check on phone
-  format check on phone - regexp \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
+   format check on phone - regexp \s*\(?(020[78]\)? ?[1-9][0-9]{2}\s*$
   presence check on weight
   range check on weight - between 10 and 100
   query User table for first where email == email input
+
   if distance == less than 1 mile and charity_event == true:
     show message ``You must be physically fit to run in the charity event''
+
   if no validation errors:
     add runner to database
     redirect runner to login page
@@ -497,6 +531,7 @@ On page load:
   render template login.html
 \end{verbatim}
 
+\noindent
 On form submit:
 \begin{verbatim}
   presence check on email
@@ -560,36 +595,48 @@ This function will calculate the number of calories burned in the training sessi
 \end{verbatim}
 
 \subsubsection{Add Training Session Page}
+This function will perform all the processes needed for adding a training session. It will be quite a complicated function, with interaction between a number of different files; therefore it has been split into several sections.
+
+
 On page load:
 \begin{verbatim}
   query Activity table for all activities where date = today and user_id = current_user.id
   set total_hours to 0
   set total_calories to 0
+
   for activity.hour in today's activities:
     add activity.hour to total_hours
     add activity.calories to total_calories
+
   render template login.html with today's sessions
 \end{verbatim}
 
+\noindent
 On add sport button press:
 \begin{verbatim}
   AJAX request to /ajax/sport_block. Data parameter name of sport. Data type text/plain.
+
   if data == `running':
     return running_block.html
   elif data == `cycling':
     return cycling_block.html
   else:
     return swimming_block.html
+
   Append returned HTML to page
 \end{verbatim}
 
+\noindent
 On activity block submit:
 \begin{verbatim}
   start time input presence check
   finish time input presence check
+
   if validation passed:
     animate activity block - height -= 100px; width += 1000px
+
     AJAX request to /ajax/calculate_calories. Data parameter a JSON object containing session hours and rating
+
     return calculate_calories()
     save activity to database
 \end{verbatim}
@@ -600,20 +647,23 @@ Calculates the running team. Calculates the total calories burned for each runne
 \begin{verbatim}
 set user_ranking to empty dict
 set runners to db query for all runners who opted into charity event
+
 for runner in runners:
   set total_calories = 0
   set training_sessions to db query for all of runner's activities
+
   for session in training_sessions:
     add session.calories to total_calories
   set user_ranking[runner.name] to total_calories
+
 sort user_ranking using built in Python sorted function
 \end{verbatim}
 
  
 \section{Evaluation Criteria}
-\subsection{Measurable Criterion}
-Certain evaluation points can be measured using raw data; these are listed below.
+This section contains a number of criterion that the system will be judged upon to determine the extent to which it has been successful. It has been split into two sections: measurable criteria, which can be easily determined; ie. the system has met this point irrefutably, because the evidence is visible. Non-measurable criteria have also been included; these are somewhat more subjective, but still provide a useful base upon which the system can be based.
 
+\subsection{Measurable Criterion}
 The running club has commissioned  a computer based system that will allow runners to keep an accurate record of their running, cycling and swimming sessions. This data will then be used to calculate an informed decision of most appropriate team for relay race.
 
 The system must allow each runner to monitor their progress during programme, clearly showing them extent to which they have improved. As such, the system must provide an interface to allow runner to add each session they perform, with spaces for type of training, time spent, how hard they pushed themselves, and other such parameters. Using this data, the system must then calculate number of calories burned in session, providing a series of data points through which performance of runner can be monitored.
@@ -641,11 +691,12 @@ It is also important that the buttons and other controls, such as inputs, on the
 
 Furthermore, the system should have a consistent ``house style'': the same colours should be used for similar elements, and the typography used should be the same throughout every page. Headings should always be kept the same size, depending on their importance - one H3 level header should not be 20px whilst another is 25px.
 
-The classes and variable names given to different elements of the code should be appropriate and be self-documenting: the running graph should not be called g\_ru, as this is not specific enough, and would make maintenance on the system very difficult.
+The classes and variable names given to different elements of the code should be appropriate and be self-documenting: for example, the running graph should not be called \textit{g\_ru}, as this is not specific enough, and would make maintenance on the system very difficult.
 \cleardoublepage
 
 
 \part{Program Documentation}
+This second part of the documentation contains a number of sections concerning the finished application. It includes aspects like screenshots of the finished system, as well as a brief discussion of how they are fit for purpose; detailed information on the final database tables, including a diagram detailing their links; a list of every variable used throughout the system, both global and local in scope; and annotated, self-documenting code listings for the entire source of the system, detailing exactly how it works.
 
 \section{User Interface}
 This section contains screen captures of all different areas of the completed the system, along with additional notes stating how they are fit for purpose.
@@ -654,9 +705,11 @@ This section contains screen captures of all different areas of the completed th
 Every other page derives constant elements, like the navigation bar and footer, from this template, to ensure visual consistency.
 
 \begin{figure}[h!]
-  \includegraphics[scale=0.30]{final_ui/layout}
+  \includegraphics[scale=0.25]{final_ui/layout}
   \caption{Master Layout}
 \end{figure}
+
+\clearpage
 
 \subsection{Register Page}
 The register page features a clear, simple design, with input boxes laid out in a consistent style. Each input box features placeholder text, to provide a visual guide to runner as to what sort of data they should be typing in. To simplify entry, date of birth input brings up a datepicker widget upon click, making it simple for users to enter their date of birth. Additionally, validation errors are featured at top of page in a big yellow box, making them easy to see; they also have a close button to prevent them getting in way. A link to login page allows users who already have an account to quickly login.
@@ -714,6 +767,8 @@ Unfortunately, time constraints meant that the implementation of the comparison 
   \caption{Compare Performance Page}
 \end{figure}
 
+\clearpage
+
 \subsection{User Performance Page}
 The runner performance page is the main page of the system, and is the first page the runner sees when they log into the system.
 
@@ -758,7 +813,7 @@ This section contains documentation on finished database tables and models, incl
 The activities and users are linked through a foreign key. This means that there is a one to many relationship between users and activities - one runner can have many activities, but each activity can only have one runner.
 
 \begin{figure}[h!]
-  \includegraphics[scale=0.5]{images/database/er_diagram}
+  \includegraphics[scale=0.2]{images/database/er_diagram}
   \caption{Table Relationships}
 \end{figure}
 
@@ -1169,17 +1224,33 @@ This fixed the issue; entire section works perfectly now:
 This section tests that the navigation bar works correctly, with the correct links pointing to the correct areas; likewise, the two different navigation bars are differentiated, as the links change depending on whether the user is logged in or not.
 
 \begin{table}[h]
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{Navigation Link} & \multicolumn{1}{c|}{Expected Result} & \multicolumn{1}{c|}{Teacher Signature} \\ \hline
-My Performance                        & /performance/current\_month          &                                        \\ \hline
-Add Training                          & /add-training                        &                                        \\ \hline
-Compare Performance                   & /performance/compare                 &                                        \\ \hline
-Charity Team Rankings                 & /rankings                            &                                        \\ \hline
-Your Profiles                         & /profiles/username                   &                                        \\ \hline
-Logout                                & /logout                              &                                        \\ \hline
+\multicolumn{1}{|c|}{\textbf{Navigation Link}} & \multicolumn{1}{c|}{\textbf{Expected URL}} & \multicolumn{1}{c|}{\textbf{Visible When}} & \multicolumn{1}{c|}{\textbf{Signature}} \\ \hline
+My Performance                                 & /performance/current\_month                & Logged in                                  &                                                 \\ \hline
+Add Training                                   & /add-training                              & Logged in                                  &                                                 \\ \hline
+Compare Performance                            & /performance/compare                       & Logged in                                  &                                                 \\ \hline
+Charity Team Rankings                          & /rankings                                  & Logged in                                  &                                                 \\ \hline
+Your Profile                                   & /profile/username                          & Logged in                                  &                                                 \\ \hline
+Logout                                         & /logout                                    & Logged in                                  &                                                 \\ \hline
+Register                                       & /register                                  & Logged out                                 &                                                 \\ \hline
+Login                                          & /login                                     & Logged out                                 &                                                 \\ \hline
 \end{tabular}
 \end{table}
+
+It would be impossible to show that the navigation works effectively through screenshots, so a column has been added for a suitable figure of authority to testify that all is as it should be. Screenshots below show the two different navigation bar states; they work perfectly, as described above in the \textit{Visible When} column:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.33]{images/testing/navigation/logged_in}
+    \caption{Navigation When Logged In}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.40]{images/testing/navigation/logged_out}
+    \caption{Navigation When Logged Out}
+\end{figure}
+
+\clearpage
 
 
 \subsubsection{Adding Training Session to Database}
@@ -1204,6 +1275,8 @@ The box should look like this:
     \caption{Fixed Users Table}
 \end{figure}
 }
+
+\clearpage
 
 This is the Activities table before the test was run:
 \begin{figure}[h!]
@@ -1264,32 +1337,44 @@ As can be seen, the runner was deleted perfectly; the test succeeded.
 \clearpage
 
 \subsubsection{User Performance Graphs}
-This section tests that the performance graphs work properly, and display the correct data.
+This section tests that the performance graphs work properly, and display the correct data.\\
 
 {\setlength{\parindent}{0cm}
-Create three users:
 Create three new members, with the following details:
-Name: Peter Kennedy | Email: peterk@gmail.com | D.O.B: 02/03/1956 | Max distance: Less than 1 mile | Weight: 60kg | Phone Number: 01742247845 | Charity event: false\\
 
-Name: Chrissie Taylor | Email: chrissie@gmail.com | D.O.B: 01/09/1951 | Max distance:  1-5 miles | Weight: 80kg | Phone Number: 01742247845 | Charity event: true\\
+\begin{framed}
+Name: Peter Kennedy | Email: peterk@gmail.com | D.O.B: 02/03/1956 | Max distance: Less than 1 mile | Weight: 60kg | Phone Number: 01742247845 | Charity event: false
+\end{framed}
 
-Name: Jerry Bridgeland | Email: jezzab@gmail.com | D.O.B: 01/09/1951 | Max distance:  11-15 miles | Weight: 100kg | Phone Number: 01742247845 | Charity event: true\\
+\begin{framed}
+Name: Chrissie Taylor | Email: chrissie@gmail.com | D.O.B: 01/09/1951 | Max distance:  1-5 miles | Weight: 80kg | Phone Number: 01742247845 | Charity event: true
+\end{framed}
 
+\begin{framed}
+Name: Jerry Bridgeland | Email: jezzab@gmail.com | D.O.B: 01/09/1951 | Max distance:  11-15 miles | Weight: 100kg | Phone Number: 01742247845 | Charity event: true
+\end{framed}
+
+Now add the following training sessions:
+
+\begin{framed}
 For Peter Kennedy, do not add any training sessions.
+\end{framed}
 
-For Chrissie Taylor, add the following training sessions:\\
-Sport: Cycling | Start Time: 10:00am | Finish time: 12:00am | Speed: vigorously | Rating: average\\
+\begin{framed}
+For Chrissie Taylor, add the following training sessions:\\\\
+Sport: Cycling | Start Time: 10:00am | Finish time: 12:00am | Speed: vigorously | Rating: average\\\\
 Sport: Cycling | Start Time: 10:00am | Finish time: 16:00am | Speed: racing | Rating: brilliant\\\\
-Sport: Cycling | Start Time: 10:00am | Finish time: 13:00am | Speed: racing | Rating: brilliant\\\\
+Sport: Cycling | Start Time: 10:00am | Finish time: 13:00am | Speed: racing | Rating: brilliant
+\end{framed}
 
-For Jerry Bridgeland, add the following training sessions\\:
-Sport: Swimming | Start Time: 10:00am | Finish time: 12:00am | Speed: backstroke | Rating: average\\
-Sport: Swimming | Start Time: 10:00am | Finish time: 16:00am | Speed: breaststroke | Rating: brilliant\\
-Sport: Swimming | Start Time: 10:00am | Finish time: 12:00am | Speed: butterfly | Rating: okay\\
-Sport: swimming | Start Time: 09:00am | Finish time: 11:00am | Speed: backstroke | Rating: awful\\
-Sport: Swimming | Start Time: 10:00am | Finish time: 13:00am | Speed: backstroke | Rating: brilliant\\
-
-\clearpage
+\begin{framed}
+For Jerry Bridgeland, add the following training sessions:\\\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 12:00am | Speed: backstroke | Rating: average\\\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 16:00am | Speed: breaststroke | Rating: brilliant\\\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 12:00am | Speed: butterfly | Rating: okay\\\\
+Sport: swimming | Start Time: 09:00am | Finish time: 11:00am | Speed: backstroke | Rating: awful\\\\
+Sport: Swimming | Start Time: 10:00am | Finish time: 13:00am | Speed: backstroke | Rating: brilliant
+\end{framed}
 
 Peter's graph should contain no data.
 
@@ -1297,6 +1382,8 @@ Peter's graph should contain no data.
     \includegraphics[scale=0.33]{images/testing/graphs/peter}
     \caption{Peter Kennedy's Graph}
 \end{figure}
+
+\clearpage
 
 Chrissie's graph sould contain three data points with connecting lines.
 
@@ -1341,50 +1428,52 @@ The session is worth 2602 calories. This should be reflected in the system. It w
 \end{figure}
 
 \subsubsection{Profile Page - Viewing Data}
-This section tests that the correct information is displayed on the runner's profile page, according to the runner that is logged in.
+This section tests that the correct information is displayed on the runner's profile page, according to the runner that is logged in.\\
 
 Login as Peter Kennedy:
 
 \begin{description}[labelindent=1cm]
-    Email: peterk@gmail.com
-    Password: 70153590
+  \item[Email:] peterk@gmail.com
+  \item[Password:] 70153590
 \end{description}
 
 The profile page personal details should look as follows:
 
 \begin{description}[labelindent=1cm]
-    Name: Peter Kennedy
-    Email: peterk@gmail.com
-    Phone: 01743 247046
-    Date of birth: Tuesday 11 February 1997
-    Weight: 60kg
+  \item[Name:] Peter Kennedy
+  \item[Email:] peterk@gmail.com
+  \item[Phone:] 01743 247046
+  \item[Date of birth:] Tuesday 11 February 1997
+  \item[Weight:] 60kg
 \end{description}
 
 The account details page should look as follows:
 
 \begin{description}[labelindent=1cm]
-    Username: peterkennedy6
-    Joined on: January 16th 2015
-    Charity event: No
-    Activities added: \textit{variable}
-    Your ranking: \textit{variable}
+  \item[Username:] peterkennedy6
+  \item[Joined on:] January 16th 2015
+  \item[Charity event:] No
+  \item[Activities added:] \textit{variable}
+  \item[Your ranking:] \textit{variable}
 \end{description}
 
 As can be seen, the data displays perfectly:
 
 \begin{figure}[h!]
-    \includegraphics[scale=0.33]{images/testing/profile/working_profile}
+    \includegraphics[scale=0.5]{images/testing/profile/working_profile}
     \caption{Working Profile Page}
 \end{figure}
 
+\clearpage
+
 \subsubsection{Profile Page - Updating Data}
-This section tests that the user's data can be updated successfully, using the Edit buttons and modals provided by each element.
+This section tests that the user's data can be updated successfully, using the Edit buttons and modals provided by each element.\\
 
 Login as Peter Kennedy:
 
 \begin{description}[labelindent=1cm]
-    Email: peterk@gmail.com
-    Password: 70153590
+  \item[Email:] peterk@gmail.com
+  \item[Password:] 70153590
 \end{description}
 
 Click the Edit button on the side of the name field. Type in "Dave Ellis" into the name box, and press the "Change name" button. The box should look like this:
@@ -1397,12 +1486,13 @@ Click the Edit button on the side of the name field. Type in "Dave Ellis" into t
 After the button is pressed, the page should refresh, and a green message should appear saying "Your name has been successfully changed." Likewise, the name shown in the Name box should also have been modified to Dave Ellis, and the username should have been changed to "daveellis", and then a random number from 1 - 10. As can be seen, the test ran perfectly:
 
 \begin{figure}[h!]
-    \includegraphics[scale=0.33]{images/testing/profile/change_name_success}
+    \includegraphics[scale=0.31]{images/testing/profile/change_name_success}
     \caption{Successful Name Change}
 \end{figure}
 
-The code is practically the same for each element that is changed, so testing one element ensures that they all work properly.
+\clearpage
 
+The code is practically the same for each element that is changed, so testing one element ensures that they all work properly.
 
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.

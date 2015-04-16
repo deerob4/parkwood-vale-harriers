@@ -8,10 +8,10 @@ $.ajax({
     contentType: 'application/json',
     type: 'POST',
     success: function (data) {
-        alert(data.graphData.current_user);
+        console.log(data.graphData.current_user);
     },
     error: function (data) {
-        alert(data);
+        console.log(data);
     }
 });
 
