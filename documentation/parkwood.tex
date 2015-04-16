@@ -1117,6 +1117,53 @@ This file defines majority of routes used by system.
 \part{Testing and Evaluation}
 This section contains the detailed tests that were performed on the system as it was developed, to ensure that any bugs that existed in the system were caught. Also included is a detailed evaluation of the system.
 
+\subsection{Test Strategy}
+I will follow this extensive test strategy to ensure that every part of the system is tested in a thorough manner, thereby increasing the chance that any bugs present in the code are discovered and fixed. For clarity, it has been organised by application page as opposed to process.
+
+\subsubsection{Register Page}
+\begin{itemize}
+  \item Test that validation on the page works correctly
+  \item Test that the database is able to save the new user properly
+  \item Test that only users who are logged out can access it
+\end{itemize}
+
+\subsubsection{Login Page}
+\begin{itemize}
+  \item Test that validation on the page works correctly
+  \item Test that the login process works properly, with the correct user being logged in
+  \item Test that only users who are logged out can access it
+\end{itemize}
+
+\subsubsection{Add Training Session}
+\begin{itemize}
+  \item Test that the correct training cards are added when the appropriate buttons are pressed
+  \item Test that the validation on the training cards works properly
+  \item Test that the correct number of calories are calculated
+  \item Test that the training sessions are saved to the database properly
+  \item Test that the training sessions can be deleted from the database
+  \item Test that the correct date is shown at the top of the page
+\end{itemize}
+
+\subsubsection{Profile Page}
+\begin{itemize}
+  \item Test that the correct data for the user is shown
+  \item Test that the user is able to modify their personal data
+  \item Test that the user is able to delete their account
+\end{itemize}
+
+\subsubsection{Training Performance}
+\begin{itemize}
+  \item Test that the graphs for each sport display the correct value
+  \item Test that the correct table of training sessions is shown for the user
+  \item Test that the only months that have training sessions in are shown to the user
+\end{itemize}
+
+\subsubsection{Compare Performance}
+\begin{itemize}
+  \item Test that the dropdown box is sorted alphabetically and contains only those users who have opted in
+  \item Test that the correct data is shown depending on the current user and the other user chosen
+\end{itemize}
+
 \subsection{Testing}
 The different tests for the different parts of the system have been split up into sections - every test has its own system for organisation.
 
