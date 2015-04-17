@@ -1140,7 +1140,6 @@ I will follow this extensive test strategy to ensure that every part of the syst
 
 \subsubsection{Add Training Session}
 \begin{itemize}
-  \item Test that the correct training cards are added when the appropriate buttons are pressed
   \item Test that the validation on the training cards works properly
   \item Test that the correct number of calories are calculated
   \item Test that the training sessions are saved to the database properly
@@ -1185,17 +1184,17 @@ This section tests the validation for the registration page. Most of the inputs 
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{Enacted Test}          & \textbf{Expected Action}                  & \textbf{Result} & \textbf{Proof} \\ \hline
-Leave name input blank         & Message "you must enter your name"        & As expected.    & Fig1           \\ \hline
-Enter 123Dan into name         & Message "name can only have letters"      & As expected.    & Fig2           \\ \hline
-Leave email input blank        & Message "you must enter your email"       & As expected.    & Fig3           \\ \hline
-Enter danny.com in email       & Message "email must be valid"             & As expected.    & Fig4           \\ \hline
-Leave password input blank     & Message "you must enter password"         & As expected.    & Fig5           \\ \hline
-Enter abc123 in password field & Message "password must be 8-20 chars"     & As expected.    & Fig6           \\ \hline
-Leave date input blank         & Message "you must enter date of birth"    & As expected.    & Fig7           \\ \hline
-Leave weight input blank       & Message "you must enter your weight"      & As expected.    & Fig8           \\ \hline
-Enter 200 in weight input      & Message "weight must be between 10-100kg" & As expected.    & Fig9           \\ \hline
-Leave phone input blank        & Message "you must enter your phone"       & As expected.    & Fig10          \\ \hline
-Enter 0123456789 in phone      & Message "phone number must be valid"      & As expected.    & Fig11          \\ \hline
+Leave name input blank         & Message ``you must enter your name''        & As expected.    & Fig1           \\ \hline
+Enter 123Dan into name         & Message ``name can only have letters''      & As expected.    & Fig2           \\ \hline
+Leave email input blank        & Message ``you must enter your email''       & As expected.    & Fig3           \\ \hline
+Enter danny.com in email       & Message ``email must be valid''             & As expected.    & Fig4           \\ \hline
+Leave password input blank     & Message ``you must enter password''         & As expected.    & Fig5           \\ \hline
+Enter abc123 in password field & Message ``password must be 8-20 chars''     & As expected.    & Fig6           \\ \hline
+Leave date input blank         & Message ``you must enter date of birth''    & As expected.    & Fig7           \\ \hline
+Leave weight input blank       & Message ``you must enter your weight''      & As expected.    & Fig8           \\ \hline
+Enter 200 in weight input      & Message ``weight must be between 10-100kg'' & As expected.    & Fig9           \\ \hline
+Leave phone input blank        & Message ``you must enter your phone''       & As expected.    & Fig10          \\ \hline
+Enter 0123456789 in phone      & Message ``phone number must be valid''      & As expected.    & Fig11          \\ \hline
 \end{tabular}
 \caption{Registration Page Validation}
 \end{table}
@@ -1211,10 +1210,10 @@ This section tests the validation for the login page. All of the inputs on this 
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{Enacted Test}                                                                                             & \textbf{Expected Action}                                                                   & \textbf{Actual Result} & \textbf{Proof} \\ \hline
-Leave email input blank                                                                                           & \begin{tabular}[c]{@{}l@{}}Error message "you must \\ enter your email"\end{tabular}       & As expected.           & Fig12           \\ \hline
-Enter danny.com in email                                                                                          & \begin{tabular}[c]{@{}l@{}}Error message "your email \\ must be valid"\end{tabular}        & As expected.           & Fig13           \\ \hline
-Leave password input blank                                                                                        & \begin{tabular}[c]{@{}l@{}}Error message "you must \\ enter your password"\end{tabular}    & As expected.           & Fig14           \\ \hline
-\begin{tabular}[c]{@{}l@{}}Enter john@smith.com in\\ email input and abc123def \\ in password input.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Error message "invalid\\ email / password entered"\end{tabular} & As expected.           & Fig15           \\ \hline
+Leave email input blank                                                                                           & \begin{tabular}[c]{@{}l@{}}Error message ``you must \\ enter your email''\end{tabular}       & As expected.           & Fig12           \\ \hline
+Enter danny.com in email                                                                                          & \begin{tabular}[c]{@{}l@{}}Error message ``your email \\ must be valid''\end{tabular}        & As expected.           & Fig13           \\ \hline
+Leave password input blank                                                                                        & \begin{tabular}[c]{@{}l@{}}Error message ``you must \\ enter your password''\end{tabular}    & As expected.           & Fig14           \\ \hline
+\begin{tabular}[c]{@{}l@{}}Enter john@smith.com in\\ email input and abc123def \\ in password input.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Error message ``invalid\\ email / password entered''\end{tabular} & As expected.           & Fig15           \\ \hline
 \end{tabular}
 \caption{Login Page Validation}
 \end{table}
@@ -1398,28 +1397,26 @@ As can be seen, the runner was deleted perfectly; the test succeeded.
 The application should show the correct date at the top of the Add Training Session page, in the format Weekday Day Month Year. Today the date is Thursday 16th April 2015, so this should be reflected in the application.
 
 \begin{figure}[h!]
-    \includegraphics[scale=0.33]{images/testing/add_activity/current_date}
+    \includegraphics[scale=0.40]{images/testing/add_activity/current_date}
     \caption{Correct Date on Page}
 \end{figure}
 
 As can be seen, the correct date is shown, and in the correct format; the test succeeded.
-
-\clearpage
 
 \subsubsection{Update Calorie / Hour Counter}
 When a training session is added, the counter for the day by the sport buttons should update, showing the new total. This section tests that this is the case.
 
 Login as Peter Kennedy. Make sure that no other training sessions have been added for this day (if there are, delete them) and add the following training session:
 
-\begin{itemize}
+\begin{description}
   \item[Sport:] Running
   \item[Average Speed:] 5mph
   \item[Start Time:] 10:00am
   \item[Finish Time:] 12:00am
   \item[Rating:] Pretty good
-\end{itemize}
+\end{description}
 
-This training session is worth 713 calories, and took 2 hours. This should be reflected in the counter.
+This training session is worth 949 calories, and took 2 hours. This should be reflected in the counter.
 
 \begin{figure}[h!]
     \includegraphics[scale=0.33]{images/testing/add_activity/counter_update}
@@ -1427,7 +1424,7 @@ This training session is worth 713 calories, and took 2 hours. This should be re
 \end{figure}
 
 \subsubsection{User Performance Graphs}
-This section tests that the performance graphs work properly, and display the correct data.\\
+This section tests that the performance graphs work properly, and display the correct data.
 
 {\setlength{\parindent}{0cm}
 Create three new members, with the following details:
@@ -1566,14 +1563,14 @@ Login as Peter Kennedy:
   \item[Password:] 70153590
 \end{description}
 
-Click the Edit button on the side of the name field. Type in "Dave Ellis" into the name box, and press the "Change name" button. The box should look like this:
+Click the Edit button on the side of the name field. Type in ``Dave Ellis'' into the name box, and press the ``Change name'' button. The box should look like this:
 
 \begin{figure}[h!]
     \includegraphics[scale=0.33]{images/testing/profile/change_name}
     \caption{Change Name Box}
 \end{figure}
 
-After the button is pressed, the page should refresh, and a green message should appear saying "Your name has been successfully changed." Likewise, the name shown in the Name box should also have been modified to Dave Ellis, and the username should have been changed to "daveellis", and then a random number from 1 - 10. As can be seen, the test ran perfectly:
+After the button is pressed, the page should refresh, and a green message should appear saying ``Your name has been successfully changed.'' Likewise, the name shown in the Name box should also have been modified to Dave Ellis, and the username should have been changed to ``daveellis'', and then a random number from 1 - 10. As can be seen, the test ran perfectly:
 
 \begin{figure}[h!]
     \includegraphics[scale=0.31]{images/testing/profile/change_name_success}
@@ -1586,6 +1583,19 @@ The code is practically the same for each element that is changed, so testing on
 
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.
+
+\subsection{Evaluation Against Objectives}
+Allow the runner to add, view, update and, if they choose, delete their personal information - in this regard, the system is a full success. The register page allows users to register an account, adding a number of personal details, such as their weight, date of birth and age, to enhance their experience of the application. The profile page allows the runner to view their data in a clear, easy to read format, whilst buttons on this same page allow the data to be edited, using the sam validation as during signup; this page also allows the runner to delete their account, fulfilling the last point.
+
+Likewise, the system allows for training sessions to be added, viewed and deleted. An intuitive, visually impressive card based facility allows training sessions to be added - each sport has it's own distinct card that allows the user to write context-specific information about their session; this is then successfully saved to the database. Runners can also view their training sessions through a dedicated performance screen: bright, aesthetically pleasing line charts plot each session, allowing trends to be gleaned from a single glance; a searchable list of training sessions is also available, allowing users to easily find any individual session they like - these are grouped by month for convenience. Sessions can also be easily deleted with just a single click, though only on the day they were added, thereby preventing corruption of statistics.
+
+The objectives for the system also spoke of giving each runner their own personal account, secured by a unique username and an encrypted password. This has also been achieved - every runner has their own record in the Users table, included within which are username, email and encrypted password fields; each user is also given their own ID, serving as the primary key. Passwords are encrypted using Flask's built in encryption function, based off the extremely secure Bcyrpt algorithm. This ensures that it is extremely difficult for external entities to gain access to a runner's account, ensuring the security of their personal data. Likewise, provisions have been taken to prevent impersonation of the user - advanced \textit{CSRF} techniques have been used, tying each form field to a specific, individual instance of the application. This ensures that external entities cannot pretend to be the runner in a spoofing attempt, again ensuring security.
+
+A further objective was calculating the number of calories burned in each session, by taking into account the runner’s weight, time spent on the session, the nature of the session, and how well the runner believed it went. This too was achieved: an algorithm was written that devised the \textit{base values} from the calorie values provided by the running club; from this, a formula was conceived that took into account the runner's weight, multiplying it by the base value - thereby arriving at the correct number of calories burned. Further advancements were made by adding the capacity for the runner to define exactly how well a training session went: it stands to reason that a training session that went well is likely to have been more effective than one that the runner believed went poorly. As such, the system gives or takes away a small number of extra calories depending on the runner's response, ensuring that the system is more accurate.
+
+Another key objective was that effective validation should be included throughout the system. In some regards, this has been achieved: every form field is validated with a number of different checks, including presence, format, range, and more, and effective error messages are shown when the validation fails. This ensures that erroneous data is kept out of the database and checks that certain key pieces of data are included; without these checks the system would most likely crash. 
+
+
 \subsection{Testing Evaluation}
 I believe that my testing strategy was sound: it allowed me to test most of the different parts of the system, and several bugs and flaws were fixed and sorted out through this process. Each part of the test has been well documented with clear instructions for the tester, as well as good screenshots. This has improved the quality of the system, making it more reliable for the runner.
 

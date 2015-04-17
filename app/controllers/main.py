@@ -141,7 +141,30 @@ def compare_performance():
     """Builds the dropdown list for comparison page"""
     users = User.query.filter_by(charity_event=0).filter(User.id != current_user.id).all()
     user_list = sorted([[user.id, user.name] for user in users])
-    return render_template('/performance/compare_performance.html', users=users, user_list=user_list)
+
+    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
+    run_average = 0
+    for run in runs:
+        run_average += run.calories
+    run_average /= len(runs)
+    
+    cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
+    cycle_average = 0
+    for cycle in cycles:
+        cycle_average += cycle.calories
+    cycle_average /= len(cycles)
+    
+    swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
+    swim_average = 0
+    for swim in swims:
+        swim_average += swim.calories
+    swim_average /= len(swims)
+
+    total = run_average + cycle_average + swim_average
+
+    user_data = {'running': run_average, 'swimming': swim_average, 'cycling': cycle_average, 'total': total}
+
+    return render_template('/performance/compare_performance.html', users=users, user_list=user_list, user_data=user_data)
 
 
 @main.route('/rankings')
