@@ -374,6 +374,14 @@ table {
     margin-left: 57px;
 }
 
+.user-title {
+    margin-bottom: -53px;
+}
+
+.block-float {
+    margin-top: 62px;
+}
+
 .running-block {
     border: 1px solid #3fad46;
 }

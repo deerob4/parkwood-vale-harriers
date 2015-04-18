@@ -121,5 +121,5 @@ def user_charts():
 @ajax.route('/ajax/performance', methods=['POST'])
 def ajax_performance():
     month = request.get_data().decode("utf-8").lower()
-    user_data = performance_data(month)
+    user_data = performance_data(month, current_user.get_id())
     return jsonify(user_data=user_data)

@@ -1622,6 +1622,36 @@ After the button is pressed, the page should refresh, and a green message should
 
 The code is practically the same for each element that is changed, so testing one element ensures that they all work properly.
 
+\subsubsection{Comparison Page - Sorted Drop Down Box}
+This section tests that the drop down box that show users available to compare data with shows only those users who have opted into the charity event, and is sorted alphabetically. Login as Keir Merchant. The database currently contains the following users:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.31]{images/testing/compare_performance/database}
+    \caption{Current Database View}
+\end{figure}
+
+Only users with a 0 for the charity event field should be listed in the box. The list should not contain Keir Merchant, because that is the currently logged in. The list should also be sorted alphabetically. Therefore, the final list should contain, in this order:
+
+\begin{enumerate}
+  \item Alice Grant
+  \item Dee Roberts
+  \item Jerry Bridgeland
+  \item Judith Carter
+  \item Lisa Gibson
+  \item Nicole Andrews
+  \item Peter Kennedy
+  \item Sharon Stewart
+\end{enumerate}
+
+As can be seen in the screenshot below, this is the case; the test succeeded.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.35]{images/testing/compare_performance/user_list}
+    \caption{Working Dropdown List}
+\end{figure}
+
+\subsubsection{Comparison Page - Correct Data Shown}
+
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.
 

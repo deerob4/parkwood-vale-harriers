@@ -7,19 +7,18 @@
     <h1>Compare Performance</h1>
     <p>Want to see how you’re doing compared to others? Use this page!</p>
 
-    <label for="user_list">Select a user to compare aginst:</label>
+    <label for="user_list">Select a user to compare against:</label>
     <select name="user_list" id="user_list" class="form-control">
         {% for user in user_list %}
             <option value="{{ user[0] }}">{{ user[1] }}</option>
         {% endfor %}
     </select>
 
-    <h3 class="vs-text">Your Performance</h3>
-    <h3>{{ comparison_name }}'s Performance</h3>
+    <h3 class="user-title">Your Performance</h3>
 
     <div class="row">
         <div class="col-md-6">
-            <div class="comparison-block running-block">
+            <div class="comparison-block running-block block-float">
                 <div class="block-header">
                     <span class="comparison-title">Running Data</span>
                 </div>
@@ -38,7 +37,9 @@
             </div>
         </div>
 
+
         <div class="col-md-6">
+        <h3 class="compare-name">{{ comparison_name }}'s Performance</h3>
             <div class="comparison-block running-block">
                 <div class="block-header">
                     <span class="comparison-title">Running Data</span>
