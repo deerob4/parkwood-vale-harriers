@@ -401,35 +401,34 @@ delete session
 \subsubsection{Query User Table}
 Querying the database in Python uses a special syntax that is then converted to raw SQL at runtime. The query parameter is defined when the function is called.
 \begin{verbatim}
-User.query.filter_by(query).first|all
+User -> query -> filter by query -> select first or all
 \end{verbatim}
 
 \subsubsection{Query Activity Table}
 Querying the database in Python uses a special syntax that is then converted to raw SQL at runtime. The query parameter is defined when the function is called.
 \begin{verbatim}
-Activity.query.filter_by(query).first|all
+Activity -> query -> filter by query -> select first or all
 \end{verbatim}
-
 
 \subsubsection{Presence Validation Check}
 Checks whether an input has actually been filled. element is equal to whatever element the process is called on.
 \begin{verbatim}
 if length of element == 0:
-  show message You must enter your \textit{element}
+  show message "You must enter your element"
 \end{verbatim}
 
 \subsubsection{Format Validation Check}
 Checks whether an element matches the correct format, through a regular expression. element is equal to whatever element the process is called on, and regexp is defined at process call.
 \begin{verbatim}
 if element does not match regexp:
-  show message You must enter a valid element
+  show message "You must enter a valid element"
 \end{verbatim}
 
 \subsubsection{Length Check}
 Checks whether an element is between a certain length. element is equal to whatever element the process is called on, x is equal to the bottom number and y is equal to the top.
 \begin{verbatim}
 if length of element not between x and y:
-  show message You element must be between x and y characters
+  show message "Your element must be between x and y characters"
 \end{verbatim}
 
 \subsubsection{Range Check}
@@ -442,6 +441,15 @@ if element not between x and y:
 
 \subsection{Main Processes}
 This section contains all the processes that will make up the application, written in psuedo code. In some cases, a small commentary has been given for explanation.
+
+\subsubsection{Load Profile Page}
+This process gets the logged in runner's information to the database, allowing it to be passed to the HTML template and shown to the user.
+
+\begin{verbatim}
+  set user = query User table for first where id == current_user.id
+   set activities = length of query Activity table for all where user_id == current_user.id
+  return user, activities
+\end{verbatim}
 
 \subsubsection{Change User Details}
 This process is used to modify the personal info of the runner. It checks which element the runner wants to change, and then matches their changed element against a regular expression to ensure they are valid. 
@@ -461,7 +469,7 @@ elif request == 'email':
     set runner to request
     save updated runner to database
   else:
-    flash message ``invalid email''
+    flash message "invalid email"
 
 elif request == 'phone':
   phone_check = \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
@@ -469,7 +477,7 @@ elif request == 'phone':
     set runner to request
     save updated runner to database
   else:
-    flash message ``invalid email''
+    flash message "invalid email"
 
 elif request == 'dob':
   dob_check = dob_regex
@@ -477,7 +485,7 @@ elif request == 'dob':
     set runner to request
     save updated runner to database
   else:
-    flash message ``invalid dob''
+    flash message "invalid dob"
 
 elif request == 'weight':
   weight_check = ^-?[0-9]+$
@@ -485,7 +493,7 @@ elif request == 'weight':
     set runner to request
     save updated runner to database
   else:
-    flash message ``invalid weight''
+    flash message "invalid weight"
 \end{verbatim}
 
 \subsubsection{Register Page}
@@ -507,7 +515,7 @@ On form submit:
   set today = today.date()
 
   if today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day)) < 18:
-    show message ``You must be at least 18 to signup''
+    show message "You must be at least 18 to signup"
 
   presence check on phone
    format check on phone - regexp \s*\(?(020[78]\)? ?[1-9][0-9]{2}\s*$
@@ -516,7 +524,7 @@ On form submit:
   query User table for first where email == email input
 
   if distance == less than 1 mile and charity_event == true:
-    show message ``You must be physically fit to run in the charity event''
+    show message "You must be physically fit to run in the charity event"
 
   if no validation errors:
     add runner to database
@@ -542,7 +550,7 @@ On form submit:
     check password matches
     login_user()
   else:
-    show message ``Invalid username or password''
+    show message "Invalid username or password"
 \end{verbatim}
 
 \subsubsection{Calculate Calories Burned}
@@ -616,9 +624,9 @@ On add sport button press:
 \begin{verbatim}
   AJAX request to /ajax/sport_block. Data parameter name of sport. Data type text/plain.
 
-  if data == `running':
+  if data == "running":
     return running_block.html
-  elif data == `cycling':
+  elif data == "cycling":
     return cycling_block.html
   else:
     return swimming_block.html
@@ -641,6 +649,39 @@ On activity block submit:
     save activity to database
 \end{verbatim}
 
+\subsubsection{Get Sorted List of Charity Runners}
+Gets an alphabetically sorted list of all the runners who have opted into the charity event, for use with the comparison page.
+
+\begin{verbatim}
+  query User table for all where charity_event == 1 and id != current_user
+  set users to sorted(query) using built in Python sorted() function
+\end{verbatim}
+
+\subsubsection{Compare Performance}
+
+\begin{verbatim}
+  set run_average = 0
+   set runs = query Activity table for all where id == current_user.id and sport == running
+  for run in runs:
+    add run.calories to run_average
+  set run_average to run_average / length(runs)
+
+  set cycle_average = 0
+   set cycles = query Activity table for all where id == current_user.id and sport == cycling
+  for cycle in cycles:
+    add cycle.calories to cycle_average
+  set cycle_average to cycle_average / length(cycles)
+
+  set swim_average = 0
+   set swims = query Activity table for all where id == current_user.id and sport == swimming
+  for swim in swims:
+    add swim.calories to swim_average
+  set swim_average to swim_average / length(swims)
+
+  set total = run_calories + cycle_calories + swim_calories
+\end{verbatim}
+
+
 \subsubsection{Calculate Running Team}
 Calculates the running team. Calculates the total calories burned for each runner who opted into the charity event, and then sorts this by the highest number. Displaying the top 8 is performed in the Jinja template; beyond the scope of this.
 
@@ -650,7 +691,7 @@ set runners to db query for all runners who opted into charity event
 
 for runner in runners:
   set total_calories = 0
-  set training_sessions to db query for all of runner's activities
+  set training_sessions to db query for all of the runner's activities
 
   for session in training_sessions:
     add session.calories to total_calories
@@ -1591,22 +1632,33 @@ Likewise, the system allows for training sessions to be added, viewed and delete
 
 The objectives for the system also spoke of giving each runner their own personal account, secured by a unique username and an encrypted password. This has also been achieved - every runner has their own record in the Users table, included within which are username, email and encrypted password fields; each user is also given their own ID, serving as the primary key. Passwords are encrypted using Flask's built in encryption function, based off the extremely secure Bcyrpt algorithm. This ensures that it is extremely difficult for external entities to gain access to a runner's account, ensuring the security of their personal data. Likewise, provisions have been taken to prevent impersonation of the user - advanced \textit{CSRF} techniques have been used, tying each form field to a specific, individual instance of the application. This ensures that external entities cannot pretend to be the runner in a spoofing attempt, again ensuring security.
 
-A further objective was calculating the number of calories burned in each session, by taking into account the runner’s weight, time spent on the session, the nature of the session, and how well the runner believed it went. This too was achieved: an algorithm was written that devised the \textit{base values} from the calorie values provided by the running club; from this, a formula was conceived that took into account the runner's weight, multiplying it by the base value - thereby arriving at the correct number of calories burned. Further advancements were made by adding the capacity for the runner to define exactly how well a training session went: it stands to reason that a training session that went well is likely to have been more effective than one that the runner believed went poorly. As such, the system gives or takes away a small number of extra calories depending on the runner's response, ensuring that the system is more accurate.
+A further objective was accurately calculating the number of calories burned in each session, by taking into account the runner’s weight, time spent on the session, the nature of the session, and how well the runner believed it went. This too was achieved: an algorithm was written that devised the \textit{base values} from the calorie values provided by the running club; from this, a formula was conceived that took into account the runner's weight, multiplying it by the base value - thereby arriving at the correct number of calories burned. Further advancements were made by adding the capacity for the runner to define exactly how well a training session went: it stands to reason that a training session that went well is likely to have been more effective than one that the runner believed went poorly. As such, the system gives or takes away a small number of extra calories depending on the runner's response, ensuring that the system is more accurate.
 
-Another key objective was that effective validation should be included throughout the system. In some regards, this has been achieved: every form field is validated with a number of different checks, including presence, format, range, and more, and effective error messages are shown when the validation fails. This ensures that erroneous data is kept out of the database and checks that certain key pieces of data are included; without these checks the system would most likely crash. 
+Another key objective was that effective validation should be included throughout the system. In some regards, this has been achieved: every form field is validated with a number of different checks, including presence, format, range, and more, and effective error messages are shown when the validation fails. This ensures that erroneous data is kept out of the database and checks that certain key pieces of data are included; without these checks the system would most likely crash. However, in other regards the validation for the system cannot be considered effective. Users are able to perform multiple training sessions at the same time - it is perfectly possible to add a swimming card for 10:00am - 12:00am, and then a running card for the same time; the validation does not check that the times are free. Additionally, users are able to enter somwhat unrealistic data, such as going for a 10mph run that lasts 8 hours; this is obviously fake, but the system is incapable of catching this.
 
+Additionally, the system was meant to have a consistent house style; this is another area in which it has succeeded. A master layout is used, from which every page derives its common elements and style rules. This ensures that all colours, typography and layout of elements are constant throughout the system, creating a consistent, visually appealing interface that the user is able to easily navigate. The navigation bar and footer are in consistent places, and the same font, Raleway, has been used all the way throughout. Additionally, the same colours have been used for each sport, giving them, in a way, their own little motif; this again ensures consistency.
+
+The overall aim of the system was to calculate the most effective team for the running club's charity event. In this regard, the system has not been entirely, 100\% successful. The algorithm used in the system simply adds together the total number of calories and hours that each user has done throughout their usage of the system, and then ranks the users by this. This is a perfectly valid approach, and does display the fittest of the users, but it does not effectively weight the sports according to their relevance: as a running club, users with lots of experience in running are likely going to be more suitable than those who have spent their time swimming, yet the system does not take this into account, meaning that the team it chooses may not be the most efficient. However, the system does take into account human reality, by also choosing a reserve team; this ensures that if one of the chosen runners is unable to attend, there is another one to take their place.
 
 \subsection{Testing Evaluation}
-I believe that my testing strategy was sound: it allowed me to test most of the different parts of the system, and several bugs and flaws were fixed and sorted out through this process. Each part of the test has been well documented with clear instructions for the tester, as well as good screenshots. This has improved the quality of the system, making it more reliable for the runner.
+The testing strategy adopted for the system was, overall, sound. It allowed for every aspect of the system to be tested effectively, with full instructions for the tester to follow, ensuring that they do not have to spend large portions of their day thinking; this could cause undue stress and anxiety, and so is best avoided. Screenshots have been included for every test, detailing fully working functionality, or, if the test failed, the fix made in the code and the subsequent success. This extensive testing strategy means that the system is more stable, ensuring that it is far less likely to crash on the user than a system that had not been tested.
 
-I have tested all the validation on the system to ensure that erroneous data cannot be entered. I have tested that the database works correctly, ensuring that all read/write/update/delete operations work properly; this is a very important aspect of the system, so it is important that it works.
+Every major bug in the system, such as the inability to save the date that the user registered for the system, was able to be fixed through this strategy, further implying that it was successful. The validation for the system was also tested, and this was found to be sound; the manner in which it was tested, by entering a range of sample data - both correct and incorrect - ensured that it was tested thoroughly, further increasing the quality of the system.
 
-Additionally, I have tested the calorie calculation - it is very important that this works properly, else the incorrect team could be picked, leading to the running club performing poorly in the charity event.
+Additionally, the numerous database functions were tested, including create, read, update and delete functionality, thereby ensuring that the database is fully functioning. To ensure that all aspects of the database work, both the Users and Activities tables were tested; by testing both, it is possible to test the entire lifecycle of the system, through to creating a user, adding a training session, and then, eventually, deleting the user. The manner in which the database was tested, through the creation of sample data, ensures that the it was tested thoroughly, with all edge cases and incompatabilities being detected.
 
-Unfortunately, time restraints meant that I was unable to document the testing for the rankings page; this suggests that the testing strategy could be improved by making it quicker.
+Also tested were the performance charts, showing the user the overall trends of their performance on a visually appealing line chart. As above, effective test data was devised for each scenario - one user with no performance, that should therefore show an empty graph; one user with middling performance, and one with high performance; this should have been plotted on the chart; and, as the test data above proves, it was. This is further evidence that the testing strategy adopted was successful.
 
 \subsection{Possible Improvements}
-A major improvement would be if users were able to compare their performance, as this was unfortunately not functional at the time of release. Additionally, a seperate area for staff to view more data about the runners, and make changes of their own would be useful; it could help prevent malpractise.
+Though the system meets all of the criteria provided by the running club, and also meets the additional objectives set out above, there are a large number of possible improvements that could be made to transform it from what is at best an average product, in to one that people would actually want to use.
+
+One somewhat glaring flaw with the system is the lack of facility for changing one's password. Currently, the user must stick with the password they chose upon signup; this is an extremely large security risk because, if the system were in some way compromised, and attackers were able to break the encryption algorithm (a scenario that, admittedly, is unlikely), users would have no way of changing their password in response, meaning that all their data and such could be modified. Implementing a password reset system would be somewhat complicated: it would require functionality to send emails to the user with a password rest link; and, whilst this functionality is well with Python and the Flask framework's capabilities, it is somewhat complicated to implement; however, the time investment is clearly worth it.
+
+Another particularly large issue with the system is the lack of a staff-only area, one in which the running club staff could view all the data, and perhaps make changes; additional functionality, such as manually modifying the chosen running team, could also be included. Currently, staff are forced to view the actual database itself if they wish to view all the data in the system, something that raises additional concerns; some staff members may attempt to edit the database schema, something that could cause catastrophic damage to the system. With an actual staff area in place, this would be avoided, making it a rather useful possible addition.
+
+Perhaps the biggest problem with the system, however, and one that makes it somewhat useless for actual real-world usage, is the lack of effective validation, as was detailed above. Currently, users are able to perform multiple training sessions at the same time - it is perfectly possible to add a swimming card for 10:00am - 12:00am, and then a running card for the same time; the validation does not check that the times are free. Additionally, users are able to enter somwhat unrealistic data, such as going for a 10mph run that lasts 8 hours; this is obviously fake, but the system is incapable of catching this. A future implementation of the system should perform additional queries on the database to ensure that time slots have not already been filled, and should also check that the hours spent on a session does not exceed, say, 6 hours, depending on the sport and method chosen.
+
+Though not a particularly needed improvement, the system would benefit from the team rankings page being able to update in real time. Currently, the page only displays the team as of when the page was loaded; it would be rather nicer - and more efficient - if the page updated as soon as 
  
 \addcontentsline{toc}{section}{Unnumbered Section}
 
