@@ -851,6 +851,8 @@ Additionally, and perhaps most helpfully, the tables allow for the runner to sea
   \caption{Rankings Page}
 \end{figure}
 
+\clearpage
+
 \section{Database Models}
 This section contains documentation on finished database tables and models, including an ER diagram showing relationship between tables, schematics, and a visual view.
 
@@ -858,24 +860,22 @@ This section contains documentation on finished database tables and models, incl
 The activities and users are linked through a foreign key. This means that there is a one to many relationship between users and activities - one runner can have many activities, but each activity can only have one runner.
 
 \begin{figure}[h!]
-  \includegraphics[scale=0.2]{images/database/er_diagram}
+  \includegraphics[scale=0.4]{images/database/er_diagram}
   \caption{Table Relationships}
 \end{figure}
 
-\clearpage
-
 \subsection{Table Schemas}
-Each table in database has its own schema, in which is described name, data type and key type of each column. They can be found below.
+Each table in database has its own schema, in which is described the name, data type and key type of each column. They can be found below.
 
 \subsubsection{Users Table}
-id column is primary key. Email is used to login. Username is used in certain routes; see processes. Weight is used to calculate calories.
+The id column is the primary key. Email is used to login. Username is used in certain routes; see processes. Weight is used to calculate the calories.
 \begin{figure}[h!]
   \includegraphics[scale=0.65]{images/database/users_schema}
   \caption{Users Table Schema}
 \end{figure}
 
 \subsubsection{Activities Table}
-id column is primary key. Effigy is specific details of each activity, such as swimming stroke or running speed. user\_id is foreign key linking activity to a runner.
+The id column serves as the primary key. Effigy is specific details of each activity, such as swimming stroke or running speed. user\_id is the foreign key the linking activity to a runner.
 \begin{figure}[h!]
   \includegraphics[scale=0.65]{images/database/activities_schema}
   \caption{Activities Table Schema}
@@ -884,7 +884,7 @@ id column is primary key. Effigy is specific details of each activity, such as s
 \clearpage
 
 \subsection{Data Views}
-following is a snapshot of data in two tables at time of writing, to illustrate how they will appear in production.
+The following is a snapshot of the data in the two tables at time of writing, to illustrate how they will appear in production.
 
 \subsubsection{Users Table}
 \begin{figure}[h!]
@@ -894,9 +894,11 @@ following is a snapshot of data in two tables at time of writing, to illustrate 
 
 \subsubsection{Activities Table}
 \begin{figure}[h!]
-  \includegraphics[scale=0.37]{images/database/activities_visual}
+  \includegraphics[scale=0.3]{images/database/activities_visual}
   \caption{Activities Table Data View}
 \end{figure}
+
+\clearpage
 
 \section{Variables}
 A very large number of variables have been used throughout system in order to store data temporarily. It should be noted that variables in Python do not work in same way as in other languages like Visual Basic: a variable acts as a pointer to something already in memory (created by Python automatically), as opposed to creating a space in memory to store contents of variable. Therefore, the code x = 10 merely sets variable x to an address that points at 10, as opposed to writing 10 into memory.
@@ -1225,20 +1227,81 @@ This section tests the validation for the registration page. Most of the inputs 
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{Enacted Test}          & \textbf{Expected Action}                  & \textbf{Result} & \textbf{Proof} \\ \hline
-Leave name input blank         & Message ``you must enter your name''        & As expected.    & Fig1           \\ \hline
-Enter 123Dan into name         & Message ``name can only have letters''      & As expected.    & Fig2           \\ \hline
-Leave email input blank        & Message ``you must enter your email''       & As expected.    & Fig3           \\ \hline
-Enter danny.com in email       & Message ``email must be valid''             & As expected.    & Fig4           \\ \hline
-Leave password input blank     & Message ``you must enter password''         & As expected.    & Fig5           \\ \hline
-Enter abc123 in password field & Message ``password must be 8-20 chars''     & As expected.    & Fig6           \\ \hline
-Leave date input blank         & Message ``you must enter date of birth''    & As expected.    & Fig7           \\ \hline
-Leave weight input blank       & Message ``you must enter your weight''      & As expected.    & Fig8           \\ \hline
-Enter 200 in weight input      & Message ``weight must be between 10-100kg'' & As expected.    & Fig9           \\ \hline
-Leave phone input blank        & Message ``you must enter your phone''       & As expected.    & Fig10          \\ \hline
-Enter 0123456789 in phone      & Message ``phone number must be valid''      & As expected.    & Fig11          \\ \hline
+Leave name input blank         & Message ``You must enter your name.''        & As expected.    & Fig1           \\ \hline
+Enter 123Dan into name         & Message ``Name can only have letters.''      & As expected.    & Fig2           \\ \hline
+Leave email input blank        & Message ``You must enter your email.''       & As expected.    & Fig3           \\ \hline
+Enter danny.com in email       & Message ``Email must be valid.''             & As expected.    & Fig4           \\ \hline
+Enter deerob4@gmail.com in email & Message ``Email already taken.''             & As expected.    & Fig4           \\ \hline
+Leave password input blank     & Message ``You must enter password.''         & As expected.    & Fig5           \\ \hline
+Enter abc123 in password field & Message ``Password must be 8-20 chars.''     & As expected.    & Fig6           \\ \hline
+Leave date input blank         & Message ``You must enter date of birth.''    & As expected.    & Fig7           \\ \hline
+Leave weight input blank       & Message ``You must enter your weight.''      & As expected.    & Fig8           \\ \hline
+Enter 200 in weight input      & Message ``Weight must be between 10-100kg.'' & As expected.    & Fig9           \\ \hline
+Leave phone input blank        & Message ``You must enter your phone.''       & As expected.    & Fig10          \\ \hline
+Enter 0123456789 in phone      & Message ``Phone number must be valid.''      & As expected.    & Fig11          \\ \hline
 \end{tabular}
 \caption{Registration Page Validation}
 \end{table}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/name_presence}
+  \caption{Name Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/name_format}
+  \caption{Name Format Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/email_presence}
+  \caption{Email Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/email_format}
+  \caption{Email Format Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/email_taken}
+  \caption{Email Taken Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/password_presence}
+  \caption{Password Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/password_length}
+  \caption{Password Length Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/dob_presence}
+  \caption{Date of Birth Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/weight_presence}
+  \caption{Weight Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/weight_range}
+  \caption{Weight Range Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/phone_presence}
+  \caption{Phone Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/registration_validation/phone_format}
+  \caption{Phone Format Check}
+\end{figure}
 
 As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the runner, as is written in the processes.
 
@@ -1260,6 +1323,28 @@ Leave password input blank                                                      
 \end{table}
 
 As can be seen, all of the validation tests passed - they all result in appropriate error messages being shown to the runner, as is written in the processes. Additionally, the system correctly identifies if a runner enters an incorrect email or password, an important security feature.
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/login_validation/email_presence}
+  \caption{Email Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/login_validation/email_format}
+  \caption{Email Format Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/login_validation/password_presence}
+  \caption{Password Presence Check}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[scale=0.25]{images/testing/login_validation/login_check}
+  \caption{Valid Email and Password Check}
+\end{figure}
+
+\clearpage
 
 \subsubsection{Registering User to Database}
 This section tests that the registration page actually works, and the runner is successfully added to the database with all the correct data.\\
@@ -1645,12 +1730,33 @@ Only users with a 0 for the charity event field should be listed in the box. The
 
 As can be seen in the screenshot below, this is the case; the test succeeded.
 
+\clearpage
+
 \begin{figure}[h!]
     \includegraphics[scale=0.35]{images/testing/compare_performance/user_list}
     \caption{Working Dropdown List}
 \end{figure}
 
 \subsubsection{Comparison Page - Correct Data Shown}
+Login as Keir Merchant and select Judith Carter as the user to compare against. This is a shot of Judith's runs, taken from the database:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.35]{images/testing/compare_performance/judith_running}
+    \caption{Working Dropdown List}
+\end{figure}
+
+2965 + 1477 + 1872 + 624 + 2075 = 9031, therefore the Judith's running calories should read 9031 calories.
+2 + 2 + 2 + 2 + 2 = 10, therefore Judith's running hours should read 10 hours.
+
+As can be seen in the screenshot below, this is the case; the test succeeded.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.35]{images/testing/compare_performance/performance}
+    \caption{Correct Performance Values}
+\end{figure}
+
+The same process is used for the other sports, so if it works for running then it will work for the others.
+
 
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.

@@ -60,17 +60,17 @@
 \contentsline {subsection}{\numberline {7.6}User Performance Page}{42}{subsection.7.6}
 \contentsline {subsection}{\numberline {7.7}Add Activity Page}{44}{subsection.7.7}
 \contentsline {subsection}{\numberline {7.8}Rankings Page}{45}{subsection.7.8}
-\contentsline {section}{\numberline {8}Database Models}{45}{section.8}
-\contentsline {subsection}{\numberline {8.1}Table Relationships}{45}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Table Schemas}{47}{subsection.8.2}
-\contentsline {subsubsection}{\numberline {8.2.1}Users Table}{47}{subsubsection.8.2.1}
+\contentsline {section}{\numberline {8}Database Models}{46}{section.8}
+\contentsline {subsection}{\numberline {8.1}Table Relationships}{46}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Table Schemas}{46}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}Users Table}{46}{subsubsection.8.2.1}
 \contentsline {subsubsection}{\numberline {8.2.2}Activities Table}{47}{subsubsection.8.2.2}
 \contentsline {subsection}{\numberline {8.3}Data Views}{48}{subsection.8.3}
 \contentsline {subsubsection}{\numberline {8.3.1}Users Table}{48}{subsubsection.8.3.1}
 \contentsline {subsubsection}{\numberline {8.3.2}Activities Table}{48}{subsubsection.8.3.2}
-\contentsline {section}{\numberline {9}Variables}{48}{section.9}
-\contentsline {subsection}{\numberline {9.1}Global Variables}{48}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}Local Variables}{48}{subsection.9.2}
+\contentsline {section}{\numberline {9}Variables}{49}{section.9}
+\contentsline {subsection}{\numberline {9.1}Global Variables}{49}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Local Variables}{49}{subsection.9.2}
 \contentsline {section}{\numberline {10}Annotated Listings}{53}{section.10}
 \contentsline {subsection}{\numberline {10.1}HTML Views}{53}{subsection.10.1}
 \contentsline {subsubsection}{\numberline {10.1.1}layout.html}{53}{subsubsection.10.1.1}
@@ -108,21 +108,21 @@
 \contentsline {subsubsection}{\numberline {10.5.7}Charity Team Rankings}{113}{subsubsection.10.5.7}
 \contentsline {subsection}{\numberline {10.6}Testing}{113}{subsection.10.6}
 \contentsline {subsubsection}{\numberline {10.6.1}Registration Page Validation}{113}{subsubsection.10.6.1}
-\contentsline {subsubsection}{\numberline {10.6.2}Login Page Validation}{115}{subsubsection.10.6.2}
-\contentsline {subsubsection}{\numberline {10.6.3}Registering User to Database}{115}{subsubsection.10.6.3}
-\contentsline {subsubsection}{\numberline {10.6.4}Navigation Bar}{118}{subsubsection.10.6.4}
-\contentsline {subsubsection}{\numberline {10.6.5}Adding Training Session to Database}{119}{subsubsection.10.6.5}
-\contentsline {subsubsection}{\numberline {10.6.6}Delete User}{121}{subsubsection.10.6.6}
-\contentsline {subsubsection}{\numberline {10.6.7}Correct Date Shown}{123}{subsubsection.10.6.7}
-\contentsline {subsubsection}{\numberline {10.6.8}Update Calorie / Hour Counter}{123}{subsubsection.10.6.8}
-\contentsline {subsubsection}{\numberline {10.6.9}User Performance Graphs}{124}{subsubsection.10.6.9}
-\contentsline {subsubsection}{\numberline {10.6.10}Calorie Calculation}{128}{subsubsection.10.6.10}
-\contentsline {subsubsection}{\numberline {10.6.11}Profile Page - Viewing Data}{128}{subsubsection.10.6.11}
-\contentsline {subsubsection}{\numberline {10.6.12}Profile Page - Updating Data}{130}{subsubsection.10.6.12}
-\contentsline {subsubsection}{\numberline {10.6.13}Comparison Page - Sorted Drop Down Box}{131}{subsubsection.10.6.13}
-\contentsline {subsubsection}{\numberline {10.6.14}Comparison Page - Correct Data Shown}{132}{subsubsection.10.6.14}
-\contentsline {section}{\numberline {11}Evaluation}{132}{section.11}
-\contentsline {subsection}{\numberline {11.1}Evaluation Against Objectives}{132}{subsection.11.1}
-\contentsline {subsection}{\numberline {11.2}Testing Evaluation}{134}{subsection.11.2}
-\contentsline {subsection}{\numberline {11.3}Possible Improvements}{135}{subsection.11.3}
-\contentsline {section}{Unnumbered Section}{136}{subsection.11.3}
+\contentsline {subsubsection}{\numberline {10.6.2}Login Page Validation}{121}{subsubsection.10.6.2}
+\contentsline {subsubsection}{\numberline {10.6.3}Registering User to Database}{123}{subsubsection.10.6.3}
+\contentsline {subsubsection}{\numberline {10.6.4}Navigation Bar}{126}{subsubsection.10.6.4}
+\contentsline {subsubsection}{\numberline {10.6.5}Adding Training Session to Database}{127}{subsubsection.10.6.5}
+\contentsline {subsubsection}{\numberline {10.6.6}Delete User}{129}{subsubsection.10.6.6}
+\contentsline {subsubsection}{\numberline {10.6.7}Correct Date Shown}{131}{subsubsection.10.6.7}
+\contentsline {subsubsection}{\numberline {10.6.8}Update Calorie / Hour Counter}{131}{subsubsection.10.6.8}
+\contentsline {subsubsection}{\numberline {10.6.9}User Performance Graphs}{132}{subsubsection.10.6.9}
+\contentsline {subsubsection}{\numberline {10.6.10}Calorie Calculation}{136}{subsubsection.10.6.10}
+\contentsline {subsubsection}{\numberline {10.6.11}Profile Page - Viewing Data}{136}{subsubsection.10.6.11}
+\contentsline {subsubsection}{\numberline {10.6.12}Profile Page - Updating Data}{138}{subsubsection.10.6.12}
+\contentsline {subsubsection}{\numberline {10.6.13}Comparison Page - Sorted Drop Down Box}{139}{subsubsection.10.6.13}
+\contentsline {subsubsection}{\numberline {10.6.14}Comparison Page - Correct Data Shown}{140}{subsubsection.10.6.14}
+\contentsline {section}{\numberline {11}Evaluation}{141}{section.11}
+\contentsline {subsection}{\numberline {11.1}Evaluation Against Objectives}{141}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Testing Evaluation}{143}{subsection.11.2}
+\contentsline {subsection}{\numberline {11.3}Possible Improvements}{143}{subsection.11.3}
+\contentsline {section}{Unnumbered Section}{144}{subsection.11.3}
