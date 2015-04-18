@@ -14,9 +14,8 @@
         {% endfor %}
     </select>
 
-    <br/>
-
     <h3 class="vs-text">Your Performance</h3>
+    <h3>{{ comparison_name }}'s Performance</h3>
 
     <div class="row">
         <div class="col-md-6">
@@ -27,12 +26,32 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="comparison-calories">
-                            <span>{{ user_data.calories.running|round|int }} <br/> calories</span>
+                            <span>{{ activities.user.calories.running|round|int }} <br/> calories</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="comparison-hours">
-                            <span>10 <br/> hours</span>
+                            <span>{{ activities.user.hours.running|round|int }} <br/> hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="comparison-block running-block">
+                <div class="block-header">
+                    <span class="comparison-title">Running Data</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="comparison-calories">
+                            <span>{{ activities.comparison.calories.running|round|int }} <br/> calories</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="comparison-hours">
+                            <span>{{ activities.comparison.hours.running|round|int }} <br/> hours</span>
                         </div>
                     </div>
                 </div>
@@ -49,12 +68,32 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="comparison-calories">
-                            <span>{{ user_data.calories.cycling|round|int }} <br/> calories</span>
+                            <span>{{ activities.user.calories.cycling|round|int }} <br/> calories</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="comparison-hours">
-                            <span>10 <br/> hours</span>
+                            <span>{{ activities.user.hours.cycling|round|int }} <br/> hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="comparison-block cycling-block">
+                <div class="block-header">
+                    <span class="comparison-title">Cycling Data</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="comparison-calories">
+                            <span>{{ activities.comparison.calories.cycling|round|int }} <br/> calories</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="comparison-hours">
+                            <span>{{ activities.comparison.hours.cycling|round|int }} <br/> hours</span>
                         </div>
                     </div>
                 </div>
@@ -71,12 +110,32 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="comparison-calories">
-                            <span>{{ user_data.calories.swimming|round|int }} <br/> calories</span>
+                            <span>{{ activities.user.calories.swimming|round|int }} <br/> calories</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="comparison-hours">
-                            <span>10 <br/> hours</span>
+                            <span>{{ activities.user.hours.swimming|round|int }} <br/> hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="comparison-block swimming-block">
+                <div class="block-header">
+                    <span class="comparison-title">Swimming Data</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="comparison-calories">
+                            <span>{{ activities.comparison.calories.swimming|round|int }} <br/> calories</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="comparison-hours">
+                            <span>{{ activities.comparison.hours.swimming|round|int }} <br/> hours</span>
                         </div>
                     </div>
                 </div>
@@ -93,12 +152,32 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="comparison-calories">
-                            <span>{{ user_data.calories.total|round|int }} <br/> calories</span>
+                            <span>{{ activities.user.calories.total|round|int }} <br/> calories</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="comparison-hours">
-                            <span>10 <br/> hours</span>
+                            <span>{{ activities.user.hours.total|round|int }} <br/> hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="comparison-block info-block">
+                <div class="block-header">
+                    <span class="comparison-title">Total Data</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="comparison-calories">
+                            <span>{{ activities.comparison.calories.total|round|int }} <br/> calories</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="comparison-hours">
+                            <span>{{ activities.comparison.hours.total|round|int }} <br/> hours</span>
                         </div>
                     </div>
                 </div>

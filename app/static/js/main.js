@@ -126,10 +126,10 @@ $(document).ready(function () {
             currentCalories = parseInt($('.total-calories').text()),
             currentHours = parseInt($('.total-hours').text()),
 
-            // Builds a string to display in the animated activity block
+        // Builds a string to display in the animated activity block
             activityString = data.sport.toTitleCase() + ' (' + data.effigy.toLowerCase() + ') - ' + caloriesBurned + ' calories burned over ' + data.hours + ' hours',
 
-            // Constructs the final activity object in JSON, to send to the server and save to the database
+        // Constructs the final activity object in JSON, to send to the server and save to the database
             activityObject = {
                 "sport": data.sport.toLowerCase(),
                 "effigy": data.effigy,
@@ -171,7 +171,7 @@ $(document).ready(function () {
     }
 
     // A small function to capitalise the first letter of words
-    String.prototype.toTitleCase = function() {
+    String.prototype.toTitleCase = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     };
 
@@ -180,5 +180,11 @@ $(document).ready(function () {
 
     // Sets the global font family for the charts, in line with the rest of the application
     Chart.defaults.global.scaleFontFamily = "'Raleway', 'Helvetica', 'Arial', sans-serif";
+
+    // Controls the comparison page select box.
+    $('#user_list').val(window.location.pathname.replace('/performance/compare/', ''));
+    $('#user_list').change(function () {
+        window.location.href = '/performance/compare/' + $(this).val();
+    });
 
 });

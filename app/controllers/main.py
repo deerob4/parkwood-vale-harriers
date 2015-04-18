@@ -90,10 +90,10 @@ def profiles(username):
     possible_user = User.query.filter_by(username=username).first_or_404()
     if current_user.username == possible_user.username:
         activity_number = len(Activity.query.filter_by(user_id=current_user.get_id()).all())
-        total_users = len(User.query.all())
+        user_calorie_total_users = len(User.query.all())
 
         return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number,
-                               total_users=total_users)
+                               user_calorie_total_users=user_calorie_total_users)
     abort(403)
 
     return redirect(url_for('main.profiles', username=current_user.username))
@@ -104,14 +104,15 @@ def profiles(username):
 def add_training():
     """Returns add activity page; returns all the training sessions done on current day"""
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
-    total_calories = 0
-    total_hours = 0
+    user_calorie_total_calories = 0
+    user_calorie_total_hours = 0
     for activity in activities:
-        total_calories += activity.calories
-        total_hours += activity.hours
+        user_calorie_total_calories += activity.calories
+        user_calorie_total_hours += activity.hours
     return render_template('training/add_training.html', date=current_date,
-                           current_user=current_user, activities=activities, total_calories=total_calories,
-                           total_hours=total_hours)
+                           current_user=current_user, activities=activities,
+                           user_calorie_total_calories=user_calorie_total_calories,
+                           user_calorie_total_hours=user_calorie_total_hours)
 
 
 @main.route('/performance/<month>', methods=['GET', 'POST'])
@@ -135,41 +136,108 @@ def performance(month):
     abort(404)
 
 
-@main.route('/performance/compare', methods=['GET', 'POST'])
+@main.route('/performance/compare/<username>', methods=['GET', 'POST'])
 @login_required
-def compare_performance():
+def compare_performance(username):
     """Builds the dropdown list for comparison page"""
-    users = User.query.filter_by(charity_event=0).filter(User.id != current_user.id).all()
-    user_list = sorted([[user.id, user.name] for user in users])
 
-    runs = Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all()
-    run_average = 0
-    for run in runs:
-        run_average += run.calories
-    run_average /= len(runs)
+    if User.query.filter_by(username=username).first():
+        users = User.query.filter_by(charity_event=0).filter(User.id != current_user.id).all()
+        user_list = sorted([[user.username, user.name] for user in users])
+        comparison_id = User.query.filter_by(username=username).first().id
+        comparison_name = User.query.filter_by(username=username).first().name.split(' ', 1)[0]
 
-    cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
-    cycle_average = 0
-    for cycle in cycles:
-        cycle_average += cycle.calories
-    cycle_average /= len(cycles)
-
-    swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
-    swim_average = 0
-    for swim in swims:
-        swim_average += swim.calories
-    swim_average /= len(swims)
-
-    total = run_average + cycle_average + swim_average
-
-    user_data = {
-        'calories': {
-            'running': run_average, 'swimming': swim_average, 'cycling': cycle_average, 'total': total
+        # Creates a large dictionary with all the user's activities and the comparison's activities
+        activities = {
+            'runs': {
+                'user': Activity.query.filter_by(user_id=current_user.get_id(), sport='running').all(),
+                'comparison': Activity.query.filter_by(user_id=comparison_id, sport='running').all()
+            },
+            'cycles': {
+                'user': Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all(),
+                'comparison': Activity.query.filter_by(user_id=comparison_id, sport='cycling').all()
+            },
+            'swims': {
+                'user': Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all(),
+                'comparison': Activity.query.filter_by(user_id=comparison_id, sport='swimming').all()
+            }
         }
-    }
 
-    return render_template('/performance/compare_performance.html', users=users, user_list=user_list,
-                           user_data=user_data)
+        # Adds up all the user's running activities
+        user_run_calories = 0
+        user_run_hours = 0
+        for run in activities['runs']['user']:
+            user_run_calories += run.calories
+            user_run_hours += run.hours
+
+        # Adds up all the user's cycling activities
+        user_cycle_calories = 0
+        user_cycle_hours = 0
+        for cycle in activities['cycles']['user']:
+            user_cycle_calories += cycle.calories
+            user_cycle_hours += cycle.hours
+
+        # Adds up all the user's running activities
+        user_swim_calories = 0
+        user_swim_hours = 0
+        for swim in activities['swims']['user']:
+            user_swim_calories += swim.calories
+            user_swim_hours += swim.hours
+
+        user_calorie_total = user_run_calories + user_cycle_calories + user_swim_calories
+        user_hour_total = user_run_hours + user_cycle_hours + user_swim_hours
+
+        # Adds up all the comparison's running activities
+        comparison_run_calories = 0
+        comparison_run_hours = 0
+        for run in activities['runs']['comparison']:
+            comparison_run_calories += run.calories
+            comparison_run_hours += run.hours
+
+        # Adds up all the comparison's cycling activities
+        comparison_cycle_calories = 0
+        comparison_cycle_hours = 0
+        for cycle in activities['cycles']['comparison']:
+            comparison_cycle_calories += cycle.calories
+            comparison_cycle_hours += cycle.hours
+
+        # Adds up all the comparison's running activities
+        comparison_swim_calories = 0
+        comparison_swim_hours = 0
+        for swim in activities['swims']['comparison']:
+            comparison_swim_calories += swim.calories
+            comparison_swim_hours += swim.hours
+
+        comparison_calorie_total = comparison_run_calories + comparison_cycle_calories + comparison_swim_calories
+        comparison_hour_total = comparison_run_hours + comparison_cycle_hours + comparison_swim_hours
+
+        user_data = {
+            'user': {
+                'calories': {
+                    'running': user_run_calories, 'swimming': user_swim_calories, 'cycling': user_cycle_calories,
+                    'total': user_calorie_total
+                },
+                'hours': {
+                    'running': user_run_hours, 'swimming': user_swim_hours, 'cycling': user_cycle_hours,
+                    'total': user_hour_total
+                }
+            },
+            'comparison': {
+                'calories': {
+                    'running': comparison_run_calories, 'swimming': comparison_swim_calories, 'cycling': comparison_cycle_calories,
+                    'total': comparison_calorie_total
+                },
+                'hours': {
+                    'running': comparison_run_hours, 'swimming': comparison_swim_hours, 'cycling': comparison_cycle_hours,
+                    'total': comparison_hour_total
+                }
+            }
+
+        }
+
+        return render_template('/performance/compare_performance.html', user_list=user_list,
+                               activities=user_data, comparison_name=comparison_name)
+    abort(404)
 
 
 @main.route('/rankings')
@@ -179,11 +247,11 @@ def rankings():
     user_ranking = {}
     runners = User.query.filter_by(charity_event=False).all()
     for runner in runners:
-        total_calories = 0
+        user_calorie_total_calories = 0
         training_sessions = Activity.query.filter_by(user_id=runner.id).all()
         for session in training_sessions:
-            total_calories += session.calories
-        user_ranking[runner.name] = total_calories
+            user_calorie_total_calories += session.calories
+        user_ranking[runner.name] = user_calorie_total_calories
 
     user_ranking = sorted(user_ranking, key=user_ranking.get, reverse=True)
 
