@@ -147,13 +147,13 @@ def compare_performance():
     for run in runs:
         run_average += run.calories
     run_average /= len(runs)
-    
+
     cycles = Activity.query.filter_by(user_id=current_user.get_id(), sport='cycling').all()
     cycle_average = 0
     for cycle in cycles:
         cycle_average += cycle.calories
     cycle_average /= len(cycles)
-    
+
     swims = Activity.query.filter_by(user_id=current_user.get_id(), sport='swimming').all()
     swim_average = 0
     for swim in swims:
@@ -162,9 +162,14 @@ def compare_performance():
 
     total = run_average + cycle_average + swim_average
 
-    user_data = {'running': run_average, 'swimming': swim_average, 'cycling': cycle_average, 'total': total}
+    user_data = {
+        'calories': {
+            'running': run_average, 'swimming': swim_average, 'cycling': cycle_average, 'total': total
+        }
+    }
 
-    return render_template('/performance/compare_performance.html', users=users, user_list=user_list, user_data=user_data)
+    return render_template('/performance/compare_performance.html', users=users, user_list=user_list,
+                           user_data=user_data)
 
 
 @main.route('/rankings')
@@ -181,7 +186,7 @@ def rankings():
         user_ranking[runner.name] = total_calories
 
     user_ranking = sorted(user_ranking, key=user_ranking.get, reverse=True)
-        
+
     return render_template('/training/rankings.html', running_team=user_ranking)
 
 

@@ -342,28 +342,82 @@ table {
 /*------------------------------------------------------
 |                  Begin comparison styles              |
 -------------------------------------------------------*/
-.comparison_number {
-    font-size: 25px;
+.comparison-block {
+    width: 100%;
+    border-radius: 3px;
+    font-family: raleway, sans-serif;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.block-header {
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.comparison-hours, .comparison-calories {
+    width: 50%;
+    height: 80px;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    margin-left: 52px;
+}
+
+.comparison-calories {
+    margin-left: 70px;
+}
+
+.comparison-hours {
+    margin-left: 57px;
 }
 
 .running-block {
     border: 1px solid #3fad46;
 }
 
+.running-block .col-md-6:first-of-type {
+    border-right: 1px solid #3fad46;
+}
+
+.running-block .block-header {
+    background-color: #3fad46;
+}
+
 .cycling-block {
     border: 1px solid #f0ad4e !important;
+}
+
+.cycling-block .col-md-6:first-of-type {
+    border-right: 1px solid #f0ad4e;
+}
+
+.cycling-block .block-header {
+    background-color: #f0ad4e;
 }
 
 .swimming-block {
     border: 1px solid #5bc0de !important;
 }
 
+.swimming-block .block-header {
+    background-color: #5bc0de;
+}
+
+.swimming-block .col-md-6:first-of-type {
+    border-right: 1px solid #5bc0de;
+}
+
 .info-block {
     border: 1px solid #4582ec !important;
 }
 
-/*.vs-text {*/
-    /*font-family: ralewaymedium, sans-serif;*/
-    /*font-size: 54px;*/
-    /*font-weight: 600;*/
-/*}*/
+.info-block .col-md-6:first-of-type {
+    border-right: 1px solid #4582ec;
+}
+
+.info-block .block-header {
+    background-color: #4582ec;
+}
