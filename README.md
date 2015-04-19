@@ -22,3 +22,22 @@ The system can be installed locally in the same manner as all Flask projects:
 4. Install the package requirements - `pip install -r requirements.txt`
 5. Run the script - `python manage.py runserver`
 6. Navigate to localhost:5000 to view the application
+
+External Libraries Used
+-----------------------
+A number of external libraries and packages have been used throughout the system, for both the Python and Javascript elements.
+
+### Python
+- [Flask](https://github.com/mitsuhiko/flask)
+- [Flask-Login](https://github.com/maxcountryman/flask-login/)
+- [Flask-SQLAlchemy](https://github.com/mitsuhiko/flask-sqlalchemy)
+- [Flask-WTF](https://github.com/lepture/flask-wtf)
+
+### JavaScript and CSS
+- [jQuery](https://github.com/jquery/jquery)
+- [Bootstrap](https://github.com/twbs/bootstrap)
+- [Bootstrap Datepicker](https://github.com/eternicode/bootstrap-datepicker)
+- [Chart.js](https://github.com/nnnick/Chart.js/)
+- [DataTables](https://github.com/DataTables/DataTables)
+- [pickadate](https://github.com/amsul/pickadate.js/)
+- [Animate.css](https://github.com/daneden/animate.css)
