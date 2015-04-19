@@ -75,14 +75,15 @@ def profiles(username):
                 user.weight = request.form.get('weight')
                 update_user(user, 'weight')
 
+        # If the user attempts to delete their account
         elif request.form.get('delete'):
             if request.form.get('delete') != 'I will lose everything':
                 validation_error('You must type in the message exactly!')
             else:
                 user_id = current_user.get_id()
                 logout_user()
-                User.query.filter_by(id=user_id).delete()
-                Activity.query.filter_by(user_id=user_id).delete()
+                User.query.filter_by(id=user_id).delete()  # Deletes the user's record
+                Activity.query.filter_by(user_id=user_id).delete()  # Deletes all the user's activities
                 db.session.commit()
                 flash('Your account was successfully deleted - sorry to see you go!', 'success')
                 return redirect(url_for('auth.login'))
@@ -90,13 +91,11 @@ def profiles(username):
     possible_user = User.query.filter_by(username=username).first_or_404()
     if current_user.username == possible_user.username:
         activity_number = len(Activity.query.filter_by(user_id=current_user.get_id()).all())
-        user_calorie_total_users = len(User.query.all())
+        total_users = len(User.query.all())
+        return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number, total_users=total_users)
 
-        return render_template('profiles/own_profile.html', current_user=current_user, activity_number=activity_number,
-                               user_calorie_total_users=user_calorie_total_users)
+    # If the user is not the profile they attempted to access, 403 
     abort(403)
-
-    return redirect(url_for('main.profiles', username=current_user.username))
 
 
 @main.route('/add-training', methods=['GET', 'POST'])
@@ -104,15 +103,13 @@ def profiles(username):
 def add_training():
     """Returns add activity page; returns all the training sessions done on current day"""
     activities = Activity.query.filter_by(user_id=current_user.get_id(), date=current_date).all()
-    user_calorie_total_calories = 0
-    user_calorie_total_hours = 0
+    total_calories = 0
+    total_hours = 0
     for activity in activities:
-        user_calorie_total_calories += activity.calories
-        user_calorie_total_hours += activity.hours
-    return render_template('training/add_training.html', date=current_date,
-                           current_user=current_user, activities=activities,
-                           user_calorie_total_calories=user_calorie_total_calories,
-                           user_calorie_total_hours=user_calorie_total_hours)
+        total_calories += activity.calories
+        total_hours += activity.hours
+    return render_template('training/add_training.html', date=current_date, current_user=current_user, activities=activities,
+                           total_calories=total_calories, total_hours=total_hours)
 
 
 @main.route('/performance/<month>', methods=['GET', 'POST'])
@@ -127,19 +124,19 @@ def performance(month):
         for x in range(1, 13):
             if activity.date.month == x and months[x - 1] not in available_months:
                 available_months.append(months[x - 1])
-    print(available_months)
 
     if month.lower() in available_months:
         user_data = performance_data(month.lower())
         return render_template('performance/user_performance.html', user_data=user_data,
-                               current_month=month.title(), months=available_months)
+                                current_month=month.title(), months=available_months)
+    # If they haven't done any training in that month, 404
     abort(404)
 
 
 @main.route('/performance/compare/<username>', methods=['GET', 'POST'])
 @login_required
 def compare_performance(username):
-    """Builds the dropdown list for comparison page"""
+    """Builds the dropdown list for comparison page and returns the comparison data"""
 
     if User.query.filter_by(username=username).first():
         users = User.query.filter_by(charity_event=0).filter(User.id != current_user.id).all()
@@ -208,9 +205,11 @@ def compare_performance(username):
             comparison_swim_calories += swim.calories
             comparison_swim_hours += swim.hours
 
+        # Adds up all the data
         comparison_calorie_total = comparison_run_calories + comparison_cycle_calories + comparison_swim_calories
         comparison_hour_total = comparison_run_hours + comparison_cycle_hours + comparison_swim_hours
 
+        # Creates a big long dictionary which contains all the data for both the logged in and the comparison user
         user_data = {
             'user': {
                 'calories': {
@@ -243,7 +242,15 @@ def compare_performance(username):
 @main.route('/rankings')
 @login_required
 def rankings():
-    """Calculates the best running team"""
+    """Calculates the best running team.
+
+    The algorithm is not very advanced - it simply
+    loops through all the runners who have opted into
+    the charity event and then loops through all their
+    activities, adding together all the calories. The
+    runners are then sorted in order of who has the months
+    calories.
+    """
     user_ranking = {}
     runners = User.query.filter_by(charity_event=False).all()
     for runner in runners:

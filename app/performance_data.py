@@ -108,5 +108,4 @@ def performance_data(month):
         'month': month.title()
     }
 
-    print(user_data)
     return user_data
