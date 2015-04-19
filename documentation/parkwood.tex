@@ -22,6 +22,18 @@
 \usepackage{framed}
 \usepackage{fontspec}
 \usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{nopageno}
+
+\fancyhf{} 
+
+\pagestyle{fancy}
+\lhead{Parkwood Vale Harriers Training Log}
+\lfoot{Daniel Roberts 4699}
+\rfoot{Shrewsbury Sixth Form College 29285}
+\rhead{Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 
 \newfontfamily\raleway{Raleway}
 
@@ -137,7 +149,7 @@ One very important factor that the running club has left out is security. In a s
 
 Another issue with the brief is that of an objective decision being made when selecting the team. Running a marathon is about far more than just physical fitness; more personal aspects, such as how well runners get along, as well as different roles within team, should also be taken into account for maximum efficiency. The system would be unable to do this (without each runner giving their opinion on others, which is unrealistic), and so the team it comes up with may not be most appropriate choice. 
 
-Another limitation in the system is that data will have to be entered manually: there is no way of extrapolating data from some sort of personal tracking device without diverging some distance away from the actual brief. This could result in some issues with accuracy, or even with malpractice: people could enter exaggerated data in order to manipulate the rankings and make themselves appear more suitable for the team. A mixture of validation and verification can be put in place to prevent this, such as ensuring users cannot go for a straight eight hour swim (something which is obviously unrealistic), but this will be unable to catch all cases of exaggeration; it is therefore necessary to rely on the goodwill and sportsmanship of runners.
+Another limitation in the system is that data will have to be entered manually: there is no way of extrapolating the data from some sort of personal tracking device without diverging some distance away from the actual brief. This could result in some issues with accuracy, or even with malpractice: people could enter exaggerated data in order to manipulate the rankings and make themselves appear more suitable for the team. A mixture of validation and verification can be put in place to prevent this, such as ensuring users cannot go for a straight eight hour swim (something which is obviously unrealistic), but this will be unable to catch all cases of exaggeration; it is therefore necessary to rely on the goodwill and sportsmanship of runners.
 
 Furthermore, the system relies on the premise that runners will add every session they perform to the application. It is not unlikely that they will go on unsolicited sessions that they do not bother adding, or they may simply forget. There is no foolproof manner to prevent these occurences, but a number of steps can be taken to reduce their likelihood, such as by making the process of adding a session as simple as possible - it follows that the easier the process is, the more likely the runners are to do it.
 
@@ -1160,7 +1172,6 @@ This file defines majority of routes used by system.
 
 \cleardoublepage
 
-
 \part{Testing and Evaluation}
 This section contains the detailed tests that were performed on the system as it was developed, to ensure that any bugs that existed in the system were caught. Also included is a detailed evaluation of the system.
 
@@ -1795,7 +1806,10 @@ Another particularly large issue with the system is the lack of a staff-only are
 Perhaps the biggest problem with the system, however, and one that makes it practically useless for actual real-world usage, is the lack of effective validation, as was detailed above. Currently, users are able to perform multiple training sessions at the same time - it is perfectly possible to add a swimming card for 10:00am - 12:00am, and then a running card for the same time; the validation does not check that the times are free. Additionally, users are able to enter somwhat unrealistic data, such as going for a 10mph run that lasts 8 hours; this is obviously fake, but the system is incapable of catching this. A future implementation of the system should perform additional queries on the database to ensure that time slots have not already been filled, and should also check that the hours spent on a session does not exceed, say, 6 hours, depending on the sport and method chosen.
 
 Though not a particularly needed improvement, the system would benefit from the team rankings page being able to update in real time. Currently, the page only displays the team as of when the page was loaded; it would be rather nicer - and, in some ways, more efficient - if the page updated as soon as a runner added an activity. This would lend the system a little more urgency, reminding the runners that they face real, tough competition - competition which could, at any moment, overtake them. Such a feature would not be overly difficult to implement: using web sockets (perhaps through the Socket.IO library) one could easily set up a little asynchronous bi-directional network; though, of course, this would complicate the testing process.
- 
-\addcontentsline{toc}{section}{Unnumbered Section}
+
+The system could also benefit from the ability to view comparison data through graphs and charts, as was originally planned. Though useful enough and, indeed, rather attractive, the currently used method of simply displaying the raw data for the two users is somewhat crude, and would benefit from being displayed in a more visual manner, perhaps like the individual user performance charts that can be found on the main performance page. This would no doubt increase the time scale considerably, however, as a good deal of effort was made in attempting to get this feature working for the current system, without success.
+
+A further feature that would come in useful is a more advanced team selection algorithm: the algorithm currently used in the system simply adds together the total number of calories and hours that each user has done throughout their usage of the system, and then ranks the users by this. This is a perfectly valid approach, and does display the fittest of the users, but it does not effectively weight the sports according to their relevance: as a running club, users with lots of experience in running are likely going to be more suitable than those who have spent their time swimming; this feature would make the end result more realistic.
+% \addcontentsline{toc}{section}{Unnumbered Section}
 
 \end{document}

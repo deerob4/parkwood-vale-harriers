@@ -11,3 +11,14 @@ Application Features
 - [X] The ability to compare results with other runners
 - [X] Individual accounts for each runner
 - [X] The ability to work out the best final team
+
+Installation
+------------
+The system can be installed locally in the same manner as all Flask projects:
+
+1. Clone the repository
+2. Create a virtualenv using the Python 3 interpreter - `virtualenv -p /usr/bin/python3.4 env`
+3. Activate the virtualenv - `source env/bin/activate`
+4. Install the package requirements - `pip install -r requirements.txt`
+5. Run the script - `python manage.py runserver`
+6. Navigate to localhost:5000 to view the application
