@@ -260,6 +260,7 @@ def rankings():
             user_calorie_total_calories += session.calories
         user_ranking[runner.name] = user_calorie_total_calories
 
+    print(user_ranking)
     user_ranking = sorted(user_ranking, key=user_ranking.get, reverse=True)
 
     return render_template('/training/rankings.html', running_team=user_ranking)

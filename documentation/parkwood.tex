@@ -192,17 +192,11 @@ An original solution created using a programming language would suffer from rath
 
 The question then falls to exactly which programming language is most appropriate. There are a large number of languages available, ranging from \textit{compiled} languages like Java, C\# and Visual Basic to \textit{interpreted} languages like Ruby, Python and PHP. differences between compiled and iterpreted languages are complex and varied, but, in essence, compiled languages are likely to perform algorithms more quickly (due to directly using native code of target machine), whereas code written in an interpreted language can be executed ``on the fly'', so to speak, increasing development speed. 
 
-Python has an extremely wide range of benefits, perhaps more so than any other language, that make it absolutely suited to the needs of the running club. One of the benefits of Python is that it, not only can it connect to a database, it can also be used with any database system. This allows a great deal of freedom when choosing a database system - one can choose between MySQL, or SQLite, or even PostgreSQL. A database is the best method of storing the data, as it can be seperated into a number of logical tables, ensuring that the data is organised. Additionally, a database means that primary and foreign keys can be used, linking data tables and ensuring that each record is uniquely identifiable.
+Python has an extremely wide range of benefits, perhaps more so than any other language, that make it absolutely suited to the needs of the running club. One of the benefits of Python is that it, not only can it connect to a database, it can also be used with any database system. This allows a great deal of freedom when choosing a database system - one can choose between MySQL, or SQLite, or even PostgreSQL. A database is the best method of storing the data, as it can be seperated into a number of logical tables, ensuring that the data is organised. Additionally, a database means that primary and foreign keys can be used, linking data tables and ensuring that each record is uniquely identifiable. There is also support for arrays, tuples, JSON and dictionaries; with all these methods of storing data, there will be little cause for compromise.1
 
-Python is also extremely simple to use - it is commonly ranked as the easisest language to learn, owing to its well thoght and structure and similarity, in many regards, to the English language. Indeed, when compared to a language like, say, Visual Basic, Python stands out as a bastion of sensible language design, and most importantly, common sense. This means that devlopment time can either be dramatically reduced, or 
+Python is also extremely simple to use - it is commonly ranked as the easisest language to learn, owing to its well thoght and structure and similarity, in many regards, to the English language. Indeed, when compared to a language like, say, Visual Basic, Python stands out as a bastion of sensible language design, and most importantly, common sense. This means that devlopment time can either be dramatically reduced, or more advanced features can be included in the application.
 
-However, this simplicity should not be mistaken for a lack of functionality: Python is an extremely capable languages; it can be used for everything from system administration to game design to, as in the case of this system, web development.
-
-In order to persistently store runner's data, a database is needed. As is custom with applications of this sort, there will be one single database file, within which will be a number of tables. The system will also make use of a number of arrays and JSON structures, to temporarily store data.
-
-Additionally, Python, combined with HTML and CSS to create a web interface allows for a highly complex, fully interactive user interface to be created. Due to the nature of the languages, rapid prototyping can be achieved - any changes made are visible instantly, without the need for recompilation; this means that it is easier, as well as quicker, to create an appealing interface.
-
-Common UI paradigms, such as buttons and input boxes can be included; these are effective, as the runner is likely to already have a working knowledge of how to use this system. 
+Additionally, Python, combined with HTML and CSS to create a web interface allows for a highly complex, fully interactive user interface to be created. Common UI paradigms, such as buttons and input boxes can be included; these are effective, as the runner is likely to already have a working knowledge of how to use this system. Clear typography and excellent use of colour can also be included, further increasing the quality of the system. Due to the nature of the languages, rapid prototyping can be achieved - any changes made are visible instantly, without the need for recompilation; this means that it is easier, as well as quicker, to create an appealing interface.
 
 \section{Database Tables}
 The system will use SQLite database system. SQLite is a very popular database system (in same vein as MySQL). All of the database tables will be accessed sequentially - every item is ordered according to their primary key, which, as is custom for an SQLite database, is always an id number stored as an integer.
@@ -475,7 +469,7 @@ if request == 'name':
   else:
     flash message "invalid name"
 
-elif request == 'email':
+else if request == 'email':
   email_check = ^.+@[^.].*\.[a-z]{2,10}$
   if email_check matches request:
     set runner to request
@@ -483,7 +477,7 @@ elif request == 'email':
   else:
     flash message "invalid email"
 
-elif request == 'phone':
+else if request == 'phone':
   phone_check = \s*\(?(020[78]\)? ?[1-9][0-9]{2} ?[0-9]{4})|(0[1-8][0-9]{3}\)? ?[1-9][0-9]{2} ?[0-9]{3})\s*$
   if phone_check matches request:
     set runner to request
@@ -491,7 +485,7 @@ elif request == 'phone':
   else:
     flash message "invalid email"
 
-elif request == 'dob':
+else if request == 'dob':
   dob_check = dob_regex
   if dob_check matches request:
     set runner to request
@@ -499,7 +493,7 @@ elif request == 'dob':
   else:
     flash message "invalid dob"
 
-elif request == 'weight':
+else if request == 'weight':
   weight_check = ^-?[0-9]+$
   if weight_check matches request:
     set runner to request
@@ -638,7 +632,7 @@ On add sport button press:
 
   if data == "running":
     return running_block.html
-  elif data == "cycling":
+  else if data == "cycling":
     return cycling_block.html
   else:
     return swimming_block.html
@@ -817,7 +811,7 @@ To ensure that runner is fully aware of severity of deleting their account, they
 \clearpage
 
 \subsection{Compare Peformance}
-Unfortunately, time constraints meant that the implementation of the comparison graphs was never completed, so users are unable to compare their performance. 
+Unfortunately, technical and time constraints meant that the planned graphs could not be implemented. Instead, bright, bold, consistently coloured blocks make it easy to view comparison data, and the familiar dropdown list makes it easy for the runner to change just who they are comparing against; additionally, showing both calories and hours allows the runner to gain a more complete picture of how they are competing.
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/compare_performance}
@@ -848,15 +842,19 @@ Additionally, and perhaps most helpfully, the tables allow for the runner to sea
 \clearpage
 
 \subsection{Add Activity Page}
-
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/add_activity}
   \caption{Add Activity Page}
 \end{figure}
 
-\clearpage
+The activity page continues the colour motifs established throughout the rest of the application. When the sport buttons are pressed, the appropriate card zooms into place, in a manner reminiscent of a stack of playing cards. This visual metaphor creates a connection of sorts between the virtual world of the application, and the real world in which the runners reside. Familiar dropdown boxes allow users to easily enter the details of their training session, and an extra space has been included to allow them to make particular notes on the session for later use. 
 
-\subsection{Rankings Page}
+When the training sessions are added, they smoothly animate into a bar like the one above the cards (the colour of which is dependant on the sport, obviously). This area lists all the training sessions that have taken place that day, providing a visually appealing way of viewing sessions; they also give basic information about the sessions. To prevent the space becoming cluttered, only sessions that took place on the current date are shown; legacy sessions can be viewed in the main performance page.
+
+Useful counters are also included that display the total number of calories and hours that have been performed on the current date; these update automatically, and provide a simple, at-a-glance view of how much the user has performed on that date.
+
+\subsection{Charity Team Rankings Page}
+The charity team rankings page has a simple, understated design that effectively communicates the current team to the runner. By making a clear seperation between the main charity team and the reserve team, runners are encouraged to work harder: they have been mitigated to the side, away, in some ways, from the action; this acts as a motivational tool, allowing the runners to aspire to be in the green - a colour commonly used to indicate positivity (and also, coincidentally, the colour of running throughout the application).
 
 \begin{figure}[h!]
   \includegraphics[scale=0.35]{final_ui/rankings}
@@ -1095,6 +1093,9 @@ Every page of the system has its own corresponding HTML template. These are used
 \subsubsection{login.html}
 \lstinputlisting[language=HTML, caption=Login Page]{../app/templates/auth/login.html}
 
+\subsubsection{404.html}
+\lstinputlisting[language=HTML, caption=404 Page Not Found Error]{../app/templates/errors/404.html}
+
 \subsubsection{user\_performance.html}
 \lstinputlisting[language=HTML, caption=User Performance Page]{../app/templates/performance/user_performance.html}
 
@@ -1121,7 +1122,7 @@ Every page of the system has its own corresponding HTML template. These are used
 
 
 \subsection{JavaScript Functions}
-system makes use of some JavaScript in order to create links between front-end (HTML files above) and Python functions. Very little processing is done here; mainly data is transmitted back and forth between client and server.
+The system makes use of some JavaScript in order to create links between the front-end (HTML files above) and Python functions. Very little processing is done here; mainly data is transmitted back and forth between the client and server.
 
 \subsubsection{main.js}
 \lstinputlisting[language=JavaScript, caption=Main JavaScript Functions]{../app/static/js/main.js}
@@ -1131,23 +1132,23 @@ system makes use of some JavaScript in order to create links between front-end (
 
 
 \subsection{CSS Styling}
-A master CSS file is used to provide styling for system, setting out things like typography, layout and a little animation in places.
+A master CSS file is used to provide styling for the system, setting out things like typography, layout and a little animation in places.
 
 \lstinputlisting[caption=main.css]{../app/static/css/main.css}
 
 \subsection{Python Processes}
-vast majority of system is written in Python. These function handle everything from connecting and writing to database, to calculating number of calories burned in a session, and everything in between. For a full rundown of what each function does, view processes section.
+The vast majority of the system is written in Python. These functions handle everything from connecting and writing to the database, to calculating the number of calories burned in a session, and everything in between. For a full rundown of what each function does, view the processes section.
 
 \subsubsection{\_\_init\_\_.py}
-This file handles very low level functions of system, like creating and initialising actual Flask application.
+This file handles the very low level functions of system, like creating and initialising the actual Flask application.
 \lstinputlisting[language=Python, caption=\_\_init\_\_.py]{../app/__init__.py}
 
 \subsubsection{forms.py}
-This file defines input forms used in login and register pages. It sets validation for each input, and defines appropriate HTML element.
+This file defines input forms used in the login and register pages. It sets the validation for each input, and defines the appropriate HTML element.
 \lstinputlisting[language=Python, caption=forms.py]{../app/forms.py}
 
 \subsubsection{models.py}
-This file defines database models used by database. It sets up aspects like foreign/primary keys, and data type of each column.
+This file defines the database models used by the database. It sets up aspects like foreign/primary keys, the and data type of each column.
 \lstinputlisting[language=Python, caption=models.py]{../app/models.py}
 
 \subsubsection{helpers.py}
@@ -1155,19 +1156,19 @@ This file defines several smaller helper functions used multiple times throughou
 \lstinputlisting[language=Python, caption=helpers.py]{../app/helpers.py}
 
 \subsubsection{performance\_data.py}
-This file returns a JSON object containing all sessions for a runner in a particular month. It is used throughout system to return data for use in tables and graphs.
+This file returns a JSON object containing all the sessions for a runner in a particular month. It is used throughout the system to return data for use in tables and graphs.
 \lstinputlisting[language=Python, caption=performance\_data.py]{../app/performance_data.py}
 
 \subsubsection{auth.py}
-This file defines routes and processes used in login / register process. They were placed in their own file for efficiency, and because they play a different part to others.
+This file defines the routes and processes used in the login / register processes. They were placed in their own file for efficiency, and because they play a more external role than others.
 \lstinputlisting[language=Python, caption=auth.py]{../app/controllers/auth.py}
 
 \subsubsection{ajax.py}
-This file defines routes used by AJAX calls in JavaScript files. All of these return a value, usually a JSON object, that is then used to dynamically update page.
+This file defines the routes used by the AJAX calls in the JavaScript files. All of these return a value, usually a JSON object, that is then used to dynamically update the page.
 \lstinputlisting[language=Python, caption=ajax.py]{../app/controllers/ajax.py}
 
 \subsubsection{main.py}
-This file defines majority of routes used by system.
+This file defines the majority of routes used by the system.
 \lstinputlisting[language=Python, caption=main.py]{../app/controllers/main.py}
 
 \cleardoublepage
@@ -1176,7 +1177,7 @@ This file defines majority of routes used by system.
 This section contains the detailed tests that were performed on the system as it was developed, to ensure that any bugs that existed in the system were caught. Also included is a detailed evaluation of the system.
 
 \subsection{Test Strategy}
-I will follow this extensive test strategy to ensure that every part of the system is tested in a thorough manner, thereby increasing the chance that any bugs present in the code are discovered and fixed. For clarity, it has been organised by application page as opposed to process.
+This extensive test strategy will be followed to ensure that every part of the system is tested in a thorough manner, thereby increasing the chance that any bugs present in the code are discovered and fixed. For clarity, it has been organised by application page as opposed to processes.
 
 \subsubsection{Register Page}
 \begin{itemize}
@@ -1194,7 +1195,6 @@ I will follow this extensive test strategy to ensure that every part of the syst
 
 \subsubsection{Add Training Session}
 \begin{itemize}
-  \item Test that the validation on the training cards works properly
   \item Test that the correct number of calories are calculated
   \item Test that the training sessions are saved to the database properly
   \item Test that the training sessions can be deleted from the database
@@ -1225,7 +1225,6 @@ I will follow this extensive test strategy to ensure that every part of the syst
 \subsubsection{Charity Team Rankings}
 \begin{itemize}
   \item Test that the correct team is shown, according to a manually calculated version
-  \item Test that the correct data is shown depending on the current user and the other user chosen
 \end{itemize}
 
 \subsection{Testing}
@@ -1238,18 +1237,18 @@ This section tests the validation for the registration page. Most of the inputs 
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{Enacted Test}          & \textbf{Expected Action}                  & \textbf{Result} & \textbf{Proof} \\ \hline
-Leave name input blank         & Message ``You must enter your name.''        & As expected.    & Fig1           \\ \hline
-Enter 123Dan into name         & Message ``Name can only have letters.''      & As expected.    & Fig2           \\ \hline
-Leave email input blank        & Message ``You must enter your email.''       & As expected.    & Fig3           \\ \hline
-Enter danny.com in email       & Message ``Email must be valid.''             & As expected.    & Fig4           \\ \hline
-Enter deerob4@gmail.com in email & Message ``Email already taken.''             & As expected.    & Fig4           \\ \hline
-Leave password input blank     & Message ``You must enter password.''         & As expected.    & Fig5           \\ \hline
-Enter abc123 in password field & Message ``Password must be 8-20 chars.''     & As expected.    & Fig6           \\ \hline
-Leave date input blank         & Message ``You must enter date of birth.''    & As expected.    & Fig7           \\ \hline
-Leave weight input blank       & Message ``You must enter your weight.''      & As expected.    & Fig8           \\ \hline
-Enter 200 in weight input      & Message ``Weight must be between 10-100kg.'' & As expected.    & Fig9           \\ \hline
-Leave phone input blank        & Message ``You must enter your phone.''       & As expected.    & Fig10          \\ \hline
-Enter 0123456789 in phone      & Message ``Phone number must be valid.''      & As expected.    & Fig11          \\ \hline
+Leave name input blank         & Message ``You must enter your name.''        & As expected.    & Fig16           \\ \hline
+Enter 123Dan into name         & Message ``Name can only have letters.''      & As expected.    & Fig17           \\ \hline
+Leave email input blank        & Message ``You must enter your email.''       & As expected.    & Fig18           \\ \hline
+Enter danny.com in email       & Message ``Email must be valid.''             & As expected.    & Fig19          \\ \hline
+Enter deerob4@gmail.com in email & Message ``Email already taken.''             & As expected.    & Fig20           \\ \hline
+Leave password input blank     & Message ``You must enter password.''         & As expected.    & Fig21           \\ \hline
+Enter abc123 in password field & Message ``Password must be 8-20 chars.''     & As expected.    & Fig22           \\ \hline
+Leave date input blank         & Message ``You must enter date of birth.''    & As expected.    & Fig23           \\ \hline
+Leave weight input blank       & Message ``You must enter your weight.''      & As expected.    & Fig24           \\ \hline
+Enter 200 in weight input      & Message ``Weight must be between 10-100kg.'' & As expected.    & Fig25           \\ \hline
+Leave phone input blank        & Message ``You must enter your phone.''       & As expected.    & Fig26          \\ \hline
+Enter 0123456789 in phone      & Message ``Phone number must be valid.''      & As expected.    & Fig27          \\ \hline
 \end{tabular}
 \caption{Registration Page Validation}
 \end{table}
@@ -1325,10 +1324,10 @@ This section tests the validation for the login page. All of the inputs on this 
 \begin{tabular}{|l|l|l|l|}
 \hline
 \textbf{Enacted Test}                                                                                             & \textbf{Expected Action}                                                                   & \textbf{Actual Result} & \textbf{Proof} \\ \hline
-Leave email input blank                                                                                           & \begin{tabular}[c]{@{}l@{}}Error message ``you must \\ enter your email''\end{tabular}       & As expected.           & Fig12           \\ \hline
-Enter danny.com in email                                                                                          & \begin{tabular}[c]{@{}l@{}}Error message ``your email \\ must be valid''\end{tabular}        & As expected.           & Fig13           \\ \hline
-Leave password input blank                                                                                        & \begin{tabular}[c]{@{}l@{}}Error message ``you must \\ enter your password''\end{tabular}    & As expected.           & Fig14           \\ \hline
-\begin{tabular}[c]{@{}l@{}}Enter john@smith.com in\\ email input and abc123def \\ in password input.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Error message ``invalid\\ email / password entered''\end{tabular} & As expected.           & Fig15           \\ \hline
+Leave email input blank                                                                                           & \begin{tabular}[c]{@{}l@{}}Error message ``you must \\ enter your email''\end{tabular}       & As expected.           & Fig28           \\ \hline
+Enter danny.com in email                                                                                          & \begin{tabular}[c]{@{}l@{}}Error message ``your email \\ must be valid''\end{tabular}        & As expected.           & Fig29           \\ \hline
+Leave password input blank                                                                                        & \begin{tabular}[c]{@{}l@{}}Error message ``you must \\ enter your password''\end{tabular}    & As expected.           & Fig30           \\ \hline
+\begin{tabular}[c]{@{}l@{}}Enter john@smith.com in\\ email input and abc123def \\ in password input.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Error message ``invalid\\ email / password entered''\end{tabular} & As expected.           & Fig31           \\ \hline
 \end{tabular}
 \caption{Login Page Validation}
 \end{table}
@@ -1612,16 +1611,14 @@ Peter's graph should contain no data.
 Chrissie's graph sould contain three data points with connecting lines.
 
 \begin{figure}[h!]
-    \includegraphics[scale=0.33]{images/testing/graphs/chrissie}
+    \includegraphics[scale=0.3]{images/testing/graphs/chrissie}
     \caption{Chrissie Taylor's Graph}
 \end{figure}
-
-\clearpage
 
 Jerry's graph should contain five data points with connecting lines.
 
 \begin{figure}[h!]
-    \includegraphics[scale=0.33]{images/testing/graphs/jerry}
+    \includegraphics[scale=0.3]{images/testing/graphs/jerry}
     \caption{Jerry Bridgeland's Graph}
 \end{figure}
 
@@ -1768,6 +1765,68 @@ As can be seen in the screenshot below, this is the case; the test succeeded.
 
 The same process is used for the other sports, so if it works for running then it will work for the others.
 
+\clearpage
+
+\subsubsection{Charity Team Rankings}
+This section tests that the system calculates the correct charity team. The Users table currently looks like this:
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.35]{images/testing/charity_team/users}
+    \caption{Users Table}
+\end{figure}
+
+There are currently 13 users in the table, all of whom have opted into the charity event. The system should only display 12 of them - 8 in the main team, and 4 in the reserve team. Following is a list of the total calories for each of the users in the table:
+
+\begin{description}
+  \item[Samuel Johnson:] 67139 calories
+  \item[Keir Merchant:] 36556 calories
+  \item[Chrissie Taylor:] 34643 calories
+  \item[Jerry Bridgeland:] 5198 calories
+  \item[Nicole Andrews:] 60537 calories
+  \item[Dee Roberts:] 73692 calories
+  \item[Danny Pinlk:] 9207 calories
+  \item[Alice Grant:] 70028 calories
+  \item[Peter Kennedy:] 9998 calories
+  \item[Judith Carter:] 61942 calories
+  \item[Lisa Gibson:] 75301 calories
+  \item[Stephanie Gutierrez:] 71293 calories
+  \item[Sharon Stewart:] 64645 calories
+\end{description}
+
+\clearpage
+
+Using this list, the system should calculate the main running team as:
+
+\begin{enumerate}
+  \item Lisa Gibson
+  \item Dee Roberts
+  \item Stephanie Gutierrez
+  \item Alice Grant
+  \item Samuel Johnson
+  \item Sharon Stewart
+  \item Judith Carter
+  \item Nicole Andrews\\
+\end{enumerate}
+
+The reserve team should be calculated as:
+
+\begin{enumerate}
+  \item Keir Merchant
+  \item Chrissie Taylor
+  \item Peter Kennedy
+  \item Danny Pinlk\\
+\end{enumerate}
+
+Jerry Bridgeland has not performed effectively enough, so he is not included in the team at all.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.35]{images/testing/charity_team/correct_rankings}
+    \caption{Correct Team Rankings}
+\end{figure}
+
+As can be seen in the shot, the system calculated the team correctly, according to the lists above; the test succeeded.
+
+\clearpage
 
 \section{Evaluation}
 This is the evalulation; it evaluates different parts of the system.

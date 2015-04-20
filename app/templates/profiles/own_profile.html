@@ -31,27 +31,36 @@
                     <div class="panel-title">Your Personal Details</div>
                 </div>
                 <ul class="user-details list-group panel-list">
-                    <li class="name list-group-item">Name: {{ current_user.name }} <span class="right"
-                                                                                         data-toggle="modal"
-                                                                                         data-target="#changeNameModal"><a
-                            href="#">Edit</a></span></li>
-                    <li class="email list-group-item">Email: {{ current_user.email }} <span class="right"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#changeEmailModal"><a
-                            href="#">Edit</a></span>
+                    <li class="name list-group-item">
+                        Name: {{ current_user.name }} 
+                        <span class="right" data-toggle="modal" data-target="#changeNameModal">
+                            <a href="#">Edit</a>
+                        </span>
                     </li>
-                    <li class="phone list-group-item">Phone: {{ current_user.phone }} <span class="right"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#changePhoneModal"><a
-                            href="#">Edit</a></span>
+                    <li class="email list-group-item">
+                        Email: {{ current_user.email }}
+                        <span class="right" data-toggle="modal" data-target="#changeEmailModal">
+                            <a href="#">Edit</a>
+                        </span>
                     </li>
-                    <li class="dob list-group-item">Date of birth: {{ current_user.dob.strftime('%A %e %B %G') }} <span
-                            class="right" data-toggle="modal"
-                            data-target="#changeDobModal"><a href="#">Edit</a></span></li>
-                    <li class="weight list-group-item">Weight: {{ current_user.weight }}kg <span class="right"
-                                                                                                 data-toggle="modal"
-                                                                                                 data-target="#changeWeightModal"><a
-                            href="#">Edit</a></span></li>
+                    <li class="phone list-group-item">
+                        Phone: {{ current_user.phone }} 
+                        <span class="right" data-toggle="modal" data-target="#changePhoneModal">
+                            <a href="#">Edit</a>
+                        </span>
+                    </li>
+                    <li class="dob list-group-item">
+                        Date of birth: {{ current_user.dob.strftime('%A %e %B %G') }} 
+                        <span class="right" data-toggle="modal" data-target="#changeDobModal">
+                            <a href="#">Edit</a>
+                        </span>
+                    </li>
+                    <li class="weight list-group-item">
+                        Weight: {{ current_user.weight }}kg
+                        <span class="right" data-toggle="modal" data-target="#changeWeightModal">
+                            <a href="#">Edit</a>
+                        </span>
+                    </li>
                 </ul>
             </div>
         </div>

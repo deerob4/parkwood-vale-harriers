@@ -7,7 +7,7 @@
 \contentsline {subsection}{\numberline {1.5}Objectives}{8}{subsection.1.5}
 \contentsline {subsection}{\numberline {1.6}Justification of Proposed Solution}{9}{subsection.1.6}
 \contentsline {section}{\numberline {2}Database Tables}{10}{section.2}
-\contentsline {subsection}{\numberline {2.1}Users Table}{11}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.1}Users Table}{10}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Activities Table}{11}{subsection.2.2}
 \contentsline {section}{\numberline {3}User Interface Design}{12}{section.3}
 \contentsline {subsection}{\numberline {3.1}Main Layout Template}{13}{subsection.3.1}
@@ -59,7 +59,7 @@
 \contentsline {subsection}{\numberline {7.5}Compare Peformance}{41}{subsection.7.5}
 \contentsline {subsection}{\numberline {7.6}User Performance Page}{42}{subsection.7.6}
 \contentsline {subsection}{\numberline {7.7}Add Activity Page}{44}{subsection.7.7}
-\contentsline {subsection}{\numberline {7.8}Rankings Page}{45}{subsection.7.8}
+\contentsline {subsection}{\numberline {7.8}Charity Team Rankings Page}{45}{subsection.7.8}
 \contentsline {section}{\numberline {8}Database Models}{46}{section.8}
 \contentsline {subsection}{\numberline {8.1}Table Relationships}{46}{subsection.8.1}
 \contentsline {subsection}{\numberline {8.2}Table Schemas}{46}{subsection.8.2}
@@ -76,51 +76,53 @@
 \contentsline {subsubsection}{\numberline {10.1.1}layout.html}{53}{subsubsection.10.1.1}
 \contentsline {subsubsection}{\numberline {10.1.2}register.html}{55}{subsubsection.10.1.2}
 \contentsline {subsubsection}{\numberline {10.1.3}login.html}{57}{subsubsection.10.1.3}
-\contentsline {subsubsection}{\numberline {10.1.4}user\_performance.html}{58}{subsubsection.10.1.4}
-\contentsline {subsubsection}{\numberline {10.1.5}own\_profile.html}{62}{subsubsection.10.1.5}
-\contentsline {subsubsection}{\numberline {10.1.6}add\_training.html}{68}{subsubsection.10.1.6}
-\contentsline {subsubsection}{\numberline {10.1.7}compare\_performance.html}{69}{subsubsection.10.1.7}
-\contentsline {subsubsection}{\numberline {10.1.8}rankings.html}{73}{subsubsection.10.1.8}
-\contentsline {subsubsection}{\numberline {10.1.9}running\_block.html}{74}{subsubsection.10.1.9}
-\contentsline {subsubsection}{\numberline {10.1.10}cycling\_block.html}{76}{subsubsection.10.1.10}
-\contentsline {subsubsection}{\numberline {10.1.11}swimming\_block.html}{77}{subsubsection.10.1.11}
-\contentsline {subsection}{\numberline {10.2}JavaScript Functions}{79}{subsection.10.2}
-\contentsline {subsubsection}{\numberline {10.2.1}main.js}{79}{subsubsection.10.2.1}
-\contentsline {subsubsection}{\numberline {10.2.2}individual\_charts.js}{83}{subsubsection.10.2.2}
-\contentsline {subsection}{\numberline {10.3}CSS Styling}{85}{subsection.10.3}
-\contentsline {subsection}{\numberline {10.4}Python Processes}{93}{subsection.10.4}
-\contentsline {subsubsection}{\numberline {10.4.1}\_\_init\_\_.py}{93}{subsubsection.10.4.1}
-\contentsline {subsubsection}{\numberline {10.4.2}forms.py}{94}{subsubsection.10.4.2}
+\contentsline {subsubsection}{\numberline {10.1.4}404.html}{58}{subsubsection.10.1.4}
+\contentsline {subsubsection}{\numberline {10.1.5}user\_performance.html}{59}{subsubsection.10.1.5}
+\contentsline {subsubsection}{\numberline {10.1.6}own\_profile.html}{62}{subsubsection.10.1.6}
+\contentsline {subsubsection}{\numberline {10.1.7}add\_training.html}{68}{subsubsection.10.1.7}
+\contentsline {subsubsection}{\numberline {10.1.8}compare\_performance.html}{69}{subsubsection.10.1.8}
+\contentsline {subsubsection}{\numberline {10.1.9}rankings.html}{73}{subsubsection.10.1.9}
+\contentsline {subsubsection}{\numberline {10.1.10}running\_block.html}{73}{subsubsection.10.1.10}
+\contentsline {subsubsection}{\numberline {10.1.11}cycling\_block.html}{75}{subsubsection.10.1.11}
+\contentsline {subsubsection}{\numberline {10.1.12}swimming\_block.html}{77}{subsubsection.10.1.12}
+\contentsline {subsection}{\numberline {10.2}JavaScript Functions}{78}{subsection.10.2}
+\contentsline {subsubsection}{\numberline {10.2.1}main.js}{78}{subsubsection.10.2.1}
+\contentsline {subsubsection}{\numberline {10.2.2}individual\_charts.js}{82}{subsubsection.10.2.2}
+\contentsline {subsection}{\numberline {10.3}CSS Styling}{84}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Python Processes}{92}{subsection.10.4}
+\contentsline {subsubsection}{\numberline {10.4.1}\_\_init\_\_.py}{92}{subsubsection.10.4.1}
+\contentsline {subsubsection}{\numberline {10.4.2}forms.py}{93}{subsubsection.10.4.2}
 \contentsline {subsubsection}{\numberline {10.4.3}models.py}{95}{subsubsection.10.4.3}
 \contentsline {subsubsection}{\numberline {10.4.4}helpers.py}{97}{subsubsection.10.4.4}
 \contentsline {subsubsection}{\numberline {10.4.5}performance\_data.py}{98}{subsubsection.10.4.5}
-\contentsline {subsubsection}{\numberline {10.4.6}auth.py}{101}{subsubsection.10.4.6}
+\contentsline {subsubsection}{\numberline {10.4.6}auth.py}{100}{subsubsection.10.4.6}
 \contentsline {subsubsection}{\numberline {10.4.7}ajax.py}{102}{subsubsection.10.4.7}
-\contentsline {subsubsection}{\numberline {10.4.8}main.py}{105}{subsubsection.10.4.8}
-\contentsline {part}{III\hspace {1em}Testing and Evaluation}{112}{part.3}
-\contentsline {subsection}{\numberline {10.5}Test Strategy}{112}{subsection.10.5}
-\contentsline {subsubsection}{\numberline {10.5.1}Register Page}{112}{subsubsection.10.5.1}
-\contentsline {subsubsection}{\numberline {10.5.2}Login Page}{112}{subsubsection.10.5.2}
-\contentsline {subsubsection}{\numberline {10.5.3}Add Training Session}{112}{subsubsection.10.5.3}
-\contentsline {subsubsection}{\numberline {10.5.4}Profile Page}{113}{subsubsection.10.5.4}
-\contentsline {subsubsection}{\numberline {10.5.5}Training Performance}{113}{subsubsection.10.5.5}
-\contentsline {subsubsection}{\numberline {10.5.6}Compare Performance}{113}{subsubsection.10.5.6}
-\contentsline {subsubsection}{\numberline {10.5.7}Charity Team Rankings}{113}{subsubsection.10.5.7}
-\contentsline {subsection}{\numberline {10.6}Testing}{113}{subsection.10.6}
-\contentsline {subsubsection}{\numberline {10.6.1}Registration Page Validation}{113}{subsubsection.10.6.1}
-\contentsline {subsubsection}{\numberline {10.6.2}Login Page Validation}{121}{subsubsection.10.6.2}
-\contentsline {subsubsection}{\numberline {10.6.3}Registering User to Database}{123}{subsubsection.10.6.3}
-\contentsline {subsubsection}{\numberline {10.6.4}Navigation Bar}{126}{subsubsection.10.6.4}
-\contentsline {subsubsection}{\numberline {10.6.5}Adding Training Session to Database}{127}{subsubsection.10.6.5}
-\contentsline {subsubsection}{\numberline {10.6.6}Delete User}{129}{subsubsection.10.6.6}
-\contentsline {subsubsection}{\numberline {10.6.7}Correct Date Shown}{131}{subsubsection.10.6.7}
-\contentsline {subsubsection}{\numberline {10.6.8}Update Calorie / Hour Counter}{131}{subsubsection.10.6.8}
-\contentsline {subsubsection}{\numberline {10.6.9}User Performance Graphs}{132}{subsubsection.10.6.9}
-\contentsline {subsubsection}{\numberline {10.6.10}Calorie Calculation}{136}{subsubsection.10.6.10}
-\contentsline {subsubsection}{\numberline {10.6.11}Profile Page - Viewing Data}{136}{subsubsection.10.6.11}
-\contentsline {subsubsection}{\numberline {10.6.12}Profile Page - Updating Data}{138}{subsubsection.10.6.12}
-\contentsline {subsubsection}{\numberline {10.6.13}Comparison Page - Sorted Drop Down Box}{139}{subsubsection.10.6.13}
-\contentsline {subsubsection}{\numberline {10.6.14}Comparison Page - Correct Data Shown}{140}{subsubsection.10.6.14}
+\contentsline {subsubsection}{\numberline {10.4.8}main.py}{104}{subsubsection.10.4.8}
+\contentsline {part}{III\hspace {1em}Testing and Evaluation}{111}{part.3}
+\contentsline {subsection}{\numberline {10.5}Test Strategy}{111}{subsection.10.5}
+\contentsline {subsubsection}{\numberline {10.5.1}Register Page}{111}{subsubsection.10.5.1}
+\contentsline {subsubsection}{\numberline {10.5.2}Login Page}{111}{subsubsection.10.5.2}
+\contentsline {subsubsection}{\numberline {10.5.3}Add Training Session}{111}{subsubsection.10.5.3}
+\contentsline {subsubsection}{\numberline {10.5.4}Profile Page}{112}{subsubsection.10.5.4}
+\contentsline {subsubsection}{\numberline {10.5.5}Training Performance}{112}{subsubsection.10.5.5}
+\contentsline {subsubsection}{\numberline {10.5.6}Compare Performance}{112}{subsubsection.10.5.6}
+\contentsline {subsubsection}{\numberline {10.5.7}Charity Team Rankings}{112}{subsubsection.10.5.7}
+\contentsline {subsection}{\numberline {10.6}Testing}{112}{subsection.10.6}
+\contentsline {subsubsection}{\numberline {10.6.1}Registration Page Validation}{112}{subsubsection.10.6.1}
+\contentsline {subsubsection}{\numberline {10.6.2}Login Page Validation}{120}{subsubsection.10.6.2}
+\contentsline {subsubsection}{\numberline {10.6.3}Registering User to Database}{122}{subsubsection.10.6.3}
+\contentsline {subsubsection}{\numberline {10.6.4}Navigation Bar}{125}{subsubsection.10.6.4}
+\contentsline {subsubsection}{\numberline {10.6.5}Adding Training Session to Database}{126}{subsubsection.10.6.5}
+\contentsline {subsubsection}{\numberline {10.6.6}Delete User}{128}{subsubsection.10.6.6}
+\contentsline {subsubsection}{\numberline {10.6.7}Correct Date Shown}{130}{subsubsection.10.6.7}
+\contentsline {subsubsection}{\numberline {10.6.8}Update Calorie / Hour Counter}{130}{subsubsection.10.6.8}
+\contentsline {subsubsection}{\numberline {10.6.9}User Performance Graphs}{131}{subsubsection.10.6.9}
+\contentsline {subsubsection}{\numberline {10.6.10}Calorie Calculation}{134}{subsubsection.10.6.10}
+\contentsline {subsubsection}{\numberline {10.6.11}Profile Page - Viewing Data}{134}{subsubsection.10.6.11}
+\contentsline {subsubsection}{\numberline {10.6.12}Profile Page - Updating Data}{136}{subsubsection.10.6.12}
+\contentsline {subsubsection}{\numberline {10.6.13}Comparison Page - Sorted Drop Down Box}{137}{subsubsection.10.6.13}
+\contentsline {subsubsection}{\numberline {10.6.14}Comparison Page - Correct Data Shown}{138}{subsubsection.10.6.14}
+\contentsline {subsubsection}{\numberline {10.6.15}Charity Team Rankings}{139}{subsubsection.10.6.15}
 \contentsline {section}{\numberline {11}Evaluation}{141}{section.11}
 \contentsline {subsection}{\numberline {11.1}Evaluation Against Objectives}{141}{subsection.11.1}
 \contentsline {subsection}{\numberline {11.2}Testing Evaluation}{143}{subsection.11.2}
