@@ -19,7 +19,7 @@ current_date = datetime.now().date()
 @main.route('/')
 @login_required
 def home():
-    return redirect(url_for('main.performance', month='march'))
+    return redirect(url_for('main.performance', month=current_date.strftime('%B').lower()))
 
 
 @main.route('/profiles/<username>', methods=['GET', 'POST'])
@@ -130,7 +130,7 @@ def performance(month):
         return render_template('performance/user_performance.html', user_data=user_data,
                                 current_month=month.title(), months=available_months)
     # If they haven't done any training in that month, 404
-    abort(404)
+    return redirect(url_for('main.add_training'))
 
 
 @main.route('/performance/compare/<username>', methods=['GET', 'POST'])
