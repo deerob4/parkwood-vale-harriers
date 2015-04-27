@@ -20,18 +20,19 @@ The system can be installed locally in the same manner as all Flask projects:
 2. Create a virtualenv using the Python 3 interpreter - `virtualenv -p /usr/bin/python3.4 env`
 3. Activate the virtualenv - `source env/bin/activate`
 4. Install the package requirements - `pip install -r requirements.txt`
-5. Run the script - `python manage.py runserver`
-6. Navigate to localhost:5000 to view the application
+5. Create the database - `python manage.py createdb`
+6. Run the script - `python manage.py runserver`
+7. Navigate to localhost:5000 to view the application
 
 External Libraries Used
 -----------------------
 A number of external libraries and packages have been used throughout the system, for both the Python and Javascript elements.
 
 ### Python
-- [Flask](https://github.com/mitsuhiko/flask)
-- [Flask-Login](https://github.com/maxcountryman/flask-login/)
-- [Flask-SQLAlchemy](https://github.com/mitsuhiko/flask-sqlalchemy)
-- [Flask-WTF](https://github.com/lepture/flask-wtf)
+- [Flask](https://github.com/mitsuhiko/flask) - main framework
+- [Flask-Login](https://github.com/maxcountryman/flask-login/) - provides auth cookie management
+- [Flask-SQLAlchemy](https://github.com/mitsuhiko/flask-sqlalchemy) - provides Flask bindings for SQLAlchemy ORM
+- [Flask-WTF](https://github.com/lepture/flask-wtf) - provides Flask bindings for WTForms library
 
 ### JavaScript and CSS
 - [jQuery](https://github.com/jquery/jquery)

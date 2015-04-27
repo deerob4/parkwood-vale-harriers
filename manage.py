@@ -11,7 +11,6 @@ app = create_app()
 manager = Manager(app)
 
 manager.add_command('server', Server(use_debugger=True))
-manager.add_command('server-c9', Server(host=os.getenv('IP'), port=os.getenv('PORT'), use_debugger=True))
 manager.add_command('server-codio', Server(host='0.0.0.0', port=5000, use_debugger=True))
 manager.add_command('clean', Clean())
 manager.add_command('show-urls', ShowUrls())
