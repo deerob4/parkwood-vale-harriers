@@ -20,9 +20,8 @@ The system can be installed locally in the same manner as all Flask projects:
 2. Create a virtualenv using the Python 3 interpreter - `virtualenv -p /usr/bin/python3.4 env`
 3. Activate the virtualenv - `source env/bin/activate`
 4. Install the package requirements - `pip install -r requirements.txt`
-5. Create the database - `python manage.py createdb`
-6. Run the script - `python manage.py runserver`
-7. Navigate to localhost:5000 to view the application
+5. Run the script - `python manage.py runserver`
+6. Navigate to localhost:5000 to view the application
 
 External Libraries Used
 -----------------------
